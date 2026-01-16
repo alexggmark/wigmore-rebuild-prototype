@@ -20,6 +20,6 @@ body {
 @layer components {
   /* New card container component */
   .card-container {
-    @apply rounded-lg mb-4;
+    @apply rounded-2xl mb-3;
   }
 }
