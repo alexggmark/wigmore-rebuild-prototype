@@ -20,6 +20,8 @@
   "homepage": "https://github.com/alexggmark/alpine-pines-component-test#readme",
   "description": "",
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "tailwindcss": "^4.1.18",
     "vite": "^7.2.6",
     "vite-plugin-html-inject": "^1.1.2"
   }

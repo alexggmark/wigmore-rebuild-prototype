@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  /* Testing zone */
+  --color-brand-primary: #287271;
+
+  /* Real zone */
+  --color-brand-primary-100: #F3F7F7; /* Badge backgrounds */
+  /* --color-brand-200: #88E5F1;
+  --color-brand-300: #63DDED;
+  --color-brand-400: #3FD5E9;
+  --color-brand-500: #1ACDE4;
+  --color-brand-600: #16ACC0; */
+  --color-brand-primary-700: #128B9B; /* Main blue/green */
+  /* --color-brand-800: #0C5E69;
+  --color-brand-900: #063136; */
+
+  --color-brand-light: #ffffff; /* Generic light */
+  --color-brand-dark: #042F2E; /* All text */
+}
