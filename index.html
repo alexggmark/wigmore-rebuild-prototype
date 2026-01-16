@@ -5,21 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
+  <!-- Swiper -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <!-- Alpine -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Tailwind CSS -->
   <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-  <h1 class="text-brand-primary-700 bg-brand-primary-100">Hello 🙂</h1>
-  <load src="partials/test.html" />
+  <div class="container mx-auto">
+    <load src="partials/test.html" />
 
-  <div class="card-container bg-brand-light">
-    Test
-  </div>
-  <div class="card-container bg-brand-light">
-    Test
-  </div>
-  <div class="card-container bg-brand-light">
-    Test
+    <div class="card-container bg-brand-light p-4">
+      Test
+    </div>
+
+    <load src="partials/loading-state.html" />
+
+    <load src="partials/carousel.html" />
   </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 body {
   background-color: var(--color-brand-background);
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
 }
 
 @theme {
@@ -20,6 +20,6 @@ body {
 @layer components {
   /* New card container component */
   .card-container {
-    @apply rounded-md mb-4;
+    @apply rounded-lg mb-4;
   }
 }
