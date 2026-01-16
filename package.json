@@ -1,0 +1,26 @@
+{
+  "name": "wigmore-rebuild-prototype",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexggmark/alpine-pines-component-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexggmark/alpine-pines-component-test/issues"
+  },
+  "homepage": "https://github.com/alexggmark/alpine-pines-component-test#readme",
+  "description": "",
+  "devDependencies": {
+    "vite": "^7.2.6",
+    "vite-plugin-html-inject": "^1.1.2"
+  }
+}
