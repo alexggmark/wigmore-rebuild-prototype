@@ -98,3 +98,16 @@
 .logo-scroll {
   animation: scroll 20s linear infinite;
 }
+
+/* PRODUCT CAROUSEL PROGRESS BAR */
+.product-carousel-progress.swiper-pagination-progressbar {
+  background: var(--color-brand-border);
+  position: relative;
+  top: auto;
+  width: 100%;
+}
+
+.product-carousel-progress.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: var(--color-brand-primary-700);
+  border-radius: 100px;
+}
