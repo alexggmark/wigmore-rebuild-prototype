@@ -14,8 +14,10 @@
   --font-sans: "gotham", system-ui, sans-serif;
   --font-serif: "ivypresto-headline", Georgia, serif;
 
-  --tracking-wide: 0.04rem;
+  --tracking-wide: 0.01em;
   --tracking-widest: 0.08rem;
+
+  --text-base: 0.9rem;
 }
 
 @layer base {
@@ -23,16 +25,20 @@
     @apply antialiased;
     background-color: var(--color-brand-background);
     color: var(--color-brand-dark);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     font-family: var(--font-sans);
+  }
+
+  p {
+    /* margin-bottom: 1.4em; */
   }
 }
 
 @layer components {
   /* LAYOUT COMPONENTS */
   .card-container {
-    @apply rounded-2xl mb-3;
+    @apply rounded-3xl mb-3;
   }
 
   /* BADGES */
