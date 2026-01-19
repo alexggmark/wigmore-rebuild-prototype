@@ -8,23 +8,28 @@
   })"
   class="relative card-container overflow-hidden"
 >
-  <div x-ref="swiper" class="swiper">
+  <div x-ref="swiper" class="swiper h-150">
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
       <div class="swiper-slide">
         <div
-          class="relative h-125 bg-cover bg-center flex items-center"
-          style="background-image: url('https://placehold.co/1920x500');"
+          class="relative h-full bg-cover bg-center flex items-center"
+          style="background-image: url('/assets/banners/banner-image.png');"
         >
-          <div class="absolute inset-0 bg-brand-dark/50"></div>
+          <div class="absolute inset-0 bg-black/50"></div>
           <div class="relative z-10 container mx-auto px-8 flex justify-center">
             <div class="max-w-4xl flex flex-col items-center text-center gap-4">
               <div class="badge-transparent">Welcome to Wigmore Medical</div>
               <h1 class="heading-primary text-5xl text-brand-light">The UK’s Leading Aesthetic Distributor for Medical Professionals</h1>
               <p class="text-brand-light max-w-xl">Discover our range of premium treatments designed to enhance your natural beauty with the latest techniques and technologies.</p>
-              <a href="#" class="mt-2 px-6 py-3 bg-brand-primary-700 text-brand-light rounded-full font-medium hover:bg-brand-primary-700/90 transition-colors">
-                Book Consultation
-              </a>
+              <div class="flex flex-row gap-4">
+                <a href="#" class="mt-2 px-6 py-3 text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-medium hover:bg-brand-primary-800 transition-colors">
+                  Join Now
+                </a>
+                <a href="#" class="mt-2 px-6 py-3 text-xs uppercase tracking-wide border border-brand-light bg-brand-light/5 backdrop-blur-xs text-brand-light rounded-full font-medium hover:bg-brand-light/10 transition-colors">
+                  Sign in
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -33,16 +38,16 @@
       <!-- Slide 2 -->
       <div class="swiper-slide">
         <div
-          class="relative h-125 bg-cover bg-center flex items-center"
-          style="background-image: url('https://placehold.co/1920x500');"
+          class="relative h-full bg-cover bg-center flex items-center"
+          style="background-image: url('/assets/banners/banner-image.png');"
         >
-          <div class="absolute inset-0 bg-brand-dark/50"></div>
+          <div class="absolute inset-0 bg-black/50"></div>
           <div class="relative z-10 container mx-auto px-8">
             <div class="max-w-xl flex flex-col items-start gap-4">
               <div class="badge-transparent">Special Offer</div>
               <h1 class="heading-primary text-5xl text-brand-light">Summer Skin Refresh</h1>
               <p class="text-brand-light/90">Rejuvenate your skin this season with our exclusive summer treatment packages at special prices.</p>
-              <a href="#" class="mt-2 px-6 py-3 bg-brand-primary-700 text-brand-light rounded-full font-medium hover:bg-brand-primary-700/90 transition-colors">
+              <a href="#" class="mt-2 px-6 py-3 bg-brand-primary-700 text-brand-light rounded-full font-medium hover:bg-brand-primary-800 transition-colors">
                 View Offers
               </a>
             </div>
@@ -53,10 +58,10 @@
       <!-- Slide 3 -->
       <div class="swiper-slide">
         <div
-          class="relative h-125 bg-cover bg-center flex items-center"
-          style="background-image: url('https://placehold.co/1920x500');"
+          class="relative h-full bg-cover bg-center flex items-center"
+          style="background-image: url('/assets/banners/banner-image.png');"
         >
-          <div class="absolute inset-0 bg-brand-dark/50"></div>
+          <div class="absolute inset-0 bg-black/50"></div>
           <div class="relative z-10 container mx-auto px-8">
             <div class="max-w-xl flex flex-col items-start gap-4">
               <div class="badge-transparent">Expert Care</div>
@@ -75,19 +80,15 @@
   <!-- Navigation Buttons - Centered Vertically -->
   <button
     x-ref="prev"
-    class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex border border-brand-light items-center justify-center bg-brand-light/20 hover:bg-brand-light/40 backdrop-blur-sm rounded-full text-brand-light transition-colors"
+    class="absolute cursor-pointer left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex border border-brand-light items-center justify-center bg-brand-light/20 hover:bg-brand-light/40 backdrop-blur-sm rounded-full text-brand-light transition-colors"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-    </svg>
+    <span class="icon icon-arrow w-4 h-4"></span>
   </button>
   <button
     x-ref="next"
-    class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex border border-brand-light items-center justify-center bg-brand-light/20 hover:bg-brand-light/40 backdrop-blur-sm rounded-full text-brand-light transition-colors"
+    class="absolute cursor-pointer right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex border border-brand-light items-center justify-center bg-brand-light/20 hover:bg-brand-light/40 backdrop-blur-sm rounded-full text-brand-light transition-colors"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
+    <span class="icon icon-arrow w-4 h-4 rotate-180"></span>
   </button>
 
   <!-- Pagination -->

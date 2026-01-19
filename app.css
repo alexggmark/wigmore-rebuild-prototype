@@ -4,6 +4,7 @@
   /* COLOURS */
   --color-brand-primary-100: #F3F7F7; /* Badge backgrounds */
   --color-brand-primary-700: #128B9B; /* Main blue/green */
+  --color-brand-primary-800: #0F7B89;
   --color-brand-background: #F0F0F0;
   --color-brand-light: #ffffff; /* Generic light */
   --color-brand-dark: #042F2E; /* All text */
@@ -52,6 +53,19 @@
     @apply font-sans font-medium leading-normal;
   }
 
+  /* BUTTONS */
+
+  /* ICONS - colorable via text color */
+  .icon {
+    @apply bg-current;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  .icon-arrow {
+    mask-image: url('/assets/arrow.svg');
+  }
 }
 
 /* HERO PAGINATION - outside @layer to override Swiper */
