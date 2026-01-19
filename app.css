@@ -1,25 +1,54 @@
 @import "tailwindcss";
 
-body {
-  background-color: var(--color-brand-background);
-  /* padding: 0 2rem; */
-}
-
 @theme {
-  --color-brand-background: #F0F0F0;
-
+  /* COLOURS */
   --color-brand-primary-100: #F3F7F7; /* Badge backgrounds */
   --color-brand-primary-700: #128B9B; /* Main blue/green */
-
+  --color-brand-background: #F0F0F0;
   --color-brand-light: #ffffff; /* Generic light */
   --color-brand-dark: #042F2E; /* All text */
-
   --color-brand-border: #E5E7EB;
+
+  /* TYPOGRAPHY */
+  --font-sans: "gotham", system-ui, sans-serif;
+  --font-serif: "ivypresto-headline", Georgia, serif;
+
+  --tracking-wide: 0.04rem;
+  --tracking-widest: 0.08rem;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    background-color: var(--color-brand-background);
+    color: var(--color-brand-dark);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-sans);
+  }
 }
 
 @layer components {
-  /* New card container component */
+  /* LAYOUT COMPONENTS */
   .card-container {
     @apply rounded-2xl mb-3;
+  }
+
+  /* BADGES */
+  .badge-primary {
+    @apply px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+  }
+
+  .badge-transparent {
+    @apply px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
+  }
+
+  /* TYPOGRAPY */
+  .heading-primary {
+    @apply font-serif font-medium leading-tight tracking-wide;
+  }
+
+  .heading-secondary {
+    @apply font-sans font-medium leading-normal;
   }
 }

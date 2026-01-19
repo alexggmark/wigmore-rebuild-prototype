@@ -24,7 +24,7 @@
                     :class="{ 'bg-neutral-100' : navigationMenu === item.id, 'hover:bg-neutral-100' : navigationMenu !== item.id }" 
                     @mouseenter="openMenu(item.id)" 
                     @mouseleave="scheduleClose()" 
-                    class="inline-flex justify-center items-center px-4 py-2 w-max h-10 text-sm font-medium rounded-full transition-colors hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group">
+                    class="inline-flex justify-center items-center px-4 py-2 w-max h-10 text-xs font-medium uppercase rounded-full transition-colors hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group">
                     <span x-text="item.label"></span> 
                     <svg :class="{ '-rotate-180' : navigationMenuOpen && navigationMenu === item.id }" 
                         class="relative top-px ml-1 h-3 w-3 ease-out duration-300" 
@@ -41,7 +41,7 @@
                 </template>
                 <template x-if="!item.dropdown">
                   <a :href="item.url" 
-                    class="inline-flex justify-center items-center px-4 py-2 w-max h-10 text-sm font-medium rounded-full transition-colors hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group">
+                    class="inline-flex justify-center items-center px-4 py-2 w-max h-10 text-xs font-medium uppercase rounded-full transition-colors hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group">
                     <span x-text="item.label"></span>
                   </a>
                 </template>
@@ -53,11 +53,11 @@
 
       <div class="flex items-center gap-4">
         <div class="sm:flex sm:gap-2">
-          <a class="bg-brand-primary inline-flex justify-center items-center px-4 py-2 w-max h-10 text-sm font-medium rounded-full text-white transition hover:bg-teal-700" href="#">
+          <a class="bg-brand-primary inline-flex justify-center items-center px-4 py-2 w-max h-10 text-xs font-medium uppercase rounded-full text-white transition hover:bg-teal-700" href="#">
             Login
           </a>
 
-          <a class="bg-gray-100 inline-flex justify-center items-center px-4 py-2 w-max h-10 text-sm font-medium rounded-full text-brand-primary-700 transition hover:text-teal-600/75" href="#">
+          <a class="bg-gray-100 inline-flex justify-center items-center px-4 py-2 w-max h-10 text-xs font-medium uppercase rounded-full text-brand-primary-700 transition hover:text-teal-600/75" href="#">
             Register
           </a>
         </div>
@@ -104,7 +104,7 @@
                                                       <a :href="link.url" 
                                                           @click="closeMenu()"
                                                           class="group block">
-                                                          <span class="block text-sm font-medium text-neutral-900 group-hover:text-blue-500" x-text="link.title"></span>
+                                                          <span class="block text-xs font-medium uppercase text-neutral-900 group-hover:text-blue-500" x-text="link.title"></span>
                                                           <span class="block text-xs text-neutral-500 mt-1" x-text="link.description"></span>
                                                       </a>
                                                   </li>
@@ -126,7 +126,7 @@
                                                   <a :href="column.cta.url" 
                                                       @click="closeMenu()"
                                                       :class="column.cta.classes"
-                                                      class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                                                      class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium uppercase transition-colors">
                                                       <span x-text="column.cta.text"></span>
                                                       <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
