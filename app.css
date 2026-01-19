@@ -6,9 +6,10 @@
   --color-brand-primary-700: #128B9B; /* Main blue/green */
   --color-brand-primary-800: #0F7B89;
   --color-brand-background: #F0F0F0;
-  --color-brand-light: #ffffff; /* Generic light */
+  --color-brand-light: #FCFCFC; /* Generic light */
   --color-brand-dark: #042F2E; /* All text */
   --color-brand-border: #E5E7EB;
+  --color-brand-border-light: #F2F2F2;
 
   /* TYPOGRAPHY */
   --font-sans: "gotham", system-ui, sans-serif;
@@ -18,6 +19,7 @@
   --tracking-widest: 0.08rem;
 
   --text-base: 0.9rem;
+  /* --text-3xl: 2.1rem; */
 }
 
 @layer base {
@@ -29,10 +31,6 @@
     font-weight: var(--font-weight-normal);
     font-family: var(--font-sans);
   }
-
-  p {
-    /* margin-bottom: 1.4em; */
-  }
 }
 
 @layer components {
@@ -43,11 +41,11 @@
 
   /* BADGES */
   .badge-primary {
-    @apply flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
   }
 
   .badge-transparent {
-    @apply flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
   }
 
   /* TYPOGRAPY */
