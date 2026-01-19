@@ -51,4 +51,32 @@
   .heading-secondary {
     @apply font-sans font-medium leading-normal;
   }
+
+}
+
+/* HERO PAGINATION - outside @layer to override Swiper */
+.hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 48px;
+  border-radius: 100px;
+  height: 3px;
+  background: rgb(255 255 255 / 0.5);
+  opacity: 1;
+}
+
+.hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  background: var(--color-brand-primary-700);
+}
+
+/* LOGO SCROLL */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-scroll {
+  animation: scroll 20s linear infinite;
 }
