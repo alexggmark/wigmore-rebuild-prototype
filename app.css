@@ -37,11 +37,11 @@
 
   /* BADGES */
   .badge-primary {
-    @apply px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
   }
 
   .badge-transparent {
-    @apply px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
   }
 
   /* TYPOGRAPY */
