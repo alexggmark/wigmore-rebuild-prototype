@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* CONTAINERS */
+  --container-inner: 78rem;
+  --container-body: 100rem;
+
   /* COLOURS */
   --color-brand-primary-100: #F3F7F7; /* Badge backgrounds */
   --color-brand-primary-700: #128B9B; /* Main blue/green */
@@ -18,7 +22,9 @@
   --tracking-wide: 0.01em;
   --tracking-widest: 0.08rem;
 
+  --text-xxs: 0.7rem;
   --text-base: 0.9rem;
+  --text-3xl: 2.1rem;
   /* --text-3xl: 2.1rem; */
 }
 
@@ -36,12 +42,34 @@
 @layer components {
   /* LAYOUT COMPONENTS */
   .card-container {
-    @apply rounded-3xl mb-3;
+    @apply md:rounded-3xl rounded-xl mb-3 py-16 xl:px-16 lg:px-8 px-3;
+  }
+
+  .card-container-inner {
+    @apply max-w-inner mx-auto;
+  }
+
+  .body-container {
+    @apply max-w-body md:px-4 px-3 py-2 mx-auto
+    border-4 xl:border-purple-500 lg:border-emerald-400 md:border-red-500 sm:border-green-600
+    ;
+  }
+
+  /* VISIBLE OVERLAY CONTROLS */
+  .right-overflow-visible-xl {
+    @apply xl:mr-auto! lg:-mr-8! -mr-3!;
+  }
+  .right-overflow-visible-lg {
+    @apply lg:mr-auto! -mr-3!;
   }
 
   /* BADGES */
   .badge-primary {
     @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+  }
+
+  .badge-text {
+    @apply text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
   }
 
   .badge-transparent {
@@ -60,15 +88,23 @@
   /* BUTTONS */
 
   /* ICONS - colorable via text color */
-  .icon {
+  .icon-arrow {
     @apply bg-current;
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+    mask-image: url('/assets/arrow.svg');
+  }
+  .icon-arrow-2 {
+    @apply bg-current;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-image: url('/assets/arrow.svg');
   }
 
-  .icon-arrow {
-    mask-image: url('/assets/arrow.svg');
+  .group\/arrow:hover .icon-arrow {
+    border: 1px solid red;
   }
 }
 
