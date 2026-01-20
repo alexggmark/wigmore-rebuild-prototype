@@ -1,0 +1,91 @@
+<!-- SECTION: image text CTAs -->
+<div class="card-container bg-brand-light">
+  <div class="card-container-inner">
+    <div class="flex flex-row justify-between gap-6">
+      <div class="w-1/2">
+        <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-9/10 object-cover rounded-3xl">
+      </div>
+      <div class="w-1/2 flex flex-col gap-4 items-start justify-start">
+        <!--  md:pl-12 -->
+        <div class="badge-primary">Welcome to Wigmore Medical</div>
+        <h1 class="heading-primary text-4xl">
+          A Secure Platform for Medical and Aesthetic Professionals
+        </h1>
+        <p>If you are unable to find the information you are looking for, please contact Customer Services on <a href="#">orders@wigmoremedical.com</a> or call <a href="#">020 7491 0150</a></p>
+        
+        <!-- FAQ section -->
+        <div
+          x-data="{
+            activeAccordion: null,
+            faqs: [
+              {
+                question: 'What is Wigmore Medical?',
+                answer: 'Wigmore Medical is the UK\'s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.'
+              },
+              {
+                question: 'Who can register for an account?',
+                answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
+              },
+              {
+                question: 'How do I place an order?',
+                answer: 'Once registered and verified, you can browse our product catalogue, add items to your basket, and complete your order through our secure checkout process.'
+              },
+              {
+                question: 'What payment methods do you accept?',
+                answer: 'We accept all major credit and debit cards, as well as bank transfers for approved accounts. Payment terms may be available for qualifying customers.'
+              },
+              {
+                question: 'How can I track my order?',
+                answer: 'You can track your order status through your account dashboard. You\'ll also receive email notifications with tracking information once your order has been dispatched.'
+              },
+              {
+                question: 'Who can register for an account?',
+                answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
+              },
+              {
+                question: 'How do I place an order?',
+                answer: 'Once registered and verified, you can browse our product catalogue, add items to your basket, and complete your order through our secure checkout process.'
+              },
+              {
+                question: 'What payment methods do you accept?',
+                answer: 'We accept all major credit and debit cards, as well as bank transfers for approved accounts. Payment terms may be available for qualifying customers.'
+              },
+              {
+                question: 'How can I track my order?',
+                answer: 'You can track your order status through your account dashboard. You\'ll also receive email notifications with tracking information once your order has been dispatched.'
+              }
+            ]
+          }"
+          class="w-full flex flex-col gap-2"
+        >
+          <template x-for="(faq, index) in faqs" :key="index">
+            <div class="bg-brand-background-secondary rounded-2xl overflow-hidden">
+              <button
+                @click="activeAccordion = activeAccordion === index ? null : index"
+                class="flex items-center justify-between w-full p-5 text-left cursor-pointer"
+              >
+                <span class="text-brand-dark" x-text="faq.question"></span>
+                <span class="w-8 h-8 flex items-center justify-center bg-brand-light rounded-full shrink-0">
+                  <svg
+                    class="w-4 h-4 text-brand-primary-700 transition-transform duration-300"
+                    :class="{ 'rotate-45': activeAccordion === index }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                  </svg>
+                </span>
+              </button>
+              <div x-show="activeAccordion === index" x-collapse x-cloak>
+                <div class="px-5 pb-5 text-brand-dark/70" x-text="faq.answer"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
