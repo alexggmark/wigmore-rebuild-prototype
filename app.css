@@ -17,14 +17,15 @@
   --color-brand-border-light: #F2F2F2;
 
   /* TYPOGRAPHY */
-  --font-sans: "gotham", system-ui, sans-serif;
+  /* --font-sans: "gotham", system-ui, sans-serif; */
+  --font-sans: "avenir-lt-pro", sans-serif;
   --font-serif: "ivypresto-headline", Georgia, serif;
 
-  --tracking-wide: 0.01em;
+  --tracking-wide: 0.04em;
   --tracking-widest: 0.08rem;
 
   --text-xxs: 0.7rem;
-  --text-base: 0.9rem;
+  --text-base: 1rem;
   --text-3xl: 2.1rem;
   /* --text-3xl: 2.1rem; */
 }
@@ -37,6 +38,7 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     font-family: var(--font-sans);
+    line-height: 1.4;
   }
 }
 
@@ -52,7 +54,7 @@
 
   .body-container {
     @apply max-w-body md:px-4 px-3 py-2 mx-auto
-    border-4 xl:border-purple-500 lg:border-emerald-400 md:border-red-500 sm:border-green-600
+    /* border-4 xl:border-purple-500 lg:border-emerald-400 md:border-red-500 sm:border-green-600 */
     ;
   }
 
@@ -66,15 +68,15 @@
 
   /* BADGES */
   .badge-primary {
-    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
 
   .badge-text {
-    @apply text-brand-primary-700 uppercase text-[10px] font-medium tracking-widest;
+    @apply text-brand-primary-700 uppercase text-[12px] font-bold tracking-widest;
   }
 
   .badge-transparent {
-    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-medium tracking-widest;
+    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-bold tracking-widest;
   }
 
   /* TYPOGRAPY */
@@ -83,7 +85,7 @@
   }
 
   .heading-secondary {
-    @apply font-sans font-medium leading-normal;
+    @apply font-sans font-bold leading-normal;
   }
 
   /* BUTTONS */
@@ -105,7 +107,7 @@
   }
 
   .group\/arrow:hover .icon-arrow {
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 }
 

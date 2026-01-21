@@ -7,9 +7,9 @@
       </div>
       <div class="w-1/2 flex flex-col gap-4 items-start justify-start">
         <!--  md:pl-12 -->
-        <div class="badge-primary">Welcome to Wigmore Medical</div>
+        <div class="badge-primary">Need More Information</div>
         <h1 class="heading-primary text-4xl">
-          A Secure Platform for Medical and Aesthetic Professionals
+          Frequently Asked Questions
         </h1>
         <p>If you are unable to find the information you are looking for, please contact Customer Services on <a href="#">orders@wigmoremedical.com</a> or call <a href="#">020 7491 0150</a></p>
         
@@ -45,18 +45,10 @@
               {
                 question: 'How do I place an order?',
                 answer: 'Once registered and verified, you can browse our product catalogue, add items to your basket, and complete your order through our secure checkout process.'
-              },
-              {
-                question: 'What payment methods do you accept?',
-                answer: 'We accept all major credit and debit cards, as well as bank transfers for approved accounts. Payment terms may be available for qualifying customers.'
-              },
-              {
-                question: 'How can I track my order?',
-                answer: 'You can track your order status through your account dashboard. You\'ll also receive email notifications with tracking information once your order has been dispatched.'
               }
             ]
           }"
-          class="w-full flex flex-col gap-2"
+          class="w-full flex flex-col gap-2 mt-4"
         >
           <template x-for="(faq, index) in faqs" :key="index">
             <div class="bg-brand-background-secondary rounded-2xl overflow-hidden">
@@ -80,7 +72,7 @@
                 </span>
               </button>
               <div x-show="activeAccordion === index" x-collapse x-cloak>
-                <div class="px-5 pb-5 text-brand-dark/70" x-text="faq.answer"></div>
+                <div class="px-5 pb-5 text-brand-dark text-sm" x-text="faq.answer"></div>
               </div>
             </div>
           </template>

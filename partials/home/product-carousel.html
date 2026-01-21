@@ -25,13 +25,13 @@
 >
   <div class="card-container-inner">
     <div class="flex flex-col items-center justify-between gap-6">
-      <div class="w-1/2 flex flex-col gap-4 items-center text-center justify-center mb-4">
+      <div class="max-w-lg flex flex-col gap-4 items-center text-center justify-center mb-4">
         <div class="badge-primary">Popular Products</div>
         <h1 class="heading-primary text-4xl">Our Best Sellers</h1>
         <p>Explore the most frequently ordered products by medical and aesthetic professionals using the Wigmore platform.</p>
 
         <div class="flex flex-row gap-3 mt-2">
-          <span x-on:click="changeLoading()" href="#" class="cursor-pointer px-6 py-3 flex items-center justify-center text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-medium hover:bg-brand-primary-100 transition-colors">
+          <span x-on:click="changeLoading()" href="#" class="cursor-pointer px-6 py-3 flex items-center justify-center text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors">
             Trigger loading
           </span>
         </div>
@@ -118,8 +118,8 @@
                               <span x-show="selected === 'option1'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
                             </div>
                             <div class="text-left flex items-start flex-col">
-                              <span class="uppercase text-xxs font-medium mb-0.5">RX price</span>
-                              <span class="text-xs uppercase font-medium">£60.00</span>
+                              <span class="uppercase text-xxs font-bold mb-0.5">RX price</span>
+                              <span class="text-xs uppercase font-bold">£60.00</span>
                             </div>
                           </button>
                           <button
@@ -134,8 +134,8 @@
                               <span x-show="selected === 'option2'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
                             </div>
                             <div class="text-left flex items-start flex-col">
-                              <span class="uppercase text-xxs font-medium mb-0.5">Stock Price</span>
-                              <span class="text-xs uppercase font-medium">£60.00</span>
+                              <span class="uppercase text-xxs font-bold mb-0.5">Stock Price</span>
+                              <span class="text-xs uppercase font-bold">£60.00</span>
                             </div>
                           </button>
                         </div>
@@ -150,7 +150,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
                             </svg>
                           </button>
-                          <span class="flex-1 text-center text-sm font-medium" x-text="qty"></span>
+                          <span class="flex-1 text-center text-sm font-bold" x-text="qty"></span>
                           <button
                             @click="qty++"
                             class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"
@@ -161,7 +161,7 @@
                           </button>
                         </div>
 
-                        <a href="#" class="px-6 py-2.5 mt-1 w-full flex items-center justify-center text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-medium hover:bg-brand-primary-800 transition-colors">
+                        <a href="#" class="px-6 py-2.5 mt-1 w-full flex items-center justify-center text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-bold hover:bg-brand-primary-800 transition-colors">
                           View Offer
                         </a>
                       </div>
