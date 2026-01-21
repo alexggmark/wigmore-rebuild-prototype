@@ -18,7 +18,7 @@
       </a>
 
       <div class="flex flex-row gap-4 w-full justify-between items-center">
-        <nav class="relative z-10 border border-red-400">
+        <nav class="relative z-10">
           <div class="relative">
             <ul class="flex flex-1 justify-center items-center p-1 space-x-1 list-none text-neutral-700 group">
               <template x-for="(item, index) in menuItems" :key="index">
@@ -73,7 +73,7 @@
           x-transition:leave-end="opacity-0 -translate-y-2"
           @mouseenter="cancelClose()"
           @mouseleave="scheduleClose()"
-          class="absolute top-full left-0 w-full mt-3 bg-brand-background rounded-3xl shadow-md z-50"
+          class="absolute top-full left-0 w-full bg-brand-background rounded-b-3xl shadow-md z-50"
           x-cloak>
 
           <div class="w-full">
@@ -81,8 +81,8 @@
 
                   <!-- Dynamic dropdown content -->
                   <template x-for="(dropdown, dropdownId) in dropdownContent" :key="dropdownId">
-                      <div x-show="navigationMenu === dropdownId" class="p-4">
-                          <div class="grid grid-cols-12 gap-4">
+                      <div x-show="navigationMenu === dropdownId" class="p-8">
+                          <div class="grid grid-cols-12 gap-3">
 
                               <!-- Column 1: Categories (hoverable) -->
                               <div class="col-span-3 bg-white rounded-2xl px-3 py-5">
@@ -102,8 +102,11 @@
                                               <button
                                                   @mouseenter="activeCategory = category.id"
                                                   :class="{ 'bg-neutral-100 text-neutral-900': activeCategory === category.id }"
-                                                  class="w-full text-left px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-colors">
+                                                  class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-colors">
                                                   <span x-text="category.label"></span>
+                                                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                                  </svg>
                                               </button>
                                           </li>
                                       </template>
@@ -111,7 +114,7 @@
                               </div>
 
                               <!-- Column 2: Dynamic links (up to 8) -->
-                              <div class="col-span-5 bg-white rounded-2xl px-3 py-5">
+                              <div class="col-span-4 bg-white rounded-2xl px-3 py-5">
                                   <!-- Column 2 Header -->
                                   <div class="flex items-center justify-between mb-4 px-4">
                                       <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column2.title"></h3>
@@ -123,11 +126,11 @@
                                       </a>
                                   </div>
                                   <template x-for="(category, index) in dropdown.categories" :key="category.id">
-                                      <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-3">
+                                      <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-1">
                                           <template x-for="link in category.links" :key="link.title">
                                               <a :href="link.url"
                                                   @click="closeMenu()"
-                                                  class="block p-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors">
+                                                  class="block px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors">
                                                   <span x-text="link.title"></span>
                                               </a>
                                           </template>
@@ -136,7 +139,7 @@
                               </div>
 
                               <!-- Column 3: Fixed cards (2) -->
-                              <div class="col-span-4 bg-white rounded-2xl px-3 py-5">
+                              <div class="col-span-5 bg-white rounded-2xl px-5 py-5">
                                   <!-- Column 3 Header -->
                                   <div class="flex items-center justify-between mb-4 px-4">
                                       <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column3.title"></h3>
@@ -147,26 +150,23 @@
                                           <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                                       </a>
                                   </div>
-                                  <div class="space-y-4">
+                                  <div class="flex flex-row gap-3">
                                       <template x-for="(card, index) in dropdown.cards" :key="index">
-                                          <div class="relative rounded-xl overflow-hidden bg-neutral-100">
-                                              <img :src="card.image" :alt="card.title" class="w-full h-28 object-cover">
-                                              <div class="p-4">
-                                                  <h4 class="text-base heading-primary text-brand-dark" x-text="card.title"></h4>
+                                          <div class="relative overflow-hidden">
+                                              <img :src="card.image" :alt="card.title" class="w-full aspect-4/3 object-cover rounded-xl">
+                                              <div class="py-4 px-2">
+                                                  <h4 class="text-xxs uppercase tracking-wide font-bold text-brand-primary-700" x-text="card.title"></h4>
                                                   <a :href="card.button.url"
                                                       @click="closeMenu()"
-                                                      class="inline-flex items-center mt-2 text-xs font-medium text-brand-primary hover:underline">
+                                                      class="inline-flex items-center mt-2 text-xs font-bold uppercase tracking-wide hover:underline">
                                                       <span x-text="card.button.text"></span>
-                                                      <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                                      </svg>
+                                                      <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                                                   </a>
                                               </div>
                                           </div>
                                       </template>
                                   </div>
                               </div>
-
                           </div>
                       </div>
                   </template>
