@@ -85,14 +85,15 @@
                           <div class="grid grid-cols-12 gap-4">
 
                               <!-- Column 1: Categories (hoverable) -->
-                              <div class="col-span-3 bg-white rounded-2xl p-5">
+                              <div class="col-span-3 bg-white rounded-2xl px-3 py-5">
                                   <!-- Column 1 Header -->
-                                  <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
-                                      <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column1.title"></h3>
+                                  <div class="flex items-center justify-between mb-4 px-4">
+                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column1.title"></h3>
                                       <a :href="dropdown.column1.link.url"
                                           @click="closeMenu()"
-                                          class="text-xs font-medium text-brand-primary hover:underline">
+                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
                                           <span x-text="dropdown.column1.link.text"></span>
+                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                                       </a>
                                   </div>
                                   <ul class="space-y-1">
@@ -101,7 +102,7 @@
                                               <button
                                                   @mouseenter="activeCategory = category.id"
                                                   :class="{ 'bg-neutral-100 text-neutral-900': activeCategory === category.id }"
-                                                  class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-colors">
+                                                  class="w-full text-left px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-colors">
                                                   <span x-text="category.label"></span>
                                               </button>
                                           </li>
@@ -110,14 +111,15 @@
                               </div>
 
                               <!-- Column 2: Dynamic links (up to 8) -->
-                              <div class="col-span-5 bg-white rounded-2xl p-5">
+                              <div class="col-span-5 bg-white rounded-2xl px-3 py-5">
                                   <!-- Column 2 Header -->
-                                  <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
-                                      <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column2.title"></h3>
+                                  <div class="flex items-center justify-between mb-4 px-4">
+                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column2.title"></h3>
                                       <a :href="dropdown.column2.link.url"
                                           @click="closeMenu()"
-                                          class="text-xs font-medium text-brand-primary hover:underline">
+                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
                                           <span x-text="dropdown.column2.link.text"></span>
+                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                                       </a>
                                   </div>
                                   <template x-for="(category, index) in dropdown.categories" :key="category.id">
@@ -125,9 +127,8 @@
                                           <template x-for="link in category.links" :key="link.title">
                                               <a :href="link.url"
                                                   @click="closeMenu()"
-                                                  class="group block p-3 rounded-lg hover:bg-neutral-50 transition-colors">
-                                                  <span class="block text-sm font-medium text-neutral-900 group-hover:text-brand-primary" x-text="link.title"></span>
-                                                  <span class="block text-xs text-neutral-500 mt-1" x-text="link.description"></span>
+                                                  class="block p-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors">
+                                                  <span x-text="link.title"></span>
                                               </a>
                                           </template>
                                       </div>
@@ -135,14 +136,15 @@
                               </div>
 
                               <!-- Column 3: Fixed cards (2) -->
-                              <div class="col-span-4 bg-white rounded-2xl p-5">
+                              <div class="col-span-4 bg-white rounded-2xl px-3 py-5">
                                   <!-- Column 3 Header -->
-                                  <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
-                                      <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column3.title"></h3>
+                                  <div class="flex items-center justify-between mb-4 px-4">
+                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column3.title"></h3>
                                       <a :href="dropdown.column3.link.url"
                                           @click="closeMenu()"
-                                          class="text-xs font-medium text-brand-primary hover:underline">
+                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
                                           <span x-text="dropdown.column3.link.text"></span>
+                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                                       </a>
                                   </div>
                                   <div class="space-y-4">
@@ -150,7 +152,7 @@
                                           <div class="relative rounded-xl overflow-hidden bg-neutral-100">
                                               <img :src="card.image" :alt="card.title" class="w-full h-28 object-cover">
                                               <div class="p-4">
-                                                  <h4 class="text-sm font-semibold text-neutral-900" x-text="card.title"></h4>
+                                                  <h4 class="text-base heading-primary text-brand-dark" x-text="card.title"></h4>
                                                   <a :href="card.button.url"
                                                       @click="closeMenu()"
                                                       class="inline-flex items-center mt-2 text-xs font-medium text-brand-primary hover:underline">
