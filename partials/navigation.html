@@ -95,62 +95,98 @@
       x-transition:leave-end="opacity-0 -translate-y-2"
       @mouseenter="cancelClose()" 
       @mouseleave="scheduleClose()"
-      class="absolute mx-auto left-0 right-0 mt-0 w-full bg-brand-light rounded-3xl mb-3 shadow-md"
+      class="absolute mx-auto left-0 right-0 mt-0 w-full bg-brand-background rounded-3xl mb-3 shadow-md"
       x-cloak>
 
       <div class="w-full">
           <div class="max-w-5xl mx-auto overflow-hidden">
-              
+
               <!-- Dynamic dropdown content -->
               <template x-for="(dropdown, dropdownId) in dropdownContent" :key="dropdownId">
-                  <div x-show="navigationMenu === dropdownId" class="p-8">
-                      <div class="grid grid-cols-4 gap-8">
-                          <template x-for="(column, index) in dropdown.columns" :key="index">
-                              <div>
-                                  <!-- Links Column -->
-                                  <template x-if="column.type === 'links'">
-                                      <div>
-                                          <h3 class="text-sm font-semibold text-neutral-900 mb-4" x-text="column.title"></h3>
-                                          <ul class="space-y-3">
-                                              <template x-for="link in column.links" :key="link.title">
-                                                  <li>
-                                                      <a :href="link.url" 
-                                                          @click="closeMenu()"
-                                                          class="group block">
-                                                          <span class="block text-xs font-medium uppercase text-neutral-900 group-hover:text-blue-500" x-text="link.title"></span>
-                                                          <span class="block text-xs text-neutral-500 mt-1" x-text="link.description"></span>
-                                                      </a>
-                                                  </li>
-                                              </template>
-                                          </ul>
-                                      </div>
-                                  </template>
+                  <div x-show="navigationMenu === dropdownId" class="p-4">
+                      <div class="grid grid-cols-12 gap-4">
 
-                                  <!-- Banner Column -->
-                                  <template x-if="column.type === 'banner'">
-                                      <div class="relative h-full">
-                                          <div class="rounded-lg overflow-hidden h-full bg-linear-to-br p-6 flex flex-col justify-between min-h-60"
-                                                :style="`background: linear-gradient(to bottom right, ${column.gradientFrom}, ${column.gradientTo})`">
-                                              <div>
-                                                  <h3 class="text-lg font-bold text-white mb-2" x-text="column.title"></h3>
-                                                  <p class="text-sm text-white/90 mb-4" x-text="column.description"></p>
-                                              </div>
-                                              <div>
-                                                  <a :href="column.cta.url" 
-                                                      @click="closeMenu()"
-                                                      :class="column.cta.classes"
-                                                      class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium uppercase transition-colors">
-                                                      <span x-text="column.cta.text"></span>
-                                                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                                      </svg>
-                                                  </a>
-                                              </div>
+                          <!-- Column 1: Categories (hoverable) -->
+                          <div class="col-span-3 bg-white rounded-2xl p-5">
+                              <!-- Column 1 Header -->
+                              <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
+                                  <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column1.title"></h3>
+                                  <a :href="dropdown.column1.link.url"
+                                      @click="closeMenu()"
+                                      class="text-xs font-medium text-brand-primary hover:underline">
+                                      <span x-text="dropdown.column1.link.text"></span>
+                                  </a>
+                              </div>
+                              <ul class="space-y-1">
+                                  <template x-for="(category, index) in dropdown.categories" :key="category.id">
+                                      <li>
+                                          <button
+                                              @mouseenter="activeCategory = category.id"
+                                              :class="{ 'bg-neutral-100 text-neutral-900': activeCategory === category.id }"
+                                              class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-colors">
+                                              <span x-text="category.label"></span>
+                                          </button>
+                                      </li>
+                                  </template>
+                              </ul>
+                          </div>
+
+                          <!-- Column 2: Dynamic links (up to 8) -->
+                          <div class="col-span-5 bg-white rounded-2xl p-5">
+                              <!-- Column 2 Header -->
+                              <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
+                                  <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column2.title"></h3>
+                                  <a :href="dropdown.column2.link.url"
+                                      @click="closeMenu()"
+                                      class="text-xs font-medium text-brand-primary hover:underline">
+                                      <span x-text="dropdown.column2.link.text"></span>
+                                  </a>
+                              </div>
+                              <template x-for="(category, index) in dropdown.categories" :key="category.id">
+                                  <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-3">
+                                      <template x-for="link in category.links" :key="link.title">
+                                          <a :href="link.url"
+                                              @click="closeMenu()"
+                                              class="group block p-3 rounded-lg hover:bg-neutral-50 transition-colors">
+                                              <span class="block text-sm font-medium text-neutral-900 group-hover:text-brand-primary" x-text="link.title"></span>
+                                              <span class="block text-xs text-neutral-500 mt-1" x-text="link.description"></span>
+                                          </a>
+                                      </template>
+                                  </div>
+                              </template>
+                          </div>
+
+                          <!-- Column 3: Fixed cards (2) -->
+                          <div class="col-span-4 bg-white rounded-2xl p-5">
+                              <!-- Column 3 Header -->
+                              <div class="flex items-center justify-between mb-4 pb-3 border-b border-neutral-100">
+                                  <h3 class="text-sm font-semibold text-neutral-900" x-text="dropdown.column3.title"></h3>
+                                  <a :href="dropdown.column3.link.url"
+                                      @click="closeMenu()"
+                                      class="text-xs font-medium text-brand-primary hover:underline">
+                                      <span x-text="dropdown.column3.link.text"></span>
+                                  </a>
+                              </div>
+                              <div class="space-y-4">
+                                  <template x-for="(card, index) in dropdown.cards" :key="index">
+                                      <div class="relative rounded-xl overflow-hidden bg-neutral-100">
+                                          <img :src="card.image" :alt="card.title" class="w-full h-28 object-cover">
+                                          <div class="p-4">
+                                              <h4 class="text-sm font-semibold text-neutral-900" x-text="card.title"></h4>
+                                              <a :href="card.button.url"
+                                                  @click="closeMenu()"
+                                                  class="inline-flex items-center mt-2 text-xs font-medium text-brand-primary hover:underline">
+                                                  <span x-text="card.button.text"></span>
+                                                  <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                                  </svg>
+                                              </a>
                                           </div>
                                       </div>
                                   </template>
                               </div>
-                          </template>
+                          </div>
+
                       </div>
                   </div>
               </template>
@@ -165,6 +201,7 @@
         return {
             navigationMenuOpen: false,
             navigationMenu: '',
+            activeCategory: '',
             navigationMenuCloseTimeout: null,
             navigationMenuCloseDelay: 200,
 
@@ -186,168 +223,129 @@
                     dropdown: false
                 },
                 {
-                    id: 'learn-more',
-                    label: 'Learn More',
+                    id: 'contact',
+                    label: 'Contact',
+                    url: '#contact',
                     dropdown: false
                 },
             ],
 
             dropdownContent: {
                 'getting-started': {
-                    columns: [
+                    column1: {
+                        title: 'Browse',
+                        link: { text: 'View all', url: '#all-categories' }
+                    },
+                    column2: {
+                        title: 'Quick Links',
+                        link: { text: 'See more', url: '#all-links' }
+                    },
+                    column3: {
+                        title: 'Featured',
+                        link: { text: 'View all', url: '#featured' }
+                    },
+                    categories: [
                         {
-                            type: 'links',
-                            title: 'Quick Start',
+                            id: 'quick-start',
+                            label: 'Quick Start',
                             links: [
-                                {
-                                    title: 'Introduction',
-                                    description: 'Learn the basics and get up to speed quickly',
-                                    url: '#introduction'
-                                },
-                                {
-                                    title: 'Installation',
-                                    description: 'Set up your development environment',
-                                    url: '#installation'
-                                },
-                                {
-                                    title: 'First Project',
-                                    description: 'Build your first project step by step',
-                                    url: '#first-project'
-                                }
+                                { title: 'Introduction', description: 'Learn the basics and get up to speed', url: '#introduction' },
+                                { title: 'Installation', description: 'Set up your development environment', url: '#installation' },
+                                { title: 'First Project', description: 'Build your first project step by step', url: '#first-project' },
+                                { title: 'Configuration', description: 'Configure your project settings', url: '#configuration' },
+                                { title: 'Deployment', description: 'Deploy your project to production', url: '#deployment' },
+                                { title: 'Best Practices', description: 'Learn recommended patterns', url: '#best-practices' }
                             ]
                         },
                         {
-                            type: 'links',
-                            title: 'Resources',
+                            id: 'resources',
+                            label: 'Resources',
                             links: [
-                                {
-                                    title: 'Components',
-                                    description: 'Browse our collection of UI components',
-                                    url: '#components'
-                                },
-                                {
-                                    title: 'Templates',
-                                    description: 'Pre-built templates to jumpstart your project',
-                                    url: '#templates'
-                                },
-                                {
-                                    title: 'Examples',
-                                    description: 'Real-world examples and use cases',
-                                    url: '#examples'
-                                }
+                                { title: 'Components', description: 'Browse our UI component library', url: '#components' },
+                                { title: 'Templates', description: 'Pre-built templates to jumpstart', url: '#templates' },
+                                { title: 'Examples', description: 'Real-world examples and use cases', url: '#examples' },
+                                { title: 'Plugins', description: 'Extend functionality with plugins', url: '#plugins' }
                             ]
                         },
                         {
-                            type: 'links',
-                            title: 'Help & Support',
+                            id: 'support',
+                            label: 'Help & Support',
                             links: [
-                                {
-                                    title: 'Documentation',
-                                    description: 'Comprehensive guides and API reference',
-                                    url: '#docs'
-                                },
-                                {
-                                    title: 'Community',
-                                    description: 'Join our community forum',
-                                    url: '#community'
-                                },
-                                {
-                                    title: 'FAQ',
-                                    description: 'Frequently asked questions',
-                                    url: '#faq'
-                                }
+                                { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
+                                { title: 'Community', description: 'Join our community forum', url: '#community' },
+                                { title: 'FAQ', description: 'Frequently asked questions', url: '#faq' },
+                                { title: 'Contact Support', description: 'Get help from our team', url: '#support' }
                             ]
+                        }
+                    ],
+                    cards: [
+                        {
+                            image: 'https://placehold.co/400x200/e2e8f0/64748b?text=Getting+Started',
+                            title: 'New to the platform?',
+                            button: { text: 'Watch Tutorial', url: '#tutorial' }
                         },
                         {
-                            type: 'banner',
-                            title: 'Ready to Build?',
-                            description: 'Start creating amazing projects with our comprehensive toolkit and resources.',
-                            gradientFrom: '#379190',
-                            gradientTo: '#287271',
-                            cta: {
-                                text: 'Get Started Free',
-                                url: '#signup',
-                                classes: 'bg-white text-brand-primary hover:text-blue-500 hover:bg-blue-50'
-                            }
+                            image: 'https://placehold.co/400x200/dbeafe/3b82f6?text=Free+Trial',
+                            title: 'Try it free for 14 days',
+                            button: { text: 'Start Free Trial', url: '#trial' }
                         }
                     ]
                 },
                 'learn-more': {
-                    columns: [
+                    column1: {
+                        title: 'Topics',
+                        link: { text: 'All topics', url: '#all-topics' }
+                    },
+                    column2: {
+                        title: 'Resources',
+                        link: { text: 'Browse all', url: '#all-resources' }
+                    },
+                    column3: {
+                        title: 'Recommended',
+                        link: { text: 'View all', url: '#recommended' }
+                    },
+                    categories: [
                         {
-                            type: 'links',
-                            title: 'Frameworks',
+                            id: 'frameworks',
+                            label: 'Frameworks',
                             links: [
-                                {
-                                    title: 'Tailwind CSS',
-                                    description: 'Utility-first CSS framework',
-                                    url: '#tailwind'
-                                },
-                                {
-                                    title: 'Alpine.js',
-                                    description: 'Lightweight JavaScript framework',
-                                    url: '#alpine'
-                                },
-                                {
-                                    title: 'Laravel',
-                                    description: 'PHP framework for web artisans',
-                                    url: '#laravel'
-                                }
+                                { title: 'Tailwind CSS', description: 'Utility-first CSS framework', url: '#tailwind' },
+                                { title: 'Alpine.js', description: 'Lightweight JavaScript framework', url: '#alpine' },
+                                { title: 'Laravel', description: 'PHP framework for web artisans', url: '#laravel' },
+                                { title: 'Livewire', description: 'Full-stack framework for Laravel', url: '#livewire' }
                             ]
                         },
                         {
-                            type: 'links',
-                            title: 'Tools',
+                            id: 'tools',
+                            label: 'Tools',
                             links: [
-                                {
-                                    title: 'Livewire',
-                                    description: 'Full-stack framework for Laravel',
-                                    url: '#livewire'
-                                },
-                                {
-                                    title: 'Vite',
-                                    description: 'Next generation frontend tooling',
-                                    url: '#vite'
-                                },
-                                {
-                                    title: 'Tails',
-                                    description: 'Tailwind CSS design tool',
-                                    url: '#tails'
-                                }
+                                { title: 'Vite', description: 'Next generation frontend tooling', url: '#vite' },
+                                { title: 'Webpack', description: 'Module bundler for JavaScript', url: '#webpack' },
+                                { title: 'PostCSS', description: 'Transform CSS with JavaScript', url: '#postcss' },
+                                { title: 'ESLint', description: 'Find and fix JavaScript problems', url: '#eslint' }
                             ]
                         },
                         {
-                            type: 'links',
-                            title: 'Learning',
+                            id: 'learning',
+                            label: 'Learning',
                             links: [
-                                {
-                                    title: 'Video Tutorials',
-                                    description: 'Step-by-step video guides',
-                                    url: '#videos'
-                                },
-                                {
-                                    title: 'Blog',
-                                    description: 'Latest news and articles',
-                                    url: '#blog'
-                                },
-                                {
-                                    title: 'Courses',
-                                    description: 'In-depth courses and workshops',
-                                    url: '#courses'
-                                }
+                                { title: 'Video Tutorials', description: 'Step-by-step video guides', url: '#videos' },
+                                { title: 'Blog', description: 'Latest news and articles', url: '#blog' },
+                                { title: 'Courses', description: 'In-depth courses and workshops', url: '#courses' },
+                                { title: 'Webinars', description: 'Live and recorded sessions', url: '#webinars' }
                             ]
+                        }
+                    ],
+                    cards: [
+                        {
+                            image: 'https://placehold.co/400x200/dcfce7/22c55e?text=Expert+Training',
+                            title: 'Level up your skills',
+                            button: { text: 'Browse Courses', url: '#courses' }
                         },
                         {
-                            type: 'banner',
-                            title: 'Expert Training',
-                            description: 'Take your skills to the next level with our advanced courses and certifications.',
-                            gradientFrom: '#059669',
-                            gradientTo: '#0f766e',
-                            cta: {
-                                text: 'Browse Courses',
-                                url: '#courses',
-                                classes: 'bg-white text-emerald-600 hover:bg-emerald-50'
-                            }
+                            image: 'https://placehold.co/400x200/fef3c7/f59e0b?text=Certification',
+                            title: 'Get certified today',
+                            button: { text: 'View Certifications', url: '#certifications' }
                         }
                     ]
                 }
@@ -357,6 +355,11 @@
                 this.cancelClose();
                 this.navigationMenuOpen = true;
                 this.navigationMenu = menuId;
+                // Set first category as active by default
+                const dropdown = this.dropdownContent[menuId];
+                if (dropdown && dropdown.categories && dropdown.categories.length > 0) {
+                    this.activeCategory = dropdown.categories[0].id;
+                }
             },
 
             scheduleClose() {
@@ -375,6 +378,7 @@
             closeMenu() {
                 this.navigationMenuOpen = false;
                 this.navigationMenu = '';
+                this.activeCategory = '';
             }
         }
     }
