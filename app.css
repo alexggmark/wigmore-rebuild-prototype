@@ -45,7 +45,7 @@
 @layer components {
   /* LAYOUT COMPONENTS */
   .card-container {
-    @apply md:rounded-3xl rounded-xl mb-3 py-16 xl:px-16 lg:px-8 px-3;
+    @apply md:rounded-3xl rounded-xl mb-3 py-16 xl:px-16 lg:px-8 px-3 border border-brand-border;
   }
 
   .card-container-inner {
@@ -88,9 +88,9 @@
     @apply font-sans font-bold leading-normal;
   }
 
-  /* ----------------------- */
-  /* ------- BUTTONS ------- */
-  /* ----------------------- */
+  /* ---------------------------- */
+  /* ------- 🕹️ BUTTONS 🕹️ ------- */
+  /* ---------------------------- */
 
   /* Button: primary (green) */
   .button-primary {
@@ -180,6 +180,17 @@
   .group\/arrow:hover .icon-arrow {
     /* border: 1px solid red; */
   }
+}
+
+/* --------------------------- */
+/* ------- ✍️ PROSE ✍️ ------- */
+/* --------------------------- */
+
+.prose p {
+  @apply mb-4;
+}
+.prose a {
+  @apply text-brand-primary-700 underline hover:text-brand-primary-800 hover:no-underline;
 }
 
 /* HERO PAGINATION - outside @layer to override Swiper */

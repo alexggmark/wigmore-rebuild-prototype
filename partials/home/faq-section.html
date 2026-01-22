@@ -11,8 +11,10 @@
         <h1 class="heading-primary text-4xl">
           Frequently Asked Questions
         </h1>
-        <p>If you are unable to find the information you are looking for, please contact Customer Services on <a href="#">orders@wigmoremedical.com</a> or call <a href="#">020 7491 0150</a></p>
-        
+        <div class="prose">
+          <p>If you are unable to find the information you are looking for, please contact Customer Services on <a href="#">orders@wigmoremedical.com</a> or call <a href="#">020 7491 0150</a></p>
+        </div>
+
         <!-- FAQ section -->
         <div
           x-data="{
@@ -48,7 +50,7 @@
               }
             ]
           }"
-          class="w-full flex flex-col gap-2 mt-4"
+          class="w-full flex flex-col gap-2"
         >
           <template x-for="(faq, index) in faqs" :key="index">
             <div class="bg-brand-background-secondary rounded-2xl overflow-hidden">
