@@ -5,16 +5,19 @@
       Free Next-Working-Day Delivery – Available once daily before 1pm on orders over £125*
     </span>
   </div>
+  
   <!-- Navigation -->
-  <div class="flex flex-row gap-4 mb-3 w-full">
+  <div
+    class="flex flex-row flex-wrap gap-4 mb-3 w-full max-xl:border border-brand-border max-xl:bg-brand-light max-xl:rounded-3xl">
     <!-- Rounded block 1 -->
-    <div
-      :class="navigationMenuOpen ? 'rounded-t-3xl' : 'rounded-3xl'"
-      class="relative grow flex duration-200 justify-between items-center px-5 py-2.5 gap-8 border border-brand-border bg-brand-light">
+    <div :class="navigationMenuOpen ? 'rounded-t-3xl' : 'rounded-3xl'"
+      class="relative xl:grow grow-0 flex duration-200 justify-between items-center px-5 py-2.5 gap-8 xl:border border-brand-border xl:bg-brand-light">
       <a class="block text-teal-600" href="#">
         <span class="sr-only">Home</span>
         <svg width="54" height="30" viewBox="0 0 54 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M53.8648 0.58332C50.982 0.58332 48.2718 2.74559 46.6245 6.25488L35.7329 30H34.4376L26.9028 16.9749L20.9578 30H19.6625L4.65261 3.99656C3.003 1.15961 2.41402 0.58332 0.17773 0.58332C-0.0592433 0.58332 -0.0592433 0.0046853 0.17773 0.0046853C1.10568 0.00780884 2.55283 0.00780884 4.51917 0.0046853C9.70958 0.00234265 11.4213 0.0046853 13.0111 0.0046853C13.2458 0.0046853 13.2458 0.580978 13.0111 0.580978C9.774 0.580978 9.59684 1.30251 11.656 4.85866L22.2531 23.2204L25.9618 15.2881L19.4278 3.99422C18.1923 1.87881 17.0742 0.580978 15.6592 0.580978C15.4222 0.580978 15.4222 0.0046853 15.6592 0.0046853C16.8372 0.0046853 16.8579 0.0046853 19.3312 0.0046853C23.7462 0.0046853 25.1381 0.0046853 26.4334 0.0046853C26.6704 0.0046853 26.6704 0.580978 26.4334 0.580978C24.3145 0.580978 24.3743 1.30251 26.4334 4.85866L29.024 9.32844L30.4965 6.10729C32.2635 2.30985 32.2635 0.578635 30.3194 0.578635C30.0824 0.578635 30.0824 0.00234265 30.3194 0.00234265C31.4973 0.00234265 30.5839 0.00234265 34.1155 0.00234265C36.0573 0.00234265 36.9707 0.00234265 38.7377 0.00234265C38.9148 0.00234265 38.9148 0.578635 38.7377 0.578635C36.0895 0.578635 33.9683 2.4059 32.2036 6.2502L30.0249 11.0081L37.0903 23.1688L44.685 6.58519C46.2748 3.12276 44.9795 0.576292 42.0369 0.576292C41.7999 0.576292 41.7999 0 42.0369 0C44.096 0 45.6927 0 48.633 0C50.8118 0 51.8655 0 53.8671 0C54.0443 0 54.0443 0.576292 53.8671 0.576292L53.8648 0.58332Z" fill="#128B9B"/>
+          <path
+            d="M53.8648 0.58332C50.982 0.58332 48.2718 2.74559 46.6245 6.25488L35.7329 30H34.4376L26.9028 16.9749L20.9578 30H19.6625L4.65261 3.99656C3.003 1.15961 2.41402 0.58332 0.17773 0.58332C-0.0592433 0.58332 -0.0592433 0.0046853 0.17773 0.0046853C1.10568 0.00780884 2.55283 0.00780884 4.51917 0.0046853C9.70958 0.00234265 11.4213 0.0046853 13.0111 0.0046853C13.2458 0.0046853 13.2458 0.580978 13.0111 0.580978C9.774 0.580978 9.59684 1.30251 11.656 4.85866L22.2531 23.2204L25.9618 15.2881L19.4278 3.99422C18.1923 1.87881 17.0742 0.580978 15.6592 0.580978C15.4222 0.580978 15.4222 0.0046853 15.6592 0.0046853C16.8372 0.0046853 16.8579 0.0046853 19.3312 0.0046853C23.7462 0.0046853 25.1381 0.0046853 26.4334 0.0046853C26.6704 0.0046853 26.6704 0.580978 26.4334 0.580978C24.3145 0.580978 24.3743 1.30251 26.4334 4.85866L29.024 9.32844L30.4965 6.10729C32.2635 2.30985 32.2635 0.578635 30.3194 0.578635C30.0824 0.578635 30.0824 0.00234265 30.3194 0.00234265C31.4973 0.00234265 30.5839 0.00234265 34.1155 0.00234265C36.0573 0.00234265 36.9707 0.00234265 38.7377 0.00234265C38.9148 0.00234265 38.9148 0.578635 38.7377 0.578635C36.0895 0.578635 33.9683 2.4059 32.2036 6.2502L30.0249 11.0081L37.0903 23.1688L44.685 6.58519C46.2748 3.12276 44.9795 0.576292 42.0369 0.576292C41.7999 0.576292 41.7999 0 42.0369 0C44.096 0 45.6927 0 48.633 0C50.8118 0 51.8655 0 53.8671 0C54.0443 0 54.0443 0.576292 53.8671 0.576292L53.8648 0.58332Z"
+            fill="#128B9B" />
         </svg>
       </a>
 
@@ -27,20 +30,13 @@
                   <template x-if="item.dropdown">
                     <button
                       :class="{ 'bg-brand-background-secondary' : navigationMenu === item.id, 'hover:bg-brand-background-secondary' : navigationMenu !== item.id }"
-                      @mouseenter="openMenu(item.id)"
-                      @mouseleave="scheduleClose()"
+                      @mouseenter="openMenu(item.id)" @mouseleave="scheduleClose()"
                       class="inline-flex justify-center items-center px-4 py-2 w-max h-10 text-xs font-bold tracking-wide uppercase rounded-full transition-colors hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group">
                       <span x-text="item.label"></span>
                       <svg :class="{ '-rotate-180' : navigationMenuOpen && navigationMenu === item.id }"
-                          class="relative ml-1 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round">
-                          <polyline points="6 9 12 15 18 9"></polyline>
+                        class="relative ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
                       </svg>
                     </button>
                   </template>
@@ -56,133 +52,125 @@
           </div>
         </nav>
 
-        <button class="cursor-pointer group flex items-center gap-2 px-4 py-2 w-56 bg-brand-background-secondary border border-brand-border hover:border-brand-primary-700 rounded-full">
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-neutral-500 group-hover:text-brand-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <!-- Search Button (Desktop) -->
+        <button @click="slideOverOpen=true"
+          class="cursor-pointer group flex items-center gap-2 px-4 py-2 w-56 bg-brand-background-secondary border border-brand-border hover:border-brand-primary-700 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-neutral-500 group-hover:text-brand-primary-700"
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-
           <span class="text-sm text-neutral-500 group-hover:text-brand-dark">Search</span>
         </button>
-        <!-- FIXME: -->
       </div>
 
-      <!-- Dropdown (inside Rounded block 1, inherits width via CSS) -->
-      <div x-show="navigationMenuOpen"
-          x-transition:enter="transition ease-out duration-200"
-          x-transition:enter-start="opacity-0 -translate-y-2"
-          x-transition:enter-end="opacity-100 translate-y-0"
-          x-transition:leave="transition ease-in duration-150"
-          x-transition:leave-start="opacity-100 translate-y-0"
-          x-transition:leave-end="opacity-0 -translate-y-2"
-          @mouseenter="cancelClose()"
-          @mouseleave="scheduleClose()"
-          class="absolute top-full left-0 w-full bg-[#E5E5E5] rounded-b-3xl shadow-md z-50"
-          x-cloak>
+      <!-- Search Dropdown -->
+      <div x-show="navigationMenuOpen" x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2" @mouseenter="cancelClose()" @mouseleave="scheduleClose()"
+        class="absolute top-full left-0 w-full bg-[#E5E5E5] rounded-b-3xl shadow-md z-50" x-cloak>
+        <div class="w-full">
+          <div class="overflow-hidden">
 
-          <div class="w-full">
-              <div class="overflow-hidden">
+            <!-- Dynamic dropdown content -->
+            <template x-for="(dropdown, dropdownId) in dropdownContent" :key="dropdownId">
+              <div x-show="navigationMenu === dropdownId" class="p-6">
+                <div class="grid grid-cols-12 gap-3">
 
-                  <!-- Dynamic dropdown content -->
-                  <template x-for="(dropdown, dropdownId) in dropdownContent" :key="dropdownId">
-                      <div x-show="navigationMenu === dropdownId" class="p-6">
-                          <div class="grid grid-cols-12 gap-3">
+                  <!-- Column 1: Categories (hoverable) -->
+                  <div class="col-span-3 bg-white rounded-2xl px-3 py-5">
+                    <!-- Column 1 Header -->
+                    <div class="flex items-center justify-between mb-4 px-4">
+                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column1.title"></h3>
+                      <a :href="dropdown.column1.link.url" @click="closeMenu()"
+                        class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                        <span x-text="dropdown.column1.link.text"></span>
+                        <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
+                      </a>
+                    </div>
+                    <ul class="space-y-1">
+                      <template x-for="(category, index) in dropdown.categories" :key="category.id">
+                        <li>
+                          <button @mouseenter="activeCategory = category.id"
+                            :class="{ 'bg-brand-background-secondary text-neutral-900': activeCategory === category.id }"
+                            class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-brand-background-secondary hover:text-neutral-900 transition-colors">
+                            <span x-text="category.label"></span>
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </li>
+                      </template>
+                    </ul>
+                  </div>
 
-                              <!-- Column 1: Categories (hoverable) -->
-                              <div class="col-span-3 bg-white rounded-2xl px-3 py-5">
-                                  <!-- Column 1 Header -->
-                                  <div class="flex items-center justify-between mb-4 px-4">
-                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column1.title"></h3>
-                                      <a :href="dropdown.column1.link.url"
-                                          @click="closeMenu()"
-                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
-                                          <span x-text="dropdown.column1.link.text"></span>
-                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
-                                      </a>
-                                  </div>
-                                  <ul class="space-y-1">
-                                      <template x-for="(category, index) in dropdown.categories" :key="category.id">
-                                          <li>
-                                              <button
-                                                  @mouseenter="activeCategory = category.id"
-                                                  :class="{ 'bg-brand-background-secondary text-neutral-900': activeCategory === category.id }"
-                                                  class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-brand-background-secondary hover:text-neutral-900 transition-colors">
-                                                  <span x-text="category.label"></span>
-                                                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                                  </svg>
-                                              </button>
-                                          </li>
-                                      </template>
-                                  </ul>
-                              </div>
-
-                              <!-- Column 2: Dynamic links (up to 8) -->
-                              <div class="col-span-4 bg-white rounded-2xl px-3 py-5">
-                                  <!-- Column 2 Header -->
-                                  <div class="flex items-center justify-between mb-4 px-4">
-                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column2.title"></h3>
-                                      <a :href="dropdown.column2.link.url"
-                                          @click="closeMenu()"
-                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
-                                          <span x-text="dropdown.column2.link.text"></span>
-                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
-                                      </a>
-                                  </div>
-                                  <template x-for="(category, index) in dropdown.categories" :key="category.id">
-                                      <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-1">
-                                          <template x-for="link in category.links" :key="link.title">
-                                              <a :href="link.url"
-                                                  @click="closeMenu()"
-                                                  class="block px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-brand-background-secondary hover:text-brand-primary transition-colors">
-                                                  <span x-text="link.title"></span>
-                                              </a>
-                                          </template>
-                                      </div>
-                                  </template>
-                              </div>
-
-                              <!-- Column 3: Fixed cards (2) -->
-                              <div class="col-span-5 bg-white rounded-2xl px-5 py-5">
-                                  <!-- Column 3 Header -->
-                                  <div class="flex items-center justify-between mb-4 px-2">
-                                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column3.title"></h3>
-                                      <a :href="dropdown.column3.link.url"
-                                          @click="closeMenu()"
-                                          class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
-                                          <span x-text="dropdown.column3.link.text"></span>
-                                          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
-                                      </a>
-                                  </div>
-                                  <div class="flex flex-row gap-3">
-                                      <template x-for="(card, index) in dropdown.cards" :key="index">
-                                          <div class="relative overflow-hidden flex-1">
-                                            <a :href="card.button.url" @click="closeMenu()" class="group block">
-                                              <div class="rounded-xl overflow-hidden">
-                                                <img :src="card.image" :alt="card.title" class="w-full aspect-4/3 object-cover transition-transform duration-300 group-hover:scale-105">
-                                              </div>
-                                              <div class="py-4 px-2">
-                                                  <h4 class="text-xxs uppercase tracking-wide font-bold text-brand-primary-700" x-text="card.title"></h4>
-                                                  <span class="inline-flex items-center mt-2 text-xs font-bold uppercase tracking-wide text-brand-dark group-hover:underline transition-colors">
-                                                      <span x-text="card.button.text"></span>
-                                                      <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
-                                                  </span>
-                                              </div>
-                                            </a>
-                                          </div>
-                                      </template>
-                                  </div>
-                              </div>
-                          </div>
+                  <!-- Column 2: Dynamic links (up to 8) -->
+                  <div class="col-span-4 bg-white rounded-2xl px-3 py-5">
+                    <!-- Column 2 Header -->
+                    <div class="flex items-center justify-between mb-4 px-4">
+                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column2.title"></h3>
+                      <a :href="dropdown.column2.link.url" @click="closeMenu()"
+                        class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                        <span x-text="dropdown.column2.link.text"></span>
+                        <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
+                      </a>
+                    </div>
+                    <template x-for="(category, index) in dropdown.categories" :key="category.id">
+                      <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-1">
+                        <template x-for="link in category.links" :key="link.title">
+                          <a :href="link.url" @click="closeMenu()"
+                            class="block px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-brand-background-secondary hover:text-brand-primary transition-colors">
+                            <span x-text="link.title"></span>
+                          </a>
+                        </template>
                       </div>
-                  </template>
+                    </template>
+                  </div>
 
+                  <!-- Column 3: Fixed cards (2) -->
+                  <div class="col-span-5 bg-white rounded-2xl px-5 py-5">
+                    <!-- Column 3 Header -->
+                    <div class="flex items-center justify-between mb-4 px-2">
+                      <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column3.title"></h3>
+                      <a :href="dropdown.column3.link.url" @click="closeMenu()"
+                        class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                        <span x-text="dropdown.column3.link.text"></span>
+                        <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
+                      </a>
+                    </div>
+                    <div class="flex flex-row gap-3">
+                      <template x-for="(card, index) in dropdown.cards" :key="index">
+                        <div class="relative overflow-hidden flex-1">
+                          <a :href="card.button.url" @click="closeMenu()" class="group block">
+                            <div class="rounded-xl overflow-hidden">
+                              <img :src="card.image" :alt="card.title"
+                                class="w-full aspect-4/3 object-cover transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <div class="py-4 px-2">
+                              <h4 class="text-xxs uppercase tracking-wide font-bold text-brand-primary-700"
+                                x-text="card.title"></h4>
+                              <span
+                                class="inline-flex items-center mt-2 text-xs font-bold uppercase tracking-wide text-brand-dark group-hover:underline transition-colors">
+                                <span x-text="card.button.text"></span>
+                                <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
+                              </span>
+                            </div>
+                          </a>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </template>
           </div>
+        </div>
       </div>
     </div>
 
     <!-- Rounded block 2 -->
-    <div class="shrink-0 flex items-center gap-4 px-5 py-2 border border-brand-border bg-brand-light rounded-3xl">
+    <div
+      class="shrink-0 xl:grow-0 grow flex items-center gap-4 px-5 py-2 xl:border border-brand-border xl:bg-brand-light rounded-3xl">
       <div class="sm:flex sm:gap-2">
         <a href="#" class="button-secondary">
           Sign in
@@ -195,210 +183,271 @@
 
       <button class="block rounded-sm bg-white border border-brand-border p-2.5 text-neutral-500 transition xl:hidden">
         <span class="sr-only">Toggle menu</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
+
+    <!-- Mobile search menu -->
+    <div class="w-full xl:hidden">
+      <button @click="slideOverOpen=true"
+        class="cursor-pointer group flex items-center gap-2 px-4 py-2 w-full bg-brand-background-secondary border border-brand-border hover:border-brand-primary-700 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-neutral-500 group-hover:text-brand-primary-700"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="text-sm text-neutral-500 group-hover:text-brand-dark">Search</span>
+      </button>
+    </div>
   </div>
+
+  <!-- Search Slide-over (teleported to body, shared by desktop & mobile buttons) -->
+  <template x-teleport="body">
+    <div x-show="slideOverOpen" @keydown.window.escape="slideOverOpen=false" class="relative z-99">
+      <div x-show="slideOverOpen" x-transition.opacity.duration.600ms @click="slideOverOpen = false"
+        class="fixed inset-0 bg-black/10"></div>
+      <div class="overflow-hidden fixed inset-0">
+        <div class="overflow-hidden absolute inset-0">
+          <div class="flex fixed inset-y-0 right-0 pl-10 max-w-full">
+            <div x-show="slideOverOpen" @click.away="slideOverOpen = false"
+              x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+              class="w-screen max-w-md">
+              <div
+                class="flex overflow-y-scroll flex-col py-5 h-full bg-white border-l shadow-lg border-neutral-100/70">
+                <div class="px-4 sm:px-5">
+                  <div class="flex justify-between items-start pb-1">
+                    <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">Slide Over
+                      Title</h2>
+                    <div class="flex items-center ml-3 h-auto">
+                      <button @click="slideOverOpen=false"
+                        class="flex absolute right-0 z-30 justify-center items-center px-3 py-2 mt-6 mr-5 space-x-1 text-xs font-medium uppercase rounded-md border border-neutral-200 text-neutral-600 hover:bg-neutral-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        <span>Close</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="relative flex-1 px-4 mt-5 sm:px-5">
+                  <div class="absolute inset-0 px-4 sm:px-5">
+                    <div
+                      class="overflow-hidden relative h-full rounded-md border border-dashed border-neutral-300">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </header>
 
 <script>
-    function navigationMenu() {
-        return {
-            navigationMenuOpen: false,
-            navigationMenu: '',
-            activeCategory: '',
-            navigationMenuCloseTimeout: null,
-            navigationMenuCloseDelay: 200,
+  function navigationMenu() {
+    return {
+      navigationMenuOpen: false,
+      navigationMenu: '',
+      activeCategory: '',
+      slideOverOpen: false,
+      navigationMenuCloseTimeout: null,
+      navigationMenuCloseDelay: 200,
 
-            menuItems: [
-                {
-                    id: 'getting-started',
-                    label: 'Getting Started',
-                    dropdown: true
-                },
-                {
-                    id: 'training',
-                    label: 'Training',
-                    dropdown: true
-                },
-                {
-                    id: 'exclusives',
-                    label: 'Exclusives',
-                    url: '#exclusives',
-                    dropdown: false
-                },
-                {
-                    id: 'news',
-                    label: 'News',
-                    url: '#news',
-                    dropdown: false
-                },
-                {
-                    id: 'wigmore-presents',
-                    label: 'Wigmore Presents',
-                    url: '#wigmore-presents',
-                    dropdown: false
-                },
-            ],
+      menuItems: [
+        {
+          id: 'getting-started',
+          label: 'Getting Started',
+          dropdown: true
+        },
+        {
+          id: 'training',
+          label: 'Training',
+          dropdown: true
+        },
+        {
+          id: 'exclusives',
+          label: 'Exclusives',
+          url: '#exclusives',
+          dropdown: false
+        },
+        {
+          id: 'news',
+          label: 'News',
+          url: '#news',
+          dropdown: false
+        },
+        {
+          id: 'wigmore-presents',
+          label: 'Wigmore Presents',
+          url: '#wigmore-presents',
+          dropdown: false
+        },
+      ],
 
-            dropdownContent: {
-                'getting-started': {
-                    column1: {
-                        title: 'Products',
-                        link: { text: 'View all', url: '#all-categories' }
-                    },
-                    column2: {
-                        title: 'Popular Brands',
-                        link: { text: 'See more', url: '#all-links' }
-                    },
-                    column3: {
-                        title: 'Special Offers',
-                        link: { text: 'View all', url: '#featured' }
-                    },
-                    categories: [
-                        {
-                            id: 'quick-start',
-                            label: 'Quick Start',
-                            links: [
-                                { title: 'Introduction', description: 'Learn the basics and get up to speed', url: '#introduction' },
-                                { title: 'Definisse Threads', description: 'Set up your development environment', url: '#installation' },
-                                { title: 'First Project', description: 'Build your first project step by step', url: '#first-project' },
-                                { title: 'Configuration', description: 'Configure your project settings', url: '#configuration' },
-                                { title: 'Deployment', description: 'Deploy your project to production', url: '#deployment' },
-                                { title: 'Best Practices', description: 'Learn recommended patterns', url: '#best-practices' },
-                                { title: 'Configurat2ion', description: 'Configure your project settings', url: '#configuration' },
-                                { title: 'Deploym2ent', description: 'Deploy your project to production', url: '#deployment' },
-                                { title: 'Best Prac3tices', description: 'Learn recommended patterns', url: '#best-practices' },
-                                { title: 'Deploym4ent', description: 'Deploy your project to production', url: '#deployment' },
-                                { title: 'Best Prac5tices', description: 'Learn recommended patterns', url: '#best-practices' },
-                                { title: 'Best Prac6tices', description: 'Learn recommended patterns', url: '#best-practices' }
-                            ]
-                        },
-                        {
-                            id: 'resources',
-                            label: 'Resources',
-                            links: [
-                                { title: 'Components', description: 'Browse our UI component library', url: '#components' },
-                                { title: 'Templates', description: 'Pre-built templates to jumpstart', url: '#templates' },
-                                { title: 'Examples', description: 'Real-world examples and use cases', url: '#examples' },
-                                { title: 'Plugins', description: 'Extend functionality with plugins', url: '#plugins' }
-                            ]
-                        },
-                        {
-                            id: 'support',
-                            label: 'Help & Support',
-                            links: [
-                                { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
-                                { title: 'Community', description: 'Join our community forum', url: '#community' },
-                                { title: 'FAQ', description: 'Frequently asked questions', url: '#faq' },
-                                { title: 'Contact Support', description: 'Get help from our team', url: '#support' }
-                            ]
-                        }
-                    ],
-                    cards: [
-                        {
-                            image: '/assets/placeholder-jennie.png',
-                            title: 'Try it free for 14 days',
-                            button: { text: 'Start Free Trial', url: '#trial' }
-                        },
-                        {
-                            image: '/assets/placeholder-product.png',
-                            title: 'New to the platform?',
-                            button: { text: 'Watch Tutorial', url: '#tutorial' }
-                        }
-                    ]
-                },
-                'training': {
-                    column1: {
-                        title: 'Topics',
-                        link: { text: 'All topics', url: '#all-topics' }
-                    },
-                    column2: {
-                        title: 'Resources',
-                        link: { text: 'Browse all', url: '#all-resources' }
-                    },
-                    column3: {
-                        title: 'Recommended',
-                        link: { text: 'View all', url: '#recommended' }
-                    },
-                    categories: [
-                        {
-                            id: 'frameworks',
-                            label: 'Frameworks',
-                            links: [
-                                { title: 'Tailwind CSS', description: 'Utility-first CSS framework', url: '#tailwind' },
-                                { title: 'Alpine.js', description: 'Lightweight JavaScript framework', url: '#alpine' },
-                                { title: 'Laravel', description: 'PHP framework for web artisans', url: '#laravel' },
-                                { title: 'Livewire', description: 'Full-stack framework for Laravel', url: '#livewire' }
-                            ]
-                        },
-                        {
-                            id: 'tools',
-                            label: 'Tools',
-                            links: [
-                                { title: 'Vite', description: 'Next generation frontend tooling', url: '#vite' },
-                                { title: 'Webpack', description: 'Module bundler for JavaScript', url: '#webpack' },
-                                { title: 'PostCSS', description: 'Transform CSS with JavaScript', url: '#postcss' },
-                                { title: 'ESLint', description: 'Find and fix JavaScript problems', url: '#eslint' }
-                            ]
-                        },
-                        {
-                            id: 'learning',
-                            label: 'Learning',
-                            links: [
-                                { title: 'Video Tutorials', description: 'Step-by-step video guides', url: '#videos' },
-                                { title: 'Blog', description: 'Latest news and articles', url: '#blog' },
-                                { title: 'Courses', description: 'In-depth courses and workshops', url: '#courses' },
-                                { title: 'Webinars', description: 'Live and recorded sessions', url: '#webinars' }
-                            ]
-                        }
-                    ],
-                    cards: [
-                        {
-                            image: '/assets/placeholder-product.png',
-                            title: 'Level up your skills',
-                            button: { text: 'Browse Courses', url: '#courses' }
-                        },
-                        {
-                            image: '/assets/placeholder-jennie.png',
-                            title: 'Get certified today',
-                            button: { text: 'View Certifications', url: '#certifications' }
-                        }
-                    ]
-                }
+      dropdownContent: {
+        'getting-started': {
+          column1: {
+            title: 'Products',
+            link: { text: 'View all', url: '#all-categories' }
+          },
+          column2: {
+            title: 'Popular Brands',
+            link: { text: 'See more', url: '#all-links' }
+          },
+          column3: {
+            title: 'Special Offers',
+            link: { text: 'View all', url: '#featured' }
+          },
+          categories: [
+            {
+              id: 'quick-start',
+              label: 'Quick Start',
+              links: [
+                { title: 'Introduction', description: 'Learn the basics and get up to speed', url: '#introduction' },
+                { title: 'Definisse Threads', description: 'Set up your development environment', url: '#installation' },
+                { title: 'First Project', description: 'Build your first project step by step', url: '#first-project' },
+                { title: 'Configuration', description: 'Configure your project settings', url: '#configuration' },
+                { title: 'Deployment', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Best Practices', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'Configurat2ion', description: 'Configure your project settings', url: '#configuration' },
+                { title: 'Deploym2ent', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Best Prac3tices', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'Deploym4ent', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Best Prac5tices', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'Best Prac6tices', description: 'Learn recommended patterns', url: '#best-practices' }
+              ]
             },
-
-            openMenu(menuId) {
-                this.cancelClose();
-                this.navigationMenuOpen = true;
-                this.navigationMenu = menuId;
-                // Set first category as active by default
-                const dropdown = this.dropdownContent[menuId];
-                if (dropdown && dropdown.categories && dropdown.categories.length > 0) {
-                    this.activeCategory = dropdown.categories[0].id;
-                }
+            {
+              id: 'resources',
+              label: 'Resources',
+              links: [
+                { title: 'Components', description: 'Browse our UI component library', url: '#components' },
+                { title: 'Templates', description: 'Pre-built templates to jumpstart', url: '#templates' },
+                { title: 'Examples', description: 'Real-world examples and use cases', url: '#examples' },
+                { title: 'Plugins', description: 'Extend functionality with plugins', url: '#plugins' }
+              ]
             },
-
-            scheduleClose() {
-                this.navigationMenuCloseTimeout = setTimeout(() => {
-                    this.closeMenu();
-                }, this.navigationMenuCloseDelay);
-            },
-
-            cancelClose() {
-                if (this.navigationMenuCloseTimeout) {
-                    clearTimeout(this.navigationMenuCloseTimeout);
-                    this.navigationMenuCloseTimeout = null;
-                }
-            },
-
-            closeMenu() {
-                this.navigationMenuOpen = false;
-                this.navigationMenu = '';
-                this.activeCategory = '';
+            {
+              id: 'support',
+              label: 'Help & Support',
+              links: [
+                { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
+                { title: 'Community', description: 'Join our community forum', url: '#community' },
+                { title: 'FAQ', description: 'Frequently asked questions', url: '#faq' },
+                { title: 'Contact Support', description: 'Get help from our team', url: '#support' }
+              ]
             }
+          ],
+          cards: [
+            {
+              image: '/assets/placeholder-jennie.png',
+              title: 'Try it free for 14 days',
+              button: { text: 'Start Free Trial', url: '#trial' }
+            },
+            {
+              image: '/assets/placeholder-product.png',
+              title: 'New to the platform?',
+              button: { text: 'Watch Tutorial', url: '#tutorial' }
+            }
+          ]
+        },
+        'training': {
+          column1: {
+            title: 'Topics',
+            link: { text: 'All topics', url: '#all-topics' }
+          },
+          column2: {
+            title: 'Resources',
+            link: { text: 'Browse all', url: '#all-resources' }
+          },
+          column3: {
+            title: 'Recommended',
+            link: { text: 'View all', url: '#recommended' }
+          },
+          categories: [
+            {
+              id: 'frameworks',
+              label: 'Frameworks',
+              links: [
+                { title: 'Tailwind CSS', description: 'Utility-first CSS framework', url: '#tailwind' },
+                { title: 'Alpine.js', description: 'Lightweight JavaScript framework', url: '#alpine' },
+                { title: 'Laravel', description: 'PHP framework for web artisans', url: '#laravel' },
+                { title: 'Livewire', description: 'Full-stack framework for Laravel', url: '#livewire' }
+              ]
+            },
+            {
+              id: 'tools',
+              label: 'Tools',
+              links: [
+                { title: 'Vite', description: 'Next generation frontend tooling', url: '#vite' },
+                { title: 'Webpack', description: 'Module bundler for JavaScript', url: '#webpack' },
+                { title: 'PostCSS', description: 'Transform CSS with JavaScript', url: '#postcss' },
+                { title: 'ESLint', description: 'Find and fix JavaScript problems', url: '#eslint' }
+              ]
+            },
+            {
+              id: 'learning',
+              label: 'Learning',
+              links: [
+                { title: 'Video Tutorials', description: 'Step-by-step video guides', url: '#videos' },
+                { title: 'Blog', description: 'Latest news and articles', url: '#blog' },
+                { title: 'Courses', description: 'In-depth courses and workshops', url: '#courses' },
+                { title: 'Webinars', description: 'Live and recorded sessions', url: '#webinars' }
+              ]
+            }
+          ],
+          cards: [
+            {
+              image: '/assets/placeholder-product.png',
+              title: 'Level up your skills',
+              button: { text: 'Browse Courses', url: '#courses' }
+            },
+            {
+              image: '/assets/placeholder-jennie.png',
+              title: 'Get certified today',
+              button: { text: 'View Certifications', url: '#certifications' }
+            }
+          ]
         }
+      },
+
+      openMenu(menuId) {
+        this.cancelClose();
+        this.navigationMenuOpen = true;
+        this.navigationMenu = menuId;
+        // Set first category as active by default
+        const dropdown = this.dropdownContent[menuId];
+        if (dropdown && dropdown.categories && dropdown.categories.length > 0) {
+          this.activeCategory = dropdown.categories[0].id;
+        }
+      },
+
+      scheduleClose() {
+        this.navigationMenuCloseTimeout = setTimeout(() => {
+          this.closeMenu();
+        }, this.navigationMenuCloseDelay);
+      },
+
+      cancelClose() {
+        if (this.navigationMenuCloseTimeout) {
+          clearTimeout(this.navigationMenuCloseTimeout);
+          this.navigationMenuCloseTimeout = null;
+        }
+      },
+
+      closeMenu() {
+        this.navigationMenuOpen = false;
+        this.navigationMenu = '';
+        this.activeCategory = '';
+      }
     }
+  }
 </script>
