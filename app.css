@@ -26,8 +26,12 @@
 
   --text-xxs: 0.7rem;
   --text-base: 1rem;
+  --text-2xl: 1.7rem;
   --text-3xl: 2.1rem;
-  /* --text-3xl: 2.1rem; */
+
+  --text-sm--line-height: 1.3;
+  --text-base--line-height: 1.3;
+  --text-lg--line-height: 1.3;
 }
 
 @layer base {
@@ -35,17 +39,24 @@
     @apply antialiased;
     background-color: var(--color-brand-background);
     color: var(--color-brand-dark);
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     font-weight: var(--font-weight-normal);
     font-family: var(--font-sans);
-    line-height: 1.4;
+    line-height: 1.3;
+  }
+
+  /* FIXME: double check this is safe */
+  @media (min-width: 768px) {
+    body {
+      font-size: var(--text-base);
+    }
   }
 }
 
 @layer components {
   /* LAYOUT COMPONENTS */
   .card-container {
-    @apply md:rounded-3xl rounded-xl mb-3 py-16 xl:px-16 lg:px-8 px-3 border border-brand-border;
+    @apply md:rounded-3xl rounded-xl mb-3 xl:py-16 xl:px-16 lg:py-8 lg:px-8 px-3 pt-5 pb-3 border border-brand-border;
   }
 
   .card-container-inner {
@@ -60,10 +71,10 @@
 
   /* VISIBLE OVERLAY CONTROLS */
   .right-overflow-visible-xl {
-    @apply xl:mr-auto! lg:-mr-8! -mr-3!;
+    @apply xl:mr-auto! lg:-mr-8! -mr-3! pr-3!;
   }
   .right-overflow-visible-lg {
-    @apply lg:mr-auto! -mr-3!;
+    @apply lg:mr-auto! -mr-3! pr-3!;
   }
 
   /* BADGES */
@@ -97,7 +108,7 @@
     @apply min-h-10 px-6 py-2 flex items-center justify-center text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-bold hover:bg-brand-primary-800 transition-colors;
   }
   .button-primary-icon {
-    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-center gap-3 text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-bold hover:bg-brand-primary-800 transition-colors;
+    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 text-xs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-bold hover:bg-brand-primary-800 transition-colors;
     
     & > span {
       @apply w-7 h-7 flex items-center justify-center bg-brand-light rounded-full text-brand-primary-700;
@@ -112,7 +123,7 @@
     @apply min-h-10 px-6 py-2 flex items-center justify-center text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
   }
   .button-secondary-icon {
-    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-center gap-3 text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
+    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
   
     & > span {
       @apply w-7 h-7 flex items-center justify-center bg-brand-primary-700 rounded-full text-brand-light;
@@ -127,7 +138,7 @@
     @apply min-h-10 px-6 py-2 flex items-center justify-center text-xs uppercase tracking-wide border border-brand-border bg-brand-light text-brand-primary-700 rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
   }
   .button-tertiary-icon {
-    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-center gap-3 text-xs uppercase tracking-wide border border-brand-border bg-brand-light text-brand-primary-700 rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
+    @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 text-xs uppercase tracking-wide border border-brand-border bg-brand-light text-brand-primary-700 rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
   
     & > span {
       @apply w-7 h-7 flex items-center justify-center bg-brand-primary-700 rounded-full text-brand-light;
@@ -191,19 +202,6 @@
 }
 .prose a {
   @apply text-brand-primary-700 underline hover:text-brand-primary-800 hover:no-underline;
-}
-
-/* HERO PAGINATION - outside @layer to override Swiper */
-.hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet {
-  width: 48px;
-  border-radius: 100px;
-  height: 3px;
-  background: rgb(255 255 255 / 0.5);
-  opacity: 1;
-}
-
-.hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet-active {
-  background: var(--color-brand-primary-700);
 }
 
 /* LOGO SCROLL */

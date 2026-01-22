@@ -1,12 +1,23 @@
+<style>
+  .collection-slide {
+    width: 280px;
+  }
+  @media (min-width: 1024px) {
+    .collection-slide {
+      width: auto;
+    }
+  }
+</style>
+
 <div class="card-container bg-brand-light">
   <div class="card-container-inner">
     <div class="flex flex-col items-center justify-between gap-6">
       <div class="max-w-lg flex flex-col gap-4 items-center text-center justify-center mb-4">
         <div class="badge-primary">Explore Our Range</div>
-        <h1 class="heading-primary text-4xl">Categories</h1>
+        <h1 class="heading-primary md:text-4xl text-2xl">Categories</h1>
         <p>Discover exclusive deals on prescription medicines, devices, and skincare, available only to verified Wigmore Medical account holders.</p>
 
-        <div class="flex flex-row gap-3 mt-2">
+        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">
           <a href="#" class="button-secondary">
             View all categories
           </a>
@@ -17,7 +28,7 @@
         x-data
         x-init="new Swiper($refs.swiper, {
           slidesPerView: 'auto',
-          spaceBetween: 18,
+          spaceBetween: 16,
           pagination: {
             el: $refs.progressbar,
             type: 'progressbar',
@@ -44,7 +55,7 @@
           <div x-ref="swiper" class="swiper flex-1 right-overflow-visible-lg overflow-hidden">
             <div class="swiper-wrapper">
               <!-- Card 1 -->
-              <div class="swiper-slide">
+              <div class="swiper-slide collection-slide">
                 <a href="#" class="group group/arrow block">
                   <div class="rounded-xl overflow-hidden mb-2">
                     <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-8/7 object-cover transition-transform duration-300 group-hover:scale-105">
@@ -59,7 +70,7 @@
               </div>
 
               <!-- Card 1 -->
-              <div class="swiper-slide">
+              <div class="swiper-slide collection-slide">
                 <a href="#" class="group group/arrow block">
                   <div class="rounded-xl overflow-hidden mb-2">
                     <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-8/7 object-cover transition-transform duration-300 group-hover:scale-105">
@@ -74,7 +85,7 @@
               </div>
 
               <!-- Card 1 -->
-              <div class="swiper-slide">
+              <div class="swiper-slide collection-slide">
                 <a href="#" class="group group/arrow block">
                   <div class="rounded-xl overflow-hidden mb-2">
                     <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-8/7 object-cover transition-transform duration-300 group-hover:scale-105">
@@ -89,7 +100,7 @@
               </div>
 
               <!-- Card 1 -->
-              <div class="swiper-slide">
+              <div class="swiper-slide collection-slide">
                 <a href="#" class="group group/arrow block">
                   <div class="rounded-xl overflow-hidden mb-2">
                     <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-8/7 object-cover transition-transform duration-300 group-hover:scale-105">
@@ -104,7 +115,7 @@
               </div>
 
               <!-- Card 1 -->
-              <div class="swiper-slide">
+              <div class="swiper-slide collection-slide">
                 <a href="#" class="group group/arrow block">
                   <div class="rounded-xl overflow-hidden mb-2">
                     <img src="/assets/placeholder-jennie.png" alt="" class="w-full aspect-8/7 object-cover transition-transform duration-300 group-hover:scale-105">
