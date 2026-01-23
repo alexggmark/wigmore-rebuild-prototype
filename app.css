@@ -218,15 +218,24 @@
 }
 
 .logo-scroll {
-  animation: scroll 20s linear infinite;
+  animation: scroll-quarter 20s linear infinite;
+}
+
+@keyframes scroll-quarter {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
 }
 
 .announcement-scroll {
-  animation: scroll 10s linear infinite;
+  animation: scroll-quarter 16s linear infinite;
 }
 @media (min-width: 768px) {
   .announcement-scroll {
-    animation: scroll 28s linear infinite;
+    animation: scroll-quarter 20s linear infinite;
   }
 }
 
