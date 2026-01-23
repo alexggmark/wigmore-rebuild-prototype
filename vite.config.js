@@ -10,7 +10,8 @@ export default defineConfig({
       input: {
         main: 'index.html',
         components: 'components.html',
-				products: 'products.html'
+				collections: 'collections.html',
+        products: 'products.html'
       },
     },
   },

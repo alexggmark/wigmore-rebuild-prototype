@@ -25,78 +25,88 @@
   
   <div class="body-container">
     <!-- Container here -->
-    <div class="grid xl:grid-cols-[226px_1fr] gap-3">
-      <div class="hidden md:block">
-        <!-- Sidebar content -->
-        <div class="card-container-small bg-brand-light" x-data="{ open: true, list: 7 }">
-          <!-- Accordion header -->
-          <button
-            @click="open = !open"
-            class="flex items-center justify-between w-full"
-          >
-            <span class="heading-primary text-lg text-brand-dark">Filter</span>
-            <svg
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': !open }"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-            </svg>
-          </button>
+    <div class="grid grid-cols-12 gap-3">
+      <div class="col-span-7">
+        <div class="md:rounded-3xl rounded-2xl p-3 border border-brand-border bg-brand-light">
+          <!-- PRODUCT THUMBNAIL CAROUSEL -->
+          <div x-data="{
+            images: [
+              '/assets/placeholder-vol.png',
+              '/assets/placeholder-product.png',
+              '/assets/placeholder-jennie.png',
+              '/assets/placeholder-vol.png',
+              '/assets/placeholder-product.png'
+            ],
+            mainSwiper: null,
+            thumbsSwiper: null
+          }"
+          x-init="
+            thumbsSwiper = new Swiper($refs.thumbsSwiper, {
+              direction: 'vertical',
+              slidesPerView: 4,
+              spaceBetween: 10,
+              watchSlidesProgress: true,
+            });
+            mainSwiper = new Swiper($refs.mainSwiper, {
+              spaceBetween: 10,
+              navigation: {
+                nextEl: $refs.nextBtn,
+                prevEl: $refs.prevBtn,
+              },
+              thumbs: {
+                swiper: thumbsSwiper,
+              },
+            });
+          ">
+            <div class="flex gap-3">
+              <!-- Thumbnails (vertical) -->
+              <div class="w-20 shrink-0">
+                <div x-ref="thumbsSwiper" class="swiper h-full max-h-[400px]">
+                  <div class="swiper-wrapper">
+                    <template x-for="(image, index) in images" :key="index">
+                      <div class="swiper-slide cursor-pointer">
+                        <img :src="image" :alt="'Thumbnail ' + (index + 1)"
+                          class="w-full aspect-square object-cover rounded-lg border-2 border-transparent [.swiper-slide-thumb-active_&]:border-brand-primary-700">
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Checkbox list -->
-          <div x-show="open" x-collapse>
-            <div class="mt-4 space-y-3">
-              <template x-for="(item, index) in list">
-                <label class="flex items-center gap-3 cursor-pointer" x-data="{ checked: true }">
-                  <input type="checkbox" class="hidden" x-model="checked">
-                  <span
-                    class="w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
-                    :class="checked ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'"
-                  >
-                    <svg x-show="checked" class="w-4 h-4 text-brand-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  <span class="text-brand-dark text-sm font-medium">Option 1</span>
-                </label>
-              </template>
+              <!-- Main Image -->
+              <div class="flex-1 relative w-full">
+                <div x-ref="mainSwiper" class="swiper rounded-xl overflow-hidden">
+                  <div class="swiper-wrapper">
+                    <template x-for="(image, index) in images" :key="index">
+                      <div class="swiper-slide">
+                        <img :src="image" :alt="'Product image ' + (index + 1)"
+                          class="w-full aspect-square object-cover">
+                      </div>
+                    </template>
+                  </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button x-ref="prevBtn"
+                  class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-md transition-colors cursor-pointer">
+                  <svg class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                </button>
+                <button x-ref="nextBtn"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-md transition-colors cursor-pointer">
+                  <svg class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div class="col-span-5">
         <div class="card-container-small bg-brand-light">
-          <h1 class="heading-primary text-2xl">
-            Skincare
-          </h1>
-          <div class="mt-2">
-            <p>Wigmore Medical is the UK’s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.</p>
-          </div>
-        </div>
-        <div class="card-container-small bg-brand-light">
-          <div class="card-container-inner">
-            <div x-data="{ loading: false, products: 9 }">
-              <div class="grid lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">
-                
-                <!-- <template x-for="(item, index) in products" :key="index"> -->
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                <!-- </template> -->
-
-              </div>
-            </div>
-          </div>
+          YYY
         </div>
       </div>
     </div>
