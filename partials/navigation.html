@@ -26,7 +26,7 @@
     <!-- Navigation -->
     <div class="flex flex-wrap xl:gap-4 w-full max-xl:border border-brand-border max-xl:bg-brand-light max-xl:rounded-3xl">
       <!-- Rounded blocks container (always horizontal) -->
-      <div class="flex md:gap-4 gap-0 w-full min-h-18">
+      <div class="flex md:gap-3 gap-0 w-full min-h-18">
         <!-- Rounded block 1 -->
         <div :class="(navigationMenuOpen || searchDropdownOpen) ? 'rounded-t-3xl' : 'rounded-3xl'"
           class="relative xl:grow grow-0 flex duration-200 justify-between items-center md:px-5 px-2 md:gap-8 gap-2 xl:border border-brand-border xl:bg-brand-light">
@@ -316,7 +316,7 @@
     <template x-teleport="body">
       <div x-show="searchSlideOverOpen" @keydown.window.escape="searchSlideOverOpen=false" class="relative z-99">
         <div x-show="searchSlideOverOpen" x-transition.opacity.duration.600ms @click="searchSlideOverOpen = false"
-          class="fixed inset-0 bg-black/10"></div>
+          class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
         <div class="overflow-hidden fixed inset-0">
           <div class="overflow-hidden absolute inset-0">
             <div class="flex fixed inset-y-0 right-0 pl-10 max-w-full">
@@ -363,7 +363,7 @@
     <template x-teleport="body">
       <div x-show="burgerNavigationSlideOpen" @keydown.window.escape="burgerNavigationSlideOpen=false" class="relative z-99">
         <div x-show="burgerNavigationSlideOpen" x-transition.opacity.duration.600ms @click="burgerNavigationSlideOpen = false"
-          class="fixed inset-0 bg-black/10"></div>
+          class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
         <div class="overflow-hidden fixed inset-0">
           <div class="overflow-hidden absolute inset-0">
             <div class="flex fixed inset-y-0 right-0 pl-10 max-w-full">
@@ -457,7 +457,7 @@
         'products': {
           column1: {
             title: 'Products',
-            link: { text: 'View all', url: '#all-categories' }
+            link: { text: 'View all', url: '/products' }
           },
           column2: {
             title: 'Popular Brands',
