@@ -67,7 +67,7 @@
   }
 
   .body-container {
-    @apply max-w-body md:px-4 px-3 py-3 mx-auto
+    @apply max-w-body md:px-4 px-3 pb-3 mx-auto
     /* border-4 xl:border-purple-500 lg:border-emerald-400 md:border-red-500 sm:border-green-600 */
     ;
   }
