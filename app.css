@@ -10,6 +10,7 @@
   --color-brand-primary-700: #00857D; /* Main blue/green */
   --color-brand-primary-800: #01756E;
   --color-brand-background: #F0F0F0;
+  --color-brand-background-dark: #E4E5E8;
   --color-brand-background-secondary: #F3F4F6;
   --color-brand-light: #FCFCFC; /* Generic light */
   --color-brand-dark: #042F2E; /* All text */
@@ -168,10 +169,14 @@
   }
   /* Button: text + arrow */
   .button-text-icon {
-    @apply inline-flex items-center mt-2 md:text-xs text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline transition-colors;
+    @apply inline-flex items-center md:text-xs text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline transition-colors;
 
     & .icon-arrow {
       @apply w-2.5 h-2.5 rotate-180 ml-2;
+    }
+
+    & .icon-close {
+      @apply w-3.5 h-3.5 rotate-180 mr-1;
     }
   }
 
@@ -189,6 +194,13 @@
     mask-repeat: no-repeat;
     mask-position: center;
     mask-image: url('/assets/arrow.svg');
+  }
+  .icon-close {
+    @apply bg-current;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-image: url('/assets/close.svg');
   }
 
   .group\/arrow:hover .icon-arrow {
