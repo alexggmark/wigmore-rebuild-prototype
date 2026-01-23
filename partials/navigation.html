@@ -374,26 +374,90 @@
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                 class="w-screen max-w-md">
                 <div
-                  class="flex overflow-y-scroll flex-col py-5 h-full bg-white border-l shadow-lg border-neutral-100/70">
-                  <div class="px-4 xl:px-5">
-                    <div class="flex justify-between items-start pb-1">
-                      <h2 class="text-base font-semibold leading-6 text-gray-900" id="burger-slide-over-title">Menu</h2>
-                      <div class="flex items-center ml-3 h-auto">
-                        <button @click="burgerNavigationSlideOpen=false"
-                          class="flex absolute right-0 z-30 justify-center items-center px-3 py-2 mt-6 mr-5 space-x-1 text-xs font-medium uppercase rounded-md border border-neutral-200 text-neutral-600 hover:bg-neutral-100">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                          </svg>
-                          <span>Close</span>
-                        </button>
-                      </div>
-                    </div>
+                  class="flex flex-col py-5 h-full bg-white border-l shadow-lg border-neutral-100/70">
+                  <!-- Header -->
+                  <div class="flex justify-between items-center px-5 pb-4 border-b border-neutral-200">
+                    <h2 class="text-lg font-semibold text-brand-dark">Menu</h2>
+                    <button @click="burgerNavigationSlideOpen=false"
+                      class="flex justify-center items-center p-2 rounded-full border border-neutral-200 text-neutral-600 hover:bg-neutral-100">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
                   </div>
-                  <div class="relative flex-1 px-4 mt-5 sm:px-5">
-                    <div class="absolute inset-0 px-4 sm:px-5">
-                      <div
-                        class="overflow-hidden relative h-full rounded-md border border-dashed border-neutral-300">
+
+                  <!-- Menu Items Accordion -->
+                  <div class="flex-1 overflow-y-auto px-5">
+                    <nav>
+                      <template x-for="(item, index) in menuItems" :key="item.id">
+                        <div>
+                          <!-- Accordion Item (has dropdown) -->
+                          <template x-if="item.dropdown">
+                            <div class="border-b border-brand-border">
+                              <button @click="mobileAccordionOpen = mobileAccordionOpen === item.id ? '' : item.id"
+                                class="w-full flex items-center justify-between py-4 text-left">
+                                <span class="text-lg heading-primary text-brand-dark" x-text="item.label"></span>
+                                <svg :class="{ 'rotate-180': mobileAccordionOpen === item.id }"
+                                  class="w-4 h-4 text-neutral-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                              </button>
+                              <!-- Accordion Content -->
+                              <div x-show="mobileAccordionOpen === item.id" x-collapse>
+                                <div class="pb-4 space-y-4">
+                                  <template x-for="category in dropdownContent[item.id]?.categories" :key="category.id">
+                                    <div>
+                                      <h4 class="text-xs font-bold uppercase tracking-wide text-neutral-500 mb-2" x-text="category.label"></h4>
+                                      <ul class="space-y-1">
+                                        <template x-for="link in category.links" :key="link.title">
+                                          <li>
+                                            <a :href="link.url" @click="burgerNavigationSlideOpen = false"
+                                              class="block py-2 px-3 text-sm text-neutral-700 hover:bg-brand-background-secondary hover:text-brand-primary-700 rounded-lg transition-colors"
+                                              x-text="link.title"></a>
+                                          </li>
+                                        </template>
+                                      </ul>
+                                    </div>
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+                          </template>
+
+                          <!-- Simple Link (no dropdown) -->
+                          <template x-if="!item.dropdown">
+                            <a :href="item.url" @click="burgerNavigationSlideOpen = false"
+                              class="block py-4 text-lg heading-primary text-brand-dark hover:text-brand-primary-700 border-b border-brand-border">
+                              <span x-text="item.label"></span>
+                            </a>
+                          </template>
+                        </div>
+                      </template>
+                    </nav>
+
+                    <!-- Featured Cards (first 2 from products) -->
+                    <div class="pt-6">
+                      <span class="heading-primary text-lg text-brand-dark">Special Offers</span>
+                      <div class="flex flex-row gap-3 mt-3">
+                        <template x-for="(card, index) in dropdownContent['products']?.cards?.slice(0, 2)" :key="index">
+                          <div class="relative overflow-hidden flex-1">
+                            <a :href="card.button.url" @click="burgerNavigationSlideOpen = false" class="group block">
+                              <div class="rounded-xl overflow-hidden">
+                                <img :src="card.image" :alt="card.title"
+                                  class="w-full aspect-4/3 object-cover transition-transform duration-300 group-hover:scale-105">
+                              </div>
+                              <div class="py-3">
+                                <h4 class="text-[8px] uppercase tracking-wide font-bold text-brand-primary-700"
+                                  x-text="card.title"></h4>
+                                <span class="inline-flex items-center mt-1 text-xxs font-bold uppercase tracking-wide text-brand-dark group-hover:underline transition-colors">
+                                  <span x-text="card.button.text"></span>
+                                  <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
+                                </span>
+                              </div>
+                            </a>
+                          </div>
+                        </template>
                       </div>
                     </div>
                   </div>
@@ -419,6 +483,7 @@
       searchLoading: false,
       searchLoadingTimeout: null,
       burgerNavigationSlideOpen: false,
+      mobileAccordionOpen: '',
       navigationMenuCloseTimeout: null,
       navigationMenuCloseDelay: 200,
 
