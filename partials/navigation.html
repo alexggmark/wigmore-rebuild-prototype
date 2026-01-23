@@ -120,7 +120,7 @@
                         <div x-show="activeCategory === category.id" class="grid grid-cols-2 gap-1">
                           <template x-for="link in category.links" :key="link.title">
                             <a :href="link.url" @click="closeMenu()"
-                              class="block px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-700 hover:bg-brand-background-secondary hover:text-brand-primary transition-colors">
+                              class="block px-4 py-3 rounded-lg text-xs font-medium tracking-wide uppercase text-neutral-700 hover:bg-brand-background-secondary hover:text-brand-primary transition-colors">
                               <span x-text="link.title"></span>
                             </a>
                           </template>

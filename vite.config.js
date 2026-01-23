@@ -9,7 +9,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        components: 'components.html'
+        components: 'components.html',
+				products: 'products.html'
       },
     },
   },
