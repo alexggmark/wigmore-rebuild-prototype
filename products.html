@@ -25,8 +25,9 @@
   
   <div class="body-container">
     <!-- Container here -->
-    <div class="grid grid-cols-12 gap-3">
-      <div class="md:col-span-7 col-span-full">
+    <div class="grid grid-cols-12 gap-3 md:items-start mb-3">
+      <!-- PRODUCT IMAGE -->
+      <div class="md:col-span-7 col-span-full md:sticky md:top-4">
         <div class="md:rounded-3xl rounded-2xl p-3 border border-brand-border bg-brand-light">
           <!-- PRODUCT THUMBNAIL CAROUSEL -->
           <div x-data="{
@@ -128,157 +129,158 @@
           </div>
         </div>
       </div>
+      <!-- PRODUCT CONTENT -->
       <div class="md:col-span-5 col-span-full">
         <div class="card-container-small bg-brand-light">
-          <!-- TODO: CONTENT -->
-
           <div class="flex flex-col items-start gap-4">
-              <div class="badge-primary">Image Skincare</div>
-              <h1 class="heading-primary text-3xl">VOL.U.LIFT Face Firming Cream</h1>
+            <div class="badge-primary">Image Skincare</div>
+            <h1 class="heading-primary text-3xl">VOL.U.LIFT Face Firming Cream</h1>
 
-              <div class="prose">
-                <p>Formulated by a plastic surgeon, this multidimensional formula works in 4D to address specific skin concerns that occur with GLP-1 usage to improve the appearance of facial skin. Our unique volumising complex plus patent-pending XOSM™ Technology improves visible deflation, sagging, crepey skin texture, dehydration and wrinkles for a visibly radiant, younger looking complexion.</p>
-              </div>
-
-              <!-- Radio card select -->
-              <div x-data="{ selected: 'option1' }" class="flex md:flex-row flex-col gap-3 w-full mb-2">
-                <button
-                  @click="selected = 'option1'"
-                  :class="selected === 'option1' ? 'border-brand-primary-700 bg-brand-primary-100' : 'border-brand-border bg-white'"
-                  class="flex-1 flex items-start gap-2 p-2 rounded-lg border cursor-pointer"
-                >
-                  <div
-                    :class="selected === 'option1' ? 'border-brand-primary-700' : 'border-brand-border'"
-                    class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0"
-                  >
-                    <span x-show="selected === 'option1'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
-                  </div>
-                  <div class="text-left flex items-start flex-col">
-                    <span class="uppercase text-xxs font-bold">RX price</span>
-                    <span class="text-xs uppercase font-bold mt-1.5">£60.00</span>
-                  </div>
-                </button>
-                <button
-                  @click="selected = 'option2'"
-                  :class="selected === 'option2' ? 'border-brand-primary-700 bg-brand-primary-100' : 'border-brand-border bg-white'"
-                  class="flex-1 flex items-start gap-2 p-2 rounded-lg border cursor-pointer"
-                >
-                  <div
-                    :class="selected === 'option2' ? 'border-brand-primary-700' : 'border-brand-border'"
-                    class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0"
-                  >
-                    <span x-show="selected === 'option2'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
-                  </div>
-                  <div class="text-left flex items-start flex-col">
-                    <span class="uppercase text-xxs font-bold">Stock Price</span>
-                    <span class="text-xs uppercase font-bold mt-1.5">£60.00</span>
-                  </div>
-                </button>
-              </div>
-
-              <div class="flex gap-2 w-full">
-                <!-- Quantity selector -->
-                <div x-data="{ qty: 1 }" class="flex shrink-0 items-center border border-brand-border rounded-full">
-                  <button
-                    @click="qty = Math.max(1, qty - 1)"
-                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"
-                  >
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
-                    </svg>
-                  </button>
-                  <span class="w-14 text-center text-sm font-bold" x-text="qty"></span>
-                  <button
-                    @click="qty++"
-                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"
-                  >
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- CTA BUTTON -->
-                <a href="#" class="button-primary flex-1">
-                  View offer
-                </a>
-              </div>
-
-              <span class="inline-flex items-center gap-1 text-xs text-neutral-500">
-                <svg class="w-4 h-4 shrink-0" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.25 7.875H8.5C8.77614 7.875 9 8.09886 9 8.375V11.125C9 11.4011 9.22386 11.625 9.5 11.625H9.75M9.00001 6.375H9.00751" stroke="currentColor" stroke-opacity="0.64" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10.0419 14.9088C10.8178 14.772 11.5593 14.4837 12.2238 14.0603C12.8883 13.637 13.463 13.0869 13.9149 12.4415C14.3669 11.796 14.6872 11.0679 14.8578 10.2986C15.0283 9.52938 15.0457 8.73407 14.9088 7.95811C14.772 7.18215 14.4837 6.44074 14.0603 5.7762C13.637 5.11167 13.0869 4.53703 12.4415 4.08509C11.796 3.63315 11.0679 3.31276 10.2986 3.14222C9.52938 2.97168 8.73407 2.95433 7.95811 3.09115C7.18215 3.22798 6.44074 3.5163 5.7762 3.93965C5.11167 4.36301 4.53703 4.91311 4.08509 5.55854C3.63315 6.20398 3.31276 6.93211 3.14222 7.70136C2.97168 8.47062 2.95433 9.26593 3.09115 10.0419C3.22798 10.8179 3.5163 11.5593 3.93965 12.2238C4.36301 12.8883 4.91311 13.463 5.55854 13.9149C6.20398 14.3669 6.93211 14.6872 7.70136 14.8578C8.47062 15.0283 9.26593 15.0457 10.0419 14.9088L10.0419 14.9088Z" stroke="currentColor" stroke-opacity="0.64"/>
-                </svg>
-                Rx prices may include surcharges
-              </span>
-
+            <div class="prose">
+              <p>Formulated by a plastic surgeon, this multidimensional formula works in 4D to address specific skin concerns that occur with GLP-1 usage to improve the appearance of facial skin. Our unique volumising complex plus patent-pending XOSM™ Technology improves visible deflation, sagging, crepey skin texture, dehydration and wrinkles for a visibly radiant, younger looking complexion.</p>
             </div>
 
-            <!-- FAQ section -->
-        <div
-          x-data="{
-            activeAccordion: null,
-            faqs: [
-              {
-                question: 'Product Details',
-                answer: 'Wigmore Medical is the UK\'s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.'
-              },
-              {
-                question: 'Who can purchase this?',
-                answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
-              },
-              {
-                question: 'Ingredients',
-                answer: 'Once registered and verified, you can browse our product catalogue, add items to your basket, and complete your order through our secure checkout process.'
-              },
-              {
-                question: 'Storage & Handling',
-                answer: 'We accept all major credit and debit cards, as well as bank transfers for approved accounts. Payment terms may be available for qualifying customers.'
-              },
-              {
-                question: 'Pricing & Surcharges Information',
-                answer: 'You can track your order status through your account dashboard. You\'ll also receive email notifications with tracking information once your order has been dispatched.'
-              },
-              {
-                question: 'Deliveries & Returns',
-                answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
-              }
-            ]
-          }"
-          class="w-full flex flex-col gap-2 mt-8"
-        >
-          <template x-for="(faq, index) in faqs" :key="index">
-            <div class="bg-brand-background-secondary rounded-2xl overflow-hidden">
+            <!-- Radio card select -->
+            <div x-data="{ selected: 'option1' }" class="flex md:flex-row flex-col gap-3 w-full mb-2">
               <button
-                @click="activeAccordion = activeAccordion === index ? null : index"
-                class="flex items-center justify-between w-full p-5 text-left cursor-pointer"
+                @click="selected = 'option1'"
+                :class="selected === 'option1' ? 'border-brand-primary-700 bg-brand-primary-100' : 'border-brand-border bg-white'"
+                class="flex-1 flex items-start gap-2 p-2 rounded-lg border cursor-pointer"
               >
-                <span class="text-brand-dark" x-text="faq.question"></span>
-                <span class="w-8 h-8 flex items-center justify-center bg-brand-light rounded-full shrink-0">
-                  <svg
-                    class="w-4 h-4 text-brand-primary-700 transition-transform duration-300"
-                    :class="{ 'rotate-45': activeAccordion === index }"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                  </svg>
-                </span>
+                <div
+                  :class="selected === 'option1' ? 'border-brand-primary-700' : 'border-brand-border'"
+                  class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0"
+                >
+                  <span x-show="selected === 'option1'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
+                </div>
+                <div class="text-left flex items-start flex-col">
+                  <span class="uppercase text-xxs font-bold">RX price</span>
+                  <span class="text-xs uppercase font-bold mt-1.5">£60.00</span>
+                </div>
               </button>
-              <div x-show="activeAccordion === index" x-collapse x-cloak>
-                <div class="px-5 pb-5 text-brand-dark text-sm" x-text="faq.answer"></div>
-              </div>
+              <button
+                @click="selected = 'option2'"
+                :class="selected === 'option2' ? 'border-brand-primary-700 bg-brand-primary-100' : 'border-brand-border bg-white'"
+                class="flex-1 flex items-start gap-2 p-2 rounded-lg border cursor-pointer"
+              >
+                <div
+                  :class="selected === 'option2' ? 'border-brand-primary-700' : 'border-brand-border'"
+                  class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0"
+                >
+                  <span x-show="selected === 'option2'" class="w-2 h-2 rounded-full bg-brand-primary-700"></span>
+                </div>
+                <div class="text-left flex items-start flex-col">
+                  <span class="uppercase text-xxs font-bold">Stock Price</span>
+                  <span class="text-xs uppercase font-bold mt-1.5">£60.00</span>
+                </div>
+              </button>
             </div>
-          </template>
-        </div>
 
-          <!-- TODO: CONTENT -->
+            <div class="flex gap-2 w-full">
+              <!-- Quantity selector -->
+              <div x-data="{ qty: 1 }" class="flex shrink-0 items-center border border-brand-border rounded-full">
+                <button
+                  @click="qty = Math.max(1, qty - 1)"
+                  class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"
+                >
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+                  </svg>
+                </button>
+                <span class="w-14 text-center text-sm font-bold" x-text="qty"></span>
+                <button
+                  @click="qty++"
+                  class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"
+                >
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- CTA BUTTON -->
+              <a href="#" class="button-primary flex-1">
+                View offer
+              </a>
+            </div>
+
+            <span class="inline-flex items-center gap-1 text-xs text-neutral-500">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.25 7.875H8.5C8.77614 7.875 9 8.09886 9 8.375V11.125C9 11.4011 9.22386 11.625 9.5 11.625H9.75M9.00001 6.375H9.00751" stroke="currentColor" stroke-opacity="0.64" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10.0419 14.9088C10.8178 14.772 11.5593 14.4837 12.2238 14.0603C12.8883 13.637 13.463 13.0869 13.9149 12.4415C14.3669 11.796 14.6872 11.0679 14.8578 10.2986C15.0283 9.52938 15.0457 8.73407 14.9088 7.95811C14.772 7.18215 14.4837 6.44074 14.0603 5.7762C13.637 5.11167 13.0869 4.53703 12.4415 4.08509C11.796 3.63315 11.0679 3.31276 10.2986 3.14222C9.52938 2.97168 8.73407 2.95433 7.95811 3.09115C7.18215 3.22798 6.44074 3.5163 5.7762 3.93965C5.11167 4.36301 4.53703 4.91311 4.08509 5.55854C3.63315 6.20398 3.31276 6.93211 3.14222 7.70136C2.97168 8.47062 2.95433 9.26593 3.09115 10.0419C3.22798 10.8179 3.5163 11.5593 3.93965 12.2238C4.36301 12.8883 4.91311 13.463 5.55854 13.9149C6.20398 14.3669 6.93211 14.6872 7.70136 14.8578C8.47062 15.0283 9.26593 15.0457 10.0419 14.9088L10.0419 14.9088Z" stroke="currentColor" stroke-opacity="0.64"/>
+              </svg>
+              Rx prices may include surcharges
+            </span>
+
+          </div>
+
+          <!-- FAQ section -->
+          <div
+            x-data="{
+              activeAccordion: null,
+              faqs: [
+                {
+                  question: 'Product Details',
+                  answer: 'Wigmore Medical is the UK\'s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.'
+                },
+                {
+                  question: 'Who can purchase this?',
+                  answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
+                },
+                {
+                  question: 'Ingredients',
+                  answer: 'Once registered and verified, you can browse our product catalogue, add items to your basket, and complete your order through our secure checkout process.'
+                },
+                {
+                  question: 'Storage & Handling',
+                  answer: 'We accept all major credit and debit cards, as well as bank transfers for approved accounts. Payment terms may be available for qualifying customers.'
+                },
+                {
+                  question: 'Pricing & Surcharges Information',
+                  answer: 'You can track your order status through your account dashboard. You\'ll also receive email notifications with tracking information once your order has been dispatched.'
+                },
+                {
+                  question: 'Deliveries & Returns',
+                  answer: 'Our platform is designed exclusively for registered medical and aesthetic professionals. You\'ll need to provide proof of your qualifications during the registration process.'
+                }
+              ]
+            }"
+            class="w-full flex flex-col gap-2 mt-8"
+          >
+            <template x-for="(faq, index) in faqs" :key="index">
+              <div class="bg-brand-background-secondary rounded-2xl overflow-hidden">
+                <button
+                  @click="activeAccordion = activeAccordion === index ? null : index"
+                  class="flex items-center justify-between w-full p-5 text-left cursor-pointer"
+                >
+                  <span class="text-brand-dark" x-text="faq.question"></span>
+                  <span class="w-8 h-8 flex items-center justify-center bg-brand-light rounded-full shrink-0">
+                    <svg
+                      class="w-4 h-4 text-brand-primary-700 transition-transform duration-300"
+                      :class="{ 'rotate-45': activeAccordion === index }"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                    </svg>
+                  </span>
+                </button>
+                <div x-show="activeAccordion === index" x-collapse x-cloak>
+                  <div class="px-5 pb-5 text-brand-dark text-sm" x-text="faq.answer"></div>
+                </div>
+              </div>
+            </template>
+          </div>
         </div>
       </div>
     </div>
+
+
+    <!-- SECTION: footer -->
+    <load src="partials/home/footer.html" />
   </div>
 </body>
 </html>

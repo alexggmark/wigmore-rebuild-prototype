@@ -39,13 +39,13 @@
 <!-- Loaded State -->
 <template x-if="!loading">
   <div>
-    <div class="relative rounded-xl overflow-hidden mb-2">
-      <img src="/assets/placeholder-vol.png" alt="" class="w-full aspect-square object-cover">
+    <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group">
+      <img src="/assets/placeholder-vol.png" alt="" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
       <!-- Badges container -->
       <div class="absolute top-3 left-3 flex flex-wrap gap-1">
         <div class="badge-primary">Mix & Match | Buy 10 get 5 free</div>
       </div>
-    </div>
+    </a>
     <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
       <div class="badge-text">Image Skincare</div>
       <h1 class="heading-secondary text-base">VOL.U.LIFT Face Firming Cream - 57g</h1>
@@ -107,7 +107,7 @@
         </button>
       </div>
 
-      <a href="#" class="button-primary w-full">
+      <a href="/products" class="button-primary w-full">
         View offer
       </a>
     </div>
