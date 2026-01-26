@@ -1,3 +1,26 @@
+<style>
+  /* Search Carousel Progress Bar */
+  .search-carousel-progress.swiper-pagination-progressbar {
+    background: var(--color-brand-border);
+    position: relative;
+    top: auto;
+    width: 100%;
+  }
+  .search-carousel-progress.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: var(--color-brand-primary-700);
+    border-radius: 100px;
+  }
+  /* Search Carousel Equal Height Slides */
+  .search-swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+  .search-swiper .swiper-slide {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
 <!-- Announcement bar -->
 <div class="md:px-4 md:mt-2 mb-3" x-data="{
   announcements: [
@@ -285,23 +308,37 @@
                       </div>
 
                       <!-- Column 2: Recommended Products -->
-                      <div class="col-span-8 bg-white rounded-2xl px-4 py-5">
+                      <div class="col-span-8 bg-white rounded-2xl px-4 py-5"
+                        x-init="$nextTick(() => {
+                          new Swiper($refs.searchDesktopSwiper, {
+                            slidesPerView: 3,
+                            spaceBetween: 12,
+                            pagination: {
+                              el: $refs.searchDesktopProgressbar,
+                              type: 'progressbar',
+                            }
+                          })
+                        })">
                         <div class="mb-4 px-3">
                           <h3 class="text-base heading-primary text-brand-dark">Recommended Products</h3>
                         </div>
-                        <div class="grid lg:grid-cols-3 sm:grid-cols-2 lg:gap-3 gap-2">
-                          <template x-for="product in searchResults.products" :key="product.url">
-                            <div>
-                              <a :href="product.url" class="block relative rounded-xl overflow-hidden mb-2 group">
-                                <img :src="product.image" :alt="product.title" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
-                              </a>
-                              <div class="flex flex-col items-start gap-2 p-4 border border-brand-border-light rounded-xl bg-white">
-                                <div class="badge-text-sm" x-text="product.brand"></div>
-                                <a :href="product.url" class="heading-secondary text-sm line-clamp-2 hover:text-brand-primary-700 transition-colors" x-text="product.title"></a>
+                        <div x-ref="searchDesktopSwiper" class="swiper search-swiper overflow-hidden">
+                          <div class="swiper-wrapper">
+                            <template x-for="product in searchResults.products" :key="product.url">
+                              <div class="swiper-slide">
+                                <a :href="product.url" class="block relative rounded-xl overflow-hidden mb-2 group">
+                                  <img :src="product.image" :alt="product.title" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                                </a>
+                                <div class="flex-1 flex flex-col items-start gap-2 p-4 border border-brand-border-light rounded-xl bg-white">
+                                  <div class="badge-text-sm" x-text="product.brand"></div>
+                                  <a :href="product.url" class="heading-secondary text-sm line-clamp-2 hover:text-brand-primary-700 transition-colors" x-text="product.title"></a>
+                                </div>
                               </div>
-                            </div>
-                          </template>
+                            </template>
+                          </div>
                         </div>
+                        <!-- Progress Bar -->
+                        <div x-ref="searchDesktopProgressbar" class="swiper-pagination search-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
                       </div>
                     </div>
                   </template>
@@ -409,12 +446,12 @@
                     <template x-if="!searchLoading">
                       <div class="space-y-6">
                         <!-- Popular Searches (horizontal scrollable pills) -->
-                        <div>
-                          <h3 class="text-sm font-semibold text-brand-dark mb-3">Popular Searches</h3>
-                          <div class="flex gap-2 flex-wrap">
+                        <div class="-mx-4">
+                          <h3 class="text-base heading-primary text-brand-dark mb-3 px-4">Popular Searches</h3>
+                          <div class="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-1">
                             <template x-for="search in searchResults.popularSearches" :key="search.label">
                               <a :href="search.url" @click="searchSlideOverOpen = false"
-                                class="bg-brand-background hover:bg-brand-background-dark rounded-full font-medium px-4 py-2 text-sm transition-colors"
+                                class="shrink-0 bg-brand-background hover:bg-brand-background-dark rounded-full font-medium px-4 py-2 text-sm transition-colors"
                                 x-text="search.label"></a>
                             </template>
                           </div>
@@ -422,7 +459,7 @@
 
                         <!-- Collections (vertical list with arrows) -->
                         <div>
-                          <h3 class="text-sm font-semibold text-brand-dark mb-3">Collections</h3>
+                          <h3 class="text-base heading-primary text-brand-dark mb-3">Collections</h3>
                           <ul class="space-y-1">
                             <template x-for="collection in searchResults.collections" :key="collection.title">
                               <li>
@@ -438,22 +475,35 @@
                           </ul>
                         </div>
 
-                        <!-- Products (3-column grid) -->
-                        <div>
-                          <h3 class="text-sm font-semibold text-brand-dark mb-3">Recommended Products</h3>
-                          <div class="grid grid-cols-3 gap-2">
-                            <template x-for="product in searchResults.products" :key="product.url">
-                              <div>
-                                <a :href="product.url" @click="searchSlideOverOpen = false" class="block relative rounded-lg overflow-hidden mb-2 group">
-                                  <img :src="product.image" :alt="product.title" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
-                                </a>
-                                <div class="flex flex-col items-start gap-1.5 p-2 border border-brand-border-light rounded-lg bg-white">
-                                  <div class="badge-text-sm text-[10px]" x-text="product.brand"></div>
-                                  <a :href="product.url" @click="searchSlideOverOpen = false" class="heading-secondary text-xs line-clamp-2 hover:text-brand-primary-700 transition-colors" x-text="product.title"></a>
+                        <!-- Products Carousel -->
+                        <div x-init="$nextTick(() => {
+                          new Swiper($refs.searchMobileSwiper, {
+                            slidesPerView: 3,
+                            spaceBetween: 8,
+                            pagination: {
+                              el: $refs.searchMobileProgressbar,
+                              type: 'progressbar',
+                            }
+                          })
+                        })">
+                          <h3 class="text-base heading-primary text-brand-dark mb-3">Recommended Products</h3>
+                          <div x-ref="searchMobileSwiper" class="swiper search-swiper overflow-hidden">
+                            <div class="swiper-wrapper">
+                              <template x-for="product in searchResults.products" :key="product.url">
+                                <div class="swiper-slide">
+                                  <a :href="product.url" @click="searchSlideOverOpen = false" class="block relative rounded-lg overflow-hidden mb-2 group">
+                                    <img :src="product.image" :alt="product.title" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                                  </a>
+                                  <div class="flex-1 flex flex-col items-start gap-1.5 p-2 border border-brand-border-light rounded-lg bg-white">
+                                    <div class="badge-text-sm text-[10px]" x-text="product.brand"></div>
+                                    <a :href="product.url" @click="searchSlideOverOpen = false" class="heading-secondary text-xs line-clamp-2 hover:text-brand-primary-700 transition-colors" x-text="product.title"></a>
+                                  </div>
                                 </div>
-                              </div>
-                            </template>
+                              </template>
+                            </div>
                           </div>
+                          <!-- Progress Bar -->
+                          <div x-ref="searchMobileProgressbar" class="swiper-pagination search-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
                         </div>
                       </div>
                     </template>
@@ -585,7 +635,7 @@
       navigationMenu: '',
       activeCategory: '',
       searchSlideOverOpen: false,
-      searchDropdownOpen: false,
+      searchDropdownOpen: true,
       searchQuery: '',
       searchLoading: false,
       searchLoadingTimeout: null,
@@ -625,6 +675,24 @@
             brand: 'Colorescience',
             image: '/assets/placeholder-product.png',
             url: '/products/total-defense-repair-spf34'
+          },
+          {
+            title: '2VOL.U.LIFT Face Firming Cream',
+            brand: 'Image Skincare',
+            image: '/assets/placeholder-product.png',
+            url: '/products/2vol-u-lift-face-firming-cream'
+          },
+          {
+            title: '2Vital C Hydrating Serum',
+            brand: 'Image Skincare',
+            image: '/assets/placeholder-product.png',
+            url: '/products/2vital-c-hydrating-serum'
+          },
+          {
+            title: '2Total Defense + Repair SPF 34',
+            brand: 'Colorescience',
+            image: '/assets/placeholder-product.png',
+            url: '/products/2total-defense-repair-spf34'
           }
         ]
       },
