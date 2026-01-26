@@ -109,7 +109,7 @@
                 placeholder="Search"
                 class="w-full text-sm bg-transparent outline-none placeholder:text-neutral-500 text-brand-dark">
             </div>
-            <a href="#" class="button-text-icon hidden" :class="searchDropdownOpen ? 'xl:visible' : 'hidden'">
+            <a href="#" class="button-text-icon" :class="searchDropdownOpen ? 'xl:visible' : 'hidden'">
               <span class="icon icon-close"></span>
               <span>Cancel</span>
             </a>
@@ -469,7 +469,7 @@
                             <template x-for="collection in searchResults.collections" :key="collection.title">
                               <li>
                                 <a :href="collection.url" @click="searchSlideOverOpen = false"
-                                  class="w-full flex items-center justify-between py-3 rounded-lg text-sm font-medium text-neutral-700 hover:text-brand-primary-700 transition-colors">
+                                  class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-brand-background-secondary hover:text-neutral-900 transition-colors">
                                   <span x-text="collection.title"></span>
                                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -483,11 +483,17 @@
                         <!-- Products Carousel -->
                         <div x-init="$nextTick(() => {
                           new Swiper($refs.searchMobileSwiper, {
-                            slidesPerView: 3,
+                            slidesPerView: 2,
                             spaceBetween: 8,
                             pagination: {
                               el: $refs.searchMobileProgressbar,
                               type: 'progressbar',
+                            },
+                            breakpoints: {
+                              400: {
+                                slidesPerView: 3,
+                                spaceBetween: 8
+                              }
                             }
                           })
                         })">
