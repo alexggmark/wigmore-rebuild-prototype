@@ -405,11 +405,11 @@
                 x-transition:leave="transform transition ease-in-out duration-500 xl:duration-700"
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                 x-init="$watch('searchSlideOverOpen', value => { if (value) $nextTick(() => $refs.mobileSearchInput.focus()) })"
-                class="w-full max-w-md">
-                <div class="flex overflow-y-auto px-4 flex-col h-full bg-white border-l shadow-lg border-neutral-100/70">
+                class="w-[calc(100vw-1.5rem)] max-w-md">
+                <div class="flex overflow-y-auto flex-col h-full bg-white border-l shadow-lg border-neutral-100/70">
                   <!-- Header with Search Input -->
-                  <div class="sticky top-0 bg-white z-10 pt-4 pb-3 border-b border-neutral-200">
-                    <div class="flex items-center gap-3">
+                  <div class="sticky top-0 bg-white z-10 py-4">
+                    <div class="flex items-center gap-3 px-4">
                       <div class="flex-1 flex items-center gap-2 px-4 py-2 bg-brand-background-secondary border border-brand-border hover:border-brand-primary-700 focus-within:border-brand-primary-700 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500"
                           fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -432,13 +432,14 @@
                         </svg>
                       </button>
                     </div>
-                  </div>
+                </div>
+
 
                   <!-- Content Area -->
-                  <div class="flex-1 py-4">
+                  <div class="flex-1 w-full py-4 px-4">
                     <!-- Loading State -->
                     <template x-if="searchLoading">
-                      <div class="flex items-center justify-center py-16">
+                      <div class="flex items-center justify-center py-16 w-full">
                         <svg aria-hidden="true" class="w-8 h-8 text-neutral-300 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
                           <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" class="fill-brand-primary-700"/>
@@ -542,33 +543,38 @@
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                 class="w-screen max-w-md">
                 <div
-                  class="flex flex-col py-5 px-5 h-full bg-white border-l shadow-lg border-neutral-100/70">
+                  class="flex flex-col h-full bg-white border-l shadow-lg border-neutral-100/70">
                   <!-- Header -->
-                  <div class="flex justify-between items-center pb-4 border-b border-neutral-200">
+                  <div class="flex justify-between items-center px-5 py-4">
                     <h2 class="text-lg font-semibold text-brand-dark">Menu</h2>
                     <button @click="burgerNavigationSlideOpen=false"
-                      class="flex justify-center items-center p-2 rounded-full border border-neutral-200 text-neutral-600 hover:bg-neutral-100">
+                      class="flex justify-center items-center py-2 pl-3 pr-0 rounded-full text-brand-dark cursor-pointer">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                       </svg>
                     </button>
                   </div>
+                  <div class="mx-5 border-b border-brand-border"></div>
 
                   <!-- Menu Items Accordion -->
                   <div class="flex-1 overflow-y-auto">
-                    <nav>
+                    <nav class="px-5">
                       <template x-for="(item, index) in menuItems" :key="item.id">
                         <div>
                           <!-- Accordion Item (has dropdown) -->
                           <template x-if="item.dropdown">
                             <div class="border-b border-brand-border">
                               <button @click="mobileAccordionOpen = mobileAccordionOpen === item.id ? '' : item.id"
-                                class="w-full flex items-center justify-between py-4 text-left">
+                                class="w-full flex items-center justify-between py-5 text-left">
                                 <span class="text-lg heading-primary text-brand-dark" x-text="item.label"></span>
-                                <svg :class="{ 'rotate-180': mobileAccordionOpen === item.id }"
-                                  class="w-4 h-4 text-neutral-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                <!-- Plus icon (closed) -->
+                                <svg x-show="mobileAccordionOpen !== item.id" class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"></path>
+                                </svg>
+                                <!-- Minus icon (open) -->
+                                <svg x-show="mobileAccordionOpen === item.id" class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14"></path>
                                 </svg>
                               </button>
                               <!-- Accordion Content -->
@@ -590,7 +596,7 @@
                           <!-- Simple Link (no dropdown) -->
                           <template x-if="!item.dropdown">
                             <a :href="item.url" @click="burgerNavigationSlideOpen = false"
-                              class="block py-4 text-lg heading-primary text-brand-dark hover:text-brand-primary-700 border-b border-brand-border">
+                              class="block py-5 text-lg heading-primary text-brand-dark hover:text-brand-primary-700 border-b border-brand-border">
                               <span x-text="item.label"></span>
                             </a>
                           </template>
@@ -599,7 +605,7 @@
                     </nav>
 
                     <!-- Featured Cards (first 2 from products) -->
-                    <div class="pt-6">
+                    <div class="px-4 pb-6 pt-8">
                       <span class="heading-primary text-lg text-brand-dark">Special Offers</span>
                       <div class="flex flex-row gap-3 mt-3">
                         <template x-for="(card, index) in dropdownContent['products']?.cards?.slice(0, 2)" :key="index">
@@ -622,7 +628,19 @@
                         </template>
                       </div>
                     </div>
+
+                    <!-- Footer Links -->
+                    <div class="bg-brand-background-secondary px-5 py-6">
+                      <ul class="flex flex-col gap-5">
+                        <li><a href="/about" class="text-xs font-bold tracking-wide uppercase text-brand-dark">About Us</a></li>
+                        <li><a href="/contact" class="text-xs font-bold tracking-wide uppercase text-brand-dark">Contact</a></li>
+                        <li><a href="/faq" class="text-xs font-bold tracking-wide uppercase text-brand-dark">FAQ</a></li>
+                        <li><a href="/terms" class="text-xs font-bold tracking-wide uppercase text-brand-dark">Terms & Conditions</a></li>
+                        <li><a href="/sitemap" class="text-xs font-bold tracking-wide uppercase text-brand-dark">Sitemap</a></li>
+                      </ul>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
