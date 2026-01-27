@@ -398,14 +398,14 @@
           class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
         <div class="overflow-hidden fixed inset-0">
           <div class="overflow-hidden absolute inset-0">
-            <div class="flex fixed inset-y-0 right-0 pl-10 max-w-full">
+            <div class="flex fixed inset-y-0 right-0 pl-6 max-w-full">
               <div x-show="searchSlideOverOpen" @click.away="searchSlideOverOpen = false"
                 x-transition:enter="transform transition ease-in-out duration-500 xl:duration-700"
                 x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
                 x-transition:leave="transform transition ease-in-out duration-500 xl:duration-700"
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                 x-init="$watch('searchSlideOverOpen', value => { if (value) $nextTick(() => $refs.mobileSearchInput.focus()) })"
-                class="w-screen max-w-md">
+                class="w-full max-w-md">
                 <div class="flex overflow-y-auto flex-col h-full bg-white border-l shadow-lg border-neutral-100/70">
                   <!-- Header with Search Input -->
                   <div class="sticky top-0 bg-white z-10 px-4 pt-4 pb-3 border-b border-neutral-200">
@@ -469,7 +469,7 @@
                             <template x-for="collection in searchResults.collections" :key="collection.title">
                               <li>
                                 <a :href="collection.url" @click="searchSlideOverOpen = false"
-                                  class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-brand-background-secondary hover:text-neutral-900 transition-colors">
+                                  class="w-full flex items-center justify-between py-3 rounded-lg text-xs font-bold tracking-wide uppercase text-neutral-600 hover:bg-brand-background-secondary hover:text-neutral-900 transition-colors">
                                   <span x-text="collection.title"></span>
                                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -534,7 +534,7 @@
           class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
         <div class="overflow-hidden fixed inset-0">
           <div class="overflow-hidden absolute inset-0">
-            <div class="flex fixed inset-y-0 right-0 pl-10 max-w-full">
+            <div class="flex fixed inset-y-0 right-0 pl-6 max-w-full">
               <div x-show="burgerNavigationSlideOpen" @click.away="burgerNavigationSlideOpen = false"
                 x-transition:enter="transform transition ease-in-out duration-500 xl:duration-700"
                 x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
@@ -576,7 +576,7 @@
                                 <div class="pb-4 space-y-4">
                                   <template x-for="category in dropdownContent[item.id]?.categories" :key="category.id">
                                     <div>
-                                      <h4 class="text-xs font-bold uppercase tracking-wide text-neutral-500 mb-2" x-text="category.label"></h4>
+                                      <h4 class="text-xs font-bold uppercase tracking-wide mb-2" x-text="category.label"></h4>
                                       <ul class="space-y-1">
                                         <template x-for="link in category.links" :key="link.title">
                                           <li>
@@ -756,36 +756,57 @@
           },
           categories: [
             {
-              id: 'quick-start',
-              label: 'Quick Start',
+              id: 'dermal-fillers',
+              label: 'Dermal Fillers',
+              link: '/dermal-fillers',
               links: [
-                { title: 'Introduction', description: 'Learn the basics and get up to speed', url: '#introduction' },
+                { title: 'Aethoxysklerol', description: 'Learn the basics and get up to speed', url: '#introduction' },
                 { title: 'Definisse Threads', description: 'Set up your development environment', url: '#installation' },
-                { title: 'First Project', description: 'Build your first project step by step', url: '#first-project' },
-                { title: 'Configuration', description: 'Configure your project settings', url: '#configuration' },
-                { title: 'Deployment', description: 'Deploy your project to production', url: '#deployment' },
-                { title: 'Best Practices', description: 'Learn recommended patterns', url: '#best-practices' },
-                { title: 'Configurat2ion', description: 'Configure your project settings', url: '#configuration' },
-                { title: 'Deploym2ent', description: 'Deploy your project to production', url: '#deployment' },
-                { title: 'Best Prac3tices', description: 'Learn recommended patterns', url: '#best-practices' },
-                { title: 'Deploym4ent', description: 'Deploy your project to production', url: '#deployment' },
-                { title: 'Best Prac5tices', description: 'Learn recommended patterns', url: '#best-practices' },
-                { title: 'Best Prac6tices', description: 'Learn recommended patterns', url: '#best-practices' }
+                { title: 'Aliaxin', description: 'Build your first project step by step', url: '#first-project' },
+                { title: 'Dermafocus', description: 'Configure your project settings', url: '#configuration' },
+                { title: 'Aqualyx', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Ellansé', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'Belotero', description: 'Configure your project settings', url: '#configuration' },
+                { title: 'ExoE', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Cellenis', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'Filorga', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Countourel', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'HArmonyCA', description: 'Learn recommended patterns', url: '#best-practices' }
               ]
             },
             {
-              id: 'resources',
-              label: 'Resources',
+              id: 'toxins',
+              label: 'Toxins',
               links: [
-                { title: 'Components', description: 'Browse our UI component library', url: '#components' },
-                { title: 'Templates', description: 'Pre-built templates to jumpstart', url: '#templates' },
-                { title: 'Examples', description: 'Real-world examples and use cases', url: '#examples' },
-                { title: 'Plugins', description: 'Extend functionality with plugins', url: '#plugins' }
+                { title: 'Option 1', description: 'Browse our UI component library', url: '#components' },
+                { title: 'Option 2', description: 'Pre-built templates to jumpstart', url: '#templates' },
+                { title: 'Option 3', description: 'Real-world examples and use cases', url: '#examples' },
+                { title: 'Option 4', description: 'Extend functionality with plugins', url: '#plugins' }
               ]
             },
             {
-              id: 'support',
-              label: 'Help & Support',
+              id: 'skincare',
+              label: 'Skincare',
+              links: [
+                { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
+                { title: 'Community', description: 'Join our community forum', url: '#community' },
+                { title: 'FAQ', description: 'Frequently asked questions', url: '#faq' },
+                { title: 'Contact Support', description: 'Get help from our team', url: '#support' }
+              ]
+            },
+            {
+              id: 'consumables',
+              label: 'Consumables',
+              links: [
+                { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
+                { title: 'Community', description: 'Join our community forum', url: '#community' },
+                { title: 'FAQ', description: 'Frequently asked questions', url: '#faq' },
+                { title: 'Contact Support', description: 'Get help from our team', url: '#support' }
+              ]
+            },
+            {
+              id: 'pharmacy',
+              label: 'Pharmacy',
               links: [
                 { title: 'Documentation', description: 'Comprehensive guides and API reference', url: '#docs' },
                 { title: 'Community', description: 'Join our community forum', url: '#community' },
@@ -797,13 +818,13 @@
           cards: [
             {
               image: '/assets/placeholder-jennie.png',
-              title: 'Try it free for 14 days',
-              button: { text: 'Start Free Trial', url: '#trial' }
+              title: 'The Skin Diary',
+              button: { text: 'Buy 10 get 6 Free', url: '#trial' }
             },
             {
               image: '/assets/placeholder-product.png',
-              title: 'New to the platform?',
-              button: { text: 'Watch Tutorial', url: '#tutorial' }
+              title: 'Plenhyage',
+              button: { text: 'Buy 10 get 6 Free', url: '#tutorial' }
             }
           ]
         },
