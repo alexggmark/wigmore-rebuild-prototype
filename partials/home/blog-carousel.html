@@ -27,7 +27,7 @@
       <div
         x-data
         x-init="new Swiper($refs.swiper, {
-          slidesPerView: 'auto',
+          slidesPerView: 1.1,
           spaceBetween: 16,
           pagination: {
             el: $refs.progressbar,
@@ -38,6 +38,9 @@
             prevEl: $refs.prev,
           },
           breakpoints: {
+            768: {
+              slidesPerView: 'auto',
+            },
             1024: {
               slidesPerView: 3,
               spaceBetween: 24
@@ -55,14 +58,14 @@
           <!-- Swiper Container -->
           <div x-ref="swiper" class="swiper flex-1 overflow-hidden right-overflow-visible-lg">
             <div class="swiper-wrapper">
-              <!-- Card 1 -->
+              <!-- Card-->
               <div class="swiper-slide article-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover">
-                </div>
+                <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group">
+                  <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
                 <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
                   <div class="badge-primary">Face</div>
-                  <h1 class="heading-secondary md:text-base text-sm">How Excessive Product Layering Can Sabotage Your Skin</h1>
+                  <h1 class="heading-secondary md:text-base text-sm">How Excessive Product</h1>
                   <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
                   <a href="#" class="button-text-icon">
                     <span>Read More</span>
@@ -70,51 +73,24 @@
                   </a>
                 </div>
               </div>
-              <!-- Card 2 -->
-              <div class="swiper-slide article-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover">
-                </div>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Face</div>
-                  <h1 class="heading-secondary md:text-base text-sm">How Excessive Product Layering Can Sabotage Your Skin</h1>
-                  <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
-                  <a href="#" class="button-text-icon">
-                    <span>Read More</span>
-                    <span class="icon icon-arrow"></span>
+              <template x-for="i in 9" :key="i">
+                <!-- Card-->
+                <div class="swiper-slide article-slide">
+                  <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group">
+                    <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
                   </a>
+                  <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                    <div class="badge-primary">Face</div>
+                    <h1 class="heading-secondary md:text-base text-sm">How Excessive Product Layering Can Sabotage Your Skin</h1>
+                    <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
+                    <a href="#" class="button-text-icon">
+                      <span>Read More</span>
+                      <span class="icon icon-arrow"></span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <!-- Card 3 -->
-              <div class="swiper-slide article-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover">
-                </div>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Face</div>
-                  <h1 class="heading-secondary md:text-base text-sm">How Excessive Product Layering Can Sabotage Your Skin</h1>
-                  <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
-                  <a href="#" class="button-text-icon">
-                    <span>Read More</span>
-                    <span class="icon icon-arrow"></span>
-                  </a>
-                </div>
-              </div>
-              <!-- Card 4 -->
-              <div class="swiper-slide article-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-jennie.png" alt="" class="w-full lg:aspect-4/3 aspect-square object-cover">
-                </div>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Face</div>
-                  <h1 class="heading-secondary md:text-base text-sm">How Excessive Product Layering Can Sabotage Your Skin</h1>
-                  <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
-                  <a href="#" class="button-text-icon">
-                    <span>Read More</span>
-                    <span class="icon icon-arrow"></span>
-                  </a>
-                </div>
-              </div>
+              </template>
+
             </div>
           </div>
 

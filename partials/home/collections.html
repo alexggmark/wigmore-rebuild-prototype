@@ -27,7 +27,7 @@
       <div
         x-data
         x-init="new Swiper($refs.swiper, {
-          slidesPerView: 'auto',
+          slidesPerView: 1.1,
           spaceBetween: 16,
           pagination: {
             el: $refs.progressbar,
@@ -38,6 +38,9 @@
             prevEl: $refs.prev,
           },
           breakpoints: {
+            768: {
+              slidesPerView: 'auto'
+            },
             1024: {
               slidesPerView: 5
             }

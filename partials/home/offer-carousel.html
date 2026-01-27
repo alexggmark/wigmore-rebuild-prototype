@@ -1,6 +1,6 @@
 <style>
   .offer-slide {
-    width: 380px;
+    width: 320px;
   }
   @media (min-width: 1280px) {
     .offer-slide {
@@ -27,7 +27,7 @@
       <div
         x-data
         x-init="new Swiper($refs.swiper, {
-          slidesPerView: 'auto',
+          slidesPerView: 1.1,
           spaceBetween: 16,
           pagination: {
             el: $refs.progressbar,
@@ -38,6 +38,10 @@
             prevEl: $refs.prev,
           },
           breakpoints: {
+            768: {
+              slidesPerView: 'auto',
+              spaceBetween: 16
+            },
             1280: {
               slidesPerView: 3,
               spaceBetween: 24
@@ -57,12 +61,12 @@
             <div class="swiper-wrapper">
               <!-- Card 1 -->
               <div class="swiper-slide offer-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover">
-                </div>
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
+                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
                 <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
                   <div class="badge-primary">Image Skincare</div>
-                  <h1 class="heading-secondary text-base">Special Offer - Buy 10 and Get 6 Free!</h1>
+                  <h1 class="heading-secondary text-base">Special Offer - Buy 10 and Get 6 Free! Buy 10 and Get 6 Free</h1>
                   <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
                   <a href="#" class="button-primary w-full mt-2">
                     Join Now
@@ -71,9 +75,9 @@
               </div>
               <!-- Card 2 -->
               <div class="swiper-slide offer-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover">
-                </div>
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
+                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
                 <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
                   <div class="badge-primary">Dermaroller</div>
                   <h1 class="heading-secondary text-base">20% Off All Dermaroller Products</h1>
@@ -85,9 +89,9 @@
               </div>
               <!-- Card 3 -->
               <div class="swiper-slide offer-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover">
-                </div>
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
+                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
                 <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
                   <div class="badge-primary">HydroPeptide</div>
                   <h1 class="heading-secondary text-base">Free Consultation Kit with Orders Over £500</h1>
@@ -99,9 +103,9 @@
               </div>
               <!-- Card 4 -->
               <div class="swiper-slide offer-slide">
-                <div class="rounded-xl overflow-hidden mb-2">
-                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover">
-                </div>
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
+                  <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
                 <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
                   <div class="badge-primary">Colorescience</div>
                   <h1 class="heading-secondary text-base">New Season SPF Collection Now Available</h1>
