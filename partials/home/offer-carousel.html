@@ -1,11 +1,18 @@
 <style>
   .offer-slide {
     width: 320px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
   }
   @media (min-width: 1280px) {
     .offer-slide {
       width: auto;
     }
+  }
+  /* Offer Carousel Equal Height Slides */
+  .offer-swiper .swiper-wrapper {
+    align-items: stretch;
   }
 </style>
 
@@ -57,17 +64,19 @@
           </button>
 
           <!-- Swiper Container -->
-          <div x-ref="swiper" class="swiper flex-1 overflow-hidden right-overflow-visible-xl">
+          <div x-ref="swiper" class="swiper offer-swiper flex-1 overflow-hidden right-overflow-visible-xl">
             <div class="swiper-wrapper">
               <!-- Card 1 -->
               <div class="swiper-slide offer-slide">
                 <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
                   <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
                 </a>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Image Skincare</div>
-                  <h1 class="heading-secondary text-base">Special Offer - Buy 10 and Get 6 Free! Buy 10 and Get 6 Free</h1>
-                  <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">Image Skincare</div>
+                    <h1 class="heading-secondary text-base">Special Offer - Buy 10 and Get 6 Free! Buy 10 and Get 6 Free</h1>
+                    <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
+                  </div>
                   <a href="#" class="button-primary w-full mt-2">
                     Join Now
                   </a>
@@ -78,10 +87,12 @@
                 <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
                   <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
                 </a>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Dermaroller</div>
-                  <h1 class="heading-secondary text-base">20% Off All Dermaroller Products</h1>
-                  <p>Professional-grade microneedling devices at special prices for registered practitioners.</p>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3">
+                    <div class="badge-primary">Dermaroller</div>
+                    <h1 class="heading-secondary text-base">20% Off All Dermaroller Products</h1>
+                    <p>Professional-grade microneedling devices at special prices for registered practitioners.</p>
+                  </div>
                   <a href="#" class="button-primary w-full mt-2">
                     Join Now
                   </a>
@@ -92,10 +103,12 @@
                 <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
                   <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
                 </a>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">HydroPeptide</div>
-                  <h1 class="heading-secondary text-base">Free Consultation Kit with Orders Over £500</h1>
-                  <p>Receive a complimentary consultation kit when you spend £500 or more.</p>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">HydroPeptide</div>
+                    <h1 class="heading-secondary text-base">Free Consultation Kit with Orders Over £500</h1>
+                    <p>Receive a complimentary consultation kit when you spend £500 or more.</p>
+                  </div>
                   <a href="#" class="button-primary w-full mt-2">
                     Join Now
                   </a>
@@ -106,10 +119,12 @@
                 <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group">
                   <img src="/assets/placeholder-vol2.png" alt="" class="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-300">
                 </a>
-                <div class="flex flex-col items-start gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
-                  <div class="badge-primary">Colorescience</div>
-                  <h1 class="heading-secondary text-base">New Season SPF Collection Now Available</h1>
-                  <p>Discover the latest mineral sunscreen products for your clinic.</p>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">Colorescience</div>
+                    <h1 class="heading-secondary text-base">New Season SPF Collection Now Available</h1>
+                    <p>Discover the latest mineral sunscreen products for your clinic.</p>
+                  </div>
                   <a href="#" class="button-primary w-full mt-2">
                     Join Now
                   </a>
