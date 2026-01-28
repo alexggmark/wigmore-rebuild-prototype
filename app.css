@@ -22,7 +22,7 @@
   --font-sans: "avenir-lt-pro", sans-serif;
   --font-serif: "ivypresto-headline", Georgia, serif;
 
-  --tracking-wide: 0.04em;
+  --tracking-wide: 0.04rem;
   --tracking-widest: 0.08rem;
 
   --text-xxs: 0.7rem;
@@ -106,7 +106,7 @@
 
   /* TYPOGRAPY */
   .heading-primary {
-    @apply font-serif font-medium leading-tight;
+    @apply font-serif font-medium leading-tight tracking-wide;
   }
 
   .heading-secondary {
