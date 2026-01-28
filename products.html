@@ -27,7 +27,7 @@
     <!-- Container here -->
     <div class="grid grid-cols-12 gap-3 md:items-start mb-3">
       <!-- PRODUCT IMAGE -->
-      <div class="md:col-span-7 col-span-full md:sticky md:top-4">
+      <div class="xl:col-span-7 md:col-span-6 col-span-full md:sticky md:top-4">
         <div class="card-container-generic p-3">
           <!-- PRODUCT THUMBNAIL CAROUSEL -->
           <div x-data="{
@@ -130,24 +130,24 @@
         </div>
       </div>
       <!-- PRODUCT CONTENT -->
-      <div class="md:col-span-5 col-span-full">
-        <div class="card-container-generic mb-3 xl:px-8 xl:py-10 px-3 pt-5 pb-3">
+      <div class="xl:col-span-5 md:col-span-6 col-span-full">
+        <div class="card-container-generic mb-3 xl:px-8 xl:py-10 md:px-4 md:py-6 px-3 pt-5 pb-3">
           <div class="flex flex-col items-start gap-4">
             <!-- Breadcrumbs -->
-            <nav class="md:flex hidden items-center gap-1.5 text-sm mb-2">
-              <a href="/" class="text-brand-dark hover:text-brand-primary-700 hover:underline">Home</a>
-              <svg class="h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <nav class="md:flex hidden items-center gap-1.5 text-sm mb-2 w-full overflow-hidden">
+              <a href="/" class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Home</a>
+              <svg class="shrink-0 h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              <a href="#" class="text-brand-dark hover:text-brand-primary-700 hover:underline">Skincare</a>
-              <svg class="h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <a href="#" class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Skincare</a>
+              <svg class="shrink-0 h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              <a href="#" class="text-brand-dark hover:text-brand-primary-700 hover:underline">Image</a>
-              <svg class="h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <a href="#" class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Image</a>
+              <svg class="shrink-0 h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              <a href="/" class="text-brand-primary-700 hover:underline">VOL.U.LIFT Face Firming Cream</a>
+              <a href="/" class="min-w-0 truncate text-brand-primary-700 hover:underline">VOL.U.LIFT Face Firming Cream</a>
             </nav>
             <div class="badge-primary">Image Skincare</div>
             <h1 class="heading-primary text-3xl">VOL.U.LIFT Face Firming Cream</h1>

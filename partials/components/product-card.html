@@ -39,8 +39,8 @@
 <!-- Loaded State -->
 <template x-if="!loading">
   <div>
-    <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group">
-      <img src="/assets/placeholder-vol.png" alt="" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+    <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group aspect-square">
+      <img src="/assets/placeholder-vol.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
       <!-- Badges container -->
       <div class="absolute md:top-3 top-2 md:left-3 left-2 flex flex-wrap gap-1">
         <div class="badge-primary">Mix & Match | Buy 10 get 5 free</div>

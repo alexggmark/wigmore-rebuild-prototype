@@ -36,10 +36,8 @@
       <template x-for="i in slides" :key="i">
         <!-- Slide 1 -->
         <div class="swiper-slide">
-          <div
-            class="relative h-full bg-cover bg-center flex items-center"
-            style="background-image: url('/assets/banners/banner-image.png');"
-          >
+          <div class="relative h-full flex items-center">
+            <img src="/assets/banners/banner-image.png" alt="" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative z-10 container mx-auto md:px-8 px-4 flex justify-center">
               <div class="max-w-4xl flex flex-col items-center text-center gap-4">
