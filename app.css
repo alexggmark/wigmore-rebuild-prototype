@@ -101,7 +101,7 @@
   }
 
   .badge-transparent {
-    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-light/40 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-bold tracking-widest;
+    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border backdrop-blur-sm border-brand-light/15 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-bold tracking-widest;
   }
 
   /* TYPOGRAPY */
