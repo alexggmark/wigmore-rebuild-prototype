@@ -14,6 +14,14 @@
     href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
   />
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <!-- Alpine Store -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('prototype', {
+        loggedIn: true
+      })
+    })
+  </script>
   <!-- Alpine + Plugins -->
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -22,6 +30,7 @@
 </head>
 <body>
 
+  <load src="partials/admin-bar.html" />
   <load src="partials/navigation.html" />
   
   <div class="body-container">
