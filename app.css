@@ -128,8 +128,8 @@
   }
   .button-primary-icon {
     @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 md:text-xs text-xxs uppercase tracking-wide border border-transparent bg-brand-primary-700 text-brand-light rounded-full font-bold hover:bg-brand-primary-800 transition-colors;
-    
-    & > span {
+
+    & > span:last-child {
       @apply w-7 h-7 flex items-center justify-center bg-brand-light rounded-full text-brand-primary-700;
     }
 
@@ -143,8 +143,8 @@
   }
   .button-secondary-icon {
     @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 md:text-xs text-xxs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
-  
-    & > span {
+
+    & > span:last-child {
       @apply w-7 h-7 flex items-center justify-center bg-brand-primary-700 rounded-full text-brand-light;
     }
 
@@ -158,8 +158,8 @@
   }
   .button-tertiary-icon {
     @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 md:text-xs text-xxs uppercase tracking-wide border border-brand-border bg-brand-light text-brand-primary-700 rounded-full font-bold hover:bg-brand-primary-100 transition-colors;
-  
-    & > span {
+
+    & > span:last-child {
       @apply w-7 h-7 flex items-center justify-center bg-brand-primary-700 rounded-full text-brand-light;
     }
 
@@ -173,8 +173,8 @@
   }
   .button-transparent-icon {
     @apply min-h-10 pr-2 pl-6 py-1.5 flex items-center justify-between gap-3 md:text-xs text-xxs uppercase tracking-wide border border-brand-light bg-brand-light/10 backdrop-blur-xs text-brand-light rounded-full font-bold hover:bg-brand-light/20 transition-colors;
-  
-    & > span {
+
+    & > span:last-child {
       @apply w-7 h-7 flex items-center justify-center bg-brand-light rounded-full text-brand-dark;
     }
 
@@ -220,6 +220,35 @@
 
   .group\/arrow:hover .icon-arrow {
     /* border: 1px solid red; */
+  }
+
+  /* BUTTON TEXT SLOT MACHINE EFFECT */
+  .button-text {
+    @apply relative block overflow-hidden;
+
+    & > span {
+      @apply block;
+    }
+
+    & > span,
+    &::before {
+      @apply transition-transform duration-300 ease-out;
+    }
+
+    &::before {
+      content: attr(data-text);
+      @apply absolute left-0 top-full;
+    }
+  }
+
+  /* Only apply hover effect on desktop (non-touch devices) */
+  @media (hover: hover) {
+    a:hover .button-text > span,
+    button:hover .button-text > span,
+    a:hover .button-text::before,
+    button:hover .button-text::before {
+      transform: translateY(-100%);
+    }
   }
 }
 
