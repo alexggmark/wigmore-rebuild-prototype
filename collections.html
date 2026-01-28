@@ -38,9 +38,9 @@
           <div class="flex flex-wrap gap-1.5">
             <template x-for="filter in allSelectedFilters" :key="filter.type + '-' + filter.name">
               <button @click="removeFilter(filter.type, filter.name)"
-                class="cursor-pointer bg-brand-background hover:bg-brand-background-dark rounded-full font-medium pl-2.5 pr-2 py-2 flex items-center gap-1.5 text-sm">
-                <span x-text="filter.name"></span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="cursor-pointer bg-brand-background hover:bg-brand-background-dark rounded-full font-medium pl-2.5 pr-2 py-2 flex items-center gap-1.5 text-sm max-w-full">
+                <span class="truncate" x-text="filter.name"></span>
+                <svg class="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -170,8 +170,8 @@
                 class="flex items-center gap-2 px-4 py-2.5 bg-white border border-brand-border hover:bg-brand-primary-100 rounded-full transition-colors">
                 <img src="/assets/icon-filter.svg" alt="" class="w-3 h-3">
                 <span class="text-xs uppercase tracking-wide font-bold">Filters</span>
-                <span x-show="hasActiveFilters"
-                  class="bg-brand-primary-700 text-white text-xs font-bold px-1.5 py-0.5 rounded-full"
+                <span class="hidden bg-brand-primary-700 text-white text-xs font-bold size-4 rounded-full"
+                  :class="{ 'block!': hasActiveFilters }"
                   x-text="allSelectedFilters.length"></span>
               </button>
             </div>
@@ -308,11 +308,11 @@
                     </div>
                     <div class="mx-5 border-b border-brand-border"></div>
 
-                    <!-- Scrollable Content -->
-                    <div class="flex-1 overflow-y-auto px-5 py-4">
+                    <!-- Content Area -->
+                    <div class="flex-1 flex flex-col min-h-0 px-5 py-4">
 
                       <!-- Active Filters Pills -->
-                      <div x-show="hasActiveFilters" class="mb-6">
+                      <div x-show="hasActiveFilters" class="shrink-0 mb-6">
                         <div class="flex items-center justify-between mb-3">
                           <span class="heading-primary text-base text-brand-dark">Active Filters</span>
                           <button @click="clearAllFilters()" class="basic-link">Clear all</button>
@@ -332,7 +332,7 @@
                       </div>
 
                       <!-- Categories Accordion -->
-                      <div class="border-b border-brand-border">
+                      <div class="shrink-0 border-b border-brand-border">
                         <button @click="categoriesAccordionOpen = !categoriesAccordionOpen"
                           class="w-full flex items-center justify-between py-4">
                           <span class="heading-primary text-base text-brand-dark">Categories</span>
@@ -364,10 +364,10 @@
                         </div>
                       </div>
 
-                      <!-- Brands Accordion -->
-                      <div class="border-b border-brand-border">
+                      <!-- Brands Accordion - expands to fill remaining space -->
+                      <div class="flex-1 flex flex-col min-h-0">
                         <button @click="brandsAccordionOpen = !brandsAccordionOpen"
-                          class="w-full flex items-center justify-between py-4">
+                          class="shrink-0 w-full flex items-center justify-between py-4">
                           <span class="heading-primary text-base text-brand-dark">Brands</span>
                           <svg class="w-4 h-4 transition-transform duration-200"
                             :class="{ 'rotate-180': !brandsAccordionOpen }" xmlns="http://www.w3.org/2000/svg"
@@ -375,10 +375,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                           </svg>
                         </button>
-                        <div x-show="brandsAccordionOpen" x-collapse>
+                        <div x-show="brandsAccordionOpen" class="flex-1 flex flex-col min-h-0">
                           <!-- Search input -->
                           <div
-                            class="mb-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
+                            class="shrink-0 mb-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500" fill="none"
                               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                               <path stroke-linecap="round" stroke-linejoin="round"
@@ -387,8 +387,8 @@
                             <input type="text" x-model="brandSearch" placeholder="Search brands"
                               class="w-full text-sm bg-transparent outline-none placeholder:text-neutral-500 text-brand-dark">
                           </div>
-                          <!-- Checkbox list -->
-                          <div class="pb-4 space-y-3 max-h-64 overflow-y-auto">
+                          <!-- Checkbox list - scrolls independently -->
+                          <div class="flex-1 space-y-3 overflow-y-auto min-h-0">
                             <template x-for="item in filteredBrands" :key="item">
                               <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" class="hidden" :checked="isBrandSelected(item)"
