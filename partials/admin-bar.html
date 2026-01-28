@@ -14,14 +14,13 @@
   <!-- Bar -->
   <div
     x-show="open"
-    class="bg-neutral-900 text-black px-4 py-2 flex items-center justify-between text-sm font-mono"
+    class="bg-black text-black px-4 py-4 flex items-center justify-between text-sm font-mono"
   >
     <div class="flex items-center gap-4">
       <span class="text-white text-xs">Admin controls:</span>
       <button
         @click="$store.prototype.loggedIn = !$store.prototype.loggedIn"
-        class="px-3 py-1 rounded text-xs font-bold tracking-wide cursor-pointer"
-        :class="$store.prototype.loggedIn ? 'bg-white hover:bg-brand-light' : 'bg-brand-primary-100 hover:bg-gray-300'"
+        class="px-3 py-1 text-xs font-bold tracking-wide cursor-pointer bg-brand-primary-100 hover:bg-gray-300"
         x-text="$store.prototype.loggedIn ? 'Toggle Logout' : 'Toggle Login'"
       ></button>
     </div>
