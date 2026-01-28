@@ -113,6 +113,11 @@
     @apply font-sans font-bold leading-normal;
   }
 
+  /* LINKS */
+  .basic-link {
+    @apply text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline;
+  }
+
   /* ---------------------------- */
   /* ------- 🕹️ BUTTONS 🕹️ ------- */
   /* ---------------------------- */

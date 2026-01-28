@@ -135,7 +135,7 @@
                         <div class="flex items-center justify-between mb-4 px-4">
                           <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column1.title"></h3>
                           <a :href="dropdown.column1.link.url" @click="closeMenu()"
-                            class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                            class="inline-flex items-center basic-link">
                             <span x-text="dropdown.column1.link.text"></span>
                             <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                           </a>
@@ -162,7 +162,7 @@
                         <div class="flex items-center justify-between mb-4 px-4">
                           <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.categories.find(c => c.id === activeCategory)?.label || dropdown.column2.title"></h3>
                           <a :href="dropdown.categories.find(c => c.id === activeCategory)?.link || '#'" @click="closeMenu()"
-                            class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                            class="inline-flex items-center basic-link">
                             <span x-text="dropdown.column2.link.text"></span>
                             <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                           </a>
@@ -185,7 +185,7 @@
                         <div class="flex items-center justify-between mb-4 px-2">
                           <h3 class="text-base heading-primary text-brand-dark" x-text="dropdown.column3.title"></h3>
                           <a :href="dropdown.column3.link.url" @click="closeMenu()"
-                            class="inline-flex items-center text-xxs font-bold uppercase tracking-wide text-brand-primary-700 hover:underline">
+                            class="inline-flex items-center basic-link">
                             <span x-text="dropdown.column3.link.text"></span>
                             <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
                           </a>
