@@ -28,7 +28,7 @@
     <div class="grid xl:grid-cols-[226px_1fr] gap-3">
       <div class="hidden md:block">
         <!-- Sidebar content -->
-        <div class="card-container-small bg-brand-light" x-data="{ open: true, list: 7 }">
+        <div class="card-container-small" x-data="{ open: true, list: 7 }">
           <!-- Accordion header -->
           <button
             @click="open = !open"
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div>
-        <div class="card-container-small bg-brand-light">
+        <div class="card-container-small">
           <h1 class="heading-primary text-2xl">
             Skincare
           </h1>
@@ -77,7 +77,7 @@
             <p>Wigmore Medical is the UK’s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.</p>
           </div>
         </div>
-        <div class="card-container-small bg-brand-light">
+        <div class="card-container-small">
           <div class="card-container-inner">
             <div x-data="{ loading: false, products: 9 }">
               <div class="grid lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">

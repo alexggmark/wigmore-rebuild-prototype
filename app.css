@@ -61,10 +61,13 @@
 @layer components {
   /* LAYOUT COMPONENTS */
   .card-container {
-    @apply md:rounded-3xl rounded-2xl mb-3 xl:py-16 xl:px-16 lg:py-8 lg:px-8 px-3 pt-5 pb-3 border border-brand-border;
+    @apply md:rounded-3xl rounded-2xl mb-3 xl:py-16 xl:px-16 lg:py-8 lg:px-8 px-3 pt-5 pb-3 border border-brand-border bg-brand-light;
   }
   .card-container-small {
-    @apply md:rounded-3xl rounded-2xl mb-3 xl:px-6 xl:py-6 px-3 pt-5 pb-3 border border-brand-border;
+    @apply md:rounded-3xl rounded-2xl border mb-3 xl:px-6 xl:py-6 px-3 pt-5 pb-3 border-brand-border bg-brand-light;
+  }
+  .card-container-generic {
+    @apply md:rounded-3xl rounded-2xl border border-brand-border bg-brand-light;
   }
 
   .card-container-inner {
@@ -103,7 +106,7 @@
 
   /* TYPOGRAPY */
   .heading-primary {
-    @apply font-serif font-medium leading-tight tracking-wide;
+    @apply font-serif font-medium leading-tight;
   }
 
   .heading-secondary {
