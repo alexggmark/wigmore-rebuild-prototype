@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/hnw4byi.css">
 
   <!-- Swiper -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
   <!-- Alpine + Plugins -->
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
@@ -21,13 +19,14 @@
   <!-- Tailwind CSS -->
   <link rel="stylesheet" href="/app.css">
 </head>
+
 <body>
   <load src="partials/navigation.html" />
-  
+
   <div class="body-container">
     <!-- Container here -->
     <div class="grid xl:grid-cols-[226px_1fr] gap-3" x-data="collectionFilters()">
-      <div class="hidden md:block">
+      <div class="hidden xl:block">
         <!-- Sidebar content -->
 
         <!-- BLOCK 0: Selected Filters -->
@@ -38,12 +37,11 @@
           </div>
           <div class="flex flex-wrap gap-1.5">
             <template x-for="filter in allSelectedFilters" :key="filter.type + '-' + filter.name">
-              <button
-                @click="removeFilter(filter.type, filter.name)"
-                class="cursor-pointer bg-brand-background hover:bg-brand-background-dark rounded-full font-medium pl-2.5 pr-2 py-2 flex items-center gap-1.5 text-sm"
-              >
+              <button @click="removeFilter(filter.type, filter.name)"
+                class="cursor-pointer bg-brand-background hover:bg-brand-background-dark rounded-full font-medium pl-2.5 pr-2 py-2 flex items-center gap-1.5 text-sm">
                 <span x-text="filter.name"></span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -54,19 +52,11 @@
         <!-- BLOCK 1: Categories -->
         <div class="card-container-small">
           <!-- Accordion header -->
-          <button
-            @click="categoriesAccordionOpen = !categoriesAccordionOpen"
-            class="flex items-center justify-between w-full"
-          >
+          <button @click="categoriesAccordionOpen = !categoriesAccordionOpen"
+            class="flex items-center justify-between w-full">
             <span class="heading-primary text-lg text-brand-dark">Categories</span>
-            <svg
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': !categoriesAccordionOpen }"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': !categoriesAccordionOpen }"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
             </svg>
           </button>
@@ -76,12 +66,13 @@
             <div class="mt-4 space-y-3">
               <template x-for="item in categories" :key="item">
                 <label class="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" class="hidden" :checked="isCategorySelected(item)" @change="toggleCategory(item)">
-                  <span
-                    class="w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
-                    :class="isCategorySelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'"
-                  >
-                    <svg x-show="isCategorySelected(item)" class="w-4 h-4 text-brand-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <input type="checkbox" class="hidden" :checked="isCategorySelected(item)"
+                    @change="toggleCategory(item)">
+                  <span class="w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
+                    :class="isCategorySelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'">
+                    <svg x-show="isCategorySelected(item)" class="w-4 h-4 text-brand-light"
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -95,19 +86,10 @@
         <!-- BLOCK 2: Brands -->
         <div class="card-container-small">
           <!-- Accordion header -->
-          <button
-            @click="brandsAccordionOpen = !brandsAccordionOpen"
-            class="flex items-center justify-between w-full"
-          >
+          <button @click="brandsAccordionOpen = !brandsAccordionOpen" class="flex items-center justify-between w-full">
             <span class="heading-primary text-lg text-brand-dark">Brands</span>
-            <svg
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': !brandsAccordionOpen }"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': !brandsAccordionOpen }"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
             </svg>
           </button>
@@ -115,13 +97,13 @@
           <!-- Content -->
           <div x-show="brandsAccordionOpen" x-collapse>
             <!-- Search input -->
-            <div class="mt-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <div
+              class="mt-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <input type="text" x-model="brandSearch"
-                placeholder="Search brands"
+              <input type="text" x-model="brandSearch" placeholder="Search brands"
                 class="w-full text-sm bg-transparent outline-none placeholder:text-neutral-500 text-brand-dark">
             </div>
 
@@ -132,9 +114,10 @@
                   <input type="checkbox" class="hidden" :checked="isBrandSelected(item)" @change="toggleBrand(item)">
                   <span
                     class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
-                    :class="isBrandSelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'"
-                  >
-                    <svg x-show="isBrandSelected(item)" class="w-4 h-4 text-brand-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    :class="isBrandSelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'">
+                    <svg x-show="isBrandSelected(item)" class="w-4 h-4 text-brand-light"
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -151,43 +134,144 @@
       </div>
       <div>
         <div class="card-container-small">
-          <h1 class="heading-primary text-2xl">
+          <!-- Breadcrumbs -->
+          <nav class="md:flex hidden items-center gap-1.5 text-sm mb-4 w-full overflow-hidden">
+            <a href="/"
+              class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Home</a>
+            <svg class="shrink-0 h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <a href="#"
+              class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Products</a>
+            <svg class="shrink-0 h-4 w-4 -rotate-90 text-brand-border" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <a href="/" class="min-w-0 truncate text-brand-primary-700 hover:underline">Skincare</a>
+          </nav>
+          <h1 class="heading-primary md:text-3xl text-2xl">
             Skincare
           </h1>
           <div class="mt-2">
-            <p>Wigmore Medical is the UK’s longest-established aesthetics distribution company, with over 30 years of experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.</p>
+            <p>Wigmore Medical is the UK’s longest-established aesthetics distribution company, with over 30 years of
+              experience supplying prescription medicines, devices, and skincare to medical and aesthetic professionals.
+            </p>
           </div>
         </div>
-        <!-- Mobile Filter Button -->
-        <div class="xl:hidden mb-3">
-          <button @click="mobileFiltersOpen = true" class="flex items-center gap-2 px-4 py-2.5 bg-white border border-brand-border hover:border-brand-primary-700 rounded-full transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
-            <span class="text-sm font-medium">Filters</span>
-            <span x-show="hasActiveFilters" class="bg-brand-primary-700 text-white text-xs font-bold px-1.5 py-0.5 rounded-full" x-text="allSelectedFilters.length"></span>
-          </button>
-        </div>
-
         <!-- PRODUCT GRID -->
         <div class="card-container-small">
           <div class="card-container-inner">
+            <!-- Mobile Filter Button -->
+            <div class="xl:hidden mb-4">
+              <button @click="mobileFiltersOpen = true"
+                class="flex items-center gap-2 px-4 py-2.5 bg-white border border-brand-border hover:border-brand-primary-700 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                <span class="text-sm font-medium">Filters</span>
+                <span x-show="hasActiveFilters"
+                  class="bg-brand-primary-700 text-white text-xs font-bold px-1.5 py-0.5 rounded-full"
+                  x-text="allSelectedFilters.length"></span>
+              </button>
+            </div>
+
+            <!-- Product Count -->
+            <p class="text-sm text-brand-dark mb-6">Showing <span class="font-medium">1</span> to <span
+                    class="font-medium">10</span> of <span class="font-medium">89</span> results</p>
+
             <div x-data="{ loading: false, products: 9 }">
               <div class="grid lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">
-                
+
                 <!-- <template x-for="(item, index) in products" :key="index"> -->
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
-                  <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
+                <load src="partials/components/product-card.html" />
                 <!-- </template> -->
 
               </div>
+
+              <!-- PAGINATION HERE -->
+              <div class="flex items-center justify-between w-full h-16 px-3 my-5">
+                <p class="pl-2 text-sm text-brand-dark">Showing <span class="font-medium">1</span> to <span
+                    class="font-medium">10</span> of <span class="font-medium">89</span> results</p>
+                <nav>
+                  <ul
+                    class="flex items-center text-sm leading-tight bg-white border divide-x rounded h-9 text-neutral-500 divide-neutral-200 border-neutral-200">
+                    <li class="h-full">
+                      <a href="#"
+                        class="relative inline-flex items-center h-full px-3 ml-0 rounded-l group hover:text-neutral-900">
+                        <span>Previous</span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#"
+                        class="relative inline-flex items-center h-full px-3 text-brand-primary-700 group bg-brand-background">
+                        <span>1</span>
+                        <span
+                          class="box-content absolute bottom-0 left-0 w-full h-px -mx-px translate-y-px border-l border-r bg-brand-primary-700 border-brand-pribg-brand-primary-700"></span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                        <span>2</span>
+                        <span
+                          class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                        <span>3</span>
+                        <span
+                          class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <div class="relative inline-flex items-center h-full px-2.5 group">
+                        <span>...</span>
+                      </div>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                        <span>6</span>
+                        <span
+                          class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                        <span>7</span>
+                        <span
+                          class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                    <li class="hidden h-full md:block">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                        <span>8</span>
+                        <span
+                          class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                    <li class="h-full">
+                      <a href="#"
+                        class="relative inline-flex items-center h-full px-3 rounded-r group hover:text-neutral-900">
+                        <span>Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- END PAGINATION -->
             </div>
           </div>
         </div>
@@ -214,7 +298,8 @@
                     <div class="flex justify-between items-center px-5 py-4">
                       <h2 class="text-lg font-semibold text-brand-dark">Filters</h2>
                       <button @click="mobileFiltersOpen=false" class="p-2 rounded-full text-brand-dark cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-5 h-5">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                       </button>
@@ -235,7 +320,8 @@
                             <button @click="removeFilter(filter.type, filter.name)"
                               class="cursor-pointer bg-brand-background hover:bg-brand-background-dark rounded-full font-medium pl-2.5 pr-2 py-2 flex items-center gap-1.5 text-sm">
                               <span x-text="filter.name"></span>
-                              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                               </svg>
                             </button>
@@ -249,11 +335,8 @@
                           class="w-full flex items-center justify-between py-4">
                           <span class="heading-primary text-base text-brand-dark">Categories</span>
                           <svg class="w-4 h-4 transition-transform duration-200"
-                            :class="{ 'rotate-180': !categoriesAccordionOpen }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor">
+                            :class="{ 'rotate-180': !categoriesAccordionOpen }" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                           </svg>
                         </button>
@@ -261,12 +344,14 @@
                           <div class="pb-4 space-y-3">
                             <template x-for="item in categories" :key="item">
                               <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="hidden" :checked="isCategorySelected(item)" @change="toggleCategory(item)">
+                                <input type="checkbox" class="hidden" :checked="isCategorySelected(item)"
+                                  @change="toggleCategory(item)">
                                 <span
                                   class="w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
-                                  :class="isCategorySelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'"
-                                >
-                                  <svg x-show="isCategorySelected(item)" class="w-4 h-4 text-brand-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  :class="isCategorySelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'">
+                                  <svg x-show="isCategorySelected(item)" class="w-4 h-4 text-brand-light"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                   </svg>
                                 </span>
@@ -283,35 +368,35 @@
                           class="w-full flex items-center justify-between py-4">
                           <span class="heading-primary text-base text-brand-dark">Brands</span>
                           <svg class="w-4 h-4 transition-transform duration-200"
-                            :class="{ 'rotate-180': !brandsAccordionOpen }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor">
+                            :class="{ 'rotate-180': !brandsAccordionOpen }" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                           </svg>
                         </button>
                         <div x-show="brandsAccordionOpen" x-collapse>
                           <!-- Search input -->
-                          <div class="mb-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500"
-                              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          <div
+                            class="mb-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0 text-neutral-500" fill="none"
+                              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <input type="text" x-model="brandSearch"
-                              placeholder="Search brands"
+                            <input type="text" x-model="brandSearch" placeholder="Search brands"
                               class="w-full text-sm bg-transparent outline-none placeholder:text-neutral-500 text-brand-dark">
                           </div>
                           <!-- Checkbox list -->
                           <div class="pb-4 space-y-3 max-h-64 overflow-y-auto">
                             <template x-for="item in filteredBrands" :key="item">
                               <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="hidden" :checked="isBrandSelected(item)" @change="toggleBrand(item)">
+                                <input type="checkbox" class="hidden" :checked="isBrandSelected(item)"
+                                  @change="toggleBrand(item)">
                                 <span
                                   class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors"
-                                  :class="isBrandSelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'"
-                                >
-                                  <svg x-show="isBrandSelected(item)" class="w-4 h-4 text-brand-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  :class="isBrandSelected(item) ? 'bg-brand-primary-700 border-brand-primary-700' : 'bg-brand-background-secondary border-brand-border'">
+                                  <svg x-show="isBrandSelected(item)" class="w-4 h-4 text-brand-light"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                   </svg>
                                 </span>
@@ -480,4 +565,5 @@
     }
   </script>
 </body>
+
 </html>
