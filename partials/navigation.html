@@ -357,10 +357,10 @@
         <div
           class="shrink-0 xl:grow-0 grow flex items-center justify-end md:gap-4 gap-2 md:px-5 px-2 py-2 xl:border border-brand-border xl:bg-brand-light rounded-3xl">
           
-          <!-- DING DONG -->
-          <div x-data="{ loggedIn: true }">
+          <!-- Login State -->
+          <div>
             <!-- Logged out -->
-            <div x-show="!loggedIn" class="flex gap-2">
+            <div x-show="!$store.prototype.loggedIn" class="flex gap-2">
               <a href="#" class="button-secondary">
                 <span class="button-text" data-text="Sign in"><span>Sign in</span></span>
               </a>
@@ -370,7 +370,7 @@
             </div>
 
             <!-- Logged in -->
-            <div x-show="loggedIn" class="flex items-center">
+            <div x-show="$store.prototype.loggedIn" class="flex items-center">
               <!-- Bell icon -->
               <a href="#" class="relative p-2 rounded-full text-brand-dark hover:bg-brand-background-secondary transition-colors">
                 <img src="/assets/icon-bell.svg" alt="Notifications" class="size-6">

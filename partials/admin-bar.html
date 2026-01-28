@@ -1,0 +1,29 @@
+<!-- Prototype Admin Bar -->
+<div x-data="{ open: false }" class="fixed bottom-0 left-0 right-0 z-999">
+  <!-- Toggle Button -->
+  <button
+    @click="open = !open"
+    class="flex flex-row gap-1 absolute bottom-full left-4 mb-0 bg-black text-white px-2 py-1.5 cursor-pointer"
+  >
+    Admin
+    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- Bar -->
+  <div
+    x-show="open"
+    class="bg-neutral-900 text-black px-4 py-2 flex items-center justify-between text-sm font-mono"
+  >
+    <div class="flex items-center gap-4">
+      <span class="text-white text-xs">Admin controls:</span>
+      <button
+        @click="$store.prototype.loggedIn = !$store.prototype.loggedIn"
+        class="px-3 py-1 rounded text-xs font-bold tracking-wide cursor-pointer"
+        :class="$store.prototype.loggedIn ? 'bg-white hover:bg-brand-light' : 'bg-brand-primary-100 hover:bg-gray-300'"
+        x-text="$store.prototype.loggedIn ? 'Toggle Logout' : 'Toggle Login'"
+      ></button>
+    </div>
+  </div>
+</div>
