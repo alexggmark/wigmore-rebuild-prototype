@@ -202,61 +202,64 @@
               </div>
 
               <!-- PAGINATION HERE -->
-              <div class="flex items-center justify-between w-full h-16 px-3 my-5">
-                <p class="pl-2 text-sm text-brand-dark">Showing <span class="font-medium">1</span> to <span
+              <div class="flex flex-col md:flex-col md:items-center md:justify-between gap-4 w-full my-8">
+                <p class="text-sm text-brand-dark text-center md:text-left">Showing <span class="font-medium">1</span> to <span
                     class="font-medium">10</span> of <span class="font-medium">89</span> results</p>
                 <nav>
                   <ul
-                    class="flex items-center text-sm leading-tight bg-white border divide-x rounded h-9 text-neutral-500 divide-neutral-200 border-neutral-200">
+                    class="flex items-center justify-center text-sm leading-tight bg-brand-background-secondary border border-brand-border divide-x rounded-xl overflow-hidden h-9 divide-neutral-200">
                     <li class="h-full">
                       <a href="#"
-                        class="relative inline-flex items-center h-full px-3 ml-0 rounded-l group hover:text-neutral-900">
-                        <span>Previous</span>
+                        class="relative inline-flex items-center h-full px-3 ml-0 rounded-l group hover:bg-white hover:text-brand-primary-700">
+                        <svg class="w-4 h-4 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span class="hidden md:inline uppercase font-medium tracking-wide text-xs">Previous</span>
                       </a>
                     </li>
-                    <li class="hidden h-full md:block">
+                    <li class="h-full">
                       <a href="#"
-                        class="relative inline-flex items-center h-full px-3 text-brand-primary-700 group bg-brand-background">
+                        class="relative inline-flex items-center h-full px-3 text-brand-primary-700 group bg-white">
                         <span>1</span>
                         <span
-                          class="box-content absolute bottom-0 left-0 w-full h-px -mx-px translate-y-px border-l border-r bg-brand-primary-700 border-brand-pribg-brand-primary-700"></span>
+                          class="box-content absolute bottom-0 left-0 w-full h-px -mx-px translate-y-px border-l border-r bg-brand-primary-700 border-brand-primary-700"></span>
                       </a>
                     </li>
-                    <li class="hidden h-full md:block">
-                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                    <li class="h-full">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
                         <span>2</span>
                         <span
                           class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
                       </a>
                     </li>
-                    <li class="hidden h-full md:block">
-                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                    <li class="h-full">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
                         <span>3</span>
                         <span
                           class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
                       </a>
                     </li>
-                    <li class="hidden h-full md:block">
+                    <li class="h-full">
                       <div class="relative inline-flex items-center h-full px-2.5 group">
                         <span>...</span>
                       </div>
                     </li>
                     <li class="hidden h-full md:block">
-                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
                         <span>6</span>
                         <span
                           class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
                       </a>
                     </li>
                     <li class="hidden h-full md:block">
-                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
                         <span>7</span>
                         <span
                           class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
                       </a>
                     </li>
-                    <li class="hidden h-full md:block">
-                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">
+                    <li class="h-full">
+                      <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
                         <span>8</span>
                         <span
                           class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
@@ -264,8 +267,11 @@
                     </li>
                     <li class="h-full">
                       <a href="#"
-                        class="relative inline-flex items-center h-full px-3 rounded-r group hover:text-neutral-900">
-                        <span>Next</span>
+                        class="relative inline-flex items-center h-full px-3 rounded-r group hover:bg-white hover:text-brand-primary-700">
+                        <span class="hidden md:inline uppercase font-medium tracking-wide text-xs">Next</span>
+                        <svg class="w-4 h-4 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
                       </a>
                     </li>
                   </ul>
