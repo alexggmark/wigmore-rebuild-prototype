@@ -185,17 +185,11 @@
             <div x-data="{ loading: false, products: 9 }">
               <div class="grid lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">
 
-                <!-- <template x-for="(item, index) in products" :key="index"> -->
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <load src="partials/components/product-card.html" />
-                <!-- </template> -->
+                <template x-for="i in products" :key="i">
+                  <div>
+                    <load src="partials/components/product-card.html" />
+                  </div>
+                </template>
 
               </div>
 

@@ -34,7 +34,7 @@
           <!-- PRODUCT THUMBNAIL CAROUSEL -->
           <div x-data="{
             images: [
-              '/assets/placeholder-vol.png',
+              '/assets/product-image-whitebg.jpg',
               '/assets/placeholder-product.png',
               '/assets/placeholder-jennie.png',
               '/assets/placeholder-vol.png',
@@ -108,7 +108,7 @@
 
               <!-- Main Image -->
               <div class="order-1 lg:order-2 flex-1 relative min-w-0 overflow-hidden">
-                <div x-ref="mainSwiper" class="swiper rounded-xl overflow-hidden w-full max-w-full">
+                <div x-ref="mainSwiper" class="swiper rounded-xl overflow-hidden w-full max-w-full border border-brand-border-light">
                   <div class="swiper-wrapper">
                     <template x-for="(image, index) in images" :key="index">
                       <div class="swiper-slide">
@@ -158,8 +158,13 @@
               <p>Formulated by a plastic surgeon, this multidimensional formula works in 4D to address specific skin concerns that occur with GLP-1 usage to improve the appearance of facial skin. Our unique volumising complex plus patent-pending XOSM™ Technology improves visible deflation, sagging, crepey skin texture, dehydration and wrinkles for a visibly radiant, younger looking complexion.</p>
             </div>
 
+            <div class="flex flex-row gap-1 flex-wrap md:mt-2 mt-1">
+              <a href="#" class="badge-offer"><span class="button-text" data-text="Buy 10, Get 6"><span>Buy 10, Get 6</span></span><span class="icon icon-arrow w-2.5 h-2.5 rotate-135"></span></a>
+              <div class="badge-offer">Non-clickable offer</div>
+            </div>
+
             <!-- Radio card select -->
-            <div x-data="{ selected: 'option1' }" class="flex md:flex-row flex-col gap-3 w-full mb-2">
+            <div x-data="{ selected: 'option1' }" class="flex md:flex-row flex-col gap-3 w-full mb-2 md:mt-4 mt-2">
               <button
                 @click="selected = 'option1'"
                 :class="selected === 'option1' ? 'border-brand-primary-700 bg-brand-primary-100' : 'border-brand-border bg-white'"

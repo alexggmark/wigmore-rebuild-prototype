@@ -39,14 +39,24 @@
 <!-- Loaded State -->
 <template x-if="!loading">
   <div>
-    <a href="/products" class="block relative rounded-xl overflow-hidden mb-2 group aspect-square">
-      <img src="/assets/placeholder-vol.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+    <div class="block relative rounded-xl overflow-hidden mb-2 group aspect-square border border-brand-border-light">
+      <a href="/products" class="absolute inset-0 z-10 bg-[#E5E5E5]">
+        <!-- <img src="/assets/placeholder-vol.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"> -->
+        <!-- <img src="/assets/product-image-whitebg.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-300"> -->
+        <img src="/assets/product-image-whitebg.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+      </a>
       <!-- Badges container -->
-      <div class="absolute md:top-3 top-2 md:left-3 left-2 flex flex-wrap gap-1">
-        <div class="badge-primary">Mix & Match | Buy 10 get 5 free</div>
+      <div x-show="i % 2 == 0" class="absolute md:top-3 top-2 md:left-3 left-2 flex flex-wrap gap-1 z-20">
+        <!-- <div class="badge-primary">Offer</div> -->
+        <a href="#" class="badge-offer"><span class="button-text" data-text="Buy 10, Get 6"><span>Buy 10, Get 6</span></span><span class="icon icon-arrow w-2.5 h-2.5 rotate-135"></span></a>
       </div>
-    </a>
-    <div class="flex flex-col items-start gap-2 md:p-5 p-4 border border-brand-border-light rounded-xl bg-white">
+      <!-- Lower Badges container -->
+      <!-- <div class="absolute bottom-2 left-2 flex flex-row gap-1 flex-wrap z-20">
+        <a href="#" class="badge-offer"><span class="button-text" data-text="Buy 10, Get 6"><span>Buy 10, Get 6</span></span><span class="icon icon-arrow w-2.5 h-2.5 rotate-135"></span></a>
+        <div class="badge-offer">Non-clickable offer</div>
+      </div> -->
+    </div>
+    <div class="flex flex-col items-start gap-2 md:p-5 p-4 border border-brand-border rounded-xl bg-white">
       <div class="badge-text">Image Skincare</div>
       <h1 class="heading-secondary text-base line-clamp-2">VOL.U.LIFT Face Firming Cream - 57g</h1>
 

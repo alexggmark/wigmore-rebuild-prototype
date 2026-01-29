@@ -92,7 +92,9 @@
   .badge-primary {
     @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
-
+  .badge-offer {
+    @apply flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-md bg-brand-dark text-brand-light uppercase text-[10px] font-bold tracking-widest;
+  }
   .badge-text {
     @apply text-brand-primary-700 uppercase md:text-[12px] text-[10px] font-bold tracking-widest;
   }
@@ -256,7 +258,7 @@
 /* ------- ✍️ PROSE ✍️ ------- */
 /* --------------------------- */
 
-.prose p {
+.prose p:not(:last-child) {
   @apply mb-4;
 }
 .prose a {
