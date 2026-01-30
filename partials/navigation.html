@@ -612,11 +612,12 @@
                               <!-- Accordion Content -->
                               <div x-show="mobileAccordionOpen === item.id" x-collapse>
                                 <ul class="pb-4 space-y-1">
-                                  <template x-for="category in dropdownContent[item.id]?.categories" :key="category.id">
+                                  <!-- For exclusives, show links directly instead of the single category -->
+                                  <template x-for="(entry, entryIndex) in (item.id === 'exclusives' ? dropdownContent[item.id]?.categories[0]?.links : dropdownContent[item.id]?.categories)" :key="entryIndex">
                                     <li>
-                                      <a :href="category.link" @click="burgerNavigationSlideOpen = false"
+                                      <a :href="item.id === 'exclusives' ? entry.url : entry.link" @click="burgerNavigationSlideOpen = false"
                                         class="w-full flex items-center justify-between px-3 py-4 rounded-lg text-xs font-bold tracking-wide uppercase text-brand-dark hover:bg-brand-background-secondary transition-colors">
-                                        <span x-text="category.label"></span>
+                                        <span x-text="item.id === 'exclusives' ? entry.title : entry.label"></span>
                                       </a>
                                     </li>
                                   </template>
@@ -768,7 +769,7 @@
           id: 'exclusives',
           label: 'Exclusives',
           url: '#exclusives',
-          dropdown: false
+          dropdown: true
         },
         {
           id: 'news',
@@ -934,6 +935,49 @@
               image: '/assets/placeholder-jennie.png',
               title: 'Get certified today',
               button: { text: 'View Certifications', url: '#certifications' }
+            }
+          ]
+        },
+        'exclusives': {
+          column1: {
+            title: 'Products',
+            link: { text: 'View all', url: '/collections' }
+          },
+          column2: {
+            title: 'Popular Brands',
+            link: { text: 'See more', url: '#all-links' }
+          },
+          column3: {
+            title: 'Special Offers',
+            link: { text: 'View all', url: '#featured' }
+          },
+          categories: [
+            {
+              id: 'exclusive-dropdown',
+              label: 'Exclusives',
+              link: '/exclusives',
+              links: [
+                { title: 'HydroPeptide', description: 'Learn the basics and get up to speed', url: '#introduction' },
+                { title: 'Dermaroller', description: 'Set up your development environment', url: '#installation' },
+                { title: 'HydroPeptide2', description: 'Build your first project step by step', url: '#first-project' },
+                { title: 'Dermaroller2', description: 'Configure your project settings', url: '#configuration' },
+                { title: 'HydroPeptide3', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Dermaroller3', description: 'Learn recommended patterns', url: '#best-practices' },
+                { title: 'HydroPeptide4', description: 'Deploy your project to production', url: '#deployment' },
+                { title: 'Dermaroller4', description: 'Learn recommended patterns', url: '#best-practices' }
+              ]
+            }
+          ],
+          cards: [
+            {
+              image: '/assets/placeholder-jennie.png',
+              title: 'The Skin Diary',
+              button: { text: 'Buy 10 get 6 Free', url: '#trial' }
+            },
+            {
+              image: '/assets/placeholder-product.png',
+              title: 'Plenhyage',
+              button: { text: 'Buy 10 get 6 Free', url: '#tutorial' }
             }
           ]
         }
