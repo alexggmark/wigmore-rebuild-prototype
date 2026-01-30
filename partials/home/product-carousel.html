@@ -30,10 +30,10 @@
         <h1 class="heading-primary md:text-4xl text-2xl">Our Best Sellers</h1>
         <p>Explore the most frequently ordered products by medical and aesthetic professionals using the Wigmore platform.</p>
 
-        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">
-          <span x-on:click="changeLoading()" href="#" class="cursor-pointer px-6 py-3 flex items-center justify-center text-xs uppercase tracking-wide border border-brand-border bg-white text-brand-dark rounded-full font-bold hover:bg-brand-primary-100 transition-colors">
-            Trigger loading
-          </span>
+        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">            
+          <button class="button-secondary cursor-pointer"> <!-- Change to <a> -->
+            <span x-on:click="changeLoading()" class="button-text" data-text="Trigger loading"><span>Trigger loading</span></span>          </span>
+          </button>
         </div>
       </div>
       <!-- Carousel -->
