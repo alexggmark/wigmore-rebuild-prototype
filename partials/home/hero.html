@@ -20,7 +20,78 @@
 </style>
 
 <div
-  x-data="{ slides: 4 }"
+  x-data="{
+    slides: [
+      {
+        bgDesktop: '/assets/banners/banner-image.png',
+        alignDesktop: 'center',
+        alignMobile: 'center',
+        overlayOpacity: 0.5,
+        bannerLink: '',
+        badge: 'Welcome to Wigmore Medical',
+        title: 'The UK\'s Leading Aesthetic Distributor for Medical Professionals',
+        text: 'Discover our range of premium treatments designed to enhance your natural beauty with the latest techniques and technologies.',
+        cta1: { label: 'Join Now', href: '#', style: 'primary' },
+        cta2: { label: 'Sign in', href: '#', style: 'transparent' }
+      },
+      {
+        bgDesktop: '/assets/banners/banner-image-product.jpg',
+        alignDesktop: 'right',
+        alignMobile: 'bottom',
+        overlayOpacity: 0,
+        bannerLink: '/offers'
+      },
+      {
+        bgDesktop: '/assets/banners/banner-skrybe.jpg',
+        bgMobile: '/assets/banners/banner-image.png',
+        alignDesktop: 'left',
+        alignMobile: 'bottom',
+        overlayOpacity: 0,
+        bannerLink: '',
+        title: 'Explore Our Latest Products, Explore Our Latest Products',
+        text: 'Shop the newest additions to our collection of premium aesthetic treatments.',
+        cta1: { label: 'Shop Now', href: '#', style: 'primary' },
+        cta2: null
+      },
+      {
+        bgDesktop: '/assets/banners/banner-image.png',
+        bgMobile: '/assets/banners/banner-image.png',
+        alignDesktop: 'right',
+        alignMobile: 'center',
+        overlayOpacity: 0.5,
+        bannerLink: '',
+        badge: 'Free Delivery',
+        title: 'Free UK Delivery on Orders Over £100',
+        text: 'Enjoy complimentary shipping on qualifying orders.',
+        cta1: { label: 'Learn More', href: '#', style: 'primary' },
+        cta2: null
+      }
+    ],
+    getContainerClasses(slide) {
+      const verticalMobile = {
+        'top': 'justify-start pt-16',
+        'center': 'justify-center',
+        'bottom': 'justify-end pb-20'
+      }[slide.alignMobile] || 'justify-center';
+
+      const horizontalDesktop = {
+        'left': 'md:justify-start',
+        'center': 'md:justify-center',
+        'right': 'md:justify-end'
+      }[slide.alignDesktop] || 'md:justify-center';
+
+      return `${verticalMobile} ${horizontalDesktop}`;
+    },
+    getContentClasses(slide) {
+      const textAlign = {
+        'left': 'max-w-2xl md:text-left md:items-start',
+        'center': 'max-w-4xl md:text-center md:items-center',
+        'right': 'max-w-2xl md:text-right md:items-end'
+      }[slide.alignDesktop] || 'md:text-center md:items-center';
+
+      return `text-center items-center ${textAlign}`;
+    }
+  }"
   x-init="$nextTick(() => {
     new Swiper($refs.swiper, {
       slidesPerView: 1,
@@ -31,36 +102,115 @@
   })"
   class="relative card-container p-0 overflow-hidden"
 >
-  <div x-ref="swiper" class="swiper md:h-168 h-140">
+  <div x-ref="swiper" class="swiper w-full min-h-140 max-h-200 aspect-5/8 md:h-auto md:aspect-19/9 md:min-h-135 md:max-h-none">
     <div class="swiper-wrapper">
-      <template x-for="i in slides" :key="i">
-        <!-- Slide 1 -->
+      <template x-for="(slide, index) in slides" :key="index">
         <div class="swiper-slide">
+          <!-- Optional full-slide link wrapper -->
+          <template x-if="slide.bannerLink">
+            <a :href="slide.bannerLink" class="absolute inset-0 z-15"></a>
+          </template>
+
           <div class="relative h-full flex items-center">
-            <img src="/assets/banners/banner-image.png" alt="" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50"></div>
-            <div class="relative z-10 container mx-auto md:px-8 px-4 flex justify-center">
-              <div class="max-w-4xl flex flex-col items-center text-center gap-4">
-                <div class="badge-transparent">
-                  <span class="relative flex size-2 -ml-1">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary-700 opacity-75"></span>
-                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
-                  </span>
-                  Welcome to Wigmore Medical
-                </div>
-                <h1 class="heading-primary md:text-5xl text-3xl text-brand-light text-shadow-md md:tracking-widest">The UK’s Leading Aesthetic Distributor for Medical Professionals</h1>
-                <p class="text-brand-light max-w-xl md:text-lg text-sm">Discover our range of premium treatments designed to enhance your natural beauty with the latest techniques and technologies.</p>
-                <div class="flex md:flex-row flex-col gap-3 mt-2">
-                  <a href="#" class="button-primary-icon">
-                    <span class="button-text" data-text="Join Now"><span>Join Now</span></span>
-                    <span>
-                      <span class="icon-arrow"></span>
+            <!-- Desktop background image -->
+            <img
+              :src="slide.bgDesktop"
+              alt=""
+              fetchpriority="high"
+              decoding="async"
+              class="absolute inset-0 w-full h-full object-cover hidden md:block"
+            >
+            <!-- Mobile background image -->
+            <img
+              :src="slide.bgMobile || slide.bgDesktop"
+              alt=""
+              fetchpriority="high"
+              decoding="async"
+              class="absolute inset-0 w-full h-full object-cover md:hidden"
+            >
+
+            <!-- Overlay with dynamic opacity -->
+            <div
+              class="absolute inset-0 bg-black"
+              :style="`opacity: ${slide.overlayOpacity}`"
+            ></div>
+
+            <!-- Content container -->
+            <div
+              class="relative z-10 container mx-auto md:px-8 px-4 flex flex-col md:flex-row md:items-center h-full"
+              :class="getContainerClasses(slide)"
+            >
+              <div
+                class="flex flex-col gap-4"
+                :class="getContentClasses(slide)"
+              >
+                <!-- Badge - only show if content exists -->
+                <template x-if="slide.badge">
+                  <div class="badge-transparent">
+                    <span class="relative flex size-2 -ml-1">
+                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary-700 opacity-75"></span>
+                      <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                     </span>
-                  </a>
-                  <a href="#" class="button-transparent">
-                    <span class="button-text" data-text="Sign in"><span>Sign in</span></span>
-                  </a>
-                </div>
+                    <span x-text="slide.badge"></span>
+                  </div>
+                </template>
+
+                <!-- Title - only show if content exists -->
+                <template x-if="slide.title">
+                  <h1
+                    class="heading-primary md:text-5xl text-3xl text-brand-light text-shadow-sm md:tracking-widest"
+                    x-text="slide.title"
+                  ></h1>
+                </template>
+
+                <!-- Text - only show if content exists -->
+                <template x-if="slide.text">
+                  <p
+                    class="text-brand-light max-w-xl md:text-lg text-sm"
+                    x-text="slide.text"
+                  ></p>
+                </template>
+
+                <!-- CTAs - only show if at least one exists -->
+                <template x-if="slide.cta1 || slide.cta2">
+                  <div class="flex md:flex-row flex-col gap-3 mt-2">
+                    <!-- CTA 1 -->
+                    <template x-if="slide.cta1">
+                      <a
+                        :href="slide.cta1.href"
+                        :class="slide.cta1.style === 'primary' ? 'button-primary-icon' : 'button-transparent'"
+                        class="relative z-20"
+                      >
+                        <span class="button-text" :data-text="slide.cta1.label">
+                          <span x-text="slide.cta1.label"></span>
+                        </span>
+                        <template x-if="slide.cta1.style === 'primary'">
+                          <span>
+                            <span class="icon-arrow"></span>
+                          </span>
+                        </template>
+                      </a>
+                    </template>
+
+                    <!-- CTA 2 -->
+                    <template x-if="slide.cta2">
+                      <a
+                        :href="slide.cta2.href"
+                        :class="slide.cta2.style === 'primary' ? 'button-primary-icon' : 'button-transparent'"
+                        class="relative z-20"
+                      >
+                        <span class="button-text" :data-text="slide.cta2.label">
+                          <span x-text="slide.cta2.label"></span>
+                        </span>
+                        <template x-if="slide.cta2.style === 'primary'">
+                          <span>
+                            <span class="icon-arrow"></span>
+                          </span>
+                        </template>
+                      </a>
+                    </template>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
