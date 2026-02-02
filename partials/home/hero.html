@@ -43,11 +43,23 @@
       },
       {
         bgDesktop: '/assets/banners/banner-skrybe.jpg',
-        bgMobile: '/assets/banners/banner-image.png',
         alignDesktop: 'left',
         alignMobile: 'bottom',
+        overlayOpacity: 0.5,
+        bannerLink: '',
+        badge: 'Welcome to Wigmore Medical',
+        title: 'Explore Our Latest Products, Explore Our Latest Products',
+        text: 'Shop the newest additions to our collection of premium aesthetic treatments.',
+        cta1: { label: 'Shop Now', href: '#', style: 'tertiary', icon: true },
+        cta2: null
+      },
+      {
+        bgDesktop: '/assets/banners/banner-skrybe.jpg',
+        alignDesktop: 'left',
+        alignMobile: 'top',
         overlayOpacity: 0,
         bannerLink: '',
+        badge: 'Welcome to Wigmore Medical',
         title: 'Explore Our Latest Products, Explore Our Latest Products',
         text: 'Shop the newest additions to our collection of premium aesthetic treatments.',
         cta1: { label: 'Shop Now', href: '#', style: 'tertiary', icon: true },
@@ -63,8 +75,8 @@
         badge: 'Free Delivery',
         title: 'Free UK Delivery on Orders Over £100',
         text: 'Enjoy complimentary shipping on qualifying orders.',
-        cta1: { label: 'Learn More', href: '#', style: 'primary' },
-        cta2: null
+        cta1: { label: 'Learn More', href: '#', style: 'secondary' },
+        cta2: { label: 'Learn More', href: '#', style: 'transparent' }
       }
     ],
     getContainerClasses(slide) {
@@ -163,7 +175,7 @@
                 <!-- Title - only show if content exists -->
                 <template x-if="slide.title">
                   <h1
-                    class="heading-primary md:text-5xl text-3xl text-brand-light text-shadow-sm md:tracking-widest"
+                    class="heading-primary md:text-5xl text-3xl md:tracking-widest text-brand-light"
                     x-text="slide.title"
                   ></h1>
                 </template>
@@ -171,7 +183,7 @@
                 <!-- Text - only show if content exists -->
                 <template x-if="slide.text">
                   <p
-                    class="text-brand-light max-w-xl md:text-lg text-sm"
+                    class="max-w-xl md:text-lg text-sm text-brand-light"
                     x-text="slide.text"
                   ></p>
                 </template>
