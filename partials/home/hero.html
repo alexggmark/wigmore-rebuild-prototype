@@ -31,11 +31,11 @@
         badge: 'Welcome to Wigmore Medical',
         title: 'The UK\'s Leading Aesthetic Distributor for Medical Professionals',
         text: 'Discover our range of premium treatments designed to enhance your natural beauty with the latest techniques and technologies.',
-        cta1: { label: 'Join Now', href: '#', style: 'primary' },
-        cta2: { label: 'Sign in', href: '#', style: 'transparent' }
+        cta1: { label: 'Join Now', href: '#', style: 'primary', icon: true },
+        cta2: { label: 'Sign in', href: '#', style: 'transparent', icon: false }
       },
       {
-        bgDesktop: '/assets/banners/banner-image-product.jpg',
+        bgDesktop: '/assets/banners/banner-large-vol.webp',
         alignDesktop: 'right',
         alignMobile: 'bottom',
         overlayOpacity: 0,
@@ -50,14 +50,14 @@
         bannerLink: '',
         title: 'Explore Our Latest Products, Explore Our Latest Products',
         text: 'Shop the newest additions to our collection of premium aesthetic treatments.',
-        cta1: { label: 'Shop Now', href: '#', style: 'primary' },
+        cta1: { label: 'Shop Now', href: '#', style: 'tertiary', icon: true },
         cta2: null
       },
       {
         bgDesktop: '/assets/banners/banner-image.png',
         bgMobile: '/assets/banners/banner-image.png',
         alignDesktop: 'right',
-        alignMobile: 'center',
+        alignMobile: 'top',
         overlayOpacity: 0.5,
         bannerLink: '',
         badge: 'Free Delivery',
@@ -69,9 +69,9 @@
     ],
     getContainerClasses(slide) {
       const verticalMobile = {
-        'top': 'justify-start pt-16',
+        'top': 'justify-start',
         'center': 'justify-center',
-        'bottom': 'justify-end pb-20'
+        'bottom': 'justify-end'
       }[slide.alignMobile] || 'justify-center';
 
       const horizontalDesktop = {
@@ -129,15 +129,20 @@
               class="absolute inset-0 w-full h-full object-cover md:hidden"
             >
 
-            <!-- Overlay with dynamic opacity -->
+            <!-- Overlay - desktop -->
             <div
-              class="absolute inset-0 bg-black"
+              class="absolute inset-0 bg-black hidden md:block"
               :style="`opacity: ${slide.overlayOpacity}`"
+            ></div>
+            <!-- Overlay - mobile (uses overlayOpacityMobile if set, otherwise falls back to overlayOpacity) -->
+            <div
+              class="absolute inset-0 bg-black md:hidden"
+              :style="`opacity: ${slide.overlayOpacityMobile ?? slide.overlayOpacity}`"
             ></div>
 
             <!-- Content container -->
             <div
-              class="relative z-10 container mx-auto md:px-8 px-4 flex flex-col md:flex-row md:items-center h-full"
+              class="relative z-10 container mx-auto md:px-8 px-4 py-16 md:py-10 flex flex-col md:flex-row md:items-center h-full"
               :class="getContainerClasses(slide)"
             >
               <div
@@ -178,13 +183,13 @@
                     <template x-if="slide.cta1">
                       <a
                         :href="slide.cta1.href"
-                        :class="slide.cta1.style === 'primary' ? 'button-primary-icon' : 'button-transparent'"
+                        :class="`button-${slide.cta1.style}${slide.cta1.icon ? '-icon' : ''}`"
                         class="relative z-20"
                       >
                         <span class="button-text" :data-text="slide.cta1.label">
                           <span x-text="slide.cta1.label"></span>
                         </span>
-                        <template x-if="slide.cta1.style === 'primary'">
+                        <template x-if="slide.cta1.icon">
                           <span>
                             <span class="icon-arrow"></span>
                           </span>
@@ -196,13 +201,13 @@
                     <template x-if="slide.cta2">
                       <a
                         :href="slide.cta2.href"
-                        :class="slide.cta2.style === 'primary' ? 'button-primary-icon' : 'button-transparent'"
+                        :class="`button-${slide.cta2.style}${slide.cta2.icon ? '-icon' : ''}`"
                         class="relative z-20"
                       >
                         <span class="button-text" :data-text="slide.cta2.label">
                           <span x-text="slide.cta2.label"></span>
                         </span>
-                        <template x-if="slide.cta2.style === 'primary'">
+                        <template x-if="slide.cta2.icon">
                           <span>
                             <span class="icon-arrow"></span>
                           </span>
