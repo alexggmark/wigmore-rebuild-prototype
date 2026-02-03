@@ -95,10 +95,10 @@
     @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
   .badge-offer {
-    @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
+    @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
   .badge-offer-link {
-    @apply flex whitespace-nowrap items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-full border border-brand-primary-700 bg-brand-light hover:bg-brand-primary-700 text-brand-primary-700 hover:text-brand-light uppercase text-[10px] font-bold tracking-widest;
+    @apply flex whitespace-nowrap items-center justify-center gap-1 px-2.5 py-1.5 rounded-full border border-brand-primary-700 bg-brand-light hover:bg-brand-primary-700 text-brand-primary-700 hover:text-brand-light uppercase text-[10px] font-bold tracking-widest;
   }
   .badge-text {
     @apply pointer-events-none whitespace-nowrap text-brand-primary-700 uppercase md:text-[12px] text-[10px] font-bold tracking-widest;
