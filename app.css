@@ -7,8 +7,10 @@
 
   /* COLOURS */
   --color-brand-primary-100: #F3F7F7; /* Badge backgrounds */
-  --color-brand-primary-700: #00857D; /* Main blue/green */
-  --color-brand-primary-800: #01756E;
+  --color-brand-primary-700: #036e67; /* Temporary - madeup */
+  /* --color-brand-primary-700: #00857D; */
+  --color-brand-primary-800: #025a54;
+  /* --color-brand-primary-800: #01756E; */
   --color-brand-background: #F0F0F0;
   --color-brand-background-dark: #E4E5E8;
   --color-brand-background-secondary: #F3F4F6;
@@ -90,20 +92,23 @@
 
   /* BADGES */
   .badge-primary {
-    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
+    @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
   .badge-offer {
-    @apply flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-md bg-[#7A94AB] text-brand-light uppercase text-[10px] font-bold tracking-widest;
+    @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-full bg-brand-primary-100 text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
+  }
+  .badge-offer-link {
+    @apply flex whitespace-nowrap items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-full border border-brand-primary-700 bg-brand-light hover:bg-brand-primary-700 text-brand-primary-700 hover:text-brand-light uppercase text-[10px] font-bold tracking-widest;
   }
   .badge-text {
-    @apply text-brand-primary-700 uppercase md:text-[12px] text-[10px] font-bold tracking-widest;
+    @apply pointer-events-none whitespace-nowrap text-brand-primary-700 uppercase md:text-[12px] text-[10px] font-bold tracking-widest;
   }
   .badge-text-sm {
-    @apply text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
+    @apply pointer-events-none whitespace-nowrap text-brand-primary-700 uppercase text-[10px] font-bold tracking-widest;
   }
 
   .badge-transparent {
-    @apply flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border backdrop-blur-sm border-brand-light/15 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-bold tracking-widest;
+    @apply pointer-events-none whitespace-nowrap flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full border backdrop-blur-sm border-brand-light/15 bg-brand-primary-100/10 text-brand-light uppercase text-[10px] font-bold tracking-widest;
   }
 
   /* TYPOGRAPY */
@@ -210,7 +215,7 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
-    mask-image: url('/assets/arrow.svg');
+    mask-image: url('/assets/icon.chevron.svg');
   }
   .icon-close {
     @apply bg-current;

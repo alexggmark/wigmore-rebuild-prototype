@@ -136,7 +136,7 @@
         <div class="card-container-generic xl:px-8 xl:py-10 md:px-4 md:py-6 px-3 pt-5 pb-3">
           <div class="flex flex-col items-start gap-4">
             <!-- Breadcrumbs -->
-            <nav class="md:flex hidden items-center gap-1.5 text-sm mb-2 w-full overflow-hidden">
+            <nav class="md:flex hidden items-center gap-1.5 text-sm mb-4 w-full overflow-hidden">
               <a href="/" class="shrink-0 whitespace-nowrap text-brand-dark hover:text-brand-primary-700 hover:underline">Home</a>
               <svg class="shrink-0 h-4 w-4 -rotate-90 text-[#D1D5DB]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -151,7 +151,7 @@
               </svg>
               <a href="/" class="min-w-0 truncate text-brand-primary-700 hover:underline">VOL.U.LIFT Face Firming Cream</a>
             </nav>
-            <div class="badge-primary">Image Skincare</div>
+            <div class="badge-text -mb-3">Image Skincare</div>
             <h1 class="heading-primary text-3xl">VOL.U.LIFT Face Firming Cream</h1>
 
             <div class="prose">
@@ -159,8 +159,8 @@
             </div>
 
             <div class="flex flex-row gap-1 flex-wrap md:mt-2 mt-1">
-              <a href="#" class="badge-offer"><span class="button-text" data-text="Buy 10, Get 6"><span>Buy 10, Get 6</span></span><span class="icon icon-arrow w-2.5 h-2.5 rotate-135"></span></a>
-              <div class="badge-offer">Non-clickable offer</div>
+              <a href="#" class="badge-offer-link"><span class="button-text" data-text="Buy 10, Get 6 Free"><span>Buy 10, Get 6 Free</span></span><span class="icon icon-arrow-2 w-3 h-3 -rotate-90 -mr-1"></span></a>
+              <span class="badge-offer">February Offer</span>
             </div>
 
             <!-- Radio card select -->
@@ -201,7 +201,7 @@
 
             <div class="flex gap-2 w-full">
               <!-- Quantity selector -->
-              <div x-data="{ qty: 1 }" class="flex shrink-0 items-center border border-brand-border rounded-full">
+              <div x-data="{ qty: 1 }" class="flex shrink-0 items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
                 <button
                   @click="qty = Math.max(1, qty - 1)"
                   class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"
