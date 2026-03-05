@@ -1,0 +1,149 @@
+<style>
+  .collection-slide {
+    width: 280px;
+  }
+  @media (min-width: 1024px) {
+    .collection-slide {
+      width: auto;
+    }
+  }
+</style>
+
+<div class="card-container bg-brand-light">
+  <div class="card-container-inner">
+    <div class="flex flex-col items-center justify-between gap-6">
+      <div class="max-w-lg flex flex-col gap-4 items-center text-center justify-center mb-4">
+        <div class="badge-primary">Explore Our Range</div>
+        <h1 class="heading-primary md:text-4xl text-2xl">Categories</h1>
+        <p>Discover exclusive deals on prescription medicines, devices, and skincare, available only to verified Wigmore Medical account holders.</p>
+
+        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">
+          <a href="#" class="button-secondary">
+            <span class="button-text" data-text="View all categories"><span>View all categories</span></span>
+          </a>
+        </div>
+      </div>
+      <!-- collections -->
+      <div
+        x-data
+        x-init="new Swiper($refs.swiper, {
+          slidesPerView: 1.1,
+          spaceBetween: 16,
+          pagination: {
+            el: $refs.progressbar,
+            type: 'progressbar',
+          },
+          navigation: {
+            nextEl: $refs.next,
+            prevEl: $refs.prev,
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 'auto'
+            },
+            1024: {
+              slidesPerView: 5
+            }
+          }
+        })"
+        class="w-full relative"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Prev Arrow -->
+          <button x-ref="prev" class="absolute -left-10 w-7 h-7 xl:flex hidden items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon-arrow w-3 h-3"></span>
+          </button>
+
+          <!-- Swiper Container -->
+          <div x-ref="swiper" class="swiper flex-1 right-overflow-visible-lg overflow-hidden">
+            <div class="swiper-wrapper">
+              <!-- Card 1 -->
+              <div class="swiper-slide collection-slide">
+                <a href="#" class="group group/arrow block">
+                  <div class="rounded-xl overflow-hidden mb-2 aspect-8/7">
+                    <img src="/assets/placeholder-jennie.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                  </div>
+                  <div class="flex flex-row justify-between items-center gap-3 p-5 border border-brand-border-light rounded-xl bg-white transition-colors group-hover:border-brand-primary-700">
+                    <div class="text-brand-dark group-hover:text-brand-primary-700 uppercase text-xs font-bold tracking-widest">
+                      Skincare
+                    </div>
+                    <span class="icon-arrow block text-brand-dark group-hover:text-brand-primary-700 w-3 h-3 rotate-180"></span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="swiper-slide collection-slide">
+                <a href="#" class="group group/arrow block">
+                  <div class="rounded-xl overflow-hidden mb-2 aspect-8/7">
+                    <img src="/assets/placeholder-jennie.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                  </div>
+                  <div class="flex flex-row justify-between items-center gap-3 p-5 border border-brand-border-light rounded-xl bg-white transition-colors group-hover:border-brand-primary-700">
+                    <div class="text-brand-dark group-hover:text-brand-primary-700 uppercase text-xs font-bold tracking-widest">
+                      Skincare
+                    </div>
+                    <span class="icon-arrow block text-brand-dark group-hover:text-brand-primary-700 w-3 h-3 rotate-180"></span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="swiper-slide collection-slide">
+                <a href="#" class="group group/arrow block">
+                  <div class="rounded-xl overflow-hidden mb-2 aspect-8/7">
+                    <img src="/assets/placeholder-jennie.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                  </div>
+                  <div class="flex flex-row justify-between items-center gap-3 p-5 border border-brand-border-light rounded-xl bg-white transition-colors group-hover:border-brand-primary-700">
+                    <div class="text-brand-dark group-hover:text-brand-primary-700 uppercase text-xs font-bold tracking-widest">
+                      Skincare
+                    </div>
+                    <span class="icon-arrow block text-brand-dark group-hover:text-brand-primary-700 w-3 h-3 rotate-180"></span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="swiper-slide collection-slide">
+                <a href="#" class="group group/arrow block">
+                  <div class="rounded-xl overflow-hidden mb-2 aspect-8/7">
+                    <img src="/assets/placeholder-jennie.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                  </div>
+                  <div class="flex flex-row justify-between items-center gap-3 p-5 border border-brand-border-light rounded-xl bg-white transition-colors group-hover:border-brand-primary-700">
+                    <div class="text-brand-dark group-hover:text-brand-primary-700 uppercase text-xs font-bold tracking-widest">
+                      Skincare
+                    </div>
+                    <span class="icon-arrow block text-brand-dark group-hover:text-brand-primary-700 w-3 h-3 rotate-180"></span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="swiper-slide collection-slide">
+                <a href="#" class="group group/arrow block">
+                  <div class="rounded-xl overflow-hidden mb-2 aspect-8/7">
+                    <img src="/assets/placeholder-jennie.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                  </div>
+                  <div class="flex flex-row justify-between items-center gap-3 p-5 border border-brand-border-light rounded-xl bg-white transition-colors group-hover:border-brand-primary-700">
+                    <div class="text-brand-dark group-hover:text-brand-primary-700 uppercase text-xs font-bold tracking-widest">
+                      Skincare
+                    </div>
+                    <span class="icon-arrow block text-brand-dark group-hover:text-brand-primary-700 w-3 h-3 rotate-180"></span>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Next Arrow -->
+          <button x-ref="next" class="absolute -right-10 w-7 xl:flex hidden items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon-arrow w-3 h-3 rotate-180"></span>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div x-ref="progressbar" class="swiper-pagination product-carousel-progress mt-8 h-1 bg-brand-border rounded-full overflow-hidden"></div>
+      </div>
+    </div>
+  </div>
+</div>

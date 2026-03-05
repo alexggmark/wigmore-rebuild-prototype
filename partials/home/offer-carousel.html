@@ -1,0 +1,147 @@
+<style>
+  .offer-slide {
+    width: 320px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 1280px) {
+    .offer-slide {
+      width: auto;
+    }
+  }
+  /* Offer Carousel Equal Height Slides */
+  .offer-swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+</style>
+
+<div class="card-container bg-brand-light">
+  <div class="card-container-inner">
+    <div class="flex flex-col items-center justify-between gap-6">
+      <div class="max-w-lg flex flex-col gap-4 items-center text-center justify-center mb-4">
+        <div class="badge-primary">Current Promotions</div>
+        <h1 class="heading-primary md:text-4xl text-2xl">Our Latest Offers</h1>
+        <p>Discover exclusive deals on prescription medicines, devices, and skincare, available only to verified Wigmore Medical account holders.</p>
+
+        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">
+          <a href="#" class="button-secondary">
+            <span class="button-text" data-text="View all offers"><span>View all offers</span></span>
+          </a>
+        </div>
+      </div>
+      <!-- Carousel -->
+      <div
+        x-data
+        x-init="new Swiper($refs.swiper, {
+          slidesPerView: 1.1,
+          spaceBetween: 16,
+          pagination: {
+            el: $refs.progressbar,
+            type: 'progressbar',
+          },
+          navigation: {
+            nextEl: $refs.next,
+            prevEl: $refs.prev,
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 'auto',
+              spaceBetween: 16
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 24
+            }
+          }
+        })"
+        class="w-full relative"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Prev Arrow -->
+          <button x-ref="prev" class="absolute disabled:hidden -left-10 w-7 h-7 xl:flex hidden items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon icon-arrow w-3 h-3"></span>
+          </button>
+
+          <!-- Swiper Container -->
+          <div x-ref="swiper" class="swiper offer-swiper flex-1 overflow-hidden right-overflow-visible-xl">
+            <div class="swiper-wrapper">
+              <!-- Card 1 -->
+              <div class="swiper-slide offer-slide">
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group aspect-4/3">
+                  <img src="/assets/placeholder-vol2.png" alt="" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">Image Skincare</div>
+                    <h1 class="heading-secondary text-base">Special Offer - Buy 10 and Get 6 Free! Buy 10 and Get 6 Free</h1>
+                    <p>Buy 10 and get 6 free. Mix and match and get the cheapest free of charge!</p>
+                  </div>
+                  <a href="#" class="button-primary w-full mt-2">
+                    <span class="button-text" data-text="Join Now"><span>Join Now</span></span>
+                  </a>
+                </div>
+              </div>
+              <!-- Card 2 -->
+              <div class="swiper-slide offer-slide">
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group aspect-4/3">
+                  <img src="/assets/placeholder-vol2.png" alt="" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3">
+                    <div class="badge-primary">Dermaroller</div>
+                    <h1 class="heading-secondary text-base">20% Off All Dermaroller Products</h1>
+                    <p>Professional-grade microneedling devices at special prices for registered practitioners.</p>
+                  </div>
+                  <a href="#" class="button-primary w-full mt-2">
+                    <span class="button-text" data-text="Join Now"><span>Join Now</span></span>
+                  </a>
+                </div>
+              </div>
+              <!-- Card 3 -->
+              <div class="swiper-slide offer-slide">
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group aspect-4/3">
+                  <img src="/assets/placeholder-vol2.png" alt="" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">HydroPeptide</div>
+                    <h1 class="heading-secondary text-base">Free Consultation Kit with Orders Over £500</h1>
+                    <p>Receive a complimentary consultation kit when you spend £500 or more.</p>
+                  </div>
+                  <a href="#" class="button-primary w-full mt-2">
+                    <span class="button-text" data-text="Join Now"><span>Join Now</span></span>
+                  </a>
+                </div>
+              </div>
+              <!-- Card 4 -->
+              <div class="swiper-slide offer-slide">
+                <a href="#" class="block relative rounded-xl overflow-hidden mb-2 group aspect-4/3">
+                  <img src="/assets/placeholder-vol2.png" alt="" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </a>
+                <div class="flex-1 justify-between flex flex-col gap-3 p-5 border border-brand-border-light rounded-xl bg-white">
+                  <div class="flex flex-col items-start gap-3 ">
+                    <div class="badge-primary">Colorescience</div>
+                    <h1 class="heading-secondary text-base">New Season SPF Collection Now Available</h1>
+                    <p>Discover the latest mineral sunscreen products for your clinic.</p>
+                  </div>
+                  <a href="#" class="button-primary w-full mt-2">
+                    <span class="button-text" data-text="Join Now"><span>Join Now</span></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Arrow -->
+          <button x-ref="next" class="absolute disabled:hidden -right-10 w-7 h-7 xl:flex hidden items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon icon-arrow w-3 h-3 rotate-180"></span>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div x-ref="progressbar" class="swiper-pagination product-carousel-progress mt-8 h-1 bg-brand-border rounded-full overflow-hidden"></div>
+      </div>
+    </div>
+  </div>
+</div>

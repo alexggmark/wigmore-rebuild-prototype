@@ -1,0 +1,72 @@
+<div
+  x-data="{
+    cards: 7,
+    loading: false,
+    changeLoading() {
+      this.loading = true;
+      setTimeout(() => this.loading = false, 2000)
+    }
+  }"
+  x-init="$nextTick(() => {
+    new Swiper($refs.swiper, {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      pagination: {
+        el: $refs.progressbar,
+        type: 'progressbar',
+      },
+      navigation: {
+        nextEl: $refs.next,
+        prevEl: $refs.prev,
+      }
+    })
+  })"
+  class="card-container bg-brand-light"
+>
+  <div class="card-container-inner">
+    <div class="flex flex-col items-center justify-between gap-6">
+      <div class="max-w-lg flex flex-col gap-4 items-center text-center justify-center mb-4">
+        <div class="badge-primary">Popular Products</div>
+        <h1 class="heading-primary md:text-4xl text-2xl">Our Best Sellers</h1>
+        <p>Explore the most frequently ordered products by medical and aesthetic professionals using the Wigmore platform.</p>
+
+        <div class="flex md:flex-row flex-col gap-3 mt-2 md:w-auto w-full">            
+          <button class="button-secondary cursor-pointer"> <!-- Change to <a> -->
+            <span x-on:click="changeLoading()" class="button-text" data-text="Trigger loading"><span>Trigger loading</span></span>          </span>
+          </button>
+        </div>
+      </div>
+      <!-- Carousel -->
+      <div
+        class="w-full relative"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Prev Arrow -->
+          <button x-ref="prev" class="absolute disabled:hidden xl:flex hidden -left-10 w-7 h-7 items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon icon-arrow w-3 h-3"></span>
+          </button>
+
+          <!-- Swiper Container -->
+          <div x-ref="swiper" class="swiper flex-1 right-overflow-visible-xl overflow-hidden">
+            <div class="swiper-wrapper">
+              <!-- Product Cards -->
+              <template x-for="i in cards" :key="i">
+                <div class="swiper-slide md:w-75! w-66!">
+                  <load src="partials/components/product-card.html" />
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- Next Arrow -->
+          <button x-ref="next" class="absolute disabled:hidden -right-10 w-7 h-7 xl:flex hidden items-center justify-center border border-brand-primary-700 bg-white hover:bg-brand-primary-100 rounded-full text-brand-primary-700 transition-colors cursor-pointer">
+            <span class="icon icon-arrow w-3 h-3 rotate-180"></span>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div x-ref="progressbar" class="swiper-pagination product-carousel-progress mt-8 h-1 bg-brand-border rounded-full overflow-hidden"></div>
+      </div>
+    </div>
+  </div>
+</div>
