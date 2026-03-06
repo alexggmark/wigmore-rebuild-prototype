@@ -127,6 +127,15 @@
           badge-transparent
         </div>
       </div>
+      <div class="flex flex-wrap items-start gap-4">
+        <p class="w-full text-xs font-bold uppercase tracking-wide">Status badges</p>
+        <span class="badge-status-processing">Processing</span>
+        <span class="badge-status-pending">Pending</span>
+        <span class="badge-status-awaiting">Awaiting RX Approval</span>
+        <span class="badge-status-dispatched">Dispatched</span>
+        <span class="badge-status-completed">Completed</span>
+        <span class="badge-status-cancelled">Cancelled</span>
+      </div>
     </div>
 
     <h2 class="heading-secondary text-xl">Order Details Popup</h2>
@@ -140,13 +149,7 @@
             <div>
               <h2 class="heading-primary text-2xl">Order Details</h2>
               <div class="mt-4 inline-block">
-                <span class="badge-primary bg-green-100">
-                  <span class="relative flex size-2 -ml-1">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary-700 opacity-75"></span>
-                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
-                  </span>
-                  Completed
-                </span>
+                <span class="badge-status-completed">Completed</span>
               </div>
             </div>
             <button @click="open = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
@@ -162,38 +165,38 @@
           <div class="border-t border-brand-border"></div>
 
           <!-- Row: Order ID / Order Date -->
-          <div class="flex justify-between py-5">
+          <div class="flex justify-between py-4">
             <div>
               <p class="label-text mb-2">Order ID</p>
-              <p class="">#WG-1242</p>
+              <p class="label-content">#WG-1242</p>
             </div>
             <div class="text-right">
               <p class="label-text mb-2">Order Date</p>
-              <p class="">02 May 2025</p>
+              <p class="label-content">02 May 2025</p>
             </div>
           </div>
 
           <!-- Row: Ordered By / Approved By -->
-          <div class="flex justify-between py-5">
+          <div class="flex justify-between py-4">
             <div>
               <p class="label-text mb-2">Ordered By</p>
-              <p class="">Nurse Emma Williams</p>
+              <p class="label-content">Nurse Emma Williams</p>
             </div>
             <div class="text-right">
               <p class="label-text mb-2">Approved By</p>
-              <p class="">Dr Sarah Johnson</p>
+              <p class="label-content">Dr Sarah Johnson</p>
             </div>
           </div>
 
           <!-- Row: Payment Method / Total Amount -->
-          <div class="flex justify-between py-5">
+          <div class="flex justify-between py-4">
             <div>
               <p class="label-text mb-2">Payment Method</p>
-              <p class="">Credit Card</p>
+              <p class="label-content">Credit Card</p>
             </div>
             <div class="text-right">
               <p class="label-text mb-2">Total Amount</p>
-              <p class="">&pound;340.00</p>
+              <p class="label-content">&pound;340.00</p>
             </div>
           </div>
 
@@ -208,161 +211,161 @@
           </div>
 
           <div>
-            <div class="group/scroll flex flex-col gap-2.5 max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-brand-border scrollbar-track-transparent transition-colors pr-1">
+            <div class="group/scroll flex flex-col gap-2.5 max-h-[230px] overflow-y-auto scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-brand-border scrollbar-track-transparent transition-colors pr-1">
               <!-- Item Rows -->
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Dermapen Needles</span>
+                  <span class="label-content">Dermapen Needles</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>2</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>206.99</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">206.99</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Hyaluronic Serum</span>
+                  <span class="label-content">Hyaluronic Serum</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>4</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>108.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">108.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Vitamin C Serum</span>
+                  <span class="label-content">Vitamin C Serum</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>8</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>439.99</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">8</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">439.99</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Retinol Cream</span>
+                  <span class="label-content">Retinol Cream</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>6</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>508.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">6</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">508.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Botox Vial 50u</span>
+                  <span class="label-content">Botox Vial 50u</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>3</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>312.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">312.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Dermal Filler 1ml</span>
+                  <span class="label-content">Dermal Filler 1ml</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>5</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>475.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">5</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">475.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Microneedling Pen</span>
+                  <span class="label-content">Microneedling Pen</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>1</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>189.99</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">1</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">189.99</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Collagen Mask Pack</span>
+                  <span class="label-content">Collagen Mask Pack</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>10</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>89.90</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">10</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">89.90</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>LED Light Therapy Gel</span>
+                  <span class="label-content">LED Light Therapy Gel</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>2</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>64.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">64.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Numbing Cream 30g</span>
+                  <span class="label-content">Numbing Cream 30g</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>7</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>105.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">7</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">105.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Skin Peel Solution</span>
+                  <span class="label-content">Skin Peel Solution</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>3</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>156.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">156.00</span></div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-5">
+              <div class="flex items-center justify-between bg-brand-background-secondary rounded-xl px-5 py-4">
                 <div class="flex items-center gap-3">
                   <span class="relative flex size-2">
                     <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
                   </span>
-                  <span>Peptide Eye Cream</span>
+                  <span class="label-content">Peptide Eye Cream</span>
                 </div>
                 <div class="flex items-center gap-8">
-                  <div><span class="label-text mr-1.5">Qty</span> <span>4</span></div>
-                  <div><span class="label-text mr-1.5">Total</span> <span>132.00</span></div>
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">132.00</span></div>
                 </div>
               </div>
             </div>
