@@ -135,6 +135,140 @@
     @apply text-brand-dark text-sm font-light;
   }
 
+  /* ----------------------------- */
+  /* ------- FORM INPUTS ------- */
+  /* ----------------------------- */
+
+  /* Wrapper: label + input + optional helper */
+  .form-group {
+    @apply flex flex-col gap-1.5;
+  }
+
+  /* Label above input */
+  .form-label {
+    @apply text-xs font-medium text-gray-500 uppercase tracking-wide;
+
+    & .required {
+      @apply text-red-500 ml-0.5;
+    }
+  }
+
+  /* Base text input — pill shape, 3 states via native pseudo-classes */
+  .form-input {
+    @apply w-full rounded-full border border-brand-border bg-brand-background-secondary px-5 py-3 text-sm font-light text-brand-dark
+           placeholder:text-gray-400 placeholder:font-extralight
+           focus:border-brand-primary-700 focus:ring-0 focus:ring-brand-primary-700 focus:outline-none
+           transition-colors;
+  }
+
+  /* Filled state — when JS adds .is-filled or for CSS-only via :not(:placeholder-shown) */
+  .form-input:not(:placeholder-shown) {
+    @apply border-brand-border bg-brand-background-secondary;
+  }
+
+  /* Helper / validation text below input */
+  .form-helper {
+    @apply text-xs text-gray-400 font-light px-1;
+  }
+  .form-helper-error {
+    @apply text-xs text-red-500 font-light px-1;
+  }
+
+  /* Search input with icon button — no label variant */
+  .form-search-wrap {
+    @apply relative flex items-center;
+  }
+  .form-search-wrap .form-input {
+    @apply pr-12;
+  }
+  /* Date picker — dropdown calendar panel */
+  .form-datepicker-wrap {
+    @apply relative;
+  }
+  .form-datepicker-wrap .form-input {
+    @apply pr-12 cursor-pointer;
+  }
+  .form-datepicker-icon {
+    @apply absolute top-0 right-0 h-full px-4 flex items-center text-gray-400 pointer-events-none;
+  }
+  .form-datepicker-panel {
+    @apply absolute z-50 top-full left-0 mt-2 w-[17rem] p-4 bg-brand-light border border-brand-border rounded-2xl shadow-lg;
+  }
+  .form-datepicker-panel .dp-header {
+    @apply flex items-center justify-between mb-2;
+  }
+  .form-datepicker-panel .dp-title {
+    @apply text-sm font-medium text-brand-dark;
+  }
+  .form-datepicker-panel .dp-title-year {
+    @apply text-sm font-light text-gray-500 ml-1;
+  }
+  .form-datepicker-panel .dp-nav-btn {
+    @apply inline-flex items-center justify-center w-7 h-7 rounded-full text-gray-400 hover:bg-brand-background hover:text-brand-dark transition-colors cursor-pointer;
+  }
+  .form-datepicker-panel .dp-weekday {
+    @apply text-[10px] font-medium uppercase tracking-wide text-gray-400 text-center py-1;
+  }
+  .form-datepicker-panel .dp-day {
+    @apply flex items-center justify-center w-7 h-7 text-xs rounded-full cursor-pointer transition-colors;
+  }
+  .form-datepicker-panel .dp-day.is-today {
+    @apply bg-brand-background text-brand-dark font-medium;
+  }
+  .form-datepicker-panel .dp-day.is-selected {
+    @apply bg-brand-primary-700 text-white;
+  }
+  .form-datepicker-panel .dp-day:not(.is-selected):hover {
+    @apply bg-brand-background;
+  }
+
+  /* Dropdown select — styled to match form-input */
+  .form-select-wrap {
+    @apply relative;
+  }
+  .form-select-btn {
+    @apply w-full rounded-full border border-brand-border bg-brand-background-secondary px-5 py-3 text-sm font-light text-brand-dark
+           flex items-center justify-between gap-2 cursor-pointer
+           transition-colors;
+  }
+  .form-select-btn.is-open {
+    @apply border-brand-primary-700;
+  }
+  .form-select-btn.is-placeholder {
+    @apply text-gray-400 font-extralight;
+  }
+  .form-select-chevron {
+    @apply w-3.5 h-3.5 text-gray-400 shrink-0 transition-transform;
+  }
+  .form-select-btn.is-open .form-select-chevron {
+    @apply rotate-180;
+  }
+  .form-select-panel {
+    @apply absolute z-50 top-full left-0 right-0 mt-1.5 bg-brand-light border border-brand-border rounded-2xl shadow-lg overflow-hidden;
+  }
+  .form-select-panel-inner {
+    @apply p-1.5 max-h-60 overflow-y-auto;
+  }
+  .form-select-option {
+    @apply flex items-center px-4 py-2.5 text-sm font-light text-brand-dark rounded-xl cursor-pointer transition-colors;
+  }
+  .form-select-option:hover {
+    @apply bg-brand-background;
+  }
+  .form-select-option.is-selected {
+    @apply bg-brand-primary-100 text-brand-primary-700 font-normal;
+  }
+  .form-select-divider {
+    @apply my-1 h-px bg-brand-border mx-2;
+  }
+
+  .form-search-wrap .form-search-btn {
+    @apply absolute right-0 top-0 bottom-0
+           w-11 flex items-center justify-center
+           rounded-l-none rounded-r-full bg-brand-primary-700 text-white
+           hover:bg-brand-primary-800 transition-colors cursor-pointer;
+  }
+
   /* TYPOGRAPY */
   .heading-primary {
     @apply font-serif font-medium leading-tight tracking-wide;
