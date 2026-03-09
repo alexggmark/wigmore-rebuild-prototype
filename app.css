@@ -13,7 +13,9 @@
   /* --color-brand-primary-800: #01756E; */
   --color-brand-background: #F0F0F0;
   --color-brand-background-dark: #E4E5E8;
-  --color-brand-background-secondary: #F3F4F6;
+  --color-brand-background-secondary: #F9FAFB;
+  /* --color-brand-background-secondary: #F5F5F5; */
+  /* --color-brand-background-secondary: #F3F4F6; */
   --color-brand-light: #FCFCFC; /* Generic light */
   --color-brand-dark: #042F2E; /* All text */
   --color-brand-border: #E5E7EB;
@@ -147,6 +149,7 @@
   /* Label above input */
   .form-label {
     @apply text-xs font-medium text-gray-500 uppercase tracking-wide;
+    /* @apply text-sm font-medium; */
 
     & .required {
       @apply text-red-500 ml-0.5;
