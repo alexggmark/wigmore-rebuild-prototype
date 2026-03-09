@@ -154,7 +154,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="inline-flex gap-1 bg-brand-background-secondary rounded-full p-0.5 mb-6 mt-4">
+      <div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 mb-6 mt-4">
         <button @click="tab = 'standard'" :class="tab === 'standard' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
           Standard Orders
@@ -342,7 +342,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="inline-flex gap-1 bg-brand-background-secondary rounded-full p-0.5 mb-6 mt-4">
+      <div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 mb-6 mt-4">
         <button @click="tab = 'mine'" :class="tab === 'mine' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
           My Patients
@@ -354,10 +354,20 @@
       </div>
 
       <!-- Patient Cards -->
-      <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-3">
+      <div x-data x-init="new Swiper($refs.patientsSwiper, {
+        slidesPerView: 1.1,
+        spaceBetween: 12,
+        breakpoints: {
+          640: { slidesPerView: 2.2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 }
+        }
+      })">
+        <div x-ref="patientsSwiper" class="swiper overflow-hidden">
+          <div class="swiper-wrapper">
 
         <!-- Patient 1 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-5">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-100 flex items-center justify-center shrink-0">
@@ -395,10 +405,10 @@
               <span class="button-text" data-text="Prescribe"><span>Prescribe</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Patient 2 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-5">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-100 flex items-center justify-center shrink-0">
@@ -436,10 +446,10 @@
               <span class="button-text" data-text="Prescribe"><span>Prescribe</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Patient 3 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-5">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-100 flex items-center justify-center shrink-0">
@@ -477,10 +487,10 @@
               <span class="button-text" data-text="Prescribe"><span>Prescribe</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Patient 4 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-5">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-100 flex items-center justify-center shrink-0">
@@ -518,8 +528,10 @@
               <span class="button-text" data-text="Prescribe"><span>Prescribe</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
+          </div>
+        </div>
       </div>
     </div>
 
@@ -537,10 +549,20 @@
         </a>
       </div>
 
-      <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-3 mt-5">
+      <div x-data x-init="new Swiper($refs.membersSwiper, {
+        slidesPerView: 1.1,
+        spaceBetween: 12,
+        breakpoints: {
+          640: { slidesPerView: 2.2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 }
+        }
+      })" class="mt-5">
+        <div x-ref="membersSwiper" class="swiper overflow-hidden">
+          <div class="swiper-wrapper">
 
         <!-- Member 1 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-700 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -576,10 +598,10 @@
               <span class="button-text" data-text="Remind"><span>Remind</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Member 2 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -611,10 +633,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Member 3 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -646,10 +668,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Member 4 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -681,8 +703,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
+          </div>
+        </div>
       </div>
     </div>
 
@@ -700,10 +724,20 @@
         </a>
       </div>
 
-      <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-3 mt-5">
+      <div x-data x-init="new Swiper($refs.contactsSwiper, {
+        slidesPerView: 1.1,
+        spaceBetween: 12,
+        breakpoints: {
+          640: { slidesPerView: 2.2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 }
+        }
+      })" class="mt-5">
+        <div x-ref="contactsSwiper" class="swiper overflow-hidden">
+          <div class="swiper-wrapper">
 
         <!-- Contact 1 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-brand-primary-700 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -734,10 +768,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Contact 2 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -768,10 +802,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Contact 3 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -802,10 +836,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
         <!-- Contact 4 -->
-        <div class="border border-brand-border rounded-2xl p-5">
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
@@ -836,8 +870,10 @@
               <span class="button-text" data-text="Details"><span>Details</span></span>
             </a>
           </div>
-        </div>
+        </div></div>
 
+          </div>
+        </div>
       </div>
     </div>
 
