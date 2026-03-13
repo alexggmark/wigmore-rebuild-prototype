@@ -12,7 +12,8 @@ export default defineConfig({
         components: 'components.html',
         collections: 'collections.html',
         products: 'products.html',
-        dashboard: 'dashboard.html'
+        dashboard: 'dashboard.html',
+        orders: 'orders.html'
       },
     },
   },
