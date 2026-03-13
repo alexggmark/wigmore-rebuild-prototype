@@ -5,7 +5,8 @@
       "Bash(find /Users/alex/Documents/DesktopDesktop/Dev/Git/WM_PROJECT/REAL/SUWIN-EXT-WEB/WigmoreWebApp/WMContent/v2 -type f -name \"*.json\" -o -name \"*.txt\" -o -name \"*.md\" 2>/dev/null | sort)",
       "Bash(find /Users/alex/Documents/DesktopDesktop/Dev/Git/WM_PROJECT/REAL/SUWIN-EXT-WEB/WigmoreWebApp/Views -name \"*v2*\" -o -name \"*.cshtml\" -path \"*Shared*\" -path \"*v2*\" 2>/dev/null | head -20)",
       "Read(//Users/alex/Documents/DesktopDesktop/Dev/Git/WM_PROJECT/REAL/SUWIN-EXT-WEB/**)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(find /Users/alex/Documents/DesktopDesktop/Dev/Git/WM_PROJECT/REAL/SUWIN-EXT-WEB/wigmore-rebuild-prototype -type f -name \"*dashboard*\" -o -name \"*order*\" 2>/dev/null | head -20)"
     ]
   }
 }

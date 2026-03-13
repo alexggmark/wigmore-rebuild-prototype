@@ -20,6 +20,7 @@
   --color-brand-dark: #042F2E; /* All text */
   --color-brand-border: #E5E7EB;
   --color-brand-border-light: #F2F2F2;
+  --color-brand-error: #991B1B;
 
   /* TYPOGRAPHY */
   /* --font-sans: "gotham", system-ui, sans-serif; */
@@ -256,7 +257,7 @@
     @apply p-1.5 max-h-60 overflow-y-auto;
   }
   .form-select-option {
-    @apply flex items-center px-4 py-2.5 text-sm font-light text-brand-dark rounded-xl cursor-pointer transition-colors;
+    @apply flex items-center w-full px-4 py-2.5 text-sm font-light text-brand-dark rounded-xl cursor-pointer transition-colors;
   }
   .form-select-option:hover {
     @apply bg-brand-background;

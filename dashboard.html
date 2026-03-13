@@ -142,7 +142,7 @@
 
 
     <!-- Most Recent Orders -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'standard' }">
+    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'standard', orderDetailOpen: false, orderStatus: '', confirmAction: null }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Most Recent Orders</h2>
@@ -150,6 +150,7 @@
         </div>
         <a href="#" class="button-secondary text-xs">
           <span class="button-text" data-text="View All Orders"><span>View All Orders</span></span>
+          <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
         </a>
       </div>
 
@@ -169,7 +170,7 @@
       <div class="space-y-3">
 
         <!-- Order 1: Pending -->
-        <div class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
+        <div @click="orderStatus = 'pending'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
           <div class="flex items-start justify-between mb-3">
             <div class="flex items-center gap-3">
               <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
@@ -177,9 +178,28 @@
             </div>
             <div class="flex items-center gap-2">
               <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-              </button>
+              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </button>
+                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                    <button @click="menuOpen = false; orderStatus = 'pending'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>View Details</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Download Invoice</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Print Order</span>
+                    </button>
+                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
+                      <span>Cancel Order</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex items-center justify-between">
@@ -201,14 +221,14 @@
                 RX Items
               </span>
             </div>
-            <a href="#" class="basic-link">
+            <span class="basic-link">
               View Order
-            </a>
+            </span>
           </div>
         </div>
 
         <!-- Order 2: Processing -->
-        <div class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
+        <div @click="orderStatus = 'processing'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
           <div class="flex items-start justify-between mb-3">
             <div class="flex items-center gap-3">
               <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
@@ -216,9 +236,28 @@
             </div>
             <div class="flex items-center gap-2">
               <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-              </button>
+              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </button>
+                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                    <button @click="menuOpen = false; orderStatus = 'processing'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>View Details</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Download Invoice</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Print Order</span>
+                    </button>
+                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
+                      <span>Cancel Order</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex items-center justify-between">
@@ -240,14 +279,14 @@
                 RX Items
               </span>
             </div>
-            <a href="#" class="basic-link">
+            <span class="basic-link">
               View Order
-            </a>
+            </span>
           </div>
         </div>
 
         <!-- Order 3: Completed -->
-        <div class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
+        <div @click="orderStatus = 'completed'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
           <div class="flex items-start justify-between mb-3">
             <div class="flex items-center gap-3">
               <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
@@ -255,9 +294,28 @@
             </div>
             <div class="flex items-center gap-2">
               <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-              </button>
+              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </button>
+                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                    <button @click="menuOpen = false; orderStatus = 'completed'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>View Details</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Download Invoice</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Print Order</span>
+                    </button>
+                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
+                      <span>Cancel Order</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex items-center justify-between">
@@ -279,14 +337,14 @@
                 RX Items
               </span>
             </div>
-            <a href="#" class="basic-link">
+            <span class="basic-link">
               View Order
-            </a>
+            </span>
           </div>
         </div>
 
         <!-- Order 4: Cancelled -->
-        <div class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
+        <div @click="orderStatus = 'cancelled'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
           <div class="flex items-start justify-between mb-3">
             <div class="flex items-center gap-3">
               <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
@@ -294,9 +352,28 @@
             </div>
             <div class="flex items-center gap-2">
               <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-              </button>
+              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </button>
+                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                    <button @click="menuOpen = false; orderStatus = 'cancelled'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>View Details</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Download Invoice</span>
+                    </button>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                      <span>Print Order</span>
+                    </button>
+                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
+                      <span>Cancel Order</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex items-center justify-between">
@@ -318,18 +395,380 @@
                 RX Items
               </span>
             </div>
-            <a href="#" class="basic-link">
+            <span class="basic-link">
               View Order
-            </a>
+            </span>
           </div>
         </div>
 
       </div>
+
+      <!-- Order Details Popup -->
+      <template x-teleport="body">
+        <div x-show="orderDetailOpen" x-cloak class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          <!-- Backdrop -->
+          <div x-show="orderDetailOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               @click="orderDetailOpen = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+          <!-- Dialog panel — scrollable outer, fixed inner items scroll -->
+          <div x-show="orderDetailOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="if (!confirmAction) orderDetailOpen = false"
+               class="relative bg-white rounded-3xl shadow-xl w-full max-w-[750px] max-h-[90vh] overflow-y-auto">
+
+            <!-- Header -->
+            <div class="sm:px-8 sm:pt-8 px-5 pt-5 pb-0">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h2 class="heading-primary sm:text-2xl text-xl">Order Details</h2>
+                  <div class="sm:mt-4 mt-3 inline-block">
+                    <span x-show="orderStatus === 'pending'" class="badge-status-pending">Pending</span>
+                    <span x-show="orderStatus === 'processing'" class="badge-status-processing">Processing</span>
+                    <span x-show="orderStatus === 'completed'" class="badge-status-completed">Completed</span>
+                    <span x-show="orderStatus === 'cancelled'" class="badge-status-cancelled">Cancelled</span>
+                  </div>
+                </div>
+                <button @click="orderDetailOpen = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <!-- Pending — Warning alert -->
+              <div x-show="orderStatus === 'pending'" class="flex items-start gap-3 p-4 rounded-xl border bg-amber-100 border-amber-400 text-amber-800 sm:mt-5 mt-4">
+                <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+                <div>
+                  <p class="md:text-sm text-xs font-medium leading-tight">Approval Required</p>
+                  <p class="md:text-sm text-xs font-light leading-snug mt-1">This order is pending approval. Please review the details and approve or reject this order.</p>
+                </div>
+              </div>
+              <!-- Processing — Info alert -->
+              <div x-show="orderStatus === 'processing'" class="flex items-start gap-3 p-4 rounded-xl border bg-blue-50 border-blue-200 text-blue-800 sm:mt-5 mt-4">
+                <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9ZM13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V12Z" fill="currentColor"></path></svg>
+                <div>
+                  <p class="md:text-sm text-xs font-medium leading-tight">Order In Progress</p>
+                  <p class="md:text-sm text-xs font-light leading-snug mt-1">This order is currently being processed and will be dispatched soon.</p>
+                </div>
+              </div>
+              <!-- Cancelled — Error alert -->
+              <div x-show="orderStatus === 'cancelled'" class="flex items-start gap-3 p-4 rounded-xl border bg-red-100 border-red-400 text-red-800 sm:mt-5 mt-4">
+                <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.9996 7C12.5519 7 12.9996 7.44772 12.9996 8V12C12.9996 12.5523 12.5519 13 11.9996 13C11.4474 13 10.9996 12.5523 10.9996 12V8C10.9996 7.44772 11.4474 7 11.9996 7ZM12.001 14.99C11.4488 14.9892 11.0004 15.4363 10.9997 15.9886L10.9996 15.9986C10.9989 16.5509 11.446 16.9992 11.9982 17C12.5505 17.0008 12.9989 16.5537 12.9996 16.0014L12.9996 15.9914C13.0004 15.4391 12.5533 14.9908 12.001 14.99Z" fill="currentColor"></path></svg>
+                <div>
+                  <p class="md:text-sm text-xs font-medium leading-tight">Order Cancelled</p>
+                  <p class="md:text-sm text-xs font-light leading-snug mt-1">This order has been cancelled. If this was a mistake, please contact support.</p>
+                </div>
+              </div>
+              <!-- Pending: Reject + Approve buttons -->
+              <div x-show="orderStatus === 'pending'" class="sm:flex sm:flex-row flex flex-col gap-3 sm:mt-5 mt-4">
+                <button @click="confirmAction = 'reject'" class="button-secondary flex-1 justify-center !border-brand-error !text-brand-error hover:!bg-brand-error/5">
+                  <span class="flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="button-text" data-text="Reject Order"><span>Reject Order</span></span>
+                  </span>
+                </button>
+                <button @click="confirmAction = 'approve'" class="button-primary flex-1 justify-center">
+                  <span class="flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="button-text" data-text="Approve Order"><span>Approve Order</span></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Order Info -->
+            <div class="sm:px-8 px-5 sm:pt-6 pt-4">
+              <div class="border-t border-brand-border"></div>
+
+              <div class="space-y-4 py-4">
+                <!-- Order ID + Order Date -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <p class="label-text mb-1">Order ID</p>
+                    <p class="label-content">#WG-1242</p>
+                  </div>
+                  <div class="sm:text-right">
+                    <p class="label-text mb-1">Order Date</p>
+                    <p class="label-content">02 May 2025</p>
+                  </div>
+                </div>
+                <!-- Ordered By + Approved By -->
+                <div class="sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0">
+                  <div>
+                    <p class="label-text mb-1">Ordered By</p>
+                    <p class="label-content">Nurse Emma Williams</p>
+                  </div>
+                  <div class="sm:text-right">
+                    <p class="label-text mb-1">Approved By</p>
+                    <p class="label-content">Dr Sarah Johnson</p>
+                  </div>
+                </div>
+                <!-- Payment + Total -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <p class="label-text mb-1">Payment Method</p>
+                    <p class="label-content">Credit Card</p>
+                  </div>
+                  <div class="sm:text-right">
+                    <p class="label-text mb-1">Total Amount</p>
+                    <p class="label-content">&pound;340.00</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-t border-brand-border"></div>
+            </div>
+
+            <!-- Items List -->
+            <div class="sm:px-8 px-5 sm:pt-5 pt-4">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="heading-secondary sm:text-sm text-xs uppercase tracking-wide">Items (12 Total)</h3>
+                <span class="badge-primary text-[10px]">RX Order</span>
+              </div>
+
+              <div>
+                <div class="flex flex-col sm:gap-2.5 gap-2 sm:max-h-57.5 max-h-48 overflow-y-auto scroll-fade pr-1">
+                  <!-- Item rows -->
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Dermapen Needles</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">206.99</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Hyaluronic Serum</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">108.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Vitamin C Serum</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">8</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">439.99</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Retinol Cream</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">6</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">508.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Botox Vial 50u</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">312.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Dermal Filler 1ml</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">5</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">475.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Microneedling Pen</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">1</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">189.99</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Collagen Mask Pack</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">10</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">89.90</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">LED Light Therapy Gel</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">64.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Numbing Cream 30g</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">7</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">105.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Skin Peel Solution</span>
+                      <span class="badge-primary text-[10px] bg-brand-primary-700/10 px-2">RX</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">156.00</span></div>
+                    </div>
+                  </div>
+
+                  <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                    <div class="flex items-center sm:gap-3 gap-2">
+                      <span class="relative flex size-2 shrink-0"><span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span></span>
+                      <span class="label-content">Peptide Eye Cream</span>
+                    </div>
+                    <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                      <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                      <div><span class="label-text mr-1.5">Total</span> <span class="label-content">132.00</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-brand-border"></div>
+              </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="sm:px-8 px-5 sm:pt-6 pt-4 sm:pb-8 pb-5">
+              <div class="sm:flex sm:flex-row flex flex-col gap-3 sm:gap-3">
+                <button class="button-secondary sm:flex-1 w-full sm:w-auto justify-center">
+                  <span class="flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span class="button-text" data-text="Repeat Order"><span>Repeat Order</span></span>
+                  </span>
+                </button>
+                <button class="button-primary sm:flex-1 w-full sm:w-auto justify-center">
+                  <span class="button-text" data-text="View Full Order"><span>View Full Order</span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Confirmation Dialog (stacks on top of Order Details) -->
+      <template x-teleport="body">
+        <div x-show="confirmAction" x-cloak class="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+          <!-- Second backdrop — stacks with the first, making bg darker -->
+          <div x-show="confirmAction"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               @click="confirmAction = null"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+          <!-- Approve dialog -->
+          <div x-show="confirmAction === 'approve'"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmAction = null"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+
+            <h2 class="heading-primary text-2xl">Approve Order?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to approve order <span class="font-medium">#WG-1240</span>? This will move the order to processing.</p>
+
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmAction = null">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center" @click="confirmAction = null; orderDetailOpen = false; $dispatch('toast-show', { message: 'Order #WG-1240 approved', type: 'success' })">
+                <span class="button-text" data-text="Yes, Approve Order"><span>Yes, Approve Order</span></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Reject dialog -->
+          <div x-show="confirmAction === 'reject'"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmAction = null"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+
+            <h2 class="heading-primary text-2xl">Reject Order?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to reject order <span class="font-medium">#WG-1240</span>? This action cannot be undone.</p>
+
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmAction = null">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center !bg-brand-error hover:!bg-brand-error/90" @click="confirmAction = null; orderDetailOpen = false; $dispatch('toast-show', { message: 'Order #WG-1240 rejected', type: 'error' })">
+                <span class="button-text" data-text="Yes, Reject Order"><span>Yes, Reject Order</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
     </div>
 
 
     <!-- Patients Section -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'mine' }">
+    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'mine', editPatientOpen: false, confirmDeletePatient: false, editPatient: { name: '', gender: '', dob: '', country: '', address: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Patients</h2>
@@ -378,7 +817,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Robert Williams</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editPatient = { name: 'Robert Williams', gender: 'Male', dob: '15/03/1958', country: 'United Kingdom', address: '54 Devonshire Place, London, W1G 6QA' }; editPatientOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -419,7 +858,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Harriet Smith</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editPatient = { name: 'Harriet Smith', gender: 'Female', dob: '22/07/1993', country: 'United Kingdom', address: '45 Park Lane, Mayfair, London, W1K 1PN' }; editPatientOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -460,7 +899,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Sonia Jackson</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editPatient = { name: 'Sonia Jackson', gender: 'Female', dob: '10/11/1984', country: 'United Kingdom', address: '123 Harley Street, London, W1G 7JU' }; editPatientOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -501,7 +940,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Sonia Jackson</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editPatient = { name: 'Sonia Jackson', gender: 'Female', dob: '10/11/1984', country: 'United Kingdom', address: '123 Harley Street, London, W1G 7JU' }; editPatientOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -542,7 +981,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Sonia Jackson</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editPatient = { name: 'Sonia Jackson', gender: 'Female', dob: '10/11/1984', country: 'United Kingdom', address: '123 Harley Street, London, W1G 7JU' }; editPatientOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -578,11 +1017,159 @@
         </div>
         <div x-ref="patientsProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
+
+      <!-- Edit Patient Popup -->
+      <template x-teleport="body">
+        <div x-show="editPatientOpen" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+          <!-- Backdrop -->
+          <div x-show="editPatientOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               @click="editPatientOpen = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+          <!-- Dialog panel -->
+          <div x-show="editPatientOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="if (!confirmDeletePatient) editPatientOpen = false"
+               class="relative bg-white rounded-3xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+
+            <!-- Header -->
+            <div class="px-8 pt-8 pb-0">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h2 class="heading-primary text-2xl">Edit Patient</h2>
+                  <p class="text-sm font-light mt-1">Update patient information</p>
+                </div>
+                <button @click="editPatientOpen = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="border-t border-brand-border mt-6"></div>
+            </div>
+
+            <!-- Form -->
+            <div class="px-8 py-6 space-y-5">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" x-model="editPatient.name" placeholder="Full name">
+              </div>
+
+              <div class="form-group" x-data="{ selectOpen: false }" @click.away="selectOpen = false">
+                <label class="form-label">Gender</label>
+                <div class="form-select-wrap">
+                  <button type="button" @click="selectOpen = !selectOpen" class="form-select-btn" :class="selectOpen && 'is-open'">
+                    <span x-text="editPatient.gender || 'Select gender'"></span>
+                    <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div x-show="selectOpen" x-transition class="form-select-panel" x-cloak>
+                    <div class="form-select-panel-inner">
+                      <button type="button" @click="editPatient.gender = 'Male'; selectOpen = false" class="form-select-option" :class="editPatient.gender === 'Male' && 'is-selected'">Male</button>
+                      <button type="button" @click="editPatient.gender = 'Female'; selectOpen = false" class="form-select-option" :class="editPatient.gender === 'Female' && 'is-selected'">Female</button>
+                      <button type="button" @click="editPatient.gender = 'Other'; selectOpen = false" class="form-select-option" :class="editPatient.gender === 'Other' && 'is-selected'">Other</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <input type="text" class="form-input" x-model="editPatient.dob" placeholder="DD/MM/YYYY">
+              </div>
+
+              <div class="form-group" x-data="{ selectOpen: false }" @click.away="selectOpen = false">
+                <label class="form-label">Country</label>
+                <div class="form-select-wrap">
+                  <button type="button" @click="selectOpen = !selectOpen" class="form-select-btn" :class="selectOpen && 'is-open'">
+                    <span x-text="editPatient.country || 'Select country'"></span>
+                    <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div x-show="selectOpen" x-transition class="form-select-panel" x-cloak>
+                    <div class="form-select-panel-inner">
+                      <button type="button" @click="editPatient.country = 'United Kingdom'; selectOpen = false" class="form-select-option" :class="editPatient.country === 'United Kingdom' && 'is-selected'">United Kingdom</button>
+                      <button type="button" @click="editPatient.country = 'Ireland'; selectOpen = false" class="form-select-option" :class="editPatient.country === 'Ireland' && 'is-selected'">Ireland</button>
+                      <button type="button" @click="editPatient.country = 'United States'; selectOpen = false" class="form-select-option" :class="editPatient.country === 'United States' && 'is-selected'">United States</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-input" x-model="editPatient.address" placeholder="Address">
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-8 pb-8 pt-0">
+              <div class="border-t border-brand-border mb-6"></div>
+              <div class="flex gap-3 justify-center">
+                <button @click="confirmDeletePatient = true" class="button-secondary flex-1 justify-center !border-brand-error/30 !text-brand-error hover:!bg-brand-error/5">
+                  <span class="button-text" data-text="Delete Patient"><span>Delete Patient</span></span>
+                </button>
+                <button @click="editPatientOpen = false" class="button-primary flex-1 justify-center">
+                  <span class="button-text" data-text="Save Changes"><span>Save Changes</span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Delete Patient Confirmation (stacks on top of Edit Patient) -->
+      <template x-teleport="body">
+        <div x-show="confirmDeletePatient" x-cloak class="fixed inset-0 z-10000 flex items-center justify-center p-4">
+          <!-- Second backdrop -->
+          <div x-show="confirmDeletePatient"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               @click="confirmDeletePatient = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+          <div x-show="confirmDeletePatient"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmDeletePatient = false"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+
+            <h2 class="heading-primary text-2xl">Delete Patient?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to delete <span class="font-medium" x-text="editPatient.name"></span>? This action cannot be undone and all associated records will be permanently removed.</p>
+
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmDeletePatient = false">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center !bg-brand-error hover:!bg-brand-error/90" @click="confirmDeletePatient = false; editPatientOpen = false; $dispatch('toast-show', { message: editPatient.name + ' has been deleted', type: 'error' })">
+                <span class="button-text" data-text="Yes, Delete Patient"><span>Yes, Delete Patient</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
     </div>
 
 
     <!-- Clinic Members Section -->
-    <div class="card-container-generic p-6 mb-3">
+    <div class="card-container-generic p-6 mb-3" x-data="{ editMemberOpen: false, confirmDeleteMember: false, editMember: { name: '', role: '', email: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Clinic Members</h2>
@@ -624,7 +1211,7 @@
                 </div>
               </div>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editMember = { name: 'Dr. Elizabeth Thompson', role: 'Doctor', email: 'elizabeth.thompson@clinic.com' }; editMemberOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -662,7 +1249,7 @@
                 </div>
               </div>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editMember = { name: 'Dr. Oliver Davies', role: 'Clinic Owner', email: 'oliver.davies@clinic.com' }; editMemberOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -697,7 +1284,7 @@
                 </div>
               </div>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editMember = { name: 'Isla Mattenfield', role: 'Nurse', email: 'isla.mattenfield@clinic.com' }; editMemberOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -722,11 +1309,105 @@
         </div>
         <div x-ref="membersProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
+
+      <!-- Edit Member Popup -->
+      <template x-teleport="body">
+        <div x-show="editMemberOpen" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+          <div x-show="editMemberOpen"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="editMemberOpen = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="editMemberOpen"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="if (!confirmDeleteMember) editMemberOpen = false"
+               class="relative bg-white rounded-3xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="px-8 pt-8 pb-0">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h2 class="heading-primary text-2xl">Edit Member</h2>
+                  <p class="text-sm font-light mt-1">Update clinic member information</p>
+                </div>
+                <button @click="editMemberOpen = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+              <div class="border-t border-brand-border mt-6"></div>
+            </div>
+            <div class="px-8 py-6 space-y-5">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" x-model="editMember.name" placeholder="Full name">
+              </div>
+              <div class="form-group" x-data="{ selectOpen: false }" @click.away="selectOpen = false">
+                <label class="form-label">Role</label>
+                <div class="form-select-wrap">
+                  <button type="button" @click="selectOpen = !selectOpen" class="form-select-btn" :class="selectOpen && 'is-open'">
+                    <span x-text="editMember.role || 'Select role'"></span>
+                    <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div x-show="selectOpen" x-transition class="form-select-panel" x-cloak>
+                    <div class="form-select-panel-inner">
+                      <button type="button" @click="editMember.role = 'Doctor'; selectOpen = false" class="form-select-option" :class="editMember.role === 'Doctor' && 'is-selected'">Doctor</button>
+                      <button type="button" @click="editMember.role = 'Nurse'; selectOpen = false" class="form-select-option" :class="editMember.role === 'Nurse' && 'is-selected'">Nurse</button>
+                      <button type="button" @click="editMember.role = 'Clinic Owner'; selectOpen = false" class="form-select-option" :class="editMember.role === 'Clinic Owner' && 'is-selected'">Clinic Owner</button>
+                      <button type="button" @click="editMember.role = 'Receptionist'; selectOpen = false" class="form-select-option" :class="editMember.role === 'Receptionist' && 'is-selected'">Receptionist</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" x-model="editMember.email" placeholder="Email address">
+              </div>
+            </div>
+            <div class="px-8 pb-8 pt-0">
+              <div class="border-t border-brand-border mb-6"></div>
+              <div class="flex gap-3 justify-center">
+                <button @click="confirmDeleteMember = true" class="button-secondary flex-1 justify-center !border-brand-error/30 !text-brand-error hover:!bg-brand-error/5">
+                  <span class="button-text" data-text="Delete Member"><span>Delete Member</span></span>
+                </button>
+                <button @click="editMemberOpen = false" class="button-primary flex-1 justify-center">
+                  <span class="button-text" data-text="Save Changes"><span>Save Changes</span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Delete Member Confirmation -->
+      <template x-teleport="body">
+        <div x-show="confirmDeleteMember" x-cloak class="fixed inset-0 z-10000 flex items-center justify-center p-4">
+          <div x-show="confirmDeleteMember"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="confirmDeleteMember = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="confirmDeleteMember"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmDeleteMember = false"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+            <h2 class="heading-primary text-2xl">Delete Member?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to delete <span class="font-medium" x-text="editMember.name"></span> from the clinic? They will lose access to all clinic resources.</p>
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmDeleteMember = false">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center !bg-brand-error hover:!bg-brand-error/90" @click="confirmDeleteMember = false; editMemberOpen = false; $dispatch('toast-show', { message: editMember.name + ' has been deleted', type: 'error' })">
+                <span class="button-text" data-text="Yes, Delete Member"><span>Yes, Delete Member</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
     </div>
 
 
     <!-- Contacts Section -->
-    <div class="card-container-generic p-6 mb-3">
+    <div class="card-container-generic p-6 mb-3" x-data="{ editContactOpen: false, confirmDeleteContact: false, editContact: { name: '', email: '', phone: '', address: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Contacts</h2>
@@ -762,7 +1443,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Duncan Tall</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editContact = { name: 'Duncan Tall', email: 'duncan.tall@business.com', phone: '+44781234567890', address: '4 addresses' }; editContactOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -796,7 +1477,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Dr. Anya Sharma</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editContact = { name: 'Dr. Anya Sharma', email: 'anya.sharma@premiorehealth.co.uk', phone: '+44 20 7946 0532', address: '78 Cavendish Square, London, W1G 9LP' }; editContactOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -830,7 +1511,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Michael Thompson</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editContact = { name: 'Michael Thompson', email: 'michael.thompson@enterprise.net', phone: '+441234567890', address: '78 High Street, Bristol, BS1 2AB' }; editContactOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -864,7 +1545,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Dr. Simon Howarth</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editContact = { name: 'Dr. Simon Howarth', email: 'simon.howarth@nowmed.co.uk', phone: '+44 20 7946 0532', address: '78 Cavendish Square, London, W1G 9LP' }; editContactOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -898,7 +1579,7 @@
               </div>
               <h3 class="heading-secondary text-sm">Dr. Simon Howarth</h3>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <button @click="editContact = { name: 'Dr. Simon Howarth', email: 'simon.howarth@nowmed.co.uk', phone: '+44 20 7946 0532', address: '78 Cavendish Square, London, W1G 9LP' }; editContactOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
           </div>
@@ -927,6 +1608,91 @@
         </div>
         <div x-ref="contactsProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
+
+      <!-- Edit Contact Popup -->
+      <template x-teleport="body">
+        <div x-show="editContactOpen" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+          <div x-show="editContactOpen"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="editContactOpen = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="editContactOpen"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="if (!confirmDeleteContact) editContactOpen = false"
+               class="relative bg-white rounded-3xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="px-8 pt-8 pb-0">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h2 class="heading-primary text-2xl">Edit Contact</h2>
+                  <p class="text-sm font-light mt-1">Update contact information</p>
+                </div>
+                <button @click="editContactOpen = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+              <div class="border-t border-brand-border mt-6"></div>
+            </div>
+            <div class="px-8 py-6 space-y-5">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" x-model="editContact.name" placeholder="Full name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" x-model="editContact.email" placeholder="Email address">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" x-model="editContact.phone" placeholder="Phone number">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-input" x-model="editContact.address" placeholder="Address">
+              </div>
+            </div>
+            <div class="px-8 pb-8 pt-0">
+              <div class="border-t border-brand-border mb-6"></div>
+              <div class="flex gap-3 justify-center">
+                <button @click="confirmDeleteContact = true" class="button-secondary flex-1 justify-center !border-brand-error/30 !text-brand-error hover:!bg-brand-error/5">
+                  <span class="button-text" data-text="Delete Contact"><span>Delete Contact</span></span>
+                </button>
+                <button @click="editContactOpen = false" class="button-primary flex-1 justify-center">
+                  <span class="button-text" data-text="Save Changes"><span>Save Changes</span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Delete Contact Confirmation -->
+      <template x-teleport="body">
+        <div x-show="confirmDeleteContact" x-cloak class="fixed inset-0 z-10000 flex items-center justify-center p-4">
+          <div x-show="confirmDeleteContact"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="confirmDeleteContact = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="confirmDeleteContact"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmDeleteContact = false"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+            <h2 class="heading-primary text-2xl">Delete Contact?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to delete <span class="font-medium" x-text="editContact.name"></span>? This action cannot be undone.</p>
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmDeleteContact = false">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center !bg-brand-error hover:!bg-brand-error/90" @click="confirmDeleteContact = false; editContactOpen = false; $dispatch('toast-show', { message: editContact.name + ' has been deleted', type: 'error' })">
+                <span class="button-text" data-text="Yes, Delete Contact"><span>Yes, Delete Contact</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
     </div>
 
 
