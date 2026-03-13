@@ -706,7 +706,7 @@
         " x-cloak>
           <label class="form-label">Date of Birth <span class="required">*</span></label>
           <div class="form-datepicker-wrap">
-            <input x-ref="datePickerInput" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" @keydown.escape="datePickerOpen=false" class="form-input" placeholder="Select date" readonly />
+            <input x-ref="datePickerInput" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" @keydown.escape="datePickerOpen=false" :class="{ 'is-open': datePickerOpen }" class="form-input" placeholder="Select date" readonly />
             <div class="form-datepicker-icon">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             </div>

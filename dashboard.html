@@ -354,16 +354,19 @@
       </div>
 
       <!-- Patient Cards -->
-      <div x-data x-init="new Swiper($refs.patientsSwiper, {
-        slidesPerView: 1.1,
-        spaceBetween: 12,
-        breakpoints: {
-          640: { slidesPerView: 2.2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 }
-        }
-      })">
-        <div x-ref="patientsSwiper" class="swiper overflow-hidden">
+      <div x-data x-init="
+        let s = new Swiper($refs.patientsSwiper, {
+          slidesPerView: 'auto',
+          spaceBetween: 12,
+          pagination: { el: $refs.patientsProgress, type: 'progressbar' },
+          breakpoints: {
+            1024: { slidesPerView: 4 }
+          }
+        });
+        $refs.patientsProgress.style.display = s.isLocked ? 'none' : '';
+        s.on('resize', () => $refs.patientsProgress.style.display = s.isLocked ? 'none' : '');
+      ">
+        <div x-ref="patientsSwiper" class="swiper overflow-hidden right-overflow-visible-lg dashboard-card-swiper">
           <div class="swiper-wrapper">
 
         <!-- Patient 1 -->
@@ -530,8 +533,50 @@
           </div>
         </div></div>
 
+        <!-- Patient 5 -->
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
+          <div class="flex items-start justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-brand-primary-100 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
+              </div>
+              <h3 class="heading-secondary text-sm">Sonia Jackson</h3>
+            </div>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
+          </div>
+          <div class="space-y-2 text-sm border-t border-b border-brand-border py-4 my-4">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
+              <span class="label-content">Female</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span class="label-content">42 years old</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span class="label-content">123 Harley Street, London, W1G 7JU</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span class="label-content">8 prescriptions</span>
+            </div>
+          </div>
+          <div class="flex gap-2 mt-5">
+            <a href="#" class="button-secondary flex-1 justify-center text-xs">
+              <span class="button-text" data-text="History"><span>History</span></span>
+            </a>
+            <a href="#" class="button-primary flex-1 justify-center text-xs">
+              <span class="button-text" data-text="Prescribe"><span>Prescribe</span></span>
+            </a>
+          </div>
+        </div></div>
+
           </div>
         </div>
+        <div x-ref="patientsProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
     </div>
 
@@ -549,16 +594,19 @@
         </a>
       </div>
 
-      <div x-data x-init="new Swiper($refs.membersSwiper, {
-        slidesPerView: 1.1,
-        spaceBetween: 12,
-        breakpoints: {
-          640: { slidesPerView: 2.2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 }
-        }
-      })" class="mt-5">
-        <div x-ref="membersSwiper" class="swiper overflow-hidden">
+      <div x-data x-init="
+        let s = new Swiper($refs.membersSwiper, {
+          slidesPerView: 'auto',
+          spaceBetween: 12,
+          pagination: { el: $refs.membersProgress, type: 'progressbar' },
+          breakpoints: {
+            1024: { slidesPerView: 4 }
+          }
+        });
+        $refs.membersProgress.style.display = s.isLocked ? 'none' : '';
+        s.on('resize', () => $refs.membersProgress.style.display = s.isLocked ? 'none' : '');
+      " class="mt-5">
+        <div x-ref="membersSwiper" class="swiper overflow-hidden right-overflow-visible-lg dashboard-card-swiper">
           <div class="swiper-wrapper">
 
         <!-- Member 1 -->
@@ -670,43 +718,9 @@
           </div>
         </div></div>
 
-        <!-- Member 4 -->
-        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
-                <img src="/assets/placeholder-jennie.png" alt="Frederick Allsopp" class="w-full h-full object-cover">
-              </div>
-              <div>
-                <h3 class="heading-secondary text-sm">Frederick Allsopp</h3>
-                <div class="flex items-center gap-1.5 mt-1">
-                  <span class="badge-primary">Staff</span>
-                </div>
-              </div>
-            </div>
-            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            </button>
-          </div>
-          <div class="space-y-2 text-sm border-t border-b border-brand-border py-4 my-4">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
-              <span class="label-content">Aesthetic Practitioner</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span class="label-content">frederick.allsopp@clinic.com</span>
-            </div>
-          </div>
-          <div class="flex gap-2 mt-5">
-            <a href="#" class="button-secondary w-full justify-center text-xs">
-              <span class="button-text" data-text="Details"><span>Details</span></span>
-            </a>
-          </div>
-        </div></div>
-
           </div>
         </div>
+        <div x-ref="membersProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
     </div>
 
@@ -724,16 +738,19 @@
         </a>
       </div>
 
-      <div x-data x-init="new Swiper($refs.contactsSwiper, {
-        slidesPerView: 1.1,
-        spaceBetween: 12,
-        breakpoints: {
-          640: { slidesPerView: 2.2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 }
-        }
-      })" class="mt-5">
-        <div x-ref="contactsSwiper" class="swiper overflow-hidden">
+      <div x-data x-init="
+        let s = new Swiper($refs.contactsSwiper, {
+          slidesPerView: 'auto',
+          spaceBetween: 12,
+          pagination: { el: $refs.contactsProgress, type: 'progressbar' },
+          breakpoints: {
+            1024: { slidesPerView: 4 }
+          }
+        });
+        $refs.contactsProgress.style.display = s.isLocked ? 'none' : '';
+        s.on('resize', () => $refs.contactsProgress.style.display = s.isLocked ? 'none' : '');
+      " class="mt-5">
+        <div x-ref="contactsSwiper" class="swiper overflow-hidden right-overflow-visible-lg dashboard-card-swiper">
           <div class="swiper-wrapper">
 
         <!-- Contact 1 -->
@@ -872,8 +889,43 @@
           </div>
         </div></div>
 
+        <!-- Contact 5 -->
+        <div class="swiper-slide"><div class="border border-brand-border rounded-2xl p-5">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
+                <img src="/assets/placeholder-jennie.png" alt="Dr. Simon Howarth" class="w-full h-full object-cover">
+              </div>
+              <h3 class="heading-secondary text-sm">Dr. Simon Howarth</h3>
+            </div>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
+          </div>
+          <div class="space-y-2 text-sm border-t border-b border-brand-border py-4 my-4">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span class="label-content">simon.howarth@nowmed.co.uk</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <span class="label-content">+44 20 7946 0532</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span class="label-content">78 Cavendish Square, London, W1G 9LP</span>
+            </div>
+          </div>
+          <div class="mt-5">
+            <a href="#" class="button-secondary w-full justify-center text-xs">
+              <span class="button-text" data-text="Details"><span>Details</span></span>
+            </a>
+          </div>
+        </div></div>
+
           </div>
         </div>
+        <div x-ref="contactsProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
     </div>
 
