@@ -34,8 +34,8 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mb-3">
 
       <!-- Profile Card -->
-      <div class="card-container-generic p-5" x-data="{ editAccountOpen: false, editAccount: { name: 'Dr. Sarah Johnson', email: 'sarah.johnson@email.com', accountNumber: '1234567890', phone: '+44 77 4321 6459', officePhone: '+44 78 1234 5678', postcode: 'W1U 1QE' } }">
-        <div class="flex items-start justify-between mb-4">
+      <div class="card-container-generic p-5" x-data="{ editAccountOpen: false, profileOpen: window.innerWidth >= 768, editAccount: { name: 'Dr. Sarah Johnson', email: 'sarah.johnson@email.com', accountNumber: '1234567890', phone: '+44 77 4321 6459', officePhone: '+44 78 1234 5678', postcode: 'W1U 1QE' } }">
+        <div class="flex items-center md:items-start justify-between" :class="profileOpen ? 'mb-4' : 'md:mb-4'">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-full bg-brand-primary-700 flex items-center justify-center text-white text-lg font-bold overflow-hidden shrink-0">
               <img src="/assets/placeholder-jennie.png" alt="Dr. Sarah Johnson" class="w-full h-full object-cover">
@@ -45,11 +45,20 @@
               <span class="badge-primary inline-flex mt-2">Admin</span>
             </div>
           </div>
-          <button @click="editAccountOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+          <!-- Desktop: always edit button -->
+          <button @click="editAccountOpen = true" class="hidden md:flex w-8 h-8 items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
           </button>
+          <!-- Mobile: chevron when closed, edit when open -->
+          <button @click="profileOpen ? editAccountOpen = true : profileOpen = true" class="md:hidden w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" :class="!profileOpen ? 'border border-brand-border' : ''">
+            <!-- Chevron (collapsed) -->
+            <svg x-show="!profileOpen" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <!-- Edit (expanded) -->
+            <svg x-show="profileOpen" x-cloak class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </button>
         </div>
-        <div class="space-y-2.5 text-sm">
+        <div class="space-y-2.5 text-sm" x-show="profileOpen" x-collapse x-cloak>
+          <!-- Mobile: animated collapse -->
           <div class="flex items-center gap-2.5">
             <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span class="label-content">sarah.johnson@email.com</span>
