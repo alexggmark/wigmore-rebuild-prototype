@@ -34,7 +34,7 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mb-3">
 
       <!-- Profile Card -->
-      <div class="card-container-generic p-5">
+      <div class="card-container-generic p-5" x-data="{ editAccountOpen: false, editAccount: { name: 'Dr. Sarah Johnson', email: 'sarah.johnson@email.com', accountNumber: '1234567890', phone: '+44 77 4321 6459', officePhone: '+44 78 1234 5678', postcode: 'W1U 1QE' } }">
         <div class="flex items-start justify-between mb-4">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-full bg-brand-primary-700 flex items-center justify-center text-white text-lg font-bold overflow-hidden shrink-0">
@@ -45,7 +45,7 @@
               <span class="badge-primary inline-flex mt-2">Admin</span>
             </div>
           </div>
-          <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+          <button @click="editAccountOpen = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
           </button>
         </div>
@@ -55,7 +55,7 @@
             <span class="label-content">sarah.johnson@email.com</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <span class="w-4 h-4 flex items-center justify-center text-neutral-400 shrink-0 font-bold text-xs">#</span>
+            <svg class="w-4 h-4 text-brand-primary-700 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M3.33203 7.5H16.6654" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.33203 12.5H16.6654" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.33464 2.5L6.66797 17.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.3346 2.5L11.668 17.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="label-content">1234567890</span>
           </div>
           <div class="flex items-center gap-2.5">
@@ -63,7 +63,7 @@
             <span class="label-content">+44 77 4321 6459</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <svg class="w-4 h-4 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <svg class="w-4 h-4 text-brand-primary-700 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M5.19922 18.4195V2.26239C5.19922 1.57598 5.73648 1.01953 6.39922 1.01953H13.5992C14.262 1.01953 14.7992 1.57598 14.7992 2.26239V18.4195" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.04156 3.42188H7.60156V4.86187H9.04156V3.42188Z" stroke-width="0.5"/><path d="M12.4009 3.42188H10.9609V4.86187H12.4009V3.42188Z" stroke-width="0.5"/><path d="M9.04156 7.42188H7.60156V8.86187H9.04156V7.42188Z" stroke-width="0.5"/><path d="M12.4009 7.42188H10.9609V8.86187H12.4009V7.42188Z" stroke-width="0.5"/><path d="M9.04156 11.4219H7.60156V12.8619H9.04156V11.4219Z" stroke-width="0.5"/><path d="M12.4009 11.4219H10.9609V12.8619H12.4009V11.4219Z" stroke-width="0.5"/><path d="M8.19922 15.4219H11.7992V17.2219H8.19922V15.4219Z" stroke-width="0.5"/><path d="M4 18.7812L16 18.7813" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="label-content">+44 78 1234 5678</span>
           </div>
           <div class="flex items-center gap-2.5">
@@ -71,6 +71,91 @@
             <span class="label-content">W1U 1QE</span>
           </div>
         </div>
+
+        <!-- Edit Account Popup -->
+        <template x-teleport="body">
+          <div x-show="editAccountOpen" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+            <!-- Backdrop -->
+            <div x-show="editAccountOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 @click="editAccountOpen = false"
+                 class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+            <!-- Dialog panel -->
+            <div x-show="editAccountOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 scale-100"
+                 x-transition:leave-end="opacity-0 scale-95"
+                 @keydown.escape.window="editAccountOpen = false"
+                 class="relative bg-white rounded-3xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+
+              <!-- Header -->
+              <div class="px-8 pt-8 pb-0">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h2 class="heading-primary text-2xl">Edit Account</h2>
+                    <p class="text-sm font-light mt-1">Update your account information</p>
+                  </div>
+                  <button @click="editAccountOpen = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="border-t border-brand-border mt-6"></div>
+              </div>
+
+              <!-- Form -->
+              <div class="px-8 py-6 space-y-5">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-input" x-model="editAccount.name" placeholder="Full name">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-input" x-model="editAccount.email" placeholder="Email address">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-input" x-model="editAccount.phone" placeholder="Phone number">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Office Phone</label>
+                  <input type="tel" class="form-input" x-model="editAccount.officePhone" placeholder="Office phone number">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Postcode</label>
+                  <input type="text" class="form-input" x-model="editAccount.postcode" placeholder="Postcode">
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="px-8 pb-8 pt-0">
+                <div class="border-t border-brand-border mb-6"></div>
+                <div class="flex gap-3 justify-center">
+                  <button @click="editAccountOpen = false" class="button-secondary flex-1 justify-center">
+                    <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+                  </button>
+                  <button @click="editAccountOpen = false" class="button-primary flex-1 justify-center">
+                    <span class="button-text" data-text="Save Changes"><span>Save Changes</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
 
       <!-- Outstanding Payments -->
@@ -146,261 +231,347 @@
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Most Recent Orders</h2>
-          <p class=" text-sm mt-1">View and manage your latest orders</p>
+          <p class="text-sm mt-1">View and manage your latest orders</p>
+          <a href="#" class="button-text-icon text-xs mt-4 md:hidden">
+            <span>View All Orders</span>
+            <span class="icon icon-arrow"></span>
+          </a>
         </div>
-        <a href="#" class="button-secondary text-xs">
+        <a href="#" class="button-secondary text-xs hidden md:inline-flex">
           <span class="button-text" data-text="View All Orders"><span>View All Orders</span></span>
           <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
         </a>
       </div>
 
       <!-- Tabs -->
-      <div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 mb-6 mt-4">
+      <div class="overflow-x-auto mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
         <button @click="tab = 'standard'" :class="tab === 'standard' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-          Standard Orders
+          Standard
         </button>
         <button @click="tab = 'dropship'" :class="tab === 'dropship' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-          Dropship Orders
+          Dropship
         </button>
-      </div>
+      </div></div>
 
-      <!-- Order List -->
-      <div class="space-y-3">
+      <!-- Order List — Desktop -->
+      <div class="hidden md:block space-y-3">
 
         <!-- Order 1: Pending -->
         <div @click="orderStatus = 'pending'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
-          <div class="flex items-start justify-between mb-3">
-            <div class="flex items-center gap-3">
-              <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
-              <span class="badge-status-pending">Pending</span>
+          <div class="flex items-center gap-5">
+            <div class="grid grid-cols-2 gap-1 shrink-0">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
             </div>
-            <div class="flex items-center gap-2">
-              <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
-                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-                </button>
-                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
-                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
-                    <button @click="menuOpen = false; orderStatus = 'pending'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>View Details</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
+                  <span class="badge-status-pending">Pending</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="heading-secondary text-sm">&pound;1,748.44</span>
+                  <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                    <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
                     </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Download Invoice</span>
-                    </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Print Order</span>
-                    </button>
-                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
-                      <span>Cancel Order</span>
-                    </button>
+                    <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                      <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                        <button @click="menuOpen = false; orderStatus = 'pending'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>View Details</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Download Invoice</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Print Order</span></button>
+                        <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error"><span>Cancel Order</span></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs">
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01 May 2025</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 64 Items</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+                </div>
+                <span class="basic-link">View Order</span>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4 text-xs ">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                01 May 2025
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                64 Items
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
-                Sarah Johnson
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                RX Items
-              </span>
-            </div>
-            <span class="basic-link">
-              View Order
-            </span>
           </div>
         </div>
 
         <!-- Order 2: Processing -->
         <div @click="orderStatus = 'processing'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
-          <div class="flex items-start justify-between mb-3">
-            <div class="flex items-center gap-3">
-              <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
-              <span class="badge-status-processing">Processing</span>
+          <div class="flex items-center gap-5">
+            <div class="grid grid-cols-2 gap-1 shrink-0">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
             </div>
-            <div class="flex items-center gap-2">
-              <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
-                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-                </button>
-                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
-                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
-                    <button @click="menuOpen = false; orderStatus = 'processing'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>View Details</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <span class="heading-secondary text-sm">Order ID: #WG-1239</span>
+                  <span class="badge-status-processing">Processing</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="heading-secondary text-sm">&pound;1,748.44</span>
+                  <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                    <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
                     </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Download Invoice</span>
-                    </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Print Order</span>
-                    </button>
-                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
-                      <span>Cancel Order</span>
-                    </button>
+                    <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                      <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                        <button @click="menuOpen = false; orderStatus = 'processing'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>View Details</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Download Invoice</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Print Order</span></button>
+                        <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error"><span>Cancel Order</span></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs">
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 28 Apr 2025</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 32 Items</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+                </div>
+                <span class="basic-link">View Order</span>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4 text-xs ">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                01 May 2025
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                64 Items
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
-                Sarah Johnson
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                RX Items
-              </span>
-            </div>
-            <span class="basic-link">
-              View Order
-            </span>
           </div>
         </div>
 
         <!-- Order 3: Completed -->
         <div @click="orderStatus = 'completed'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
-          <div class="flex items-start justify-between mb-3">
-            <div class="flex items-center gap-3">
-              <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
-              <span class="badge-status-completed">Completed</span>
+          <div class="flex items-center gap-5">
+            <div class="grid grid-cols-2 gap-1 shrink-0">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
             </div>
-            <div class="flex items-center gap-2">
-              <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
-                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-                </button>
-                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
-                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
-                    <button @click="menuOpen = false; orderStatus = 'completed'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>View Details</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <span class="heading-secondary text-sm">Order ID: #WG-1238</span>
+                  <span class="badge-status-completed">Completed</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="heading-secondary text-sm">&pound;1,748.44</span>
+                  <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                    <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
                     </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Download Invoice</span>
-                    </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Print Order</span>
-                    </button>
-                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
-                      <span>Cancel Order</span>
-                    </button>
+                    <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                      <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                        <button @click="menuOpen = false; orderStatus = 'completed'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>View Details</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Download Invoice</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Print Order</span></button>
+                        <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error"><span>Cancel Order</span></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs">
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 15 Apr 2025</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 18 Items</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+                </div>
+                <span class="basic-link">View Order</span>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4 text-xs ">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                01 May 2025
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                64 Items
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
-                Sarah Johnson
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                RX Items
-              </span>
-            </div>
-            <span class="basic-link">
-              View Order
-            </span>
           </div>
         </div>
 
         <!-- Order 4: Cancelled -->
         <div @click="orderStatus = 'cancelled'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-5 hover:bg-brand-background-secondary/50 hover:shadow-sm transition-all cursor-pointer">
-          <div class="flex items-start justify-between mb-3">
-            <div class="flex items-center gap-3">
-              <span class="heading-secondary text-sm">Order ID: #WG-1240</span>
-              <span class="badge-status-cancelled">Cancelled</span>
+          <div class="flex items-center gap-5">
+            <div class="grid grid-cols-2 gap-1 shrink-0">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
+              <img src="/assets/placeholder-product.png" alt="Product" class="w-9 h-9 rounded-md object-cover">
             </div>
-            <div class="flex items-center gap-2">
-              <span class="heading-secondary text-sm">&pound;1,748.44</span>
-              <div class="relative" x-data="{ menuOpen: false }" @click.stop>
-                <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-                </button>
-                <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
-                  <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
-                    <button @click="menuOpen = false; orderStatus = 'cancelled'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>View Details</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <span class="heading-secondary text-sm">Order ID: #WG-1237</span>
+                  <span class="badge-status-cancelled">Cancelled</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="heading-secondary text-sm">&pound;1,748.44</span>
+                  <div class="relative" x-data="{ menuOpen: false }" @click.stop>
+                    <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
                     </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Download Invoice</span>
-                    </button>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
-                      <span>Print Order</span>
-                    </button>
-                    <div class="-mx-1 my-1 h-px bg-brand-background"></div>
-                    <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
-                      <span>Cancel Order</span>
-                    </button>
+                    <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+                      <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+                        <button @click="menuOpen = false; orderStatus = 'cancelled'; orderDetailOpen = true" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>View Details</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Download Invoice</span></button>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors"><span>Print Order</span></button>
+                        <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+                        <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error"><span>Cancel Order</span></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs">
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 02 Apr 2025</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 12 Items</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                  <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+                </div>
+                <span class="basic-link">View Order</span>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4 text-xs ">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                01 May 2025
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                64 Items
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
-                Sarah Johnson
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-brand-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                RX Items
-              </span>
-            </div>
-            <span class="basic-link">
-              View Order
-            </span>
           </div>
         </div>
 
+      </div>
+
+      <!-- Order List — Mobile Carousel -->
+      <div class="md:hidden" x-data x-init="
+        let s = new Swiper($refs.ordersSwiper, {
+          slidesPerView: 1.15,
+          spaceBetween: 12,
+          pagination: { el: $refs.ordersProgress, type: 'progressbar' }
+        });
+        $refs.ordersProgress.style.display = s.isLocked ? 'none' : '';
+        s.on('resize', () => $refs.ordersProgress.style.display = s.isLocked ? 'none' : '');
+      ">
+        <div x-ref="ordersSwiper" class="swiper overflow-hidden">
+          <div class="swiper-wrapper">
+
+            <!-- Mobile Order 1: Pending -->
+            <div class="swiper-slide"><div @click="orderStatus = 'pending'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-4 cursor-pointer">
+              <div class="grid grid-cols-4 gap-2 mb-3">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+              </div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="heading-secondary text-sm">#WG-1240</span>
+                <span class="badge-status-pending">Pending</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3 text-xs mb-3">
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01 May 2025</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 64 Items</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+              </div>
+              <div class="border-t border-brand-border my-3"></div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs">Total</span>
+                <span class="heading-secondary text-sm">&pound;1,748.44</span>
+              </div>
+              <a @click.stop="orderStatus = 'pending'; orderDetailOpen = true" class="button-primary w-full justify-center text-xs">
+                <span class="button-text" data-text="View Order"><span>View Order</span></span>
+              </a>
+            </div></div>
+
+            <!-- Mobile Order 2: Processing -->
+            <div class="swiper-slide"><div @click="orderStatus = 'processing'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-4 cursor-pointer">
+              <div class="grid grid-cols-4 gap-2 mb-3">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+              </div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="heading-secondary text-sm">#WG-1239</span>
+                <span class="badge-status-processing">Processing</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 28 Apr 2025</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 32 Items</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+              </div>
+              <div class="border-t border-brand-border my-3"></div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs">Total</span>
+                <span class="heading-secondary text-sm">&pound;1,748.44</span>
+              </div>
+              <a @click.stop="orderStatus = 'processing'; orderDetailOpen = true" class="button-primary w-full justify-center text-xs">
+                <span class="button-text" data-text="View Order"><span>View Order</span></span>
+              </a>
+            </div></div>
+
+            <!-- Mobile Order 3: Completed -->
+            <div class="swiper-slide"><div @click="orderStatus = 'completed'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-4 cursor-pointer">
+              <div class="grid grid-cols-4 gap-2 mb-3">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+              </div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="heading-secondary text-sm">#WG-1238</span>
+                <span class="badge-status-completed">Completed</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 15 Apr 2025</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 18 Items</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+              </div>
+              <div class="border-t border-brand-border my-3"></div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs">Total</span>
+                <span class="heading-secondary text-sm">&pound;1,748.44</span>
+              </div>
+              <a @click.stop="orderStatus = 'completed'; orderDetailOpen = true" class="button-primary w-full justify-center text-xs">
+                <span class="button-text" data-text="View Order"><span>View Order</span></span>
+              </a>
+            </div></div>
+
+            <!-- Mobile Order 4: Cancelled -->
+            <div class="swiper-slide"><div @click="orderStatus = 'cancelled'; orderDetailOpen = true" class="border border-brand-border rounded-2xl p-4 cursor-pointer">
+              <div class="grid grid-cols-4 gap-2 mb-3">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+                <img src="/assets/placeholder-product.png" alt="Product" class="aspect-square rounded-md object-cover">
+              </div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="heading-secondary text-sm">#WG-1237</span>
+                <span class="badge-status-cancelled">Cancelled</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 02 Apr 2025</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> 12 Items</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg> Sarah Johnson</span>
+                <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-brand-primary-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> RX Items</span>
+              </div>
+              <div class="border-t border-brand-border my-3"></div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs">Total</span>
+                <span class="heading-secondary text-sm">&pound;1,748.44</span>
+              </div>
+              <a @click.stop="orderStatus = 'cancelled'; orderDetailOpen = true" class="button-primary w-full justify-center text-xs">
+                <span class="button-text" data-text="View Order"><span>View Order</span></span>
+              </a>
+            </div></div>
+
+          </div>
+        </div>
+        <div x-ref="ordersProgress" class="swiper-pagination product-carousel-progress mt-4 h-1 bg-brand-border rounded-full overflow-hidden"></div>
       </div>
 
       <!-- Order Details Popup -->
@@ -772,16 +943,20 @@
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Patients</h2>
-          <p class=" text-sm mt-1">Quickly access and manage your patients</p>
+          <p class="text-sm mt-1">Quickly access and manage your patients</p>
+          <a href="#" class="button-text-icon text-xs mt-4 md:hidden">
+            <span>View All Patients</span>
+            <span class="icon icon-arrow"></span>
+          </a>
         </div>
-        <a href="#" class="button-secondary text-xs">
+        <a href="#" class="button-secondary text-xs hidden md:inline-flex">
           <span class="button-text" data-text="View All Patients"><span>View All Patients</span></span>
           <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
         </a>
       </div>
 
       <!-- Tabs -->
-      <div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 mb-6 mt-4">
+      <div class="overflow-x-auto mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
         <button @click="tab = 'mine'" :class="tab === 'mine' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
           My Patients
@@ -790,7 +965,7 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           Clinic Patients
         </button>
-      </div>
+      </div></div>
 
       <!-- Patient Cards -->
       <div x-data x-init="
@@ -1173,9 +1348,13 @@
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Clinic Members</h2>
-          <p class=" text-sm mt-1">Quickly access and manage your patients</p>
+          <p class="text-sm mt-1">Quickly access and manage your patients</p>
+          <a href="#" class="button-text-icon text-xs mt-4 md:hidden">
+            <span>View All Members</span>
+            <span class="icon icon-arrow"></span>
+          </a>
         </div>
-        <a href="#" class="button-secondary text-xs">
+        <a href="#" class="button-secondary text-xs hidden md:inline-flex">
           <span class="button-text" data-text="View All Members"><span>View All Members</span></span>
           <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
         </a>
@@ -1411,9 +1590,13 @@
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Contacts</h2>
-          <p class=" text-sm mt-1">Quickly access and manage your patients</p>
+          <p class="text-sm mt-1">Quickly access and manage your patients</p>
+          <a href="#" class="button-text-icon text-xs mt-4 md:hidden">
+            <span>View All Contacts</span>
+            <span class="icon icon-arrow"></span>
+          </a>
         </div>
-        <a href="#" class="button-secondary text-xs">
+        <a href="#" class="button-secondary text-xs hidden md:inline-flex">
           <span class="button-text" data-text="View All Contacts"><span>View All Contacts</span></span>
           <span class="icon icon-arrow w-2.5 h-2.5 rotate-180 ml-2"></span>
         </a>
@@ -1708,10 +1891,9 @@
         </a>
       </div>
     </div>
-
+    
+    <!-- Footer -->
+    <load src="partials/home/footer.html" />
   </div>
-
-  <!-- Footer -->
-  <load src="partials/home/footer.html" />
 </body>
 </html>
