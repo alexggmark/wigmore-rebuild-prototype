@@ -34,7 +34,7 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mb-3">
 
       <!-- Profile Card -->
-      <div class="card-container-generic p-5" x-data="{ editAccountOpen: false, profileOpen: window.innerWidth >= 768, editAccount: { name: 'Dr. Sarah Johnson', email: 'sarah.johnson@email.com', accountNumber: '1234567890', phone: '+44 77 4321 6459', officePhone: '+44 78 1234 5678', postcode: 'W1U 1QE' } }">
+      <div class="card-container-generic" x-data="{ editAccountOpen: false, profileOpen: window.innerWidth >= 768, editAccount: { name: 'Dr. Sarah Johnson', email: 'sarah.johnson@email.com', accountNumber: '1234567890', phone: '+44 77 4321 6459', officePhone: '+44 78 1234 5678', postcode: 'W1U 1QE' } }">
         <div class="flex items-center md:items-start justify-between" :class="profileOpen ? 'mb-4' : 'md:mb-4'">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-full bg-brand-primary-700 flex items-center justify-center text-white text-lg font-bold overflow-hidden shrink-0">
@@ -168,7 +168,7 @@
       </div>
 
       <!-- Outstanding Payments -->
-      <div class="card-container-generic p-5 flex flex-col">
+      <div class="card-container-generic flex flex-col">
         <div class="mb-4">
           <h2 class="heading-primary text-xl">Outstanding Payments</h2>
           <p class="text-xs  mt-2">Manage your payment obligations</p>
@@ -192,7 +192,7 @@
       </div>
 
       <!-- Order Review -->
-      <div class="card-container-generic p-5 flex flex-col">
+      <div class="card-container-generic flex flex-col">
         <div class="mb-4">
           <h2 class="heading-primary text-xl">Order Review</h2>
           <p class="text-xs  mt-2">Orders awaiting review</p>
@@ -213,7 +213,7 @@
       </div>
 
       <!-- Prescription Review -->
-      <div class="card-container-generic p-5 flex flex-col">
+      <div class="card-container-generic flex flex-col">
         <div class="mb-4">
           <h2 class="heading-primary text-xl">Prescription Review</h2>
           <p class="text-xs  mt-2">Prescriptions awaiting review</p>
@@ -236,7 +236,7 @@
 
 
     <!-- Most Recent Orders -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'standard', orderDetailOpen: false, orderStatus: '', confirmAction: null }">
+    <div class="card-container-generic mb-3" x-data="{ tab: 'standard', orderDetailOpen: false, orderStatus: '', confirmAction: null }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Most Recent Orders</h2>
@@ -253,7 +253,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="overflow-x-auto mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
+      <div class="overflow-x-auto right-overflow-visible-lg mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
         <button @click="tab = 'standard'" :class="tab === 'standard' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
           Standard
@@ -463,7 +463,7 @@
         $refs.ordersProgress.style.display = s.isLocked ? 'none' : '';
         s.on('resize', () => $refs.ordersProgress.style.display = s.isLocked ? 'none' : '');
       ">
-        <div x-ref="ordersSwiper" class="swiper overflow-hidden">
+        <div x-ref="ordersSwiper" class="swiper overflow-hidden right-overflow-visible-lg">
           <div class="swiper-wrapper">
 
             <!-- Mobile Order 1: Pending -->
@@ -948,7 +948,7 @@
 
 
     <!-- Patients Section -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ tab: 'mine', editPatientOpen: false, confirmDeletePatient: false, editPatient: { name: '', gender: '', dob: '', country: '', address: '' } }">
+    <div class="card-container-generic mb-3" x-data="{ tab: 'mine', editPatientOpen: false, confirmDeletePatient: false, editPatient: { name: '', gender: '', dob: '', country: '', address: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Patients</h2>
@@ -965,7 +965,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="overflow-x-auto mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
+      <div class="overflow-x-auto right-overflow-visible-lg mb-6 mt-4"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
         <button @click="tab = 'mine'" :class="tab === 'mine' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0"/></svg>
           My Patients
@@ -1353,7 +1353,7 @@
 
 
     <!-- Clinic Members Section -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ editMemberOpen: false, confirmDeleteMember: false, editMember: { name: '', role: '', email: '' } }">
+    <div class="card-container-generic mb-3" x-data="{ editMemberOpen: false, confirmDeleteMember: false, editMember: { name: '', role: '', email: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Clinic Members</h2>
@@ -1595,7 +1595,7 @@
 
 
     <!-- Contacts Section -->
-    <div class="card-container-generic p-6 mb-3" x-data="{ editContactOpen: false, confirmDeleteContact: false, editContact: { name: '', email: '', phone: '', address: '' } }">
+    <div class="card-container-generic mb-3" x-data="{ editContactOpen: false, confirmDeleteContact: false, editContact: { name: '', email: '', phone: '', address: '' } }">
       <div class="flex items-start justify-between mb-1">
         <div>
           <h2 class="heading-primary text-2xl">Contacts</h2>
