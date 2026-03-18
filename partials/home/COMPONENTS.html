@@ -637,6 +637,31 @@
         </div>
       </div>
 
+      <!-- Error States -->
+      <h3 class="heading-secondary text-base mb-4">Error States</h3>
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <div class="form-group">
+          <label class="form-label" for="demo-err-name">First Name <span class="required">*</span></label>
+          <input id="demo-err-name" type="text" class="form-input form-input-error" placeholder="Enter your first name">
+          <p class="form-helper-error">Please enter first name</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-err-email">Email Address <span class="required">*</span></label>
+          <input id="demo-err-email" type="email" class="form-input form-input-error" placeholder="Enter your email" value="not-an-email">
+          <p class="form-helper-error">Please enter a valid email</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-err-phone">Mobile Number</label>
+          <input id="demo-err-phone" type="tel" class="form-input form-input-error" placeholder="Mobile number" value="123">
+          <p class="form-helper-error">Must be 6-14 digits</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-ok">Postcode (valid)</label>
+          <input id="demo-ok" type="text" class="form-input" placeholder="Postcode" value="SW1A 1AA">
+          <span class="form-helper">No error — normal state for comparison</span>
+        </div>
+      </div>
+
       <!-- Date Picker -->
       <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
         <div class="form-group" x-data="{
@@ -1253,5 +1278,274 @@
         </h1>
       </div>
     </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Multi-Step Form Modal</h2>
+    <p class="text-sm mb-4">Two-step form with validation error states, step progress indicator, and address search. Used for Add/Edit Patient.</p>
+
+    <!-- Multi-Step Form — inline preview (not in a modal, just the panel) -->
+    <div class="w-full max-w-2xl" x-data="{
+      step: 1,
+      errors: {},
+      form: { firstName: '', lastName: '', dob: '', gender: '', genderLabel: '', email: '', mobile: '', address1: '', address2: '', locality: '', city: '', county: '', postcode: '' },
+      genderOpen: false,
+      genderOptions: [{v:'1',l:'Male'},{v:'2',l:'Female'},{v:'3',l:'Other'}],
+
+      // Datepicker
+      dpOpen: false, dpView: 'days', dpMonth: '', dpYear: '', dpDecadeStart: 1990,
+      dpDays: [], dpBlanks: [],
+      dpMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      dpMonthShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      dpWeekdays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+      dpInit() {
+        const d = new Date();
+        this.dpMonth = d.getMonth(); this.dpYear = d.getFullYear();
+        this.dpCalc();
+      },
+      dpCalc() {
+        const dim = new Date(this.dpYear, this.dpMonth+1, 0).getDate();
+        const dow = new Date(this.dpYear, this.dpMonth).getDay();
+        this.dpBlanks = Array.from({length:dow},(_,i)=>i);
+        this.dpDays = Array.from({length:dim},(_,i)=>i+1);
+      },
+      dpPrev() {
+        if (this.dpView==='years') { this.dpDecadeStart-=12; }
+        else if (this.dpView==='months') { this.dpYear--; }
+        else { if(this.dpMonth===0){this.dpYear--;this.dpMonth=11;}else{this.dpMonth--;} this.dpCalc(); }
+      },
+      dpNext() {
+        if (this.dpView==='years') { this.dpDecadeStart+=12; }
+        else if (this.dpView==='months') { this.dpYear++; }
+        else { if(this.dpMonth===11){this.dpYear++;this.dpMonth=0;}else{this.dpMonth++;} this.dpCalc(); }
+      },
+      dpShowMonths() { this.dpView = 'months'; },
+      dpShowYears() { this.dpDecadeStart = this.dpYear - 5; this.dpView = 'years'; },
+      dpPickMonth(m) { this.dpMonth = m; this.dpView = 'days'; this.dpCalc(); },
+      dpPickYear(y) { this.dpYear = y; this.dpView = 'months'; },
+      dpDecadeYears() { return Array.from({length:12},(_,i)=>this.dpDecadeStart+i); },
+      dpSelect(day) {
+        const d = new Date(this.dpYear, this.dpMonth, day);
+        const dd = String(d.getDate()).padStart(2,'0');
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        this.form.dob = dd+'-'+mm+'-'+d.getFullYear();
+        this.dpOpen = false; this.dpView = 'days';
+      },
+      dpIsToday(day) { const t=new Date(); return t.getDate()===day && t.getMonth()===this.dpMonth && t.getFullYear()===this.dpYear; },
+      dpIsSelected(day) { if(!this.form.dob) return false; const parts=this.form.dob.split('-'); return parseInt(parts[0])===day && parseInt(parts[1])===(this.dpMonth+1) && parseInt(parts[2])===this.dpYear; },
+
+      addressQuery: '',
+      addressResults: [],
+      showManualAddress: false,
+
+      validate() {
+        this.errors = {};
+        if (!this.form.firstName.trim()) this.errors.firstName = 'Please enter first name';
+        if (!this.form.lastName.trim()) this.errors.lastName = 'Please enter last name';
+        if (!this.form.dob) this.errors.dob = 'Please select date of birth';
+        if (!this.form.gender) this.errors.gender = 'Please select gender';
+        if (this.form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) this.errors.email = 'Please enter a valid email';
+        if (this.form.mobile && (this.form.mobile.length < 6 || this.form.mobile.length > 14)) this.errors.mobile = 'Must be 6-14 digits';
+        return Object.keys(this.errors).length === 0;
+      },
+      goToStep2() { if (this.validate()) this.step = 2; },
+      enterManually() { this.showManualAddress = true; this.addressResults = []; },
+      mockSearch() {
+        this.addressResults = [
+          { text: '1 Example Street, London', type: 'Address' },
+          { text: '2 Example Street, London', type: 'Address' },
+          { text: 'Example Business Park, London', type: 'Container', description: '3 addresses' }
+        ];
+      },
+      selectResult(r) {
+        if (r.type !== 'Address') { this.addressResults = [{ text: '10 Example Business Park, Unit A', type: 'Address' }, { text: '10 Example Business Park, Unit B', type: 'Address' }]; return; }
+        this.form.address1 = r.text.split(',')[0];
+        this.form.city = 'London';
+        this.form.postcode = 'SW1A 1AA';
+        this.addressResults = [];
+        this.showManualAddress = true;
+      }
+    }" x-init="dpInit()">
+      <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="px-8 pt-8 pb-0">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="heading-primary text-2xl">Add Patient</h2>
+              <p class="text-sm font-light mt-1" x-text="step === 1 ? 'Personal details' : 'Address information'"></p>
+            </div>
+            <button class="text-gray-400 hover:text-brand-dark transition-colors p-1"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
+          </div>
+          <!-- Step indicator -->
+          <div class="flex items-center gap-2 mt-4 mb-2">
+            <div class="flex-1 h-1 rounded-full" :class="step >= 1 ? 'bg-brand-primary-700' : 'bg-brand-border'"></div>
+            <div class="flex-1 h-1 rounded-full" :class="step >= 2 ? 'bg-brand-primary-700' : 'bg-brand-border'"></div>
+          </div>
+          <div class="border-t border-brand-border mt-4"></div>
+        </div>
+
+        <!-- STEP 1: Personal Details -->
+        <div x-show="step === 1" class="px-8 py-6 space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">First Name <span class="required">*</span></label>
+              <input type="text" class="form-input" :class="errors.firstName && 'form-input-error'" x-model="form.firstName" placeholder="First name" maxlength="100">
+              <p x-show="errors.firstName" x-text="errors.firstName" class="form-helper-error"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name <span class="required">*</span></label>
+              <input type="text" class="form-input" :class="errors.lastName && 'form-input-error'" x-model="form.lastName" placeholder="Last name" maxlength="100">
+              <p x-show="errors.lastName" x-text="errors.lastName" class="form-helper-error"></p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Date of Birth — custom datepicker -->
+            <div class="form-group">
+              <label class="form-label">Date of Birth <span class="required">*</span></label>
+              <div class="form-datepicker-wrap">
+                <input type="text" @click="dpOpen=!dpOpen" x-model="form.dob" @keydown.escape="dpOpen=false" :class="[dpOpen && 'is-open', errors.dob && 'form-input-error']" class="form-input" placeholder="Select date" readonly>
+                <div class="form-datepicker-icon">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                </div>
+                <div x-show="dpOpen" x-transition @click.away="dpOpen=false; dpView='days'" class="form-datepicker-panel" x-cloak>
+                  <div class="dp-header">
+                    <div>
+                      <span x-show="dpView==='days'" @click="dpShowMonths()" x-text="dpMonthNames[dpMonth]" class="dp-title cursor-pointer hover:text-brand-primary-700"></span>
+                      <span x-show="dpView==='months'" class="dp-title">Select Month</span>
+                      <span x-show="dpView==='years'" class="dp-title">Select Year</span>
+                      <span x-show="dpView==='days'" @click="dpShowYears()" x-text="dpYear" class="dp-title-year cursor-pointer hover:text-brand-primary-700"></span>
+                      <span x-show="dpView==='months'" @click="dpShowYears()" x-text="dpYear" class="dp-title-year cursor-pointer hover:text-brand-primary-700"></span>
+                      <span x-show="dpView==='years'" x-text="dpDecadeStart + ' – ' + (dpDecadeStart+11)" class="dp-title-year"></span>
+                    </div>
+                    <div class="flex gap-1">
+                      <button @click="dpPrev()" type="button" class="dp-nav-btn"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                      <button @click="dpNext()" type="button" class="dp-nav-btn"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+                    </div>
+                  </div>
+                  <!-- Days -->
+                  <div x-show="dpView==='days'">
+                    <div class="grid grid-cols-7 mb-1"><template x-for="wd in dpWeekdays" :key="wd"><div class="dp-weekday" x-text="wd"></div></template></div>
+                    <div class="grid grid-cols-7">
+                      <template x-for="b in dpBlanks"><div class="p-1"></div></template>
+                      <template x-for="day in dpDays" :key="day">
+                        <div class="flex justify-center items-center px-0.5 mb-1">
+                          <div x-text="day" @click="dpSelect(day)" :class="{'is-today':dpIsToday(day),'is-selected':dpIsSelected(day)}" class="dp-day"></div>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                  <!-- Months -->
+                  <div x-show="dpView==='months'" class="grid grid-cols-3 gap-1.5 py-1">
+                    <template x-for="(mn, mi) in dpMonthShort" :key="mi">
+                      <button type="button" @click="dpPickMonth(mi)" :class="mi===dpMonth ? 'bg-brand-primary-700 text-white' : 'hover:bg-brand-background'" class="dp-day !w-full !h-8 !rounded-lg text-xs" x-text="mn"></button>
+                    </template>
+                  </div>
+                  <!-- Years -->
+                  <div x-show="dpView==='years'" class="grid grid-cols-3 gap-1.5 py-1">
+                    <template x-for="yr in dpDecadeYears()" :key="yr">
+                      <button type="button" @click="dpPickYear(yr)" :class="yr===dpYear ? 'bg-brand-primary-700 text-white' : 'hover:bg-brand-background'" class="dp-day !w-full !h-8 !rounded-lg text-xs" x-text="yr"></button>
+                    </template>
+                  </div>
+                </div>
+              </div>
+              <p x-show="errors.dob" x-text="errors.dob" class="form-helper-error"></p>
+            </div>
+            <!-- Gender — custom dropdown -->
+            <div class="form-group">
+              <label class="form-label">Gender <span class="required">*</span></label>
+              <div class="form-select-wrap" @click.away="genderOpen=false">
+                <button type="button" @click="genderOpen=!genderOpen" :class="{'is-open':genderOpen, 'is-placeholder':!form.gender, 'form-input-error':errors.gender}" class="form-select-btn">
+                  <span x-text="form.genderLabel || 'Select gender'"></span>
+                  <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="genderOpen" x-transition class="form-select-panel" x-cloak>
+                  <div class="form-select-panel-inner">
+                    <template x-for="opt in genderOptions" :key="opt.v">
+                      <div @click="form.gender=opt.v; form.genderLabel=opt.l; genderOpen=false" :class="{'is-selected':form.gender===opt.v}" class="form-select-option" x-text="opt.l"></div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+              <p x-show="errors.gender" x-text="errors.gender" class="form-helper-error"></p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" :class="errors.email && 'form-input-error'" x-model="form.email" placeholder="Email address" maxlength="100">
+              <p x-show="errors.email" x-text="errors.email" class="form-helper-error"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" class="form-input" :class="errors.mobile && 'form-input-error'" x-model="form.mobile" placeholder="Mobile number" maxlength="16">
+              <p x-show="errors.mobile" x-text="errors.mobile" class="form-helper-error"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Address -->
+        <div x-show="step === 2" x-cloak class="px-8 py-6 space-y-5">
+          <!-- Address Search -->
+          <div class="form-group">
+            <label class="form-label">Search Address or Postcode</label>
+            <div class="form-search-wrap">
+              <input type="text" class="form-input" x-model="addressQuery" placeholder="Enter address or postcode" @keydown.enter.prevent="mockSearch()" autocomplete="off">
+              <button @click="mockSearch()" class="form-search-btn">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Results -->
+          <div x-show="addressResults.length > 0" class="border border-brand-border rounded-2xl overflow-hidden max-h-48 overflow-y-auto scroll-fade">
+            <template x-for="(item, idx) in addressResults" :key="idx">
+              <button @click="selectResult(item)" class="flex items-center justify-between w-full px-4 py-2.5 text-sm font-light text-brand-dark hover:bg-brand-background transition-colors text-left border-b border-brand-border last:border-b-0 cursor-pointer">
+                <span x-text="item.text + (item.description ? ' — ' + item.description : '')"></span>
+                <svg x-show="item.type !== 'Address'" class="w-3 h-3 text-gray-400 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </template>
+          </div>
+
+          <!-- Enter Manually link -->
+          <div x-show="!showManualAddress">
+            <button @click="enterManually()" class="basic-link">Or enter address manually</button>
+          </div>
+
+          <!-- Manual Address Fields -->
+          <div x-show="showManualAddress" x-cloak class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group"><label class="form-label">House / Building</label><input type="text" class="form-input" x-model="form.address1" placeholder="House/Building no./Name" maxlength="100"></div>
+              <div class="form-group"><label class="form-label">Street Address</label><input type="text" class="form-input" x-model="form.address2" placeholder="Street address" maxlength="100"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Locality</label><input type="text" class="form-input" x-model="form.locality" placeholder="Locality" maxlength="100"></div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group"><label class="form-label">Town / City</label><input type="text" class="form-input" x-model="form.city" placeholder="Town/City" maxlength="100"></div>
+              <div class="form-group"><label class="form-label">County</label><input type="text" class="form-input" x-model="form.county" placeholder="County" maxlength="100"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Postcode</label><input type="text" class="form-input" x-model="form.postcode" placeholder="Postcode" maxlength="20"></div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-8 pb-8 pt-0">
+          <div class="border-t border-brand-border mb-6"></div>
+          <div class="flex gap-3">
+            <!-- Step 1 -->
+            <template x-if="step === 1">
+              <div class="flex gap-3 w-full">
+                <button class="button-secondary flex-1 justify-center"><span class="button-text" data-text="Cancel"><span>Cancel</span></span></button>
+                <button @click="goToStep2()" class="button-primary flex-1 justify-center"><span class="button-text" data-text="Next: Address"><span>Next: Address</span></span></button>
+              </div>
+            </template>
+            <!-- Step 2 -->
+            <template x-if="step === 2">
+              <div class="flex gap-3 w-full">
+                <button @click="step = 1" class="button-secondary flex-1 justify-center"><span class="button-text" data-text="Back"><span>Back</span></span></button>
+                <button class="button-primary flex-1 justify-center"><span class="button-text" data-text="Add Patient"><span>Add Patient</span></span></button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

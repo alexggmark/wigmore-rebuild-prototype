@@ -176,7 +176,10 @@
     @apply text-xs text-gray-400 font-light px-1;
   }
   .form-helper-error {
-    @apply text-xs text-red-500 font-light px-1;
+    @apply text-xs text-brand-error font-light px-1;
+  }
+  .form-input-error {
+    @apply border-brand-error!;
   }
 
   /* Search input with icon button — no label variant */
