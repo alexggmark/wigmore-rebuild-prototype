@@ -1357,12 +1357,12 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="form-group">
               <label class="form-label">First Name <span class="required">*</span></label>
-              <input type="text" class="form-input" :class="errors.firstName && 'form-input-error'" x-model="form.firstName" placeholder="First name" maxlength="100">
+              <input type="text" class="form-input" :class="errors.firstName && 'form-input-error'" x-model="form.firstName" placeholder="First name" maxlength="100" @input="delete errors.firstName">
               <p x-show="errors.firstName" x-text="errors.firstName" class="form-helper-error"></p>
             </div>
             <div class="form-group">
               <label class="form-label">Last Name <span class="required">*</span></label>
-              <input type="text" class="form-input" :class="errors.lastName && 'form-input-error'" x-model="form.lastName" placeholder="Last name" maxlength="100">
+              <input type="text" class="form-input" :class="errors.lastName && 'form-input-error'" x-model="form.lastName" placeholder="Last name" maxlength="100" @input="delete errors.lastName">
               <p x-show="errors.lastName" x-text="errors.lastName" class="form-helper-error"></p>
             </div>
           </div>
@@ -1371,7 +1371,7 @@
             <div class="form-group">
               <label class="form-label">Date of Birth <span class="required">*</span></label>
               <div class="flex gap-2">
-                <input type="text" class="form-input w-16 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobDay" placeholder="DD" maxlength="2" @input="dobDay = dobDay.replace(/\D/g,'')">
+                <input type="text" class="form-input w-16 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobDay" placeholder="DD" maxlength="2" @input="dobDay = dobDay.replace(/\D/g,''); delete errors.dob">
                 <div class="form-select-wrap flex-1 min-w-0" @click.away="dobMonthOpen = false">
                   <button type="button" @click="dobMonthOpen = !dobMonthOpen" :class="{ 'is-open': dobMonthOpen, 'is-placeholder': dobMonth === '', 'form-input-error': errors.dob }" class="form-select-btn">
                     <span class="truncate" x-text="dobMonth !== '' ? dobMonthNames[dobMonth] : 'Month'"></span>
@@ -1380,12 +1380,12 @@
                   <div x-show="dobMonthOpen" x-transition class="form-select-panel" x-cloak>
                     <div class="form-select-panel-inner">
                       <template x-for="(mn, mi) in dobMonthNames" :key="mi">
-                        <div @click="dobMonth = String(mi); dobMonthOpen = false" :class="{ 'is-selected': dobMonth === String(mi) }" class="form-select-option" x-text="mn"></div>
+                        <div @click="dobMonth = String(mi); dobMonthOpen = false; delete errors.dob" :class="{ 'is-selected': dobMonth === String(mi) }" class="form-select-option" x-text="mn"></div>
                       </template>
                     </div>
                   </div>
                 </div>
-                <input type="text" class="form-input w-20 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobYear" placeholder="YYYY" maxlength="4" @input="dobYear = dobYear.replace(/\D/g,'')">
+                <input type="text" class="form-input w-20 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobYear" placeholder="YYYY" maxlength="4" @input="dobYear = dobYear.replace(/\D/g,''); delete errors.dob">
               </div>
               <p x-show="errors.dob" x-text="errors.dob" class="form-helper-error"></p>
             </div>
@@ -1400,7 +1400,7 @@
                 <div x-show="genderOpen" x-transition class="form-select-panel" x-cloak>
                   <div class="form-select-panel-inner">
                     <template x-for="opt in genderOptions" :key="opt.v">
-                      <div @click="form.gender=opt.v; form.genderLabel=opt.l; genderOpen=false" :class="{'is-selected':form.gender===opt.v}" class="form-select-option" x-text="opt.l"></div>
+                      <div @click="form.gender=opt.v; form.genderLabel=opt.l; genderOpen=false; delete errors.gender" :class="{'is-selected':form.gender===opt.v}" class="form-select-option" x-text="opt.l"></div>
                     </template>
                   </div>
                 </div>
@@ -1411,12 +1411,12 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="form-group">
               <label class="form-label">Email</label>
-              <input type="email" class="form-input" :class="errors.email && 'form-input-error'" x-model="form.email" placeholder="Email address" maxlength="100">
+              <input type="email" class="form-input" :class="errors.email && 'form-input-error'" x-model="form.email" placeholder="Email address" maxlength="100" @input="delete errors.email">
               <p x-show="errors.email" x-text="errors.email" class="form-helper-error"></p>
             </div>
             <div class="form-group">
               <label class="form-label">Mobile Number</label>
-              <input type="tel" class="form-input" :class="errors.mobile && 'form-input-error'" x-model="form.mobile" placeholder="Mobile number" maxlength="16">
+              <input type="tel" class="form-input" :class="errors.mobile && 'form-input-error'" x-model="form.mobile" placeholder="Mobile number" maxlength="16" @input="delete errors.mobile">
               <p x-show="errors.mobile" x-text="errors.mobile" class="form-helper-error"></p>
             </div>
           </div>
