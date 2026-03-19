@@ -13,7 +13,8 @@ export default defineConfig({
         collections: 'collections.html',
         products: 'products.html',
         dashboard: 'dashboard.html',
-        orders: 'orders.html'
+        orders: 'orders.html',
+        basket: 'basket.html'
       },
     },
   },

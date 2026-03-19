@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Basket - Wigmore Medical</title>
+
+  <!-- Adobe Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/hnw4byi.css">
+
+  <!-- Alpine Store -->
+  <load src="partials/alpine-store.html" />
+  <!-- Alpine + Plugins -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="/app.css">
+
+<script>
+document.addEventListener('alpine:init', function () {
+  Alpine.data('basketPage', function () {
+    return {
+      loading: false,
+      removing: null,
+      confirmAction: null,
+      searchQuery: '',
+      viewMode: 'product',
+      filterBy: 'all',
+      editingItemId: null,
+      editQty: 1,
+      checkingOut: false,
+
+      /* ---------- DUMMY DATA ---------- */
+
+      items: [
+        {
+          OrderBasketId: 1001,
+          ProductId: 5432,
+          ProductName: 'Juvederm Ultra 3 2x1ml',
+          ImagePath: '/assets/placeholder-product.png',
+          CategoryName: 'Dermal Fillers',
+          Quantity: 2,
+          UnitPrice: 85.00,
+          SellPriceWithVat: 102.00,
+          Total: 204.00,
+          VAT: 34.00,
+          IsSellPriceFlag: false,
+          OrderManageId: 9999,
+          OfferRequirementId: 0,
+          CategoryId: 10,
+          RefrenceCategoryId: 10,
+          IsFreeProduct: false,
+          OfferLabel: '10% Off',
+          Stock_Code: 'JUV-U3-2ML',
+          PriceLabel: '',
+          IsDropShippingProduct: false,
+          IsEditable: true,
+          IsDelete: true,
+          IsAddPatient: true,
+          IsShowPrescriberTab: true,
+          IsOrderPlaced: false,
+          IsInCompleteOffer: false,
+          CompleteOfferLabel: '',
+          OfferDisplayName: '',
+          OfferBuyQuantity: 0,
+          totalMixMatchQuantity: 0,
+          OfferId: 0,
+          IsMasking: false,
+          IsEsignApproved: false,
+          IsShowSign: false,
+          PrescriberName: '',
+          strParam: '',
+          IsSelectedProductFree: false,
+          IsOfferApplied: true,
+          OfferManagementId: 0,
+          IsBeautianflag: false,
+          PrescriptionMasterId: 2,
+          IsPregnantFlag: false,
+          IsDirectionsForUseFlag: false,
+          UnlicensedMedicalBelowEighteenStatus: false,
+          prescriberPatients: []
+        },
+        {
+          OrderBasketId: 1002,
+          ProductId: 6789,
+          ProductName: 'Profhilo H+L Body Kit 3ml',
+          ImagePath: '/assets/placeholder-product.png',
+          CategoryName: 'Skin Boosters',
+          Quantity: 3,
+          UnitPrice: 120.00,
+          SellPriceWithVat: 144.00,
+          Total: 432.00,
+          VAT: 72.00,
+          IsSellPriceFlag: true,
+          OrderManageId: 9999,
+          OfferRequirementId: 0,
+          CategoryId: 20,
+          RefrenceCategoryId: 20,
+          IsFreeProduct: false,
+          OfferLabel: '',
+          Stock_Code: 'PRO-HL-3ML',
+          PriceLabel: '',
+          IsDropShippingProduct: false,
+          IsEditable: true,
+          IsDelete: true,
+          IsAddPatient: true,
+          IsShowPrescriberTab: true,
+          IsOrderPlaced: false,
+          IsInCompleteOffer: false,
+          CompleteOfferLabel: '',
+          OfferDisplayName: '',
+          OfferBuyQuantity: 0,
+          totalMixMatchQuantity: 0,
+          OfferId: 0,
+          IsMasking: false,
+          IsEsignApproved: false,
+          IsShowSign: false,
+          PrescriberName: '',
+          strParam: '',
+          IsSelectedProductFree: false,
+          IsOfferApplied: false,
+          OfferManagementId: 0,
+          IsBeautianflag: false,
+          PrescriptionMasterId: 1,
+          IsPregnantFlag: false,
+          IsDirectionsForUseFlag: true,
+          UnlicensedMedicalBelowEighteenStatus: false,
+          prescriberPatients: []
+        },
+        {
+          OrderBasketId: 1003,
+          ProductId: 1111,
+          ProductName: 'Teosyal RHA 2 2x1ml (Assigned RX Example)',
+          ImagePath: '/assets/placeholder-product.png',
+          CategoryName: 'Dermal Fillers',
+          Quantity: 5,
+          UnitPrice: 95.00,
+          SellPriceWithVat: 114.00,
+          Total: 570.00,
+          VAT: 95.00,
+          IsSellPriceFlag: true,
+          OrderManageId: 9999,
+          OfferRequirementId: 0,
+          CategoryId: 10,
+          RefrenceCategoryId: 10,
+          IsFreeProduct: false,
+          OfferLabel: '',
+          Stock_Code: 'TEO-RHA2-2ML',
+          PriceLabel: '',
+          IsDropShippingProduct: false,
+          IsEditable: false,
+          IsDelete: true,
+          IsAddPatient: false,
+          IsShowPrescriberTab: true,
+          IsOrderPlaced: false,
+          IsInCompleteOffer: false,
+          CompleteOfferLabel: '',
+          OfferDisplayName: '',
+          OfferBuyQuantity: 0,
+          totalMixMatchQuantity: 0,
+          OfferId: 0,
+          IsMasking: false,
+          IsEsignApproved: true,
+          IsShowSign: true,
+          PrescriberName: '',
+          strParam: '',
+          IsSelectedProductFree: false,
+          IsOfferApplied: false,
+          OfferManagementId: 0,
+          IsBeautianflag: false,
+          PrescriptionMasterId: 1,
+          IsPregnantFlag: false,
+          IsDirectionsForUseFlag: false,
+          UnlicensedMedicalBelowEighteenStatus: false,
+          prescriberPatients: [
+            {
+              PrescriberId: 501,
+              PrescriberName: 'Dr. Sarah Johnson',
+              PatientId: 301,
+              PatientName: 'Emily Carter',
+              QuantityForPrescriber: 0,
+              QuantityForPatient: 3,
+              PrescriptionId: 7001,
+              IsEditablePres: true,
+              IsDeletePres: true,
+              IsEditable: true,
+              IsDelete: true,
+              IsPatientApproved: true,
+              IsEsignApproved: true,
+              IsShowSign: true,
+              RxSignatureText: 'Signed 15/03/2026',
+              StockSignatureText: '',
+              IsShowPrescriberTab: true,
+              IsAddPatient: false,
+              ClinicalIndicationNeeds: 'Nasolabial fold correction',
+              DirectionOfUse: 'Inject into mid-dermis',
+              UnlicensedMedicalStatus: '',
+              Gender: 'Female',
+              DateOfBirth: '1990-05-15'
+            },
+            {
+              PrescriberId: 501,
+              PrescriberName: 'Dr. Sarah Johnson',
+              PatientId: 302,
+              PatientName: 'James Wilson',
+              QuantityForPrescriber: 0,
+              QuantityForPatient: 2,
+              PrescriptionId: 7002,
+              IsEditablePres: true,
+              IsDeletePres: true,
+              IsEditable: true,
+              IsDelete: true,
+              IsPatientApproved: false,
+              IsEsignApproved: false,
+              IsShowSign: true,
+              RxSignatureText: '',
+              StockSignatureText: '',
+              IsShowPrescriberTab: true,
+              IsAddPatient: false,
+              ClinicalIndicationNeeds: '',
+              DirectionOfUse: '',
+              UnlicensedMedicalStatus: '',
+              Gender: 'Male',
+              DateOfBirth: '1985-11-22'
+            }
+          ]
+        }
+      ],
+
+      summary: { SubTotal: 1006.00, VATAmount: 201.00, ShippingCharge: 0, OrderTotal: 1206.00, OrderManageId: 9999 },
+
+      orderSummary: {
+        NetTotal: 1006.00,
+        VAT: 201.00,
+        ShippingCharges: 0,
+        ShipingChargesVAT: 0,
+        Total: 1206.00,
+        DeliveryCostLabel: 'Free Delivery',
+        IsVatNonExemptionLabel: '',
+        BtnCheckout: true,
+        BtnApproveReject: false,
+        BtnPrescription: true,
+        BtnApprove: false,
+        BtnSentToNonPresscriber: false
+      },
+
+      credit: null,
+      isAccountHolder: true,
+      creditBalance: 0,
+      isFinanceManager: false,
+      isFinanceNonShopping: false,
+      isShowPrescriberConfirmation: true,
+      hasMaskedItems: false,
+      eomData: null,
+      eomLoading: false,
+      dropShipModal: { open: false, clearing: false },
+
+      /* ---------- Dummy prescriber/patient data for modal ---------- */
+
+      dummyPrescribers: [
+        { PrescriberId: 501, ForeName: 'Dr. Sarah', SurName: 'Johnson' },
+        { PrescriberId: 502, ForeName: 'Dr. Michael', SurName: 'Chen' },
+        { PrescriberId: 503, ForeName: 'Dr. Amira', SurName: 'Patel' }
+      ],
+
+      dummyPatients: [
+        { PatientId: 301, FirstName: 'Emily', LastName: 'Carter', strDateOfBirth: '15/05/1990', Gender: 1, Age: 35 },
+        { PatientId: 302, FirstName: 'James', LastName: 'Wilson', strDateOfBirth: '22/11/1985', Gender: 2, Age: 40 },
+        { PatientId: 303, FirstName: 'Sophia', LastName: 'Brown', strDateOfBirth: '03/08/1995', Gender: 1, Age: 30 },
+        { PatientId: 304, FirstName: 'Oliver', LastName: 'Davies', strDateOfBirth: '17/02/2000', Gender: 2, Age: 26 },
+        { PatientId: 305, FirstName: 'Charlotte', LastName: 'Taylor', strDateOfBirth: '29/12/1988', Gender: 1, Age: 37 },
+        { PatientId: 306, FirstName: 'Henry', LastName: 'Evans', strDateOfBirth: '11/07/2010', Gender: 2, Age: 15 }
+      ],
+
+      /* ---------- Filtering ---------- */
+
+      get filteredItems() {
+        var self = this;
+        var list = this.items.filter(function (item) {
+          if (item.IsMasking === true) return false;
+          if (item.IsInCompleteOffer && item.IsFreeProduct === true && item.IsSellPriceFlag !== true) return false;
+          return true;
+        });
+        if (self.filterBy === 'unassigned') {
+          list = list.filter(function (item) { return item.IsAddPatient === true; });
+        } else if (self.filterBy === 'dropship') {
+          list = list.filter(function (item) { return item.IsDropShippingProduct === true; });
+        }
+        if (self.searchQuery.trim()) {
+          var q = self.searchQuery.toLowerCase();
+          list = list.filter(function (item) {
+            return (item.ProductName && item.ProductName.toLowerCase().indexOf(q) !== -1) ||
+                   (item.Stock_Code && item.Stock_Code.toLowerCase().indexOf(q) !== -1);
+          });
+        }
+        return list;
+      },
+
+      /* ---------- Offer grouping ---------- */
+
+      isFirstInOfferGroup: function (item, index) {
+        if (!item.OfferDisplayName) return false;
+        var filtered = this.filteredItems;
+        for (var i = 0; i < index; i++) {
+          if (filtered[i] && filtered[i].OfferDisplayName === item.OfferDisplayName) return false;
+        }
+        return true;
+      },
+      getOfferBadgeText: function (item) { return item.CompleteOfferLabel || ''; },
+      isOfferComplete: function (item) { return !item.IsInCompleteOffer; },
+
+      /* ---------- Inline quantity editing ---------- */
+
+      startEdit: function (item) {
+        this.editingItemId = item.OrderBasketId;
+        this.editQty = item.Quantity || 1;
+      },
+      cancelEdit: function () { this.editingItemId = null; this.editQty = 1; },
+      saveEdit: function (item) {
+        item.Quantity = this.editQty;
+        item.Total = item.UnitPrice * this.editQty;
+        this.editingItemId = null;
+        this.showToast('Quantity updated', 'success');
+      },
+      getMixMatchEditUrl: function () { return null; },
+
+      /* ---------- Confirmation helpers ---------- */
+
+      confirmRemoveItem: function (item) {
+        this.confirmAction = { type: 'removeItem', item: item, message: 'Are you sure you want to remove \u201C' + item.ProductName + '\u201D from your basket?' };
+      },
+      confirmClearAll: function () {
+        this.confirmAction = { type: 'clearAll', message: 'Are you sure you want to clear your entire basket?' };
+      },
+      confirmDeletePrescriber: function (item, prescriberId, prescriptionId) {
+        this.confirmAction = { type: 'deletePrescriber', item: item, prescriberId: prescriberId, prescriptionId: prescriptionId, message: 'Remove this prescriber and all their patients?' };
+      },
+      confirmDeletePatient: function (item, patientId, prescriberId, prescriptionId) {
+        this.confirmAction = { type: 'deletePatient', item: item, patientId: patientId, prescriberId: prescriberId, prescriptionId: prescriptionId, message: 'Remove this patient?' };
+      },
+      confirmDeleteAllPatient: function (patientId) {
+        this.confirmAction = { type: 'deleteAllPatient', patientId: patientId, message: 'Remove this patient from all products?' };
+      },
+      executeConfirmAction: function () {
+        var a = this.confirmAction;
+        this.confirmAction = null;
+        if (a.type === 'removeItem') {
+          this.items = this.items.filter(function (i) { return i.OrderBasketId !== a.item.OrderBasketId; });
+          this.showToast('Item removed', 'success');
+        } else if (a.type === 'clearAll') {
+          this.items = [];
+          this.showToast('Basket cleared', 'success');
+        }
+      },
+
+      /* ---------- Formatting ---------- */
+
+      formatPrice: function (val) {
+        return '\u00A3' + (parseFloat(val) || 0).toFixed(2);
+      },
+      imageUrl: function (path) {
+        return path || '/assets/placeholder-product.png';
+      },
+
+      get showActionButtons() { return true; },
+
+      /* ---------- Prescriber/Patient hierarchy ---------- */
+
+      groupByPrescriber: function (list) {
+        if (!list || !list.length) return [];
+        var map = {};
+        var order = [];
+        list.forEach(function (pp) {
+          var key = String(pp.PrescriberId || 0);
+          if (!map[key]) {
+            map[key] = { prescriberId: pp.PrescriberId, prescriberName: pp.PrescriberName || 'Unknown', entries: [] };
+            order.push(key);
+          }
+          map[key].entries.push(pp);
+        });
+        return order.map(function (k) { return map[k]; });
+      },
+      getPrescriberBadge: function (entries) {
+        return entries.some(function (e) { return e.IsPatientApproved && e.IsShowSign; });
+      },
+      getSignatureText: function (entry) {
+        return entry.RxSignatureText || entry.StockSignatureText || '';
+      },
+
+      /* ---------- Patient view ---------- */
+
+      get patientGroups() {
+        var self = this;
+        var map = {};
+        var order = [];
+        self.items.forEach(function (item) {
+          if (!item.prescriberPatients) return;
+          item.prescriberPatients.forEach(function (pp) {
+            if (!pp.PatientId || pp.PatientId <= 0) return;
+            var pKey = String(pp.PatientId);
+            if (!map[pKey]) {
+              map[pKey] = {
+                patientId: pp.PatientId,
+                patientName: pp.PatientName || 'Patient',
+                dateOfBirth: pp.DateOfBirth,
+                gender: pp.Gender,
+                isDropShip: false,
+                hasDelete: true,
+                totalQty: 0,
+                prescribers: []
+              };
+              order.push(pKey);
+            }
+            map[pKey].totalQty += (pp.QuantityForPatient || 0);
+            var presKey = String(pp.PrescriberId || 0);
+            var existingPres = map[pKey].prescribers.find(function (pr) { return String(pr.prescriberId) === presKey; });
+            if (!existingPres) {
+              existingPres = {
+                prescriberId: pp.PrescriberId,
+                prescriberName: pp.PrescriberName,
+                isPatientApproved: pp.IsPatientApproved,
+                isShowSign: pp.IsShowSign,
+                rxSignatureText: pp.RxSignatureText,
+                products: []
+              };
+              map[pKey].prescribers.push(existingPres);
+            }
+            existingPres.products.push({ item: item, pp: pp });
+          });
+        });
+        return order.map(function (k) { return map[k]; });
+      },
+
+      getPatientInitials: function (name) {
+        if (!name) return '?';
+        var parts = name.split(' ');
+        return (parts[0] ? parts[0][0] : '') + (parts[1] ? parts[1][0] : '');
+      },
+
+      /* ---------- Inline patient qty editing ---------- */
+
+      editingPatientKey: null,
+      editPatientQtyVal: 1,
+      editPatientQty: function (item, patient) {
+        this.editingPatientKey = String(item.OrderBasketId) + '_' + String(patient.PatientId || 0);
+        this.editPatientQtyVal = patient.QuantityForPatient || 1;
+      },
+      cancelPatientQty: function () { this.editingPatientKey = null; },
+      savePatientQty: function (item, pp) {
+        pp.QuantityForPatient = this.editPatientQtyVal;
+        this.editingPatientKey = null;
+        this.showToast('Quantity updated', 'success');
+      },
+
+      /* ---------- Clinical notes modal ---------- */
+
+      clinicalNotesModal: { open: false, saving: false, item: null, patient: null, clinicalNeeds: '', directionOfUse: '' },
+      openClinicalNotes: function (item, patient) {
+        var m = this.clinicalNotesModal;
+        m.item = item; m.patient = patient;
+        m.clinicalNeeds = patient.ClinicalIndicationNeeds || '';
+        m.directionOfUse = patient.DirectionOfUse || '';
+        m.open = true;
+      },
+      closeClinicalNotes: function () { this.clinicalNotesModal.open = false; },
+      saveClinicalNotes: function () {
+        this.closeClinicalNotes();
+        this.showToast('Clinical notes saved', 'success');
+      },
+
+      /* ---------- Prescriber confirmation ---------- */
+
+      showPrescriberConfirm: false,
+      goToCheckoutWithConfirm: function () {
+        if (this.isShowPrescriberConfirmation) { this.showPrescriberConfirm = true; }
+        else { this.showToast('Proceeding to checkout...', 'info'); }
+      },
+      confirmAndCheckout: function () {
+        this.showPrescriberConfirm = false;
+        this.showToast('Proceeding to checkout...', 'info');
+      },
+
+      /* ---------- Assignment modal ---------- */
+
+      assignModal: {
+        open: false,
+        loading: false,
+        saving: false,
+        item: null,
+        basketContext: null,
+        isShowPrescriberTab: false,
+        prescribers: [],
+        selectedPrescriberId: '',
+        patients: [],
+        patientSearch: '',
+        patientsLoading: false,
+        selectedPatients: {},
+        stockQty: 1,
+        assignPatients: true,
+        prescriberOpen: false,
+        clinicalNeeds: '',
+        directionOfUse: '',
+        showClinicalFields: false
+      },
+
+      openAssignModal: function (item, preSelectedPrescriberId) {
+        var self = this;
+        var m = self.assignModal;
+        m.item = item;
+        m.open = true;
+        m.loading = false;
+        m.basketContext = null;
+        m.prescribers = self.dummyPrescribers;
+        m.selectedPrescriberId = '';
+        m.patients = [];
+        m.patientSearch = '';
+        m.selectedPatients = {};
+        m.stockQty = item.Quantity || 1;
+        m.assignPatients = true;
+        m.prescriberOpen = false;
+        m.clinicalNeeds = '';
+        m.directionOfUse = '';
+        m.showClinicalFields = !!(item.UnlicensedMedicalBelowEighteenStatus || item.IsDirectionsForUseFlag);
+
+        // Use per-item IsSellPriceFlag to determine RX vs stock
+        m.isShowPrescriberTab = !item.IsSellPriceFlag;
+
+        if (preSelectedPrescriberId) {
+          m.selectedPrescriberId = String(preSelectedPrescriberId);
+          self.onPrescriberChange();
+        }
+      },
+
+      getSelectedPrescriberName: function () {
+        var m = this.assignModal;
+        if (!m.selectedPrescriberId) return 'Select prescriber';
+        var found = m.prescribers.find(function (p) {
+          return String(p.PrescriberId || p.ContactId) === String(m.selectedPrescriberId);
+        });
+        if (!found) return 'Select prescriber';
+        return ((found.ForeName || '') + ' ' + (found.SurName || '')).trim();
+      },
+
+      closeAssignModal: function () {
+        this.assignModal.open = false;
+        this.assignModal.item = null;
+      },
+
+      onPrescriberChange: function () {
+        var self = this;
+        var m = self.assignModal;
+        if (!m.selectedPrescriberId) { m.patients = []; m.selectedPatients = {}; return; }
+
+        // Stock products: no patient fetch needed
+        if (m.isShowPrescriberTab) { m.patients = []; m.selectedPatients = {}; return; }
+
+        // RX products: load patients (dummy data)
+        m.patientsLoading = true;
+        m.patients = [];
+        m.selectedPatients = {};
+
+        // Simulate API delay
+        setTimeout(function () {
+          m.patients = JSON.parse(JSON.stringify(self.dummyPatients));
+          m.patientsLoading = false;
+        }, 400);
+      },
+
+      get filteredPatients() {
+        var m = this.assignModal;
+        if (!m.patientSearch.trim()) return m.patients;
+        var q = m.patientSearch.toLowerCase();
+        return m.patients.filter(function (p) {
+          var name = ((p.FirstName || '') + ' ' + (p.LastName || '')).toLowerCase();
+          return name.indexOf(q) !== -1;
+        });
+      },
+
+      togglePatient: function (patient) {
+        var key = String(patient.PatientId);
+        var sel = Object.assign({}, this.assignModal.selectedPatients);
+        if (sel[key]) { delete sel[key]; }
+        else { sel[key] = { qty: 1, patient: patient }; }
+        this.assignModal.selectedPatients = sel;
+      },
+
+      isPatientSelected: function (patient) {
+        return !!this.assignModal.selectedPatients[String(patient.PatientId)];
+      },
+
+      setPatientQty: function (patient, qty) {
+        var key = String(patient.PatientId);
+        var sel = Object.assign({}, this.assignModal.selectedPatients);
+        if (sel[key]) {
+          sel[key] = Object.assign({}, sel[key], { qty: parseInt(qty) || 1 });
+          this.assignModal.selectedPatients = sel;
+        }
+      },
+
+      get selectedPatientCount() {
+        return Object.keys(this.assignModal.selectedPatients).length;
+      },
+
+      applyAssignment: function () {
+        var self = this;
+        var m = self.assignModal;
+        if (m.saving) return;
+
+        var prescriberId = Number(m.selectedPrescriberId);
+        if (!prescriberId) {
+          self.showToast('Please select a prescriber', 'error');
+          return;
+        }
+
+        if (m.isShowPrescriberTab || !m.assignPatients) {
+          // Stock: prescriber-only
+          self.showToast('Prescriber assigned (qty: ' + m.stockQty + ')', 'success');
+          m.item.IsAddPatient = false;
+          self.closeAssignModal();
+        } else {
+          // RX: need patients
+          var selectedKeys = Object.keys(m.selectedPatients);
+          if (selectedKeys.length === 0) {
+            self.showToast('Please select at least one patient', 'error');
+            return;
+          }
+          self.showToast(selectedKeys.length + ' patient(s) assigned', 'success');
+          m.item.IsAddPatient = false;
+          // Build dummy prescriberPatients for display
+          var presName = self.getSelectedPrescriberName();
+          m.item.prescriberPatients = selectedKeys.map(function (key) {
+            var entry = m.selectedPatients[key];
+            return {
+              PrescriberId: prescriberId,
+              PrescriberName: presName,
+              PatientId: Number(key),
+              PatientName: entry.patient.FirstName + ' ' + entry.patient.LastName,
+              QuantityForPrescriber: 0,
+              QuantityForPatient: entry.qty,
+              PrescriptionId: Math.floor(Math.random() * 10000),
+              IsEditablePres: true,
+              IsDeletePres: true,
+              IsEditable: true,
+              IsDelete: true,
+              IsPatientApproved: false,
+              IsEsignApproved: false,
+              IsShowSign: true,
+              RxSignatureText: '',
+              StockSignatureText: '',
+              IsShowPrescriberTab: true,
+              IsAddPatient: false,
+              ClinicalIndicationNeeds: m.clinicalNeeds,
+              DirectionOfUse: m.directionOfUse,
+              UnlicensedMedicalStatus: '',
+              Gender: entry.patient.Gender === 1 ? 'Female' : 'Male',
+              DateOfBirth: '1990-01-01'
+            };
+          });
+          self.closeAssignModal();
+        }
+      },
+
+      editPrescriber: function (item, prescriberId) {
+        this.openAssignModal(item, prescriberId);
+      },
+
+      /* ---------- Toast helper ---------- */
+
+      showToast: function (message, type) {
+        // Simple toast using a custom event
+        window.dispatchEvent(new CustomEvent('notify', { detail: { message: message, type: type || 'info' } }));
+      }
+    };
+  });
+});
+</script>
+</head>
+<body>
+  <load src="partials/navigation.html" />
+
+  <div class="body-container">
+
+  <!-- Toast container -->
+  <div x-data="{ toasts: [] }"
+       @notify.window="
+         let t = { id: Date.now(), message: $event.detail.message, type: $event.detail.type || 'info' };
+         toasts.push(t);
+         setTimeout(() => { toasts = toasts.filter(x => x.id !== t.id) }, 3000)
+       "
+       class="fixed top-4 right-4 z-[99999] space-y-2">
+    <template x-for="t in toasts" :key="t.id">
+      <div x-transition class="px-4 py-3 rounded-xl shadow-lg text-sm font-medium text-white"
+           :class="t.type === 'error' ? 'bg-red-500' : t.type === 'success' ? 'bg-green-600' : 'bg-brand-primary-700'"
+           x-text="t.message"></div>
+    </template>
+  </div>
+
+  <div x-data="basketPage()">
+
+    <!-- Page header -->
+    <div class="card-container-small">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h1 class="heading-primary text-2xl">Your Basket</h1>
+          <p class="text-sm font-light mt-1">Review and manage your order</p>
+        </div>
+
+        <!-- View mode + filter -->
+        <div class="flex items-center gap-3">
+          <!-- View toggle -->
+          <div class="inline-flex rounded-lg bg-brand-background-dark p-1">
+            <button @click="viewMode = 'product'"
+                    :class="viewMode === 'product' ? 'bg-white shadow text-brand-dark' : 'text-brand-dark/50 hover:text-brand-dark'"
+                    class="px-3 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer">Product View</button>
+            <button @click="viewMode = 'patient'"
+                    :class="viewMode === 'patient' ? 'bg-white shadow text-brand-dark' : 'text-brand-dark/50 hover:text-brand-dark'"
+                    class="px-3 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer">Patient View</button>
+          </div>
+
+          <!-- Filter dropdown -->
+          <select x-model="filterBy" class="form-input text-xs py-1.5 w-auto">
+            <option value="all">All Items</option>
+            <option value="unassigned">Unassigned</option>
+            <option value="dropship">Drop Ship</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="relative mt-4 max-w-md">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" x-model="searchQuery" placeholder="Search items..."
+               class="form-input pl-11 text-sm" />
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <template x-if="items.length === 0">
+      <div class="card-container">
+        <div class="card-container-inner">
+          <div class="flex flex-col items-center text-center py-12 gap-4">
+            <svg class="h-16 w-16 text-brand-border-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+            </svg>
+            <h2 class="heading-primary text-2xl">Your basket is empty</h2>
+            <p>Browse our products and add items to your basket.</p>
+            <a href="/" class="button-primary mt-2">
+              <span class="button-text" data-text="Continue Shopping"><span>Continue Shopping</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- No search results -->
+    <template x-if="items.length > 0 && filteredItems.length === 0">
+      <div class="card-container">
+        <div class="card-container-inner">
+          <div class="flex flex-col items-center text-center py-8 gap-3">
+            <svg class="h-12 w-12 text-brand-border-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h2 class="heading-secondary text-lg">No matching items</h2>
+            <p class="text-sm text-brand-dark/50">Try adjusting your search or filter.</p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Basket content -->
+    <template x-if="items.length > 0 && filteredItems.length > 0">
+      <div class="card-container-generic p-6">
+        <h2 class="heading-primary text-xl mb-5">Order Details</h2>
+
+        <div class="lg:grid lg:grid-cols-[1fr_20rem] lg:gap-5">
+
+          <!-- Items list -->
+          <div class="min-w-0 mb-5 lg:mb-0">
+
+            <!-- ===== PRODUCT VIEW ===== -->
+            <div x-show="viewMode === 'product'">
+              <div class="rounded-xl border border-brand-border overflow-hidden">
+                <!-- Items header -->
+                <div class="bg-brand-background-secondary border-b border-brand-border px-5 py-3 flex items-center justify-between">
+                  <h3 class="label-text text-brand-dark" x-text="'Items (' + filteredItems.length + ')'"></h3>
+                  <div class="hidden sm:flex items-center gap-8 text-right">
+                    <span class="label-text w-16 text-center">Qty</span>
+                    <span class="label-text w-24 text-right">Total</span>
+                  </div>
+                </div>
+
+                <div class="divide-y divide-brand-border">
+                  <template x-for="(item, idx) in filteredItems" :key="item.OrderBasketId">
+                    <div>
+                      <!-- Offer group header -->
+                      <template x-if="isFirstInOfferGroup(item, idx)">
+                        <div class="bg-brand-background-secondary px-4 sm:px-5 py-2.5">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="text-xs font-medium uppercase tracking-wide text-brand-dark/60" x-text="item.OfferDisplayName"></span>
+                            <template x-if="item.CompleteOfferLabel">
+                              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold"
+                                    :class="isOfferComplete(item) ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'">
+                                <span x-text="getOfferBadgeText(item)"></span>
+                              </span>
+                            </template>
+                          </div>
+                        </div>
+                      </template>
+
+                      <!-- Item row -->
+                      <div class="p-4 sm:p-5 flex gap-4 transition-opacity"
+                           :class="{ 'opacity-40 pointer-events-none': removing === item.OrderBasketId, 'bg-brand-background-secondary/50': idx % 2 === 1, 'bg-white': idx % 2 === 0 }">
+
+                        <!-- Product image -->
+                        <img :src="imageUrl(item.ImagePath)"
+                             :alt="item.ProductName"
+                             class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover shrink-0 border border-brand-border bg-white">
+
+                        <!-- Product details -->
+                        <div class="flex-1 min-w-0">
+                          <div class="flex justify-between gap-3">
+                            <div>
+                              <a href="#" class="text-sm font-medium text-brand-primary-700 hover:underline line-clamp-2" x-text="item.ProductName"></a>
+                              <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark" x-text="formatPrice(item.UnitPrice)"></span></p>
+                              <p class="mt-0.5 text-xs text-brand-dark/50" x-show="item.Stock_Code">
+                                Code: <span x-text="item.Stock_Code"></span>
+                              </p>
+
+                              <!-- Badges row -->
+                              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                                <!-- RX / Stock price badge -->
+                                <template x-if="item.IsSellPriceFlag === true">
+                                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-orange-100 text-orange-700">RX Price</span>
+                                </template>
+                                <template x-if="item.IsSellPriceFlag === false">
+                                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-600">Stock Price</span>
+                                </template>
+
+                                <!-- Offer label -->
+                                <template x-if="item.OfferLabel">
+                                  <span class="badge-offer" x-text="item.OfferLabel"></span>
+                                </template>
+
+                                <!-- Free badge -->
+                                <template x-if="item.IsFreeProduct === true">
+                                  <span class="badge-primary">FREE</span>
+                                </template>
+
+                                <!-- Drop ship badge -->
+                                <template x-if="item.IsDropShippingProduct === true">
+                                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-purple-100 text-purple-700">Drop Ship</span>
+                                </template>
+
+                                <!-- Unassigned indicator (clickable) -->
+                                <template x-if="item.IsAddPatient === true">
+                                  <button @click="openAssignModal(item)"
+                                          class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition-colors cursor-pointer">
+                                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                                    Assign
+                                  </button>
+                                </template>
+                              </div>
+                            </div>
+
+                            <!-- Remove button -->
+                            <div class="flex flex-col items-center gap-1 shrink-0">
+                              <template x-if="item.IsDelete !== false">
+                                <button @click="confirmRemoveItem(item)"
+                                        class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"
+                                        title="Remove item">
+                                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                </button>
+                              </template>
+                            </div>
+                          </div>
+
+                          <!-- Qty / Price row -->
+                          <div class="mt-3 flex items-center justify-between">
+                            <!-- Inline qty edit -->
+                            <template x-if="editingItemId === item.OrderBasketId">
+                              <div class="flex items-center gap-2">
+                                <label class="label-text">Qty:</label>
+                                <input type="number" x-model.number="editQty" min="1"
+                                       class="form-input w-16 text-center py-1" />
+                                <button @click="saveEdit(item)" class="button-primary text-xs py-1 px-2.5 cursor-pointer">
+                                  <span class="button-text" data-text="Save"><span>Save</span></span>
+                                </button>
+                                <button @click="cancelEdit()" class="button-secondary text-xs py-1 px-2.5 cursor-pointer">
+                                  <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+                                </button>
+                              </div>
+                            </template>
+                            <template x-if="editingItemId !== item.OrderBasketId">
+                              <div class="flex items-center gap-2">
+                                <span class="label-text">Qty:</span>
+                                <span class="label-content font-medium" x-text="item.Quantity"></span>
+                                <template x-if="item.IsEditable === true && item.IsFreeProduct !== true">
+                                  <button @click="startEdit(item)"
+                                          class="basic-link text-xs cursor-pointer">Edit</button>
+                                </template>
+                              </div>
+                            </template>
+
+                            <div class="text-right flex items-baseline gap-3">
+                              <span class="text-xs text-brand-dark/40" x-text="formatPrice(item.UnitPrice) + ' each'"></span>
+                              <span class="text-base font-medium text-brand-primary-700" x-text="formatPrice(item.Total)"></span>
+                            </div>
+                          </div>
+
+                          <!-- Prescriber/Patient hierarchy -->
+                          <template x-if="item.prescriberPatients && item.prescriberPatients.length > 0">
+                            <div class="mt-3 border-t border-brand-border/50 pt-3 space-y-2">
+                              <template x-for="group in groupByPrescriber(item.prescriberPatients)" :key="group.prescriberId">
+                                <div class="rounded-lg bg-brand-background/50 p-2.5">
+                                  <!-- Prescriber row -->
+                                  <div class="flex items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 min-w-0">
+                                      <svg class="w-4 h-4 shrink-0 text-brand-dark/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                      </svg>
+                                      <span class="text-xs font-semibold text-brand-dark truncate" x-text="group.prescriberName"></span>
+                                      <!-- eSign badge -->
+                                      <template x-if="getPrescriberBadge(group.entries)">
+                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 shrink-0">
+                                          <svg class="w-3 h-3 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                          eSigned
+                                        </span>
+                                      </template>
+                                      <template x-if="!getPrescriberBadge(group.entries) && group.entries.some(function(e){ return e.IsShowSign; })">
+                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 shrink-0">Pending eSign</span>
+                                      </template>
+                                      <template x-if="getSignatureText(group.entries[0])">
+                                        <span class="text-xs text-brand-dark/40 truncate" x-text="getSignatureText(group.entries[0])"></span>
+                                      </template>
+                                    </div>
+                                    <div class="flex items-center gap-1 shrink-0">
+                                      <template x-if="group.entries[0].IsEditablePres">
+                                        <button @click="editPrescriber(item, group.prescriberId)"
+                                                class="w-6 h-6 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit prescriber">
+                                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                        </button>
+                                      </template>
+                                      <template x-if="group.entries[0].IsDeletePres">
+                                        <button @click="confirmDeletePrescriber(item, group.prescriberId, group.entries[0].PrescriptionId)"
+                                                class="w-6 h-6 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Remove prescriber">
+                                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                        </button>
+                                      </template>
+                                    </div>
+                                  </div>
+
+                                  <!-- Patient rows under prescriber -->
+                                  <template x-for="pp in group.entries.filter(function(e){ return e.PatientId && e.PatientId > 0; })" :key="String(group.prescriberId) + '_' + String(pp.PatientId)">
+                                    <div class="ml-6 mt-1.5 flex items-center justify-between gap-2 py-1.5 border-t border-brand-border/30">
+                                      <div class="flex items-center gap-2 min-w-0">
+                                        <svg class="w-3.5 h-3.5 shrink-0 text-brand-dark/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <div class="min-w-0">
+                                          <span class="text-xs font-medium text-brand-dark" x-text="pp.PatientName || 'Patient'"></span>
+                                          <template x-if="pp.DateOfBirth">
+                                            <span class="text-xs text-brand-dark/40 ml-1" x-text="'DOB: ' + new Date(pp.DateOfBirth).toLocaleDateString('en-GB')"></span>
+                                          </template>
+                                          <template x-if="pp.Gender">
+                                            <span class="text-xs text-brand-dark/40 ml-1" x-text="'(' + pp.Gender + ')'"></span>
+                                          </template>
+                                        </div>
+                                      </div>
+                                      <div class="flex items-center gap-2 shrink-0">
+                                        <template x-if="editingPatientKey === String(item.OrderBasketId) + '_' + String(pp.PatientId)">
+                                          <div class="flex items-center gap-1">
+                                            <input type="number" x-model.number="editPatientQtyVal" min="1"
+                                                   class="w-14 px-1.5 py-0.5 text-xs rounded border border-brand-border text-center focus:outline-none focus:ring-1 focus:ring-brand-primary-700/20" />
+                                            <button @click="savePatientQty(item, pp)" class="px-1.5 py-0.5 text-xs font-semibold rounded bg-brand-primary-700 text-white hover:bg-brand-primary-800 cursor-pointer">Save</button>
+                                            <button @click="cancelPatientQty()" class="px-1.5 py-0.5 text-xs rounded border border-brand-border hover:bg-brand-background-dark cursor-pointer">Cancel</button>
+                                          </div>
+                                        </template>
+                                        <template x-if="editingPatientKey !== String(item.OrderBasketId) + '_' + String(pp.PatientId)">
+                                          <div class="flex items-center gap-1.5">
+                                            <span class="text-xs text-brand-dark/50">Qty: <span class="font-medium text-brand-dark" x-text="pp.QuantityForPatient || 0"></span></span>
+                                            <template x-if="pp.IsEditable">
+                                              <button @click="editPatientQty(item, pp)"
+                                                      class="p-0.5 rounded text-brand-dark/30 hover:text-brand-primary-700 cursor-pointer" title="Edit quantity">
+                                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                              </button>
+                                            </template>
+                                            <template x-if="pp.IsDelete">
+                                              <button @click="confirmDeletePatient(item, pp.PatientId, pp.PrescriberId, pp.PrescriptionId)"
+                                                      class="p-0.5 rounded text-brand-dark/30 hover:text-red-500 cursor-pointer" title="Remove">
+                                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                              </button>
+                                            </template>
+                                          </div>
+                                        </template>
+                                      </div>
+                                    </div>
+                                  </template>
+
+                                  <!-- Prescriber-only qty -->
+                                  <template x-if="group.entries.filter(function(e){ return e.PatientId && e.PatientId > 0; }).length === 0 && group.entries[0].QuantityForPrescriber > 0">
+                                    <div class="ml-6 mt-1.5 pt-1.5 border-t border-brand-border/30">
+                                      <span class="text-xs text-brand-dark/50">Prescriber Qty: <span class="font-medium text-brand-dark" x-text="group.entries[0].QuantityForPrescriber"></span></span>
+                                    </div>
+                                  </template>
+                                </div>
+                              </template>
+                            </div>
+                          </template>
+
+                          <!-- Simple prescriber name (no hierarchy) -->
+                          <template x-if="(!item.prescriberPatients || item.prescriberPatients.length === 0) && item.PrescriberName">
+                            <p class="mt-1 text-xs text-brand-dark/40">
+                              Prescriber: <span x-text="item.PrescriberName"></span>
+                            </p>
+                          </template>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+
+              <div class="mt-3 px-2">
+                <a href="/" class="button-text-icon">
+                  <span>Continue Shopping</span>
+                  <span class="icon icon-arrow"></span>
+                </a>
+              </div>
+            </div><!-- /PRODUCT VIEW -->
+
+            <!-- ===== PATIENT VIEW ===== -->
+            <div x-show="viewMode === 'patient'">
+              <template x-if="patientGroups.length === 0">
+                <div class="rounded-xl border border-brand-border bg-white">
+                  <div class="flex flex-col items-center text-center py-12 gap-3">
+                    <svg class="h-12 w-12 text-brand-border-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <h2 class="heading-primary text-lg">No patients assigned</h2>
+                    <p class="text-sm text-brand-dark/50">Switch to Product View and assign prescribers/patients to your items.</p>
+                  </div>
+                </div>
+              </template>
+
+              <div class="space-y-3">
+                <template x-for="pg in patientGroups" :key="pg.patientId">
+                  <div class="rounded-xl border border-brand-border bg-white p-4 sm:p-5">
+                    <!-- Patient header -->
+                    <div class="flex items-center justify-between gap-3 pb-3 border-b border-brand-border/50">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-full bg-brand-primary-700/10 text-brand-primary-700 flex items-center justify-center text-sm font-medium shrink-0"
+                             x-text="getPatientInitials(pg.patientName)"></div>
+                        <div class="min-w-0">
+                          <h3 class="heading-secondary text-sm truncate" x-text="pg.patientName"></h3>
+                          <div class="flex items-center gap-2 text-xs text-brand-dark/50">
+                            <template x-if="pg.dateOfBirth">
+                              <span x-text="'DOB: ' + new Date(pg.dateOfBirth).toLocaleDateString('en-GB')"></span>
+                            </template>
+                            <template x-if="pg.gender">
+                              <span x-text="pg.gender"></span>
+                            </template>
+                          </div>
+                        </div>
+                      </div>
+                      <template x-if="pg.hasDelete">
+                        <button @click="confirmDeleteAllPatient(pg.patientId)"
+                                class="button-secondary border-brand-error text-brand-error hover:bg-brand-error/5 text-xs px-3 py-1.5 cursor-pointer shrink-0">
+                          <span class="button-text" data-text="Delete All"><span>Delete All</span></span>
+                        </button>
+                      </template>
+                    </div>
+
+                    <!-- Prescriber groups -->
+                    <div class="mt-3 space-y-3">
+                      <template x-for="pres in pg.prescribers" :key="pres.prescriberId">
+                        <div class="rounded-lg bg-brand-background/50 p-2.5">
+                          <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-4 h-4 shrink-0 text-brand-dark/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            <span class="text-xs font-semibold text-brand-dark" x-text="pres.prescriberName"></span>
+                            <template x-if="pres.isPatientApproved && pres.isShowSign">
+                              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 shrink-0">eSigned</span>
+                            </template>
+                            <template x-if="!pres.isPatientApproved && pres.isShowSign">
+                              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 shrink-0">Pending eSign</span>
+                            </template>
+                          </div>
+                          <div class="space-y-1.5">
+                            <template x-for="entry in pres.products" :key="String(entry.item.OrderBasketId) + '_' + String(entry.pp.PrescriptionId)">
+                              <div class="flex items-center justify-between gap-3 py-1.5 border-t border-brand-border/30">
+                                <div class="flex items-center gap-2.5 min-w-0">
+                                  <div class="w-10 h-10 shrink-0 rounded-lg overflow-hidden border border-brand-border bg-white">
+                                    <img :src="imageUrl(entry.item.ImagePath)" :alt="entry.item.ProductName"
+                                         class="w-full h-full object-contain p-0.5">
+                                  </div>
+                                  <div class="min-w-0">
+                                    <p class="text-xs font-medium text-brand-dark truncate" x-text="entry.item.ProductName"></p>
+                                    <p class="text-xs text-brand-dark/40" x-text="'Code: ' + (entry.item.Stock_Code || '')" x-show="entry.item.Stock_Code"></p>
+                                  </div>
+                                </div>
+                                <span class="text-xs text-brand-dark/50 shrink-0">Qty: <span class="font-medium text-brand-dark" x-text="entry.pp.QuantityForPatient || 0"></span></span>
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+
+                    <div class="mt-3 pt-3 border-t border-brand-border/50 flex items-center justify-between">
+                      <span class="text-sm text-brand-dark/60">Overall Quantity</span>
+                      <span class="text-sm font-medium text-brand-dark" x-text="pg.totalQty + ' item' + (pg.totalQty !== 1 ? 's' : '')"></span>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div><!-- /PATIENT VIEW -->
+
+          </div>
+
+          <!-- Order summary sidebar -->
+          <div class="space-y-5">
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h2 class="label-text text-brand-dark">Order Summary</h2>
+              </div>
+              <div class="bg-white p-5">
+                <template x-if="orderSummary">
+                  <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                      <span class="label-text">Net Total</span>
+                      <span class="label-content" x-text="formatPrice(orderSummary.NetTotal)"></span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="label-text">VAT</span>
+                      <span class="label-content" x-text="formatPrice(orderSummary.VAT)"></span>
+                    </div>
+                    <template x-if="orderSummary.DeliveryCostLabel">
+                      <div class="flex justify-between">
+                        <span class="label-text" x-text="orderSummary.DeliveryCostLabel"></span>
+                        <span class="label-content" x-text="formatPrice(orderSummary.ShippingCharges)"></span>
+                      </div>
+                    </template>
+                    <div class="border-t border-brand-border pt-4 flex justify-between items-center">
+                      <span class="label-text text-brand-dark">Total</span>
+                      <span class="heading-primary text-2xl text-brand-primary-700" x-text="formatPrice(orderSummary.Total)"></span>
+                    </div>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="bg-white border-t border-brand-border px-5 pb-5 pt-4">
+                <div class="flex flex-col gap-2">
+                  <button @click="goToCheckoutWithConfirm()"
+                          class="button-primary-icon w-full cursor-pointer">
+                    <span class="button-text" data-text="Proceed to Checkout"><span>Proceed to Checkout</span></span>
+                    <span><span class="icon-arrow"></span></span>
+                  </button>
+                  <button @click="confirmClearAll()" class="button-secondary w-full justify-center cursor-pointer">
+                    <span class="button-text" data-text="Clear Basket"><span>Clear Basket</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </template>
+
+    <!-- ==================== ASSIGNMENT MODAL ==================== -->
+    <div x-show="assignModal.open" x-cloak class="fixed inset-0 z-[9999] flex items-center justify-center p-4" @keydown.escape.window="closeAssignModal()">
+      <!-- Backdrop -->
+      <div x-show="assignModal.open"
+           x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+           x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+           class="fixed inset-0 bg-black/30 backdrop-blur-xs" @click="closeAssignModal()"></div>
+
+      <!-- Modal panel -->
+      <div x-show="assignModal.open"
+           x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+           x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+           class="relative bg-white rounded-3xl shadow-xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
+
+        <!-- Header -->
+        <div class="px-8 pt-8 pb-0 shrink-0">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="heading-primary text-2xl">Assign Prescriber &amp; Patient</h2>
+              <p class="text-sm font-light mt-1 line-clamp-1" x-text="assignModal.item ? assignModal.item.ProductName : ''"></p>
+            </div>
+            <button @click="closeAssignModal()" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <div class="border-t border-brand-border mt-6"></div>
+        </div>
+
+        <!-- Body -->
+        <div class="px-8 py-6 overflow-y-auto flex-1">
+
+          <!-- Loading state -->
+          <template x-if="assignModal.loading">
+            <div class="flex items-center justify-center py-12">
+              <svg class="animate-spin h-8 w-8 text-brand-primary-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+          </template>
+
+          <!-- Loaded content -->
+          <template x-if="!assignModal.loading">
+            <div class="space-y-5">
+
+              <!-- Prescriber dropdown -->
+              <div class="form-group">
+                <label class="form-label">Select Prescriber</label>
+                <div class="form-select-wrap" @click.away="assignModal.prescriberOpen = false">
+                  <button type="button" @click="assignModal.prescriberOpen = !assignModal.prescriberOpen"
+                          :class="{ 'is-open': assignModal.prescriberOpen, 'is-placeholder': !assignModal.selectedPrescriberId }"
+                          class="form-select-btn">
+                    <span class="truncate" x-text="getSelectedPrescriberName()"></span>
+                    <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <div x-show="assignModal.prescriberOpen" x-transition class="form-select-panel" x-cloak>
+                    <div class="form-select-panel-inner">
+                      <template x-for="p in assignModal.prescribers" :key="p.PrescriberId || p.ContactId">
+                        <div @click="assignModal.selectedPrescriberId = String(p.PrescriberId || p.ContactId); assignModal.prescriberOpen = false; onPrescriberChange()"
+                             class="form-select-option"
+                             :class="{ 'is-selected': assignModal.selectedPrescriberId === String(p.PrescriberId || p.ContactId) }">
+                          <span x-text="((p.ForeName || p.FirstName || '') + ' ' + (p.SurName || p.LastName || '')).trim()"></span>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Assign Patients toggle (RX products only) -->
+              <template x-if="!assignModal.isShowPrescriberTab && assignModal.selectedPrescriberId">
+                <div class="flex items-center justify-between py-3 border-t border-b border-brand-border/50">
+                  <div>
+                    <p class="text-sm font-medium text-brand-dark">Assign Patient(s)</p>
+                    <p class="text-xs text-brand-dark/40 mt-0.5" x-text="assignModal.assignPatients ? 'Select patients for this product' : 'Prescriber-only assignment'"></p>
+                  </div>
+                  <button type="button" @click="assignModal.assignPatients = !assignModal.assignPatients"
+                          :class="assignModal.assignPatients ? 'bg-brand-primary-700' : 'bg-brand-border'"
+                          class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-primary-700/20 focus:ring-offset-2">
+                    <span :class="assignModal.assignPatients ? 'translate-x-5' : 'translate-x-0'"
+                          class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5"></span>
+                  </button>
+                </div>
+              </template>
+
+              <!-- Stock product OR Assign Patients OFF: quantity for prescriber -->
+              <template x-if="assignModal.selectedPrescriberId && (assignModal.isShowPrescriberTab || (!assignModal.isShowPrescriberTab && !assignModal.assignPatients))">
+                <div class="form-group">
+                  <label class="form-label">Quantity for Prescriber</label>
+                  <div class="flex items-center w-28 border border-brand-border hover:border-brand-primary-700 rounded-full">
+                    <button type="button"
+                            @click="assignModal.stockQty = Math.max(1, assignModal.stockQty - 1)"
+                            class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+                    </button>
+                    <span class="flex-1 text-center text-sm font-bold" x-text="assignModal.stockQty"></span>
+                    <button type="button"
+                            @click="assignModal.stockQty++"
+                            class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </template>
+
+              <!-- RX product + Assign Patients ON: patient list -->
+              <template x-if="!assignModal.isShowPrescriberTab && assignModal.selectedPrescriberId && assignModal.assignPatients">
+                <div>
+                  <!-- Patient loading -->
+                  <template x-if="assignModal.patientsLoading">
+                    <div class="flex items-center justify-center py-8">
+                      <svg class="animate-spin h-6 w-6 text-brand-primary-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    </div>
+                  </template>
+
+                  <!-- Patient search + list -->
+                  <template x-if="!assignModal.patientsLoading">
+                    <div class="space-y-3">
+                      <label class="form-label">Select Patient(s)</label>
+
+                      <!-- Search -->
+                      <div class="relative">
+                        <svg class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" x-model="assignModal.patientSearch"
+                               placeholder="Search patients..."
+                               class="form-input pl-12" />
+                      </div>
+
+                      <!-- Empty state -->
+                      <template x-if="assignModal.patients.length === 0">
+                        <p class="text-sm text-brand-dark/50 text-center py-4">No patients found for this prescriber.</p>
+                      </template>
+
+                      <!-- Patient rows -->
+                      <div class="max-h-60 overflow-y-auto rounded-xl border border-brand-border divide-y divide-brand-border/50">
+                        <template x-for="patient in filteredPatients" :key="patient.PatientId">
+                          <div class="flex items-center gap-3 px-4 py-3 hover:bg-brand-background transition-colors cursor-pointer"
+                               :class="{ 'bg-brand-primary-700/5': isPatientSelected(patient) }"
+                               @click="togglePatient(patient)">
+
+                            <!-- Checkbox -->
+                            <input type="checkbox" class="form-checkbox" :checked="isPatientSelected(patient)" @click.stop="togglePatient(patient)">
+
+                            <!-- Patient info -->
+                            <div class="flex-1 min-w-0">
+                              <p class="text-sm font-medium text-brand-dark" x-text="(patient.FirstName || '') + ' ' + (patient.LastName || '')"></p>
+                              <p class="text-xs text-brand-dark/40" x-show="patient.strDateOfBirth" x-text="'DOB: ' + patient.strDateOfBirth"></p>
+                            </div>
+
+                            <!-- Quantity selector (shown when selected) -->
+                            <template x-if="isPatientSelected(patient)">
+                              <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full shrink-0" @click.stop>
+                                <button type="button"
+                                        @click="setPatientQty(patient, Math.max(1, (assignModal.selectedPatients[String(patient.PatientId)]?.qty || 1) - 1))"
+                                        class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+                                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+                                </button>
+                                <span class="w-8 text-center text-sm font-bold" x-text="assignModal.selectedPatients[String(patient.PatientId)]?.qty || 1"></span>
+                                <button type="button"
+                                        @click="setPatientQty(patient, (assignModal.selectedPatients[String(patient.PatientId)]?.qty || 1) + 1)"
+                                        class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+                                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                </button>
+                              </div>
+                            </template>
+                          </div>
+                        </template>
+                      </div>
+
+                      <!-- Selection count -->
+                      <template x-if="selectedPatientCount > 0">
+                        <p class="text-xs text-brand-primary-700 font-medium">
+                          <span x-text="selectedPatientCount"></span> patient<span x-show="selectedPatientCount > 1">s</span> selected
+                        </p>
+                      </template>
+                    </div>
+                  </template>
+                </div>
+              </template>
+
+              <!-- Clinical notes fields -->
+              <template x-if="assignModal.showClinicalFields && assignModal.selectedPrescriberId">
+                <div class="space-y-3 pt-4 border-t border-brand-border/50">
+                  <div class="form-group">
+                    <label class="form-label">Clinical Indication</label>
+                    <textarea x-model="assignModal.clinicalNeeds"
+                              rows="2"
+                              placeholder="Enter clinical indication..."
+                              class="form-input resize-none"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Directions for Use</label>
+                    <textarea x-model="assignModal.directionOfUse"
+                              rows="2"
+                              placeholder="Enter directions for use..."
+                              class="form-input resize-none"></textarea>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-8 pb-8 pt-0 shrink-0">
+          <div class="border-t border-brand-border mb-6"></div>
+          <div class="flex gap-3 justify-center">
+            <button @click="closeAssignModal()" class="button-secondary flex-1 justify-center cursor-pointer">
+              <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+            </button>
+            <button @click="applyAssignment()"
+                    :disabled="assignModal.saving || assignModal.loading || !assignModal.selectedPrescriberId"
+                    class="button-primary flex-1 justify-center cursor-pointer"
+                    :class="{ 'opacity-60 pointer-events-none': assignModal.saving || assignModal.loading || !assignModal.selectedPrescriberId }">
+              <span class="button-text" :data-text="assignModal.saving ? 'Saving...' : 'Apply'">
+                <span x-text="assignModal.saving ? 'Saving...' : 'Apply'"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CONFIRM DIALOG ==================== -->
+    <div x-show="confirmAction" x-cloak class="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+      <div x-show="confirmAction"
+           x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+           x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+           @click="confirmAction = null" class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+      <div x-show="confirmAction"
+           x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+           x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+           @keydown.escape.window="confirmAction = null"
+           class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+        <h2 class="heading-primary text-2xl">Are you sure?</h2>
+        <p class="text-sm font-light leading-relaxed mt-4" x-text="confirmAction ? confirmAction.message : ''"></p>
+        <div class="flex gap-3 mt-8">
+          <button class="button-secondary flex-1 justify-center" @click="confirmAction = null">
+            <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+          </button>
+          <button class="button-primary flex-1 justify-center bg-brand-error hover:bg-brand-error/90" @click="executeConfirmAction()">
+            <span class="button-text" data-text="Confirm"><span>Confirm</span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PRESCRIBER CONFIRM ==================== -->
+    <div x-show="showPrescriberConfirm" x-cloak class="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+      <div x-show="showPrescriberConfirm"
+           x-transition class="fixed inset-0 bg-black/30 backdrop-blur-xs" @click="showPrescriberConfirm = false"></div>
+      <div x-show="showPrescriberConfirm" x-transition
+           class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+        <h2 class="heading-primary text-2xl">Confirm Prescriber Assignments</h2>
+        <p class="text-sm font-light leading-relaxed mt-4">Please confirm that you have reviewed all prescriber assignments before proceeding to checkout.</p>
+        <div class="flex gap-3 mt-8">
+          <button class="button-secondary flex-1 justify-center" @click="showPrescriberConfirm = false">
+            <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+          </button>
+          <button class="button-primary flex-1 justify-center" @click="confirmAndCheckout()">
+            <span class="button-text" data-text="Confirm & Proceed"><span>Confirm &amp; Proceed</span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /basketPage -->
+
+  <load src="partials/home/footer.html" />
+  </div><!-- /body-container -->
+</body>
+</html>
