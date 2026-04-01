@@ -1526,5 +1526,104 @@
       </div>
     </div>
 
+    <h2 class="heading-secondary text-xl mt-8">Quantity Selector (pill)</h2>
+
+    <!-- Quantity Selectors -->
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold uppercase tracking-wide">Rounded pill with +/- buttons, used in product cards, basket, and assignment modals</p>
+
+      <div class="flex flex-wrap items-center gap-6">
+        <!-- Standard (w-full, used in product cards) -->
+        <div class="w-40">
+          <p class="text-xs text-brand-dark/50 mb-1">Standard</p>
+          <div x-data="{ qty: 1 }" class="flex items-center w-full border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="flex-1 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Compact (w-28, used in modal prescriber qty) -->
+        <div class="w-28">
+          <p class="text-xs text-brand-dark/50 mb-1">Compact</p>
+          <div x-data="{ qty: 2 }" class="flex items-center w-full border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="flex-1 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Small inline (w-auto, used in patient rows) -->
+        <div>
+          <p class="text-xs text-brand-dark/50 mb-1">Inline (patient row)</p>
+          <div x-data="{ qty: 3 }" class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline edit pattern: qty selector + save/cancel icon buttons -->
+      <p class="text-xs font-bold uppercase tracking-wide mt-4">Inline edit (qty selector + save/cancel icon buttons)</p>
+      <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+        <!-- Read-only display -->
+        <template x-if="!editing">
+          <div class="flex items-center gap-2">
+            <span class="label-text">Qty:</span>
+            <span class="label-content font-medium" x-text="qty"></span>
+            <button @click="editing = true"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
+          </div>
+        </template>
+        <!-- Editing mode -->
+        <template x-if="editing">
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+              <button @click="qty = Math.max(1, qty - 1)"
+                      class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              </button>
+              <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+              <button @click="qty++"
+                      class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
+            <!-- Save icon button -->
+            <button @click="editing = false"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg>
+            </button>
+            <!-- Cancel icon button -->
+            <button @click="editing = false"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </template>
+      </div>
+    </div>
+
   </div>
 </div>
