@@ -106,7 +106,7 @@
   /* STATUS BADGES — usage: <span class="badge-success">Completed</span> */
   [class^="badge-status-"],
   [class*=" badge-status-"] {
-    @apply flex pointer-events-none whitespace-nowrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full uppercase text-[10px] font-medium tracking-widest;
+    @apply inline-flex pointer-events-none whitespace-nowrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full uppercase text-[10px] font-medium tracking-widest;
 
     &::before {
       content: "";
