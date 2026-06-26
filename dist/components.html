@@ -27,14 +27,14 @@
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <!-- Tailwind CSS -->
-  <link rel="stylesheet" crossorigin href="/assets/app-B_DvM4y0.css">
+  <link rel="stylesheet" crossorigin href="/assets/app-DQrN6YAg.css">
 </head>
 <body>
   <div class="body-container">
     <div class="card-container bg-brand-light">
   <div class="flex flex-col items-start gap-4">
     <h1 class="heading-primary md:text-4xl text-2xl">Components</h1>
-    <h2 class="heading-secondary text-xl">Buttons</h2>
+    <h2 class="heading-secondary text-xl mt-4">Buttons</h2>
 
     <div class="grid w-full grid-cols-2 bg-neutral-400 rounded-xl p-8">
       <div class="flex flex-col items-start gap-4">
@@ -129,9 +129,9 @@
       </div>
     </div>
 
-    <h2 class="heading-secondary text-xl">Badges</h2>
+    <h2 class="heading-secondary text-xl mt-8">Badges</h2>
 
-    <div class="grid w-full grid-cols-2 bg-neutral-400 rounded-xl p-8">
+    <div class="grid w-full md:grid-cols-2 bg-neutral-400 rounded-xl p-8">
       <div class="flex flex-col items-start gap-4">
         <p class="text-xs text-brand-light font-bold uppercase tracking-wide">Light background</p>
         <div class="badge-transparent">
@@ -160,9 +160,1779 @@
           badge-transparent
         </div>
       </div>
+      <div class="flex flex-wrap items-start gap-4 mt-8 bg-white rounded-xl p-4">
+        <p class="w-full text-xs font-bold uppercase tracking-wide">Status badges</p>
+        <span class="badge-status-processing">Processing</span>
+        <span class="badge-status-pending">Pending</span>
+        <span class="badge-status-awaiting">Awaiting RX Approval</span>
+        <span class="badge-status-dispatched">Dispatched</span>
+        <span class="badge-status-completed">Completed</span>
+        <span class="badge-status-cancelled">Cancelled</span>
+      </div>
     </div>
 
-    <h2 class="heading-secondary text-xl">Typography</h2>
+    <h2 class="heading-secondary text-xl mt-8">Icon Buttons (hover roundel)</h2>
+
+    <!-- Icon Buttons with hover roundel -->
+    <div class="flex flex-wrap items-center gap-4">
+      <p class="w-full text-xs font-bold uppercase tracking-wide">Hover to reveal bg-brand-background roundel</p>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+      </button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+      </button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+      </button>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Tabs (pill toggle)</h2>
+
+    <!-- Tabs — pill-style toggle group -->
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold uppercase tracking-wide">Rounded pill container with active/inactive states</p>
+      <div x-data="{ tab: 'first' }" class="overflow-x-auto"><div class="inline-flex gap-1 bg-brand-background rounded-full p-0.5 whitespace-nowrap">
+        <button @click="tab = 'first'" :class="tab === 'first' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          First Tab
+        </button>
+        <button @click="tab = 'second'" :class="tab === 'second' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Second Tab
+        </button>
+        <button @click="tab = 'third'" :class="tab === 'third' ? 'bg-brand-light border-brand-primary-700 text-brand-primary-700' : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-slate-200 cursor-pointer'" class="flex items-center gap-2 px-5 py-2 rounded-full border text-xs font-medium uppercase tracking-wide">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.573-1.066z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Third Tab
+        </button>
+      </div></div>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Order Details Popup</h2>
+
+    <!-- Order Details Popup — Desktop + Mobile side by side -->
+    <div class="flex items-start gap-6 flex-wrap">
+
+    <!-- Order Details Popup — Responsive -->
+    <div class="w-full max-w-[750px]" x-data="{ open: true }">
+      <div x-show="open" class="bg-white rounded-3xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="sm:px-8 sm:pt-8 px-5 pt-5 pb-0">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="heading-primary sm:text-2xl text-xl">Order Details</h2>
+              <div class="sm:mt-4 mt-3 inline-block">
+                <span class="badge-status-completed">Completed</span>
+              </div>
+            </div>
+            <button @click="open = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <!-- Warning alert -->
+          <div class="flex items-start gap-3 p-4 rounded-xl border bg-amber-100 border-amber-400 text-amber-800 sm:mt-5 mt-4">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+            <div>
+              <p class="md:text-sm text-xs font-medium leading-tight">Approval Required</p>
+              <p class="md:text-sm text-xs font-light leading-snug mt-1">This order is pending approval. Please review the details and approve or reject this order.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Info -->
+        <div class="sm:px-8 px-5 sm:pt-6 pt-4">
+          <div class="border-t border-brand-border"></div>
+
+          <div class="space-y-4 py-4">
+            <!-- Order ID + Order Date — always side by side -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="label-text mb-1">Order ID</p>
+                <p class="label-content">#WG-1242</p>
+              </div>
+              <div class="sm:text-right">
+                <p class="label-text mb-1">Order Date</p>
+                <p class="label-content">02 May 2025</p>
+              </div>
+            </div>
+            <!-- Ordered By + Approved By — side by side on sm+, stacked on mobile -->
+            <div class="sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0">
+              <div>
+                <p class="label-text mb-1">Ordered By</p>
+                <p class="label-content">Nurse Emma Williams</p>
+              </div>
+              <div class="sm:text-right">
+                <p class="label-text mb-1">Approved By</p>
+                <p class="label-content">Dr Sarah Johnson</p>
+              </div>
+            </div>
+            <!-- Payment + Total — always side by side -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="label-text mb-1">Payment Method</p>
+                <p class="label-content">Credit Card</p>
+              </div>
+              <div class="sm:text-right">
+                <p class="label-text mb-1">Total Amount</p>
+                <p class="label-content">&pound;340.00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-brand-border"></div>
+        </div>
+
+        <!-- Items List -->
+        <div class="sm:px-8 px-5 sm:pt-5 pt-4">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="heading-secondary sm:text-sm text-xs uppercase tracking-wide">Items (12 Total)</h3>
+            <span class="badge-primary text-[10px]">RX Order</span>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:gap-2.5 gap-2 sm:max-h-57.5 max-h-48 overflow-y-auto scroll-fade pr-1">
+              <!-- Item Rows — horizontal on sm+, stacked on mobile -->
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Dermapen Needles</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">206.99</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Hyaluronic Serum</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">108.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Vitamin C Serum</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">8</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">439.99</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Retinol Cream</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">6</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">508.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Botox Vial 50u</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">312.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Dermal Filler 1ml</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">5</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">475.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Microneedling Pen</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">1</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">189.99</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Collagen Mask Pack</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">10</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">89.90</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">LED Light Therapy Gel</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">2</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">64.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Numbing Cream 30g</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">7</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">105.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Skin Peel Solution</span>
+                  <span class="badge-primary text-[10px] bg-brand-primary-700/10 px-2">RX</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">3</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">156.00</span></div>
+                </div>
+              </div>
+
+              <div class="sm:flex sm:items-center sm:justify-between bg-brand-background-secondary sm:rounded-xl rounded-lg sm:px-5 px-4 sm:py-4 py-3">
+                <div class="flex items-center sm:gap-3 gap-2">
+                  <span class="relative flex size-2 shrink-0">
+                    <span class="relative inline-flex size-2 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Peptide Eye Cream</span>
+                </div>
+                <div class="flex items-center sm:gap-8 gap-4 text-xs sm:mt-0 mt-2 sm:pl-0 pl-4">
+                  <div><span class="label-text mr-1.5">Qty</span> <span class="label-content">4</span></div>
+                  <div><span class="label-text mr-1.5">Total</span> <span class="label-content">132.00</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="border-b border-brand-border"></div>
+          </div>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="sm:px-8 px-5 sm:pt-6 pt-4 sm:pb-8 pb-5">
+          <div class="sm:flex sm:flex-row flex flex-col gap-3 sm:gap-3 gap-2">
+            <button class="button-secondary sm:flex-1 w-full sm:w-auto justify-center">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="button-text" data-text="Repeat Order"><span>Repeat Order</span></span>
+              </span>
+            </button>
+            <button class="button-primary sm:flex-1 w-full sm:w-auto justify-center">
+              <span class="button-text" data-text="View Full Order"><span>View Full Order</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Details Popup — Mobile -->
+    <div class="max-w-sm" x-data="{ open: true }">
+      <div x-show="open" class="bg-white rounded-3xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="px-5 pt-5 pb-0">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="heading-primary text-xl">Order Details</h2>
+              <div class="mt-3 inline-block">
+                <span class="badge-status-completed">Completed</span>
+              </div>
+            </div>
+            <button @click="open = false" class="text-gray-400 hover:text-brand-dark transition-colors p-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <!-- Info alert -->
+          <div class="flex items-start gap-3 p-4 rounded-xl border bg-blue-50 border-blue-200 text-blue-800 mt-4">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9ZM13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V12Z" fill="currentColor"></path></svg>
+            <div>
+              <p class="md:text-sm text-xs font-medium leading-tight">Verification Pending</p>
+              <p class="text-xs font-light leading-snug mt-1">Your account is under review. You'll receive an email once verification is complete.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Info — stacked -->
+        <div class="px-5 pt-4">
+          <div class="border-t border-brand-border"></div>
+
+          <div class="space-y-4 py-4">
+            <!-- Order ID + Order Date — side by side -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="label-text mb-1">Order ID</p>
+                <p class="label-content">#WG-1242</p>
+              </div>
+              <div>
+                <p class="label-text mb-1">Order Date</p>
+                <p class="label-content">02 May 2025</p>
+              </div>
+            </div>
+            <!-- Ordered By — full width -->
+            <div>
+              <p class="label-text mb-1">Ordered By</p>
+              <p class="label-content">Nurse Emma Williams</p>
+            </div>
+            <!-- Approved By — full width -->
+            <div>
+              <p class="label-text mb-1">Approved By</p>
+              <p class="label-content">Dr Sarah Johnson</p>
+            </div>
+            <!-- Payment + Total — side by side -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="label-text mb-1">Payment</p>
+                <p class="label-content">Credit Card</p>
+              </div>
+              <div>
+                <p class="label-text mb-1">Total</p>
+                <p class="label-content">&pound;340.00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-brand-border"></div>
+        </div>
+
+        <!-- Items List -->
+        <div class="px-5 pt-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="heading-secondary text-xs uppercase tracking-wide">Items (12 Total)</h3>
+            <span class="badge-primary text-[10px]">RX Order</span>
+          </div>
+
+          <div>
+            <div class="flex flex-col gap-2 max-h-48 overflow-y-auto scroll-fade pr-1">
+              <!-- Item Row — stacked: name on top, qty/total below -->
+              <div class="bg-brand-background-secondary rounded-lg px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-1.5 shrink-0">
+                    <span class="relative inline-flex size-1.5 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Dermapen Needles</span>
+                </div>
+                <div class="flex items-center gap-4 text-xs mt-2 pl-3.5">
+                  <div><span class="label-text mr-1">Qty</span> <span class="label-content">2</span></div>
+                  <div><span class="label-text mr-1">Total</span> <span class="label-content">206.99</span></div>
+                </div>
+              </div>
+
+              <div class="bg-brand-background-secondary rounded-lg px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-1.5 shrink-0">
+                    <span class="relative inline-flex size-1.5 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Hyaluronic Serum</span>
+                </div>
+                <div class="flex items-center gap-4 text-xs mt-2 pl-3.5">
+                  <div><span class="label-text mr-1">Qty</span> <span class="label-content">4</span></div>
+                  <div><span class="label-text mr-1">Total</span> <span class="label-content">108.00</span></div>
+                </div>
+              </div>
+
+              <div class="bg-brand-background-secondary rounded-lg px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-1.5 shrink-0">
+                    <span class="relative inline-flex size-1.5 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Vitamin C Serum</span>
+                </div>
+                <div class="flex items-center gap-4 text-xs mt-2 pl-3.5">
+                  <div><span class="label-text mr-1">Qty</span> <span class="label-content">8</span></div>
+                  <div><span class="label-text mr-1">Total</span> <span class="label-content">439.99</span></div>
+                </div>
+              </div>
+
+              <div class="bg-brand-background-secondary rounded-lg px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-1.5 shrink-0">
+                    <span class="relative inline-flex size-1.5 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Retinol Cream</span>
+                </div>
+                <div class="flex items-center gap-4 text-xs mt-2 pl-3.5">
+                  <div><span class="label-text mr-1">Qty</span> <span class="label-content">6</span></div>
+                  <div><span class="label-text mr-1">Total</span> <span class="label-content">508.00</span></div>
+                </div>
+              </div>
+
+              <div class="bg-brand-background-secondary rounded-lg px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <span class="relative flex size-1.5 shrink-0">
+                    <span class="relative inline-flex size-1.5 rounded-full bg-brand-primary-700"></span>
+                  </span>
+                  <span class="label-content">Botox Vial 50u</span>
+                </div>
+                <div class="flex items-center gap-4 text-xs mt-2 pl-3.5">
+                  <div><span class="label-text mr-1">Qty</span> <span class="label-content">3</span></div>
+                  <div><span class="label-text mr-1">Total</span> <span class="label-content">312.00</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="border-b border-brand-border mt-4"></div>
+          </div>
+        </div>
+
+        <!-- Footer Buttons — stacked -->
+        <div class="px-5 pt-4 pb-5">
+          <div class="flex flex-col gap-2">
+            <button class="button-primary w-full justify-center">
+              <span class="button-text" data-text="View Full Order"><span>View Full Order</span></span>
+            </button>
+            <button class="button-secondary w-full justify-center">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="button-text" data-text="Repeat Order"><span>Repeat Order</span></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div> <!-- /flex wrapper -->
+
+    <h2 class="heading-secondary text-xl mt-8">Table (striped rows)</h2>
+    <p class="text-sm text-brand-dark/50 mt-1">Standard table with alternating row backgrounds. Used for order / line-item listings.</p>
+
+    <div class="mt-4 w-full">
+      <h2 class="heading-primary md:text-3xl text-2xl mb-4">Order Details</h2>
+      <div class="rounded-2xl border border-brand-border bg-white overflow-hidden">
+        <div class="w-full overflow-x-auto scroll-fade">
+        <table class="w-full text-sm min-w-max">
+          <thead>
+            <tr class="border-b border-brand-border">
+              <th class="text-left label-text px-6 py-4 whitespace-nowrap">Items (50)</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Status</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Qty</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">VAT</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Total</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Edit Qty</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Actions</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Primary</th>
+              <th class="text-left label-text px-3 py-4 whitespace-nowrap">Secondary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-processing">Processing</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-pending">Pending</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-awaiting">Awaiting RX</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-dispatched">Dispatched</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-completed">Completed</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-cancelled">Cancelled</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="border-b border-brand-border-light even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-processing">Processing</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+            <tr class="even:bg-brand-background-secondary">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+                  <div>
+                    <a href="#" class="text-brand-primary-700 font-medium hover:underline whitespace-nowrap">Dermapen Needles Set</a>
+                    <p class="text-xs text-brand-dark/70 mt-1 whitespace-nowrap">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-3 py-4"><span class="badge-status-pending">Pending</span></td>
+              <td class="px-3 py-4 label-content">1</td>
+              <td class="px-3 py-4 label-content whitespace-nowrap">£25.00</td>
+              <td class="px-3 py-4 label-content font-semibold! whitespace-nowrap">£150.00</td>
+              <td class="px-3 py-4">
+                <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+                  <template x-if="!editing">
+                    <div class="flex items-center gap-2">
+                      <span class="label-text">Qty:</span>
+                      <span class="label-content font-medium" x-text="qty"></span>
+                      <button @click="editing = true" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    </div>
+                  </template>
+                  <template x-if="editing">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+                        <button @click="qty = Math.max(1, qty - 1)" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button>
+                        <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+                        <button @click="qty++" class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button>
+                      </div>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg></button>
+                      <button @click="editing = false" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                    </div>
+                  </template>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-primary"><span class="button-text" data-text="button-primary"><span>button-primary</span></span></a>
+              </td>
+              <td class="px-3 py-4">
+                <a href="#" class="button-secondary"><span class="button-text" data-text="button-secondary"><span>button-secondary</span></span></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Responsive list (table on desktop, stacks on mobile)</h2>
+    <p class="text-sm text-brand-dark/50 mt-1">Div + CSS-grid, not a real <code class="text-xs">&lt;table&gt;</code>. Aligned columns on desktop; each row collapses into its own card on mobile with inline labels. Use this for the <span class="font-medium">/Notification/Alerts</span> pattern where rows must break into blocks. (For genuinely tabular data, prefer the real table above with horizontal scroll.)</p>
+
+    <div class="mt-4 w-full max-w-[900px] flex flex-col gap-3 md:gap-0 md:rounded-2xl md:border md:border-brand-border md:bg-white md:overflow-hidden">
+        <div class="flex flex-col gap-3 rounded-xl border border-brand-border bg-white p-4 md:grid md:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto_auto] md:items-center md:gap-6 md:rounded-none md:border-0 md:border-b md:border-brand-border-light md:bg-transparent md:p-5 md:last:border-b-0 md:even:bg-brand-background-secondary">
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+            <div class="min-w-0">
+              <a href="#" class="text-brand-primary-700 font-medium hover:underline block truncate">Dermapen Needles Set</a>
+              <p class="text-xs text-brand-dark/70 mt-1">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Status</span>
+            <span class="badge-status-processing">Processing</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Qty</span>
+            <span class="label-content">1</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">VAT</span>
+            <span class="label-content">£25.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Total</span>
+            <span class="label-content font-semibold!">£150.00</span>
+          </div>
+          <div class="flex items-center gap-1 md:justify-self-end pt-3 border-t border-brand-border-light md:pt-0 md:border-t-0">
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-brand-border bg-white p-4 md:grid md:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto_auto] md:items-center md:gap-6 md:rounded-none md:border-0 md:border-b md:border-brand-border-light md:bg-transparent md:p-5 md:last:border-b-0 md:even:bg-brand-background-secondary">
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+            <div class="min-w-0">
+              <a href="#" class="text-brand-primary-700 font-medium hover:underline block truncate">Dermapen Needles Set</a>
+              <p class="text-xs text-brand-dark/70 mt-1">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Status</span>
+            <span class="badge-status-awaiting">Awaiting RX</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Qty</span>
+            <span class="label-content">1</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">VAT</span>
+            <span class="label-content">£25.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Total</span>
+            <span class="label-content font-semibold!">£150.00</span>
+          </div>
+          <div class="flex items-center gap-1 md:justify-self-end pt-3 border-t border-brand-border-light md:pt-0 md:border-t-0">
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-brand-border bg-white p-4 md:grid md:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto_auto] md:items-center md:gap-6 md:rounded-none md:border-0 md:border-b md:border-brand-border-light md:bg-transparent md:p-5 md:last:border-b-0 md:even:bg-brand-background-secondary">
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+            <div class="min-w-0">
+              <a href="#" class="text-brand-primary-700 font-medium hover:underline block truncate">Dermapen Needles Set</a>
+              <p class="text-xs text-brand-dark/70 mt-1">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Status</span>
+            <span class="badge-status-dispatched">Dispatched</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Qty</span>
+            <span class="label-content">1</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">VAT</span>
+            <span class="label-content">£25.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Total</span>
+            <span class="label-content font-semibold!">£150.00</span>
+          </div>
+          <div class="flex items-center gap-1 md:justify-self-end pt-3 border-t border-brand-border-light md:pt-0 md:border-t-0">
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-brand-border bg-white p-4 md:grid md:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto_auto] md:items-center md:gap-6 md:rounded-none md:border-0 md:border-b md:border-brand-border-light md:bg-transparent md:p-5 md:last:border-b-0 md:even:bg-brand-background-secondary">
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="size-13 shrink-0 rounded-lg border border-brand-border bg-white"></div>
+            <div class="min-w-0">
+              <a href="#" class="text-brand-primary-700 font-medium hover:underline block truncate">Dermapen Needles Set</a>
+              <p class="text-xs text-brand-dark/70 mt-1">Unit Price: <span class="font-medium text-brand-dark">£150.00</span>&nbsp;&nbsp;Net Price: <span class="font-medium text-brand-dark">£125.00</span></p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Status</span>
+            <span class="badge-status-cancelled">Cancelled</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Qty</span>
+            <span class="label-content">1</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">VAT</span>
+            <span class="label-content">£25.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 md:justify-start">
+            <span class="label-text md:hidden">Total</span>
+            <span class="label-content font-semibold!">£150.00</span>
+          </div>
+          <div class="flex items-center gap-1 md:justify-self-end pt-3 border-t border-brand-border-light md:pt-0 md:border-t-0">
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+          </div>
+        </div>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Pagination</h2>
+
+    <div class="flex flex-col md:flex-col md:items-center md:justify-between gap-4 w-full my-8">
+      <p class="text-sm text-brand-dark text-center md:text-left">Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">89</span> results</p>
+      <nav>
+        <ul class="flex items-center justify-center text-sm leading-tight bg-brand-background-secondary border border-brand-border divide-x rounded-xl overflow-hidden h-9 divide-neutral-200">
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 ml-0 rounded-l group hover:bg-white hover:text-brand-primary-700">
+              <svg class="w-4 h-4 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              <span class="hidden md:inline uppercase font-medium tracking-wide text-xs">Previous</span>
+            </a>
+          </li>
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 text-brand-primary-700 group bg-white">
+              <span>1</span>
+              <span class="box-content absolute bottom-0 left-0 w-full h-px -mx-px translate-y-px border-l border-r bg-brand-primary-700 border-brand-primary-700"></span>
+            </a>
+          </li>
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
+              <span>2</span>
+              <span class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
+              <span>3</span>
+              <span class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li class="h-full">
+            <div class="relative inline-flex items-center h-full px-2.5 group">
+              <span>...</span>
+            </div>
+          </li>
+          <li class="hidden h-full md:block">
+            <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
+              <span>6</span>
+              <span class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li class="hidden h-full md:block">
+            <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
+              <span>7</span>
+              <span class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 group hover:bg-white hover:text-brand-primary-700">
+              <span>8</span>
+              <span class="box-content absolute bottom-0 w-0 h-px -mx-px duration-200 ease-out translate-y-px border-transparent bg-brand-primary-700 group-hover:border-l group-hover:border-r group-hover:border-brand-primary-700 left-1/2 group-hover:left-0 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li class="h-full">
+            <a href="#" class="relative inline-flex items-center h-full px-3 rounded-r group hover:bg-white hover:text-brand-primary-700">
+              <span class="hidden md:inline uppercase font-medium tracking-wide text-xs">Next</span>
+              <svg class="w-4 h-4 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Form Inputs</h2>
+
+    <div class="w-full rounded-xl bg-white p-8 border border-brand-border max-w-[750px]">
+
+
+      <!-- Mock account info form -->
+      <h3 class="heading-secondary text-base mb-6">Account Information</h3>
+
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <!-- First Name -->
+        <div class="form-group">
+          <label class="form-label" for="demo-fname">First Name <span class="required">*</span></label>
+          <input id="demo-fname" type="text" class="form-input" placeholder="Enter your first name">
+        </div>
+        <!-- Last Name -->
+        <div class="form-group">
+          <label class="form-label" for="demo-lname">Last Name <span class="required">*</span></label>
+          <input id="demo-lname" type="text" class="form-input" placeholder="Enter your last name">
+        </div>
+        <!-- Email (pre-filled to show filled state) -->
+        <div class="form-group">
+          <label class="form-label" for="demo-email">Email Address <span class="required">*</span></label>
+          <input id="demo-email" type="email" class="form-input" placeholder="Enter your email" value="emma.williams@clinic.co.uk">
+        </div>
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label" for="demo-phone">Phone Number</label>
+          <input id="demo-phone" type="tel" class="form-input" placeholder="e.g. 07700 900123">
+        </div>
+        <!-- Clinic Name — full width -->
+        <div class="form-group sm:col-span-2">
+          <label class="form-label" for="demo-clinic">Clinic Name</label>
+          <input id="demo-clinic" type="text" class="form-input" placeholder="Enter clinic or practice name">
+          <span class="form-helper">This will appear on your invoices</span>
+        </div>
+        <!-- Address Line 1 -->
+        <div class="form-group">
+          <label class="form-label" for="demo-addr1">Address Line 1 <span class="required">*</span></label>
+          <input id="demo-addr1" type="text" class="form-input" placeholder="Street address">
+        </div>
+        <!-- Postcode -->
+        <div class="form-group">
+          <label class="form-label" for="demo-postcode">Postcode <span class="required">*</span></label>
+          <input id="demo-postcode" type="text" class="form-input" placeholder="e.g. SW1A 1AA">
+        </div>
+      </div>
+
+      <!-- Error States -->
+      <h3 class="heading-secondary text-base mb-4">Error States</h3>
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <div class="form-group">
+          <label class="form-label" for="demo-err-name">First Name <span class="required">*</span></label>
+          <input id="demo-err-name" type="text" class="form-input form-input-error" placeholder="Enter your first name">
+          <p class="form-helper-error">Please enter first name</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-err-email">Email Address <span class="required">*</span></label>
+          <input id="demo-err-email" type="email" class="form-input form-input-error" placeholder="Enter your email" value="not-an-email">
+          <p class="form-helper-error">Please enter a valid email</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-err-phone">Mobile Number</label>
+          <input id="demo-err-phone" type="tel" class="form-input form-input-error" placeholder="Mobile number" value="123">
+          <p class="form-helper-error">Must be 6-14 digits</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-ok">Postcode (valid)</label>
+          <input id="demo-ok" type="text" class="form-input" placeholder="Postcode" value="SW1A 1AA">
+          <span class="form-helper">No error — normal state for comparison</span>
+        </div>
+      </div>
+
+      <!-- Checkboxes -->
+      <h3 class="heading-secondary text-base mb-4">Checkboxes</h3>
+      <div class="space-y-4 mb-8 max-w-md">
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="demo-chk1" class="form-checkbox mt-0.5" checked>
+          <label for="demo-chk1" class="form-checkbox-label">I agree to the terms and conditions of this platform</label>
+        </div>
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="demo-chk2" class="form-checkbox mt-0.5">
+          <label for="demo-chk2" class="form-checkbox-label">Subscribe to newsletter updates</label>
+        </div>
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="demo-chk3" class="form-checkbox mt-0.5" disabled>
+          <label for="demo-chk3" class="form-checkbox-label opacity-50">Disabled checkbox</label>
+        </div>
+      </div>
+
+      <!-- Date Picker -->
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <div class="form-group" x-data="{
+          datePickerOpen: false,
+          datePickerValue: '',
+          datePickerFormat: 'DD-MM-YYYY',
+          datePickerMonth: '',
+          datePickerYear: '',
+          datePickerDay: '',
+          datePickerDaysInMonth: [],
+          datePickerBlankDaysInMonth: [],
+          datePickerMonthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datePickerDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          datePickerDayClicked(day) {
+            let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
+            this.datePickerDay = day;
+            this.datePickerValue = this.datePickerFormatDate(selectedDate);
+            this.datePickerIsSelectedDate(day);
+            this.datePickerOpen = false;
+          },
+          datePickerPreviousMonth(){
+            if (this.datePickerMonth == 0) { this.datePickerYear--; this.datePickerMonth = 12; }
+            this.datePickerMonth--;
+            this.datePickerCalculateDays();
+          },
+          datePickerNextMonth(){
+            if (this.datePickerMonth == 11) { this.datePickerMonth = 0; this.datePickerYear++; } else { this.datePickerMonth++; }
+            this.datePickerCalculateDays();
+          },
+          datePickerIsSelectedDate(day) {
+            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+            return this.datePickerValue === this.datePickerFormatDate(d);
+          },
+          datePickerIsToday(day) {
+            const today = new Date();
+            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+            return today.toDateString() === d.toDateString();
+          },
+          datePickerCalculateDays() {
+            let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
+            let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
+            let blankdaysArray = [];
+            for (var i = 1; i <= dayOfWeek; i++) { blankdaysArray.push(i); }
+            let daysArray = [];
+            for (var i = 1; i <= daysInMonth; i++) { daysArray.push(i); }
+            this.datePickerBlankDaysInMonth = blankdaysArray;
+            this.datePickerDaysInMonth = daysArray;
+          },
+          datePickerFormatDate(date) {
+            let formattedDate = ('0' + date.getDate()).slice(-2);
+            let formattedMonthShortName = this.datePickerMonthNames[date.getMonth()].substring(0, 3);
+            let formattedMonthInNumber = ('0' + (parseInt(date.getMonth()) + 1)).slice(-2);
+            let formattedYear = date.getFullYear();
+            if (this.datePickerFormat === 'M d, Y') return `${formattedMonthShortName} ${formattedDate}, ${formattedYear}`;
+            if (this.datePickerFormat === 'DD-MM-YYYY') return `${formattedDate}-${formattedMonthInNumber}-${formattedYear}`;
+            if (this.datePickerFormat === 'YYYY-MM-DD') return `${formattedYear}-${formattedMonthInNumber}-${formattedDate}`;
+            return `${this.datePickerMonthNames[date.getMonth()]} ${formattedDate}, ${formattedYear}`;
+          },
+        }" x-init="
+          currentDate = new Date();
+          if (datePickerValue) { currentDate = new Date(Date.parse(datePickerValue)); }
+          datePickerMonth = currentDate.getMonth();
+          datePickerYear = currentDate.getFullYear();
+          datePickerDay = currentDate.getDay();
+          datePickerValue = datePickerFormatDate(currentDate);
+          datePickerCalculateDays();
+        " x-cloak>
+          <label class="form-label">Date of Birth <span class="required">*</span></label>
+          <div class="form-datepicker-wrap">
+            <input x-ref="datePickerInput" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" @keydown.escape="datePickerOpen=false" :class="{ 'is-open': datePickerOpen }" class="form-input" placeholder="Select date" readonly />
+            <div class="form-datepicker-icon">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            </div>
+            <div x-show="datePickerOpen" x-transition @click.away="datePickerOpen = false" class="form-datepicker-panel">
+              <div class="dp-header">
+                <div>
+                  <span x-text="datePickerMonthNames[datePickerMonth]" class="dp-title"></span>
+                  <span x-text="datePickerYear" class="dp-title-year"></span>
+                </div>
+                <div class="flex gap-1">
+                  <button @click="datePickerPreviousMonth()" type="button" class="dp-nav-btn">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                  </button>
+                  <button @click="datePickerNextMonth()" type="button" class="dp-nav-btn">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="grid grid-cols-7 mb-1">
+                <template x-for="(day, index) in datePickerDays" :key="index">
+                  <div class="dp-weekday" x-text="day"></div>
+                </template>
+              </div>
+              <div class="grid grid-cols-7">
+                <template x-for="blankDay in datePickerBlankDaysInMonth">
+                  <div class="p-1"></div>
+                </template>
+                <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
+                  <div class="flex justify-center items-center px-0.5 mb-1">
+                    <div x-text="day" @click="datePickerDayClicked(day)"
+                      :class="{
+                        'is-today': datePickerIsToday(day),
+                        'is-selected': datePickerIsSelectedDate(day)
+                      }" class="dp-day"></div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-brand-border mb-8"></div>
+
+      <!-- Search / Icon Input (standalone, no label) -->
+      <h3 class="heading-secondary text-base mb-4">Search Input</h3>
+
+      <div class="max-w-md mb-4">
+        <div class="form-search-wrap">
+          <input type="text" class="form-input" placeholder="Search products...">
+          <button class="form-search-btn" type="button">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="max-w-md">
+        <div class="form-search-wrap">
+          <input type="text" class="form-input" placeholder="Search orders..." value="Dermapen">
+          <button class="form-search-btn" type="button">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-brand-border my-8"></div>
+
+      <!-- Dropdowns -->
+      <h3 class="heading-secondary text-base mb-6">Dropdowns</h3>
+
+      <!-- DOB row: Day (text) + Month (dropdown) + Year (text) -->
+      <div class="form-group mb-8 max-w-md">
+        <label class="form-label">Date of Birth <span class="required">*</span></label>
+        <div class="flex gap-3">
+          <!-- Day -->
+          <input type="text" class="form-input text-center basis-16 shrink" placeholder="DD" maxlength="2">
+          <!-- Month -->
+          <div class="form-select-wrap flex-1 min-w-0" x-data="{ open: false, selected: '', options: ['January','February','March','April','May','June','July','August','September','October','November','December'] }">
+            <button type="button" @click="open = !open" :class="{ 'is-open': open, 'is-placeholder': !selected }" class="form-select-btn">
+              <span class="truncate" x-text="selected || 'Month'"></span>
+              <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div x-show="open" x-transition @click.away="open = false" class="form-select-panel" x-cloak>
+              <div class="form-select-panel-inner">
+                <template x-for="(month, i) in options" :key="i">
+                  <div @click="selected = month; open = false" :class="{ 'is-selected': selected === month }" class="form-select-option" x-text="month"></div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <!-- Year -->
+          <input type="text" class="form-input text-center basis-20 shrink" placeholder="YYYY" maxlength="4">
+        </div>
+      </div>
+
+      <!-- Country dropdown -->
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <div class="form-group" x-data="{ open: false, selected: '', options: ['United Kingdom', 'Ireland', 'United States', 'Canada', 'Australia', 'Germany', 'France', 'Spain', 'Italy', 'Netherlands'] }">
+          <label class="form-label">Country <span class="required">*</span></label>
+          <div class="form-select-wrap">
+            <button type="button" @click="open = !open" :class="{ 'is-open': open, 'is-placeholder': !selected }" class="form-select-btn">
+              <span x-text="selected || 'Select country'"></span>
+              <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div x-show="open" x-transition @click.away="open = false" class="form-select-panel" x-cloak>
+              <div class="form-select-panel-inner">
+                <template x-for="(country, i) in options" :key="i">
+                  <div @click="selected = country; open = false" :class="{ 'is-selected': selected === country }" class="form-select-option" x-text="country"></div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role dropdown (pre-selected) -->
+        <div class="form-group" x-data="{ open: false, selected: 'Nurse Prescriber', options: ['Doctor', 'Nurse Prescriber', 'Pharmacist', 'Dentist', 'Clinic Manager', 'Other'] }">
+          <label class="form-label">Professional Role</label>
+          <div class="form-select-wrap">
+            <button type="button" @click="open = !open" :class="{ 'is-open': open, 'is-placeholder': !selected }" class="form-select-btn">
+              <span x-text="selected || 'Select role'"></span>
+              <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div x-show="open" x-transition @click.away="open = false" class="form-select-panel" x-cloak>
+              <div class="form-select-panel-inner">
+                <template x-for="(role, i) in options" :key="i">
+                  <div @click="selected = role; open = false" :class="{ 'is-selected': selected === role }" class="form-select-option" x-text="role"></div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sort by dropdown (standalone, compact) -->
+      <div class="form-group max-w-xs" x-data="{ open: false, selected: 'Most Recent', options: ['Most Recent', 'Oldest First', 'A — Z', 'Z — A', 'Price: Low to High', 'Price: High to Low'] }">
+        <label class="form-label">Sort By</label>
+        <div class="form-select-wrap">
+          <button type="button" @click="open = !open" :class="{ 'is-open': open, 'is-placeholder': !selected }" class="form-select-btn">
+            <span x-text="selected || 'Select'"></span>
+            <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div x-show="open" x-transition @click.away="open = false" class="form-select-panel" x-cloak>
+            <div class="form-select-panel-inner">
+              <template x-for="(opt, i) in options" :key="i">
+                <div @click="selected = opt; open = false" :class="{ 'is-selected': selected === opt }" class="form-select-option" x-text="opt"></div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Toasts</h2>
+
+    <div class="w-full rounded-xl bg-white p-8 border border-brand-border max-w-[750px]">
+      <h3 class="heading-secondary text-base mb-4">Trigger a Toast</h3>
+      <div class="flex flex-wrap gap-3" x-data="{
+        fire(message, type, description) {
+          $dispatch('toast-show', { message: message, type: type, description: description || '' })
+        }
+      }">
+        <button class="button-primary" @click="fire('Item added to basket', 'success')">
+          <span>Success</span>
+        </button>
+        <button class="button-primary" @click="fire('Something went wrong', 'error')">
+          <span>Error</span>
+        </button>
+        <button class="button-primary" @click="fire('Your session expires in 2 minutes', 'warning')">
+          <span>Warning</span>
+        </button>
+        <button class="button-primary" @click="fire('Order #WG-1242 has been dispatched', 'info')">
+          <span>Info</span>
+        </button>
+        <button class="button-secondary" @click="fire('Preferences saved', 'default')">
+          <span>Default</span>
+        </button>
+        <button class="button-secondary" @click="fire('Payment declined', 'error', 'Your card ending in 4242 was declined. Please try a different payment method.')">
+          <span>With Description</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast container (PinesUI-inspired, bottom-center) -->
+    <ul x-data="{
+            toasts: [],
+            toastsHovered: false,
+            expanded: false,
+            paddingBetweenToasts: 15,
+            addToast(detail) {
+                let type = detail.type || 'default';
+                if (type === 'error') type = 'danger';
+                this.toasts.unshift({
+                    id: 'toast-' + Math.random().toString(16).slice(2),
+                    show: false,
+                    message: detail.message,
+                    description: detail.description || '',
+                    type: type
+                });
+            },
+            burnToast(id) {
+                let el = document.getElementById(id);
+                if (el) {
+                    if (this.toasts.length === 1) {
+                        if (!this.expanded) this.expanded = false;
+                        el.classList.remove('translate-y-0');
+                        el.classList.add('translate-y-full');
+                    }
+                    el.classList.add('opacity-0');
+                    let self = this;
+                    setTimeout(function(){
+                        self.deleteToastWithId(id);
+                        setTimeout(function(){ self.stackToasts(); }, 1);
+                    }, 300);
+                }
+            },
+            deleteToastWithId(id) {
+                for (let i = 0; i < this.toasts.length; i++) {
+                    if (this.toasts[i].id === id) { this.toasts.splice(i, 1); break; }
+                }
+            },
+            getToastWithId(id) {
+                return this.toasts.find(function(t){ return t.id === id; });
+            },
+            stackToasts() {
+                this.positionToasts();
+                this.calculateHeightOfToastsContainer();
+                let self = this;
+                setTimeout(function(){ self.calculateHeightOfToastsContainer(); }, 300);
+            },
+            positionToasts() {
+                if (this.toasts.length === 0) return;
+                let top = document.getElementById(this.toasts[0].id);
+                if (!top) return;
+                top.style.zIndex = 100;
+                if (this.expanded) { top.style.top = 'auto'; top.style.bottom = '0px'; }
+
+                if (this.toasts.length === 1) return;
+                let mid = document.getElementById(this.toasts[1].id);
+                if (!mid) return;
+                mid.style.zIndex = 90;
+                if (this.expanded) {
+                    mid.style.top = 'auto';
+                    mid.style.bottom = (top.getBoundingClientRect().height + this.paddingBetweenToasts) + 'px';
+                    mid.style.scale = '100%'; mid.style.transform = 'translateY(0px)';
+                } else {
+                    mid.style.scale = '94%'; mid.style.transform = 'translateY(-16px)';
+                }
+
+                if (this.toasts.length === 2) return;
+                let bot = document.getElementById(this.toasts[2].id);
+                if (!bot) return;
+                bot.style.zIndex = 80;
+                if (this.expanded) {
+                    bot.style.top = 'auto';
+                    bot.style.bottom = (top.getBoundingClientRect().height + this.paddingBetweenToasts + mid.getBoundingClientRect().height + this.paddingBetweenToasts) + 'px';
+                    bot.style.scale = '100%'; bot.style.transform = 'translateY(0px)';
+                } else {
+                    bot.style.scale = '88%'; bot.style.transform = 'translateY(-32px)';
+                }
+
+                if (this.toasts.length <= 3) return;
+                let burn = document.getElementById(this.toasts[3].id);
+                if (!burn) return;
+                burn.style.zIndex = 70; burn.style.scale = '82%'; burn.style.transform = 'translateY(-48px)';
+                burn.firstElementChild.classList.remove('opacity-100');
+                burn.firstElementChild.classList.add('opacity-0');
+                let self = this;
+                setTimeout(function(){ self.toasts.pop(); }, 300);
+            },
+            resetBottom() {
+                for (let i = 0; i < this.toasts.length; i++) {
+                    let el = document.getElementById(this.toasts[i].id);
+                    if (el) el.style.bottom = '0px';
+                }
+            },
+            calculateHeightOfToastsContainer() {
+                if (this.toasts.length === 0) { $el.style.height = '0px'; return; }
+                let first = document.getElementById(this.toasts[0].id);
+                let last = document.getElementById(this.toasts[this.toasts.length - 1].id);
+                if (!first || !last) return;
+                let firstR = first.getBoundingClientRect();
+                let lastR = last.getBoundingClientRect();
+                if (this.toastsHovered) {
+                    $el.style.height = ((firstR.top + firstR.height) - lastR.top) + 'px';
+                } else {
+                    $el.style.height = firstR.height + 'px';
+                }
+            }
+        }"
+        @toast-show.window="addToast($event.detail)"
+        @mouseenter="toastsHovered = true"
+        @mouseleave="toastsHovered = false"
+        x-init="
+            $watch('toastsHovered', function(value){
+                resetBottom();
+                if (value) { expanded = true; stackToasts(); }
+                else { expanded = false; stackToasts(); setTimeout(function(){ stackToasts(); }, 10); }
+            });
+        "
+        class="fixed block w-full z-[9998] sm:max-w-xs left-1/2 -translate-x-1/2 bottom-0 sm:mb-6"
+        aria-live="polite"
+        x-cloak>
+
+        <template x-for="(toast, index) in toasts" :key="toast.id">
+            <li :id="toast.id"
+                x-data="{ toastHovered: false }"
+                x-init="
+                    $el.firstElementChild.classList.add('opacity-0', 'translate-y-full');
+                    setTimeout(function(){
+                        setTimeout(function(){
+                            $el.firstElementChild.classList.remove('opacity-0', 'translate-y-full');
+                            $el.firstElementChild.classList.add('opacity-100', 'translate-y-0');
+                            setTimeout(function(){ stackToasts(); }, 10);
+                        }, 5);
+                    }, 50);
+                    setTimeout(function(){
+                        setTimeout(function(){
+                            $el.firstElementChild.classList.remove('opacity-100');
+                            $el.firstElementChild.classList.add('opacity-0');
+                            if(toasts.length === 1){
+                                $el.firstElementChild.classList.remove('translate-y-0');
+                                $el.firstElementChild.classList.add('translate-y-full');
+                            }
+                            setTimeout(function(){ deleteToastWithId(toast.id); }, 300);
+                        }, 5);
+                    }, 4000);
+                "
+                @mouseover="toastHovered = true"
+                @mouseout="toastHovered = false"
+                class="absolute w-full duration-300 ease-out select-none sm:max-w-xs"
+                :class="{ 'toast-no-description': !toast.description }">
+
+                <span class="relative flex flex-col items-start w-full p-4 transition-all duration-300 ease-out border rounded-lg shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] sm:max-w-xs group"
+                      :class="{
+                          'bg-green-100 border-green-400': toast.type === 'success',
+                          'bg-red-100 border-red-400': toast.type === 'danger',
+                          'bg-blue-50 border-blue-200': toast.type === 'info',
+                          'bg-amber-100 border-amber-400': toast.type === 'warning',
+                          'bg-white border-gray-200': toast.type === 'default'
+                      }">
+
+                    <div class="relative">
+                        <div class="flex items-center"
+                             :class="{
+                                 'text-green-600': toast.type === 'success',
+                                 'text-red-600': toast.type === 'danger',
+                                 'text-blue-600': toast.type === 'info',
+                                 'text-amber-500': toast.type === 'warning',
+                                 'text-gray-800': toast.type === 'default'
+                             }">
+
+                            <svg x-show="toast.type === 'success'" class="w-[18px] h-[18px] mr-1.5 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM16.7744 9.63269C17.1238 9.20501 17.0604 8.57503 16.6327 8.22559C16.2051 7.87615 15.5751 7.93957 15.2256 8.36725L10.6321 13.9892L8.65936 12.2524C8.24484 11.8874 7.61295 11.9276 7.248 12.3421C6.88304 12.7566 6.92322 13.3885 7.33774 13.7535L9.31046 15.4903C10.1612 16.2393 11.4637 16.1324 12.1808 15.2547L16.7744 9.63269Z" fill="currentColor"></path></svg>
+
+                            <svg x-show="toast.type === 'info'" class="w-[18px] h-[18px] mr-1.5 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9ZM13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V12Z" fill="currentColor"></path></svg>
+
+                            <svg x-show="toast.type === 'warning'" class="w-[18px] h-[18px] mr-1.5 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+
+                            <svg x-show="toast.type === 'danger'" class="w-[18px] h-[18px] mr-1.5 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.9996 7C12.5519 7 12.9996 7.44772 12.9996 8V12C12.9996 12.5523 12.5519 13 11.9996 13C11.4474 13 10.9996 12.5523 10.9996 12V8C10.9996 7.44772 11.4474 7 11.9996 7ZM12.001 14.99C11.4488 14.9892 11.0004 15.4363 10.9997 15.9886L10.9996 15.9986C10.9989 16.5509 11.446 16.9992 11.9982 17C12.5505 17.0008 12.9989 16.5537 12.9996 16.0014L12.9996 15.9914C13.0004 15.4391 12.5533 14.9908 12.001 14.99Z" fill="currentColor"></path></svg>
+
+                            <p class="text-[13px] font-medium leading-none" x-text="toast.message"
+                               :class="{
+                                   'text-green-700': toast.type === 'success',
+                                   'text-red-700': toast.type === 'danger',
+                                   'text-blue-700': toast.type === 'info',
+                                   'text-amber-700': toast.type === 'warning',
+                                   'text-gray-800': toast.type === 'default'
+                               }"></p>
+                        </div>
+                        <p x-show="toast.description"
+                           :class="{ 'pl-5': toast.type !== 'default' }"
+                           class="mt-1.5 text-xs leading-none opacity-70"
+                           x-text="toast.description"></p>
+                    </div>
+
+                    <span @click="burnToast(toast.id)"
+                          class="absolute right-0 p-1.5 mr-2.5 duration-100 ease-in-out rounded-full cursor-pointer hover:bg-black/5"
+                          :class="{
+                              'top-1/2 -translate-y-1/2': !toast.description,
+                              'top-0 mt-2.5': toast.description,
+                              'opacity-100': toastHovered,
+                              'opacity-0': !toastHovered,
+                              'text-green-500': toast.type === 'success',
+                              'text-red-500': toast.type === 'danger',
+                              'text-blue-400': toast.type === 'info',
+                              'text-amber-500': toast.type === 'warning',
+                              'text-gray-400': toast.type === 'default'
+                          }">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </span>
+                </span>
+            </li>
+        </template>
+    </ul>
+
+    <h2 class="heading-secondary text-xl mt-8">Alerts</h2>
+
+    <div class="w-full rounded-xl bg-white p-8 border border-brand-border flex flex-col gap-4 max-w-[750px]">
+
+      <!-- Warning -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-amber-100 border-amber-400 text-amber-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Approval Required</p>
+          <p class="md:text-sm text-xs font-light leading-snug mt-1">This order is pending approval. Please review the details and approve or reject this order.</p>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-green-100 border-green-400 text-green-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM16.7744 9.63269C17.1238 9.20501 17.0604 8.57503 16.6327 8.22559C16.2051 7.87615 15.5751 7.93957 15.2256 8.36725L10.6321 13.9892L8.65936 12.2524C8.24484 11.8874 7.61295 11.9276 7.248 12.3421C6.88304 12.7566 6.92322 13.3885 7.33774 13.7535L9.31046 15.4903C10.1612 16.2393 11.4637 16.1324 12.1808 15.2547L16.7744 9.63269Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Order Confirmed</p>
+          <p class="md:text-sm text-xs font-light leading-snug mt-1">Your order #WG-1242 has been placed successfully and is now being processed.</p>
+        </div>
+      </div>
+
+      <!-- Error / Danger -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-red-100 border-red-400 text-red-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.9996 7C12.5519 7 12.9996 7.44772 12.9996 8V12C12.9996 12.5523 12.5519 13 11.9996 13C11.4474 13 10.9996 12.5523 10.9996 12V8C10.9996 7.44772 11.4474 7 11.9996 7ZM12.001 14.99C11.4488 14.9892 11.0004 15.4363 10.9997 15.9886L10.9996 15.9986C10.9989 16.5509 11.446 16.9992 11.9982 17C12.5505 17.0008 12.9989 16.5537 12.9996 16.0014L12.9996 15.9914C13.0004 15.4391 12.5533 14.9908 12.001 14.99Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Payment Failed</p>
+          <p class="md:text-sm text-xs font-light leading-snug mt-1">Your card ending in 4242 was declined. Please try a different payment method or contact your bank.</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-blue-50 border-blue-200 text-blue-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9ZM13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V12Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Verification Pending</p>
+          <p class="md:text-sm text-xs font-light leading-snug mt-1">Your account is under review. You'll receive an email once verification is complete.</p>
+        </div>
+      </div>
+
+      <!-- Default -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-gray-50 border-gray-200 text-gray-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9ZM13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V12Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Scheduled Maintenance</p>
+          <p class="md:text-sm text-xs font-light leading-snug mt-1">The site will undergo maintenance on Sunday 12th March between 02:00–04:00 GMT.</p>
+        </div>
+      </div>
+
+      <!-- Warning, title only -->
+      <div class="w-full flex items-start gap-3 p-4 rounded-xl border bg-amber-100 border-amber-400 text-amber-800">
+        <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+        <div>
+          <p class="md:text-sm text-xs font-medium leading-tight">Your prescriber registration expires in 14 days</p>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Confirmation Dialog</h2>
+
+    <div x-data="{ confirmOpen: false }">
+      <button class="button-primary" @click="confirmOpen = true">
+        <span>Open Approve Order Dialog</span>
+      </button>
+
+      <!-- Overlay + Dialog -->
+      <template x-teleport="body">
+        <div x-show="confirmOpen" x-cloak class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          <!-- Backdrop -->
+          <div x-show="confirmOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               @click="confirmOpen = false"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+
+          <!-- Dialog panel -->
+          <div x-show="confirmOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmOpen = false"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+
+            <h2 class="heading-primary text-2xl">Approve Order?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to approve order <span class="font-medium">#WG-1242</span>? This will move the order to processing.</p>
+
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmOpen = false">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center" @click="confirmOpen = false; $dispatch('toast-show', { message: 'Order #WG-1242 approved', type: 'success' })">
+                <span class="button-text" data-text="Yes, Approve Order"><span>Yes, Approve Order</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Typography</h2>
 
     <div class="grid w-full grid-cols-2  bg-brand-dark rounded-xl p-8">
       <div class="flex flex-col items-start gap-4">
@@ -200,7 +1970,426 @@
         </h1>
       </div>
     </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Multi-Step Form Modal</h2>
+    <p class="text-sm mb-4">Two-step form with validation error states, step progress indicator, and address search. Used for Add/Edit Patient.</p>
+
+    <!-- Multi-Step Form — inline preview (not in a modal, just the panel) -->
+    <div class="w-full max-w-2xl" x-data="{
+      step: 1,
+      errors: {},
+      form: { firstName: '', lastName: '', dob: '', gender: '', genderLabel: '', email: '', mobile: '', address1: '', address2: '', locality: '', city: '', county: '', postcode: '' },
+      genderOpen: false,
+      genderOptions: [{v:'1',l:'Male'},{v:'2',l:'Female'},{v:'3',l:'Other'}],
+
+      // DOB fields
+      dobDay: '', dobMonth: '', dobYear: '', dobMonthOpen: false,
+      dobMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      dobBuildValue() {
+        if (this.dobDay && this.dobMonth !== '' && this.dobYear && this.dobYear.length === 4) {
+          var dd = String(this.dobDay).padStart(2,'0');
+          var mm = String(parseInt(this.dobMonth)+1).padStart(2,'0');
+          this.form.dob = dd+'-'+mm+'-'+this.dobYear;
+        } else { this.form.dob = ''; }
+      },
+
+      addressQuery: '',
+      addressResults: [],
+      showManualAddress: false,
+
+      validate() {
+        this.errors = {};
+        if (!this.form.firstName.trim()) this.errors.firstName = 'Please enter first name';
+        if (!this.form.lastName.trim()) this.errors.lastName = 'Please enter last name';
+        this.dobBuildValue();
+        if (!this.dobDay || this.dobMonth === '' || !this.dobYear) this.errors.dob = 'Please enter date of birth';
+        if (!this.form.gender) this.errors.gender = 'Please select gender';
+        if (this.form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) this.errors.email = 'Please enter a valid email';
+        if (this.form.mobile && (this.form.mobile.length < 6 || this.form.mobile.length > 14)) this.errors.mobile = 'Must be 6-14 digits';
+        return Object.keys(this.errors).length === 0;
+      },
+      goToStep2() { if (this.validate()) this.step = 2; },
+      enterManually() { this.showManualAddress = true; this.addressResults = []; },
+      mockSearch() {
+        this.addressResults = [
+          { text: '1 Example Street, London', type: 'Address' },
+          { text: '2 Example Street, London', type: 'Address' },
+          { text: 'Example Business Park, London', type: 'Container', description: '3 addresses' }
+        ];
+      },
+      selectResult(r) {
+        if (r.type !== 'Address') { this.addressResults = [{ text: '10 Example Business Park, Unit A', type: 'Address' }, { text: '10 Example Business Park, Unit B', type: 'Address' }]; return; }
+        this.form.address1 = r.text.split(',')[0];
+        this.form.city = 'London';
+        this.form.postcode = 'SW1A 1AA';
+        this.addressResults = [];
+        this.showManualAddress = true;
+      }
+    }">
+      <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="px-8 pt-8 pb-0">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="heading-primary text-2xl">Add Patient</h2>
+              <p class="text-sm font-light mt-1" x-text="step === 1 ? 'Personal details' : 'Address information'"></p>
+            </div>
+            <button class="text-gray-400 hover:text-brand-dark transition-colors p-1"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
+          </div>
+          <!-- Step indicator -->
+          <div class="flex items-center gap-2 mt-4 mb-2">
+            <div class="flex-1 h-1 rounded-full" :class="step >= 1 ? 'bg-brand-primary-700' : 'bg-brand-border'"></div>
+            <div class="flex-1 h-1 rounded-full" :class="step >= 2 ? 'bg-brand-primary-700' : 'bg-brand-border'"></div>
+          </div>
+          <div class="border-t border-brand-border mt-4"></div>
+        </div>
+
+        <!-- STEP 1: Personal Details -->
+        <div x-show="step === 1" class="px-8 py-6 space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">First Name <span class="required">*</span></label>
+              <input type="text" class="form-input" :class="errors.firstName && 'form-input-error'" x-model="form.firstName" placeholder="First name" maxlength="100" @input="delete errors.firstName">
+              <p x-show="errors.firstName" x-text="errors.firstName" class="form-helper-error"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name <span class="required">*</span></label>
+              <input type="text" class="form-input" :class="errors.lastName && 'form-input-error'" x-model="form.lastName" placeholder="Last name" maxlength="100" @input="delete errors.lastName">
+              <p x-show="errors.lastName" x-text="errors.lastName" class="form-helper-error"></p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Date of Birth — DD / Month / YYYY -->
+            <div class="form-group">
+              <label class="form-label">Date of Birth <span class="required">*</span></label>
+              <div class="flex gap-2">
+                <input type="text" class="form-input w-16 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobDay" placeholder="DD" maxlength="2" @input="dobDay = dobDay.replace(/\D/g,''); delete errors.dob">
+                <div class="form-select-wrap flex-1 min-w-0" @click.away="dobMonthOpen = false">
+                  <button type="button" @click="dobMonthOpen = !dobMonthOpen" :class="{ 'is-open': dobMonthOpen, 'is-placeholder': dobMonth === '', 'form-input-error': errors.dob }" class="form-select-btn">
+                    <span class="truncate" x-text="dobMonth !== '' ? dobMonthNames[dobMonth] : 'Month'"></span>
+                    <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div x-show="dobMonthOpen" x-transition class="form-select-panel" x-cloak>
+                    <div class="form-select-panel-inner">
+                      <template x-for="(mn, mi) in dobMonthNames" :key="mi">
+                        <div @click="dobMonth = String(mi); dobMonthOpen = false; delete errors.dob" :class="{ 'is-selected': dobMonth === String(mi) }" class="form-select-option" x-text="mn"></div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+                <input type="text" class="form-input w-20 shrink-0 text-center !px-2" :class="errors.dob && 'form-input-error'" x-model="dobYear" placeholder="YYYY" maxlength="4" @input="dobYear = dobYear.replace(/\D/g,''); delete errors.dob">
+              </div>
+              <p x-show="errors.dob" x-text="errors.dob" class="form-helper-error"></p>
+            </div>
+            <!-- Gender — custom dropdown -->
+            <div class="form-group">
+              <label class="form-label">Gender <span class="required">*</span></label>
+              <div class="form-select-wrap" @click.away="genderOpen=false">
+                <button type="button" @click="genderOpen=!genderOpen" :class="{'is-open':genderOpen, 'is-placeholder':!form.gender, 'form-input-error':errors.gender}" class="form-select-btn">
+                  <span x-text="form.genderLabel || 'Select gender'"></span>
+                  <svg class="form-select-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="genderOpen" x-transition class="form-select-panel" x-cloak>
+                  <div class="form-select-panel-inner">
+                    <template x-for="opt in genderOptions" :key="opt.v">
+                      <div @click="form.gender=opt.v; form.genderLabel=opt.l; genderOpen=false; delete errors.gender" :class="{'is-selected':form.gender===opt.v}" class="form-select-option" x-text="opt.l"></div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+              <p x-show="errors.gender" x-text="errors.gender" class="form-helper-error"></p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" :class="errors.email && 'form-input-error'" x-model="form.email" placeholder="Email address" maxlength="100" @input="delete errors.email">
+              <p x-show="errors.email" x-text="errors.email" class="form-helper-error"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" class="form-input" :class="errors.mobile && 'form-input-error'" x-model="form.mobile" placeholder="Mobile number" maxlength="16" @input="delete errors.mobile">
+              <p x-show="errors.mobile" x-text="errors.mobile" class="form-helper-error"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Address -->
+        <div x-show="step === 2" x-cloak class="px-8 py-6 space-y-5">
+          <!-- Address Search -->
+          <div class="form-group">
+            <label class="form-label">Search Address or Postcode</label>
+            <div class="form-search-wrap">
+              <input type="text" class="form-input" x-model="addressQuery" placeholder="Enter address or postcode" @keydown.enter.prevent="mockSearch()" autocomplete="off">
+              <button @click="mockSearch()" class="form-search-btn">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Results -->
+          <div x-show="addressResults.length > 0" class="border border-brand-border rounded-2xl overflow-hidden max-h-48 overflow-y-auto scroll-fade">
+            <template x-for="(item, idx) in addressResults" :key="idx">
+              <button @click="selectResult(item)" class="flex items-center justify-between w-full px-4 py-2.5 text-sm font-light text-brand-dark hover:bg-brand-background transition-colors text-left border-b border-brand-border last:border-b-0 cursor-pointer">
+                <span x-text="item.text + (item.description ? ' — ' + item.description : '')"></span>
+                <svg x-show="item.type !== 'Address'" class="w-3 h-3 text-gray-400 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </template>
+          </div>
+
+          <!-- Enter Manually link -->
+          <div x-show="!showManualAddress">
+            <button @click="enterManually()" class="basic-link">Or enter address manually</button>
+          </div>
+
+          <!-- Manual Address Fields -->
+          <div x-show="showManualAddress" x-cloak class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group"><label class="form-label">House / Building</label><input type="text" class="form-input" x-model="form.address1" placeholder="House/Building no./Name" maxlength="100"></div>
+              <div class="form-group"><label class="form-label">Street Address</label><input type="text" class="form-input" x-model="form.address2" placeholder="Street address" maxlength="100"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Locality</label><input type="text" class="form-input" x-model="form.locality" placeholder="Locality" maxlength="100"></div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group"><label class="form-label">Town / City</label><input type="text" class="form-input" x-model="form.city" placeholder="Town/City" maxlength="100"></div>
+              <div class="form-group"><label class="form-label">County</label><input type="text" class="form-input" x-model="form.county" placeholder="County" maxlength="100"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Postcode</label><input type="text" class="form-input" x-model="form.postcode" placeholder="Postcode" maxlength="20"></div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-8 pb-8 pt-0">
+          <div class="border-t border-brand-border mb-6"></div>
+          <div class="flex gap-3">
+            <!-- Step 1 -->
+            <template x-if="step === 1">
+              <div class="flex gap-3 w-full">
+                <button class="button-secondary flex-1 justify-center"><span class="button-text" data-text="Cancel"><span>Cancel</span></span></button>
+                <button @click="goToStep2()" class="button-primary flex-1 justify-center"><span class="button-text" data-text="Next: Address"><span>Next: Address</span></span></button>
+              </div>
+            </template>
+            <!-- Step 2 -->
+            <template x-if="step === 2">
+              <div class="flex gap-3 w-full">
+                <button @click="step = 1" class="button-secondary flex-1 justify-center"><span class="button-text" data-text="Back"><span>Back</span></span></button>
+                <button class="button-primary flex-1 justify-center"><span class="button-text" data-text="Add Patient"><span>Add Patient</span></span></button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="heading-secondary text-xl mt-8">Quantity Selector (pill)</h2>
+
+    <!-- Quantity Selectors -->
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold uppercase tracking-wide">Rounded pill with +/- buttons, used in product cards, basket, and assignment modals</p>
+
+      <div class="flex flex-wrap items-center gap-6">
+        <!-- Standard (w-full, used in product cards) -->
+        <div class="w-40">
+          <p class="text-xs text-brand-dark/50 mb-1">Standard</p>
+          <div x-data="{ qty: 1 }" class="flex items-center w-full border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="flex-1 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Compact (w-28, used in modal prescriber qty) -->
+        <div class="w-28">
+          <p class="text-xs text-brand-dark/50 mb-1">Compact</p>
+          <div x-data="{ qty: 2 }" class="flex items-center w-full border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="flex-1 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-10 h-10 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Small inline (w-auto, used in patient rows) -->
+        <div>
+          <p class="text-xs text-brand-dark/50 mb-1">Inline (patient row)</p>
+          <div x-data="{ qty: 3 }" class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+            <button @click="qty = Math.max(1, qty - 1)"
+                    class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+            <button @click="qty++"
+                    class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline edit pattern: qty selector + save/cancel icon buttons -->
+      <p class="text-xs font-bold uppercase tracking-wide mt-4">Inline edit (qty selector + save/cancel icon buttons)</p>
+      <div x-data="{ qty: 2, editing: false }" class="flex items-center gap-3">
+        <!-- Read-only display -->
+        <template x-if="!editing">
+          <div class="flex items-center gap-2">
+            <span class="label-text">Qty:</span>
+            <span class="label-content font-medium" x-text="qty"></span>
+            <button @click="editing = true"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Edit quantity">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
+          </div>
+        </template>
+        <!-- Editing mode -->
+        <template x-if="editing">
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-brand-border hover:border-brand-primary-700 rounded-full">
+              <button @click="qty = Math.max(1, qty - 1)"
+                      class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-l-full transition-colors cursor-pointer">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              </button>
+              <span class="w-8 text-center text-sm font-bold bg-white" x-text="qty"></span>
+              <button @click="qty++"
+                      class="w-8 h-8 flex items-center justify-center text-brand-dark hover:bg-brand-primary-100 rounded-r-full transition-colors cursor-pointer">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
+            <!-- Save icon button -->
+            <button @click="editing = false"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Save">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 3v4H7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21v-7h10v7"/></svg>
+            </button>
+            <!-- Cancel icon button -->
+            <button @click="editing = false"
+                    class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer" title="Cancel">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </template>
+      </div>
+    </div>
+
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LAYOUT: Cards with filter on left                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="mt-6 mb-3 px-2">
+  <h2 class="heading-secondary text-xl">Layout: cards with filter on left</h2>
+  <p class="text-sm text-brand-muted mt-1">(To find real example, check /products/list/ on live site, or /Offers) Sidebar filters + card grid. Sidebar hidden on mobile with slide-over panel. Used for product listings, offers, etc.</p>
+</div>
+<div class="grid xl:grid-cols-[226px_1fr] gap-3" x-data="{ brandsOpen: true, offersOpen: true, brandSearch: '', mobileFiltersOpen: false }">
+
+  <!-- ===== Sidebar ===== -->
+  <div class="hidden xl:block">
+
+    <!-- Filter: Brands -->
+    <div class="card-container-small">
+      <button @click="brandsOpen = !brandsOpen" class="flex items-center justify-between w-full">
+        <span class="heading-primary text-lg text-brand-dark">Brand</span>
+        <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': !brandsOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+      </button>
+      <div x-show="brandsOpen" x-collapse>
+        <div class="mt-4 flex items-center gap-2 px-3 py-2 bg-brand-background-secondary border border-brand-border rounded-full">
+          <svg class="size-4 shrink-0 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <input type="text" x-model="brandSearch" placeholder="Search brands" class="w-full text-sm bg-transparent outline-none placeholder:text-neutral-500 text-brand-dark">
+        </div>
+        <div class="mt-4 space-y-3 max-h-64 overflow-y-auto">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-primary-700 border-brand-primary-700">
+              <svg class="w-4 h-4 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </span>
+            <span class="min-w-0 truncate text-brand-dark text-sm font-medium">Brand A (selected)</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-background-secondary border-brand-border"></span>
+            <span class="min-w-0 truncate text-brand-dark text-sm font-medium">Brand B</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-background-secondary border-brand-border"></span>
+            <span class="min-w-0 truncate text-brand-dark text-sm font-medium">Brand C</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-background-secondary border-brand-border"></span>
+            <span class="min-w-0 truncate text-brand-dark text-sm font-medium">Brand D</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter: Offers -->
+    <div class="card-container-small">
+      <button @click="offersOpen = !offersOpen" class="flex items-center justify-between w-full">
+        <span class="heading-primary text-lg text-brand-dark">Offers</span>
+        <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': !offersOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+      </button>
+      <div x-show="offersOpen" x-collapse>
+        <div class="mt-4 space-y-3">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-background-secondary border-brand-border"></span>
+            <span class="text-brand-dark text-sm font-medium">Monthly Offer</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="hidden">
+            <span class="shrink-0 w-4.5 h-4.5 rounded-sm border flex items-center justify-center transition-colors bg-brand-background-secondary border-brand-border"></span>
+            <span class="text-brand-dark text-sm font-medium">Ongoing Deals</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== Main content ===== -->
+  <div>
+    <!-- Title card -->
+    <div class="card-container-small">
+      <h1 class="heading-primary md:text-3xl text-2xl">Page Title</h1>
+      <div class="mt-2"><p>Description text for the listing page sits here inside the title card.</p></div>
+    </div>
+
+    <!-- Grid card -->
+    <div class="card-container-small">
+      <div class="card-container-inner">
+
+        <!-- Mobile filter button -->
+        <div class="xl:hidden mb-4">
+          <button @click="mobileFiltersOpen = true"
+                  class="flex items-center gap-2 px-4 py-2.5 bg-white border border-brand-border hover:bg-brand-primary-100 rounded-full transition-colors">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /></svg>
+            <span class="text-xs uppercase tracking-wide font-bold">Filters</span>
+          </button>
+        </div>
+
+        <!-- Card grid (2-col for offers / 3-col for products) -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Placeholder cards -->
+          <div class="rounded-xl border border-brand-border bg-white min-h-64"></div>
+          <div class="rounded-xl border border-brand-border bg-white min-h-64"></div>
+          <div class="rounded-xl border border-brand-border bg-white min-h-64"></div>
+          <div class="rounded-xl border border-brand-border bg-white min-h-64"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
   </div>
 </body>

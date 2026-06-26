@@ -1,4 +1,30 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order #WG-1242 - Wigmore Medical</title>
+
+  <!-- Adobe Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/hnw4byi.css">
+
+  <!-- Alpine Store -->
+  <script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('prototype', {
+      loggedIn: false
+    })
+  })
+</script>
+
+  <!-- Alpine + Plugins -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" crossorigin href="/assets/app-DQrN6YAg.css">
+</head>
+<body>
+  <style>
   /* Search Carousel Progress Bar */
   .search-carousel-progress.swiper-pagination-progressbar {
     background: var(--color-brand-border);
@@ -25,7 +51,35 @@
 </style>
 
 <!-- Admin Bar -->
-<load src="partials/admin-bar.html" />
+<!-- Prototype Admin Bar -->
+<div x-data="{ open: false }" class="fixed bottom-0 left-0 right-0 z-999">
+  <!-- Toggle Button -->
+  <button
+    @click="open = !open"
+    class="flex flex-row gap-1 absolute bottom-full left-4 mb-0 bg-black text-white px-2 py-1.5 cursor-pointer"
+  >
+    Admin
+    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- Bar -->
+  <div
+    x-show="open"
+    class="bg-black text-black px-4 py-4 flex items-center justify-between text-sm font-mono"
+  >
+    <div class="flex items-center gap-4">
+      <span class="text-white text-xs">Admin controls:</span>
+      <button
+        @click="$store.prototype.loggedIn = !$store.prototype.loggedIn"
+        class="px-3 py-1 text-xs font-bold tracking-wide cursor-pointer bg-brand-primary-100 hover:bg-gray-300"
+        x-text="$store.prototype.loggedIn ? 'Toggle Logout' : 'Toggle Login'"
+      ></button>
+    </div>
+  </div>
+</div>
+
 
 <!-- Announcement bar -->
 <div class="md:px-4 md:mt-2 mb-3 max-w-body mx-auto" x-data="{
@@ -1161,14 +1215,14 @@
           ],
           cards: [
             {
-              image: '/assets/navigation/dropdown-offer-hydropeptide.png',
-              title: 'Hydropeptide',
-              button: { text: 'Buy 5 Get 2', url: '/CategoryMixMatchOffer?sk=xvG7WXj5BTPj8JUyveo5Sk3dq8iCrcAKI/EPrYJnfSSIbDWxhWxiEsvqjjI6UU6fq4ZPkcZvzpzgq+c/LC11QS64muQziHgitYeiOBsKvwHcx2RZyNpkO1H7r3P4jOat8lo+gh+JetAgx+CNZzbgD2fy50K8qNqht89NMZ471w4Du/XPLiI2wUC80PW/z8oN1xfsaM7h5j2wZcx19JBIpg==' }
+              image: '/assets/placeholder-jennie.png',
+              title: 'The Skin Diary',
+              button: { text: 'Buy 10 get 6 Free', url: '#trial' }
             },
             {
-              image: '/assets/navigation/dropdown-offer-image.png',
-              title: 'IMAGE Skincare',
-              button: { text: 'Buy 5 Get 2', url: '/CategoryMixMatchOffer?sk=XCT9e9I79Q7U29eBg/9gQAwJQSGNO4LXir9SSBx3mrs14M72HH0UTjVsV2FnpI+shEgl6SQfoCNei8xvzLpqPJ7YnV3HqZjVHZTsX1OvIe0kzxOXmb6xDI9mRD/Wvzbq+rE4yCVoyagGYVpvumALqW/twmjBXDoz1ifljjkri7Cw231Awe0NQMR8+cmpavxrPQGBlrzzyH79aCmWUllq3u1yGL8BFA9wE7ecufmS2boKDIKnRKVL+7/WQR1ohFkg' }
+              image: '/assets/placeholder-product.png',
+              title: 'Plenhyage',
+              button: { text: 'Buy 10 get 6 Free', url: '#tutorial' }
             }
           ]
         },
@@ -1222,14 +1276,14 @@
           ],
           cards: [
             {
-              image: '/assets/navigation/dropdown-offer-training-botulinum.png',
-              title: 'Training Course',
-              button: { text: 'Botulinum Toxins', url: '/training/courses/introductory-toxins' }
+              image: '/assets/placeholder-product.png',
+              title: 'Level up your skills',
+              button: { text: 'Browse Courses', url: '#courses' }
             },
             {
-              image: '/assets/navigation/dropdown-offer-image-acne.png',
-              title: 'IMAGE Webinar',
-              button: { text: 'Acne Uncovered', url: '/webinartraining' }
+              image: '/assets/placeholder-jennie.png',
+              title: 'Get certified today',
+              button: { text: 'View Certifications', url: '#certifications' }
             }
           ]
         },
@@ -1265,14 +1319,14 @@
           ],
           cards: [
             {
-              image: '/assets/navigation/dropdown-offer-dermaroller.png',
-              title: 'Dermaroller',
-              button: { text: 'Shop Dermaroller', url: '/exclusives' }
+              image: '/assets/placeholder-jennie.png',
+              title: 'The Skin Diary',
+              button: { text: 'Buy 10 get 6 Free', url: '#trial' }
             },
             {
-              image: '/assets/navigation/dropdown-offer-hydropeptide-1.png',
-              title: 'Hydropeptide',
-              button: { text: 'Shop Hydropeptide', url: '/exclusives/hydropeptide' }
+              image: '/assets/placeholder-product.png',
+              title: 'Plenhyage',
+              button: { text: 'Buy 10 get 6 Free', url: '#tutorial' }
             }
           ]
         }
@@ -1333,3 +1387,496 @@
     }
   }
 </script>
+
+  <div class="body-container">
+    <div class="max-w-6xl mx-auto" x-data="{ confirmAction: null }">
+
+      <!-- Back Link + Actions -->
+      <div class="card-container-generic px-6 py-4 mb-3 flex items-center justify-between">
+        <a href="/dashboard.html" class="basic-link flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          Back to Orders
+        </a>
+        <div class="relative" x-data="{ menuOpen: false }">
+          <button @click="menuOpen = !menuOpen" class="w-8 h-8 flex items-center justify-center rounded-full text-brand-primary-700 hover:bg-brand-background transition-colors cursor-pointer">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+          </button>
+          <div x-show="menuOpen" @click.away="menuOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="-translate-y-2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50 mt-1 w-48" x-cloak>
+            <div class="p-1 bg-white rounded-lg border shadow-md border-neutral-200/70 text-neutral-700">
+              <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                <span>Download Invoice</span>
+              </button>
+              <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                <span>Print Order</span>
+              </button>
+              <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors">
+                <span>Repeat Order</span>
+              </button>
+              <div class="-mx-1 my-1 h-px bg-brand-background"></div>
+              <button @click="menuOpen = false" class="relative flex w-full cursor-default select-none hover:bg-brand-background-secondary items-center rounded px-2 py-1.5 text-sm outline-none transition-colors text-brand-error">
+                <span>Cancel Order</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Approval Alert + Actions -->
+      <div class="card-container-generic p-6 mb-3">
+        <div class="flex items-start gap-3 p-4 rounded-xl border bg-amber-100 border-amber-400 text-amber-800">
+          <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.44829 4.46472C10.5836 2.51208 13.4105 2.51168 14.5464 4.46401L21.5988 16.5855C22.7423 18.5509 21.3145 21 19.05 21L4.94967 21C2.68547 21 1.25762 18.5516 2.4004 16.5862L9.44829 4.46472ZM11.9995 8C12.5518 8 12.9995 8.44772 12.9995 9V13C12.9995 13.5523 12.5518 14 11.9995 14C11.4473 14 10.9995 13.5523 10.9995 13V9C10.9995 8.44772 11.4473 8 11.9995 8ZM12.0009 15.99C11.4486 15.9892 11.0003 16.4363 10.9995 16.9886L10.9995 16.9986C10.9987 17.5509 11.4458 17.9992 11.9981 18C12.5504 18.0008 12.9987 17.5537 12.9995 17.0014L12.9995 16.9914C13.0003 16.4391 12.5532 15.9908 12.0009 15.99Z" fill="currentColor"></path></svg>
+          <div>
+            <p class="md:text-sm text-xs font-medium leading-tight">Approval Required</p>
+            <p class="md:text-sm text-xs font-light leading-snug mt-1">This order is pending approval. Please review the details and approve or reject this order.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-5">
+          <button @click="confirmAction = 'reject'" class="button-secondary justify-center !border-brand-error !text-brand-error hover:!bg-brand-error/5">
+            <span class="button-text" data-text="Reject Order"><span>Reject Order</span></span>
+          </button>
+          <button @click="confirmAction = 'approve'" class="button-primary justify-center">
+            <span class="button-text" data-text="Approve Order"><span>Approve Order</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Order Header -->
+      <div class="card-container-generic px-6 pt-6 pb-5 mb-3">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <h1 class="heading-primary text-3xl">Order #WG-1242</h1>
+          <span class="badge-status-pending">Pending Approval</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+          <span class="text-gray-500 font-light">Order placed: <span class="text-brand-dark">02 May 2025</span></span>
+          <span class="text-gray-300">&bull;</span>
+          <span class="text-gray-500 font-light">Ordered by: <span class="text-brand-dark">Nurse Emma Williams</span></span>
+          <span class="text-gray-300">&bull;</span>
+          <span class="text-gray-500 font-light">Order Type: <span class="text-brand-dark">RX Order</span></span>
+          <span class="text-gray-300">&bull;</span>
+          <span class="text-gray-500 font-light">Status: <span class="text-brand-dark">Awaiting Approval</span></span>
+        </div>
+      </div>
+
+      <!-- Order Details -->
+      <div class="card-container-generic p-6 mb-3">
+        <h2 class="heading-primary text-xl mb-5">Order Details</h2>
+
+        <div class="lg:grid lg:grid-cols-[1fr_20rem] lg:gap-5">
+
+          <!-- Items Table -->
+          <div class="min-w-0 mb-5 lg:mb-0">
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead>
+                    <tr class="bg-brand-background-secondary border-b border-brand-border">
+                      <th class="label-text px-5 py-3 text-left">Items (50)</th>
+                      <th class="label-text px-5 py-3 text-center">Qty</th>
+                      <th class="label-text px-5 py-3 text-right">Unit Price</th>
+                      <th class="label-text px-5 py-3 text-right">VAT</th>
+                      <th class="label-text px-5 py-3 text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="bg-white">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-brand-background-secondary/50">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-brand-background-secondary/50">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-brand-background-secondary/50">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-brand-background-secondary/50">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                    <tr class="bg-brand-background-secondary/50">
+                      <td class="px-5 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <img src="/assets/placeholder-product.png" alt="Dermapen Needles Set" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                          <div>
+                            <p class="text-sm font-medium text-brand-primary-700">Dermapen Needles Set</p>
+                            <p class="text-xs mt-0.5"><span class="font-light text-gray-500">Net:</span> <span class="font-medium text-brand-dark">&pound;125.00</span></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-5 py-4 text-sm text-center font-light whitespace-nowrap">1</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;150.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-light whitespace-nowrap">&pound;25.00</td>
+                      <td class="px-5 py-4 text-sm text-right font-medium whitespace-nowrap">&pound;150.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="space-y-5">
+
+            <!-- Order Summary -->
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h3 class="label-text text-brand-dark">Order Summary</h3>
+              </div>
+              <div class="bg-white p-5">
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="label-text">Items</span>
+                    <span class="label-content">50</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">Subtotal</span>
+                    <span class="label-content">&pound;3,200.00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">VAT (20%)</span>
+                    <span class="label-content">&pound;640.00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">Shipping</span>
+                    <span class="label-content text-brand-primary-700">Free Delivery</span>
+                  </div>
+                  <div class="border-t border-brand-border pt-4 flex justify-between items-center">
+                    <span class="label-text text-brand-dark">Total</span>
+                    <span class="label-text text-brand-dark">&pound;3,840.00</span>
+                  </div>
+                </div>
+                <div class="border-t border-brand-border mt-4 pt-4 space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="label-text">Payment Method</span>
+                    <span class="label-content">Credit Card</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">Payment Status</span>
+                    <span class="label-content">Paid</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delivery Details -->
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h3 class="label-text text-brand-dark">Delivery Details</h3>
+              </div>
+              <div class="bg-white p-5">
+                <div class="text-sm font-light leading-relaxed">
+                  <p>BeautyMed Clinic</p>
+                  <p>78 King Street</p>
+                  <p>Edinburgh</p>
+                  <p>EH1 2HQ</p>
+                  <p>United Kingdom</p>
+                </div>
+                <div class="border-t border-brand-border mt-4 pt-4 space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="label-text">Delivery Method</span>
+                    <div class="text-right">
+                      <p class="label-content">Next day delivery</p>
+                      <p class="text-xs font-light text-gray-500">(DHL)</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">Expected Dispatch</span>
+                    <span class="label-content">Tomorrow, 4pm</span>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <button class="button-primary w-full justify-center">
+                    <span class="button-text" data-text="Track Shipment"><span>Track Shipment</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Billing Details -->
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h3 class="label-text text-brand-dark">Billing Details</h3>
+              </div>
+              <div class="bg-white p-5">
+                <div class="text-sm font-light leading-relaxed">
+                  <p>BeautyMed Clinic</p>
+                  <p>78 King Street</p>
+                  <p>Edinburgh</p>
+                  <p>EH1 2HQ</p>
+                  <p>United Kingdom</p>
+                </div>
+                <div class="border-t border-brand-border mt-4 pt-4 space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="label-text">Billing Contact</span>
+                    <span class="label-content">Finance Department</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">VAT Number</span>
+                    <span class="label-content">GB 123 4567 89</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="label-text">Invoice Email</span>
+                    <span class="label-content">accounts@clinic.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Notes -->
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h3 class="label-text text-brand-dark">Order Notes</h3>
+              </div>
+              <div class="bg-white p-5">
+                <p class="text-sm font-light leading-relaxed">Large order - please ensure all items are in stock before shipping. Contact Emma on 07700 900123 if any issues.</p>
+              </div>
+            </div>
+
+            <!-- Support -->
+            <div class="rounded-xl border border-brand-border overflow-hidden">
+              <div class="bg-brand-background-secondary px-5 py-3">
+                <h3 class="label-text text-brand-dark">Support</h3>
+              </div>
+              <div class="bg-white p-5">
+                <p class="text-sm font-light leading-relaxed mb-4">If you have any queries with your order, please contact our support team</p>
+                <button class="button-secondary w-full justify-center">
+                  <span class="button-text" data-text="Contact"><span>Contact</span></span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Approve Confirmation -->
+      <template x-teleport="body">
+        <div x-show="confirmAction === 'approve'" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+          <div x-show="confirmAction === 'approve'"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="confirmAction = null"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="confirmAction === 'approve'"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmAction = null"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+            <h2 class="heading-primary text-2xl">Approve Order?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to approve order <span class="font-medium">#WG-1242</span>? This will move the order to processing.</p>
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmAction = null">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center" @click="confirmAction = null; $dispatch('toast-show', { message: 'Order #WG-1242 approved', type: 'success' })">
+                <span class="button-text" data-text="Yes, Approve Order"><span>Yes, Approve Order</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Reject Confirmation -->
+      <template x-teleport="body">
+        <div x-show="confirmAction === 'reject'" x-cloak class="fixed inset-0 z-9999 flex items-center justify-center p-4">
+          <div x-show="confirmAction === 'reject'"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @click="confirmAction = null"
+               class="fixed inset-0 bg-black/30 backdrop-blur-xs"></div>
+          <div x-show="confirmAction === 'reject'"
+               x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+               @keydown.escape.window="confirmAction = null"
+               class="relative bg-white rounded-2xl shadow-xl sm:max-w-md w-full p-8">
+            <h2 class="heading-primary text-2xl">Reject Order?</h2>
+            <p class="text-sm font-light leading-relaxed mt-4">Are you sure you want to reject order <span class="font-medium">#WG-1242</span>? This action cannot be undone.</p>
+            <div class="flex gap-3 mt-8">
+              <button class="button-secondary flex-1 justify-center" @click="confirmAction = null">
+                <span class="button-text" data-text="Cancel"><span>Cancel</span></span>
+              </button>
+              <button class="button-primary flex-1 justify-center !bg-brand-error hover:!bg-brand-error/90" @click="confirmAction = null; $dispatch('toast-show', { message: 'Order #WG-1242 rejected', type: 'error' })">
+                <span class="button-text" data-text="Yes, Reject Order"><span>Yes, Reject Order</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="card-container bg-brand-primary-700 text-brand-light">
+  <div class="card-container-inner">
+    <div class="grid lg:grid-cols-[4fr_1.5fr_1.5fr_3fr] grid-cols-1 gap-8">
+      <div>
+        <div class="flex flex-col gap-4 items-start justify-start mb-4 max-w-sm">
+          <a class="block text-brand-light w-20" href="#">
+            <span class="sr-only">Home</span>
+            <svg class="w-full h-auto" viewBox="0 0 54 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M53.8648 0.58332C50.982 0.58332 48.2718 2.74559 46.6245 6.25488L35.7329 30H34.4376L26.9028 16.9749L20.9578 30H19.6625L4.65261 3.99656C3.003 1.15961 2.41402 0.58332 0.17773 0.58332C-0.0592433 0.58332 -0.0592433 0.0046853 0.17773 0.0046853C1.10568 0.00780884 2.55283 0.00780884 4.51917 0.0046853C9.70958 0.00234265 11.4213 0.0046853 13.0111 0.0046853C13.2458 0.0046853 13.2458 0.580978 13.0111 0.580978C9.774 0.580978 9.59684 1.30251 11.656 4.85866L22.2531 23.2204L25.9618 15.2881L19.4278 3.99422C18.1923 1.87881 17.0742 0.580978 15.6592 0.580978C15.4222 0.580978 15.4222 0.0046853 15.6592 0.0046853C16.8372 0.0046853 16.8579 0.0046853 19.3312 0.0046853C23.7462 0.0046853 25.1381 0.0046853 26.4334 0.0046853C26.6704 0.0046853 26.6704 0.580978 26.4334 0.580978C24.3145 0.580978 24.3743 1.30251 26.4334 4.85866L29.024 9.32844L30.4965 6.10729C32.2635 2.30985 32.2635 0.578635 30.3194 0.578635C30.0824 0.578635 30.0824 0.00234265 30.3194 0.00234265C31.4973 0.00234265 30.5839 0.00234265 34.1155 0.00234265C36.0573 0.00234265 36.9707 0.00234265 38.7377 0.00234265C38.9148 0.00234265 38.9148 0.578635 38.7377 0.578635C36.0895 0.578635 33.9683 2.4059 32.2036 6.2502L30.0249 11.0081L37.0903 23.1688L44.685 6.58519C46.2748 3.12276 44.9795 0.576292 42.0369 0.576292C41.7999 0.576292 41.7999 0 42.0369 0C44.096 0 45.6927 0 48.633 0C50.8118 0 51.8655 0 53.8671 0C54.0443 0 54.0443 0.576292 53.8671 0.576292L53.8648 0.58332Z" fill="var(--color-brand-light)"/>
+            </svg>
+          </a>
+          <p class="text-sm">
+            The longest established aesthetics distribution company in the UK, Wigmore Medical has over 30 years of industry experience from medical equipment through to topical skincare. Originally a pharmacy specialising in medical equipment. Wigmore Medical has grown into the UK’s leading aesthetics medicine's one-stop-shop.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3 class="heading-primary text-lg text-brand-light mb-8">About</h3>
+        <ul class="space-y-5">
+          <li><a href="#" class="text-brand-light hover:underline text-sm">About Us</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Our Story</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Careers</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Press</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="heading-primary text-lg text-brand-light mb-8">More Info</h3>
+        <ul class="space-y-5">
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Delivery Information</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Returns Policy</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Terms & Conditions</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">Privacy Policy</a></li>
+          <li><a href="#" class="text-brand-light hover:underline text-sm">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="heading-primary text-lg text-brand-light mb-8">Subscribe</h3>
+        <p class="text-sm">
+          Subscribe to our newsletter for exclusive offers, skincare tips, and the latest news
+        </p>
+        <div class="form-search-wrap mt-6">
+          <input type="email" class="form-input" placeholder="Email Address">
+          <button class="form-search-btn" type="button">
+            <span class="icon icon-arrow w-3.5 h-3.5 rotate-180"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</body>
+</html>
